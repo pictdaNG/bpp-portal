@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,9 +25,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        if($user->user_type == "admin"){
-            return redirect('/admin');
+        if($user->user_type == "contractor"){
+            return redirect('/home');
         }
-        return view('home');
+        return view('adminHome');
     }
 }
