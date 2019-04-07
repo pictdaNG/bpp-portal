@@ -218,7 +218,7 @@
                   <div class="text-muted text-sm hidden-nav-xs padder m-t-sm m-b-sm">Pre Bidding Excercise</div>
                   <ul class="nav nav-main" data-ride="collapse">
                     <li  class="active">
-                      <a href="/home" class="auto">
+                      <a href="{{ route('home') }}" class="auto">
                         <i class="i i-statistics icon">
                         </i>
                         <span class="font-bold">Dashboard</span>

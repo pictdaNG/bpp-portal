@@ -119,43 +119,65 @@
 
             <div class="row">
             <div class="col-md-6">
-                <section class="panel b-a">
-                <div class="panel-heading b-b alert alert-info">
-                    <a href="#" class="font-bold">All Bids Advertised</a>
-                </div>
-                <!-- <ul class="list-group list-group-lg no-bg auto">                          
-                    <a href="#" class="list-group-item clearfix">
-                    <span class="pull-left thumb-sm avatar m-r">
-                        <img src="{{ asset('/images/a6.png') }}" alt="...">
-                        <i class="busy b-white bottom"></i>
-                    </span>
-                    <span class="clear">
-                        <span>No bid submitted yet</span>
-                        <small class="text-muted clear text-ellipsis">Nothing here yet.</small>
-                    </span>
-                    </a>
-                </ul> -->
+              <section class="panel panel-info portlet-item">
+                <header class="panel-heading">
+                <b>All Bids Advertised</b>
+                </header>
+                <section class="panel-body">
+                    <!-- When you have Content -->
+                    <div class="line pull-in"></div>
+                    <article class="media">
+                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                        <div class="media-body">
+                        <div class="pull-right media-xs text-center text-muted">
+                            <strong class="h4">17</strong><br>
+                            <small class="label bg-light">FEB</small>
+                        </div>
+                        <a href="#" class="h4">Federal Polytechnic Nassarawa</a>
+                        <small class="block"><a href="#" class="">Eddie Bigs</a></small>
+                        <small class="block m-t-sm">Contractors/Supplier/Consultants for 2014 Budget Implementation of the fund</small>
+                        </div>
+                    </article>
                 </section>
+              </section>
             </div>
 
             <div class="col-md-6">
-                <section class="panel b-a">
-                <div class="panel-heading b-b alert alert-info">
-                    <a href="#" class="font-bold">Bids Submitted</a>
-                </div>
-                <!-- <ul class="list-group list-group-lg no-bg auto">                          
-                    <a href="#" class="list-group-item clearfix">
-                    <span class="pull-left thumb-sm avatar m-r">
-                        <img src="{{ asset('/images/a4.png') }}" alt="...">
-                        <i class="on b-white bottom"></i>
-                    </span>
-                    <span class="clear">
-                        <span>No recent advert</span>
-                        <small class="text-muted clear text-ellipsis">No bid submitted yet</small>
-                    </span>
-                    </a>
-                </ul> -->
+            <section class="panel panel-success portlet-item">
+                <header class="panel-heading">
+                <b>Bids Submitted</b>
+                </header>
+                <section class="panel-body">
+                    <!-- When you have Content -->
+                    <div class="line pull-in"></div>
+                    <article class="media">
+                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                        <div class="media-body">
+                        <div class="pull-right media-xs text-center text-muted">
+                            <strong class="h4">17</strong><br>
+                            <small class="label bg-light">FEB</small>
+                        </div>
+                        <a href="#" class="h4">Plateau State Polytechnic</a>
+                        <small class="block"><a href="#" class="">Retnan Daser</a></small>
+                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
+                        </div>
+                    </article>
+
+                    <div class="line pull-in"></div>
+                    <article class="media">
+                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                        <div class="media-body">
+                        <div class="pull-right media-xs text-center text-muted">
+                            <strong class="h4">17</strong><br>
+                            <small class="label bg-light">FEB</small>
+                        </div>
+                        <a href="#" class="h4">Construction of Lecture Theatre UniJos</a>
+                        <small class="block"><a href="#" class="">Logical Address Ltd.</a></small>
+                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
+                        </div>
+                    </article>
                 </section>
+              </section>
             </div>
 
             
