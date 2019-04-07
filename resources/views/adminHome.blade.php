@@ -96,7 +96,31 @@
             </div>
 
             <div class="row">
-                <h1>Graphs Here</h1>
+            <div class="col-md-6">
+                <section class="panel panel-default">
+                <header class="panel-heading font-bold"><b>Graphical Analysis 2017 PBPP</b></header>
+                <div class="panel-body">
+                    <div id="flot-bar"  style="height:200px"></div>
+                </div>                  
+                </section>
+            </div>
+
+            <div class="col-md-6">
+                <section class="panel panel-default">
+                <header class="panel-heading"><b>Registration Statistics | Real-Time Update</b></header>
+                <div class="panel-body text-center">    
+                    <div class="text-xs">
+                        <i class="fa fa-circle text-info"></i> Incomplete Registration
+                        <i class="fa fa-circle text-muted"></i> Complete Registration
+                    </div>    
+                    <div class="line pull-in"></div>      
+                    <div class="sparkline inline" data-type="pie" data-height="154" data-slice-colors="['#1ccacc','#f2f2f2']">60,40</div>
+                    
+                </div>
+                </section>
+            </div>
+
+
             </div>
         </section>
         </section>
