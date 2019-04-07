@@ -16,4 +16,12 @@ class MDAController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function mda(Request $request){
+        return view('admin/manageMDA');
+    }
+
+    public function createAdvert(Request $request){
+        return view('mda/createAdvert');
+    }
 }

@@ -20,3 +20,9 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
 Route::get('/logout', 'HomeController@logout')->name('logout');
+
+//Admin
+Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
+
+//MDA
+Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');

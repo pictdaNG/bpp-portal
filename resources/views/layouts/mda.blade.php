@@ -235,15 +235,52 @@
                         </i>
                         <span class="font-bold">Bid Adverts</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
-                          <a href="/contractor/registration" class="auto">                                                        
+                          <a href="#" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Company Registration</span>
+                            <span>All Adverts</span>
                           </a>
                         </li>
-                    </ul> -->
+                        <li >
+                          <a href="{{ route('newMdaAdvert') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+                            <span>Create new Advert</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>All Addendum</span>
+                          </a>
+                        </li>
+
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Create Addendum</span>
+                          </a>
+                        </li>
+
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>All Corrigendum</span>
+                          </a>
+                        </li>
+
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>All Adverts</span>
+                          </a>
+                        </li>
+                    </ul>
                     </li>
                     <li >
                       <a href="#" class="auto">
