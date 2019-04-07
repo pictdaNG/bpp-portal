@@ -3,5 +3,5 @@
 namespace App\Repositories\Contractor;
 
 interface ContractorContract {
-    public function creaateCompany($rquest);
+    public function createContractor($rquest);
 }

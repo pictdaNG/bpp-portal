@@ -20,5 +20,5 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
 
-Route::post('/contractor/store', 'ContractorController@storeCompany')->name('contractor_storeCompany');
+Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/logout', 'HomeController@logout')->name('logout');

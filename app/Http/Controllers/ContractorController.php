@@ -15,7 +15,7 @@ class ContractorController extends Controller {
 
     public function __construct(ContractorContract $contractorContract){
         $this->middleware('auth');
-        $this->$repo = $contractorContract;
+        $this->repo = $contractorContract;
     }
     
     public function registration(Request $request){
@@ -23,25 +23,26 @@ class ContractorController extends Controller {
     }
 
 
-    public function storeCompany(Request $request) {
+    public function storeContractor(Request $request) {
         $this->validate($request, [
-           'name' => 'required',
+           'company_name' => 'required',
            'cac_number' => 'required|numeric|digits:10',
            'city' => 'required|alpha_num',
-           'state'=> 'required',
            'country' => 'required',
-           'email' => 'required|email|'
+           'email' => 'required|email'
         ]);
 
+       // dd((object)$request->all());
+
        try {
-           $contractor = $this->repo->create($request);
+           $contractor = $this->repo->createContractor((object)$request->all());
+             
            if ($contractor) {
-            return redirect()->route('areaoffice_index')
-               ->with('success', 'Company successfully added');
+               return response()->json(['success'=>'Added new records.'], 200);
+               
             } else {
-                return back()
-                   ->withInput()
-                   ->with('error', 'Could not create Company. Try again!');
+            
+                return response()->json(['error'=>$validator->errors()->all()]);
             }
        } catch (QueryException $e) {
            return back()
