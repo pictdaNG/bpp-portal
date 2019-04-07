@@ -126,7 +126,7 @@
                 <ul class="list-group alt">
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a1.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-success m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>
@@ -138,7 +138,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a2.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-muted m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>
@@ -150,7 +150,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a2.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-muted m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>
@@ -162,7 +162,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a2.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-muted m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>
@@ -174,7 +174,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a2.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-muted m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>
@@ -187,7 +187,7 @@
 
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a2.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-muted m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>
@@ -200,7 +200,7 @@
 
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a2.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-muted m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>
@@ -213,7 +213,7 @@
 
                   <li class="list-group-item">
                     <div class="media">
-                      <span class="pull-left thumb-sm"><img src="images/a2.png" alt="John said" class="img-circle"></span>
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
                       <div class="pull-right text-muted m-t-sm">
                         <i class="fa fa-circle"></i>
                       </div>

@@ -117,6 +117,7 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
+        <!--
         <li class="hidden-xs">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="i i-chat3"></i>
@@ -151,6 +152,7 @@
             </section>
           </section>
         </li>
+        -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
@@ -235,15 +237,52 @@
                         </i>
                         <span class="font-bold">Bid Adverts</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
-                          <a href="/contractor/registration" class="auto">                                                        
+                          <a href="#" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Company Registration</span>
+                            <span>All Adverts</span>
                           </a>
                         </li>
-                    </ul> -->
+                        <li >
+                          <a href="{{ route('newMdaAdvert') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+                            <span>Create new Advert</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>All Addendum</span>
+                          </a>
+                        </li>
+
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Create Addendum</span>
+                          </a>
+                        </li>
+
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>All Corrigendum</span>
+                          </a>
+                        </li>
+
+                        <li >
+                          <a href="#" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>All Adverts</span>
+                          </a>
+                        </li>
+                    </ul>
                     </li>
                     <li >
                       <a href="#" class="auto">
