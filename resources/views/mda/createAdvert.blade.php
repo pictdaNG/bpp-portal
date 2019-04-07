@@ -159,34 +159,52 @@
     <div class="form-group">
     <div class="col-sm-10">
       <label class="checkbox-inline i-checks">
-        <input type="radio" id="inlineCheckbox1" value="approved_project"><i></i> Approved Project
+        <input name="project_status" type="radio" id="inlineCheckbox1" value="approved_project"><i></i> Approved Project
       </label>
       <label class="checkbox-inline i-checks">
-        <input type="radio" id="inlineCheckbox2" value="new project"><i></i> New Project
+        <input type="radio" id="inlineCheckbox2" value="new_project"><i></i> New Project
       </label>
     </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Select Project</label>
+        <div class="col-lg-9">
+        <select name="project" class="form-control">
+            <option value="default"></option>
+        </select>
+        <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+        </div>
     </div>
         
     <div class="form-group">
-        <label class="col-lg-3 control-label">Project Title</label>
+        <label class="col-lg-3 control-label">Package No:</label>
         <div class="col-lg-9">
-        <input name="name" class="form-control">
+        <input name="package_no" class="form-control">
         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-lg-3 control-label">Budget Year</label>
+        <label class="col-lg-3 control-label">Lot No:</label>
         <div class="col-lg-9">
-        <input type="text" name="budget_year" class="form-control">
+        <input name="lot_no" class="form-control">
         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-lg-3 control-label">Advert Type</label>
+        <label class="col-lg-3 control-label">Lot Description</label>
         <div class="col-lg-9">
-        <select name="advert_type" class="form-control">
+        <input type="text" name="description" class="form-control">
+        <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Lot Category</label>
+        <div class="col-lg-9">
+        <select name="lot_category" class="form-control">
             <option value="default"></option>
         </select>
         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
@@ -194,7 +212,7 @@
     </div>
 
     <div class="form-group">
-        <label class="col-lg-3 control-label">Advert Mode</label>
+        <label class="col-lg-3 control-label">Lot Mode</label>
         <div class="col-lg-9">
         <select name="advert_mode" class="form-control">
             <option value="default"></option>
@@ -204,29 +222,42 @@
     </div>
 
     <div class="form-group">
-        <label class="col-lg-3 control-label">Introduction</label>
+        <label class="col-lg-3 control-label">Lot Amount</label>
         <div class="col-lg-9">
-        <textarea name="introduction" class="form-control"></textarea>
-        <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-lg-3 control-label">Advert Publish Date</label>
-        <div class="col-lg-9">
-        <input type="date" name="advert_publish_date" class="form-control">
+        <input type="date" name="lot_amount" class="form-control">
         <!-- <span class="help-block m-b-none">URL</span> -->
         </div>
     </div>
 
 
     <div class="form-group">
-        <label class="col-lg-3 control-label">Bid Opening Date</label>
+        <label class="col-lg-3 control-label">Upload Tender Document</label>
         <div class="col-lg-9">
-        <input type="date" name="bid_opening_date" class="form-control">
+        <input type="file" name="tender_document" class="form-control">
         <!-- <span class="help-block m-b-none">URL</span> -->
         </div>
     </div>
+
+    <div class="form-group">
+    <div class="col-sm-10">
+      <label class="checkbox-inline i-checks">
+        <input name="custom_requirement" type="radio" id="inlineCheckbox1" value="approved_project"><i></i> Customer Requirement
+      </label>
+      <label class="checkbox-inline i-checks">
+        <input name="custom_requirement" type="radio" id="inlineCheckbox2" value="new_project"><i></i> No Requirement
+      </label>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Requirements</label>
+        <div class="col-lg-9">
+        <input type="text" class="form-control">
+        <!-- <span class="help-block m-b-none">URL</span> -->
+        </div>
+    </div>
+
+  
 
     </form>
     </div>
