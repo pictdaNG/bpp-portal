@@ -100,7 +100,7 @@
                 <section class="panel panel-default">
                 <header class="panel-heading font-bold"><b>Graphical Analysis 2017 PBPP</b></header>
                 <div class="panel-body">
-                    <div id="flot-bar"  style="height:200px"></div>
+                    <div id="admin-flot-bar"  style="height:200px"></div>
                 </div>                  
                 </section>
             </div>
