@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
+
+Route::post('/contractor/store', 'ContractorController@storeCompany')->name('contractor_storeCompany');
