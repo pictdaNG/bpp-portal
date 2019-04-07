@@ -26,8 +26,17 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         if($user->user_type == "admin"){
-            return redirect('/admin');
+            return view('adminHome');
+        }else if($user->user_type == "mda"){
+            return view('MDAHome');
+        }else if($user->user_type == "Contractor"){
+            return view('home');
         }
-        return view('home');
+        return redirect('/404');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }

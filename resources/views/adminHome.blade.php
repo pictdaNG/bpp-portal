@@ -26,7 +26,7 @@
                         </span>
                         <span class="clear">
                         <span class="h3 block m-t-xs text-danger">0</span>
-                        <small class="text-muted text-u-c">Adverts Published</small>
+                        <small class="text-muted text-u-c">Registered MDAs</small>
                         </span>
                     </a>
                     </div>
@@ -38,7 +38,7 @@
                         </span>
                         <span class="clear">
                         <span class="h3 block m-t-xs text-success">0</span>
-                        <small class="text-muted text-u-c">Bids Submitted</small>
+                        <small class="text-muted text-u-c">Contractors</small>
                         </span>
                     </a>
                     </div>
@@ -50,7 +50,7 @@
                         </span>
                         <span class="clear">
                         <span class="h3 block m-t-xs text-info">0</span>
-                        <small class="text-muted text-u-c">Bids Closing in 7 Days</small>
+                        <small class="text-muted text-u-c">Pubished Adverts</small>
                         </span>
                     </a>
                     </div>
@@ -61,59 +61,38 @@
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-primary">0%</span>
-                        <small class="text-muted text-u-c">Registration Progress</small>
+                        <span class="h3 block m-t-xs text-primary">0</span>
+                        <small class="text-muted text-u-c">Bids Submitted</small>
                         </span>
                     </a>
                     </div>
                 </div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-6">
+            <div class="col-md-6 col-sm-6">
                 <div class="panel b-a">
                 <div class="panel-heading no-border bg-primary lt text-center">
                     <a href="#">
-                    <i class="fa fa-briefcase fa fa-3x m-t m-b text-white"></i>
+                    Published adverts based on category
                     </a>
                 </div>
                 <div class="padder-v text-center clearfix">                            
-                    <div class="col-xs-12">
+                    <div class="col-xs-4 b-r">
+                    <div class="h3 font-bold">3</div>
+                    <small class="text-muted">Works</small>
+                    </div>
+                    <div class="col-xs-4 b-r">
+                    <div class="h3 font-bold">3</div>
+                    <small class="text-muted">Services</small>
+                    </div>
+                    <div class="col-xs-4">
                     <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Construction/Works</small>
+                    <small class="text-muted">Goods</small>
                     </div>
                 </div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-6">
-                <div class="panel b-a">
-                <div class="panel-heading no-border bg-info lter text-center">
-                    <a href="#">
-                    <i class="fa fa-briefcase fa fa-3x m-t m-b text-white"></i>
-                    </a>
-                </div>
-                <div class="padder-v text-center clearfix">                            
-                    <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Consultancy/Services</small>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <div class="panel b-a">
-                <div class="panel-heading no-border bg-primary lt text-center">
-                    <a href="#">
-                    <i class="fa fa-briefcase fa fa-3x m-t m-b text-white"></i>
-                    </a>
-                </div>
-                <div class="padder-v text-center clearfix">                            
-                    <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Construction/Works</small>
-                    </div>
-                </div>
-                </div>
-            </div>
+  
             </div>
 
             <div class="row">

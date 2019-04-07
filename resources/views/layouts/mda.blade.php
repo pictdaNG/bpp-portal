@@ -218,11 +218,32 @@
                   <div class="text-muted text-sm hidden-nav-xs padder m-t-sm m-b-sm">Pre Bidding Excercise</div>
                   <ul class="nav nav-main" data-ride="collapse">
                     <li  class="active">
-                      <a href="/home" class="auto">
+                        <a href="{{ route('home') }}" class="auto">
                         <i class="i i-statistics icon">
                         </i>
                         <span class="font-bold">Dashboard</span>
                       </a>
+                    </li>
+
+                    <li >
+                      <a href="#" class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="i i-circle-sm-o text"></i>
+                          <i class="i i-circle-sm text-active"></i>
+                        </span>
+                        <i class="i i-stack icon">
+                        </i>
+                        <span class="font-bold">Bid Adverts</span>
+                      </a>
+                      <!-- <ul class="nav dk">
+                        <li >
+                          <a href="/contractor/registration" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Company Registration</span>
+                          </a>
+                        </li>
+                    </ul> -->
                     </li>
                     <li >
                       <a href="#" class="auto">
@@ -232,9 +253,9 @@
                         </span>
                         <i class="i i-stack icon">
                         </i>
-                        <span class="font-bold">Registration</span>
+                        <span class="font-bold">Bid Opening</span>
                       </a>
-                      <ul class="nav dk">
+                      <!-- <ul class="nav dk">
                         <li >
                           <a href="/contractor/registration" class="auto">                                                        
                             <i class="i i-dot"></i>
@@ -242,27 +263,7 @@
                             <span>Company Registration</span>
                           </a>
                         </li>
-                    </ul>
-                    </li>
-                    <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-lab icon">
-                        </i>
-                        <span class="font-bold">Bidding Documents</span>
-                      </a>
-                      <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/purchase-bid-document" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Purchase Bid Documents</span>
-                          </a>
-                        </li>
-                      </ul>
+                    </ul> -->
                     </li>
 
                     <li >
@@ -271,68 +272,19 @@
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
                         </span>
-                        <i class="i i-lab icon">
-                        </i>
-                        <span class="font-bold">Bid Adverts</span>
-                      </a>
-                      <ul class="nav dk">
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>All Adverts</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>Construction/Works Adverts</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>Consultancy/Service Adverts</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>Goods/Supply Adverts</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-lab icon">
+                        <i class="i i-stack icon">
                         </i>
                         <span class="font-bold">Transactions</span>
                       </a>
-                      <ul class="nav dk">
+                      <!-- <ul class="nav dk">
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="/contractor/registration" class="auto">                                                        
                             <i class="i i-dot"></i>
-                            <span>My Transaction History</span>
+
+                            <span>Company Registration</span>
                           </a>
                         </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>Verify Transaction</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>All Certificates</span>
-                          </a>
-                        </li>
-                      </ul>
+                    </ul> -->
                     </li>
 
                     <li >
@@ -346,6 +298,7 @@
                         <span class="font-bold">Log Out</span>
                       </a>
                     </li>
+                    
                   </ul>
                   <div class="line dk hidden-nav-xs"></div>
                 </nav>
