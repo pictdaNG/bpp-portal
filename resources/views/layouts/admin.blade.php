@@ -117,6 +117,7 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
+        <!--
         <li class="hidden-xs">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="i i-chat3"></i>
@@ -151,6 +152,7 @@
             </section>
           </section>
         </li>
+        -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
