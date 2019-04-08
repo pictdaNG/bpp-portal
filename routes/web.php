@@ -22,6 +22,7 @@ Route::get('/contractor/registration', 'ContractorController@registration')->nam
 
 Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/logout', 'HomeController@logout')->name('logout');
+// Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
 
 //Admin
 Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
