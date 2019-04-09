@@ -28,3 +28,4 @@ Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
 Route::get('/contractors/report', 'ReportController@contractors')->name('contractorReport');
 Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
+Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');

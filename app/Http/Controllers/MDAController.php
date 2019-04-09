@@ -24,4 +24,8 @@ class MDAController extends Controller
     public function createAdvert(Request $request){
         return view('mda/createAdvert');
     }
+
+    public function bidRequirements(Request $request, $advertId){
+        return view('mda/bidRequirements');
+    }
 }
