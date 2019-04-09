@@ -34,6 +34,11 @@ Route::post('/compliance/create', 'ComplianceController@storeCompliance')->name(
 Route::post('/director/create', 'DirectorController@storeDirector')->name('storeDirector');
 
 
+//ContractorCategory
+Route::post('/contractorcategory/create', 'ContractorCategoryController@storeCategory')->name('store_Category');
+
+
+
 
 
 //Admin

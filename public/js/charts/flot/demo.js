@@ -309,6 +309,49 @@ $(function(){
     }
   ];
 
+
+   // bar
+   var completeRegistration = [
+    [1, 120],
+    [2, 70],
+    [3, 100],
+    [4, 60]
+  ];
+
+  var incompleteRegistration = [
+    [1, 80],
+    [2, 40],
+    [3, 30],
+    [4, 20]
+  ];
+
+  var registrationData = [
+    {
+        label: "Complete Registration",
+        data: completeRegistration,
+        bars: {
+            show: true,
+            fill: true,
+            lineWidth: 1,
+            order: 1,
+            // fillColor: { colors: [{ opacity: 0.5 }, { opacity: 0.9}] }
+        },
+        color: "#6783b7"
+    },
+    {
+        label: "Incomplete Registration",
+        data: incompleteRegistration,
+        bars: {
+            show: true,
+            fill: true,
+            lineWidth: 1,
+            order: 2,
+            // fillColor: { colors: [{ opacity: 0.5 }, { opacity: 0.9}] }
+        },
+        color: "#4fcdb7"
+    },
+  ];
+
   var d2_1 = [
     [90, 10],
     [70, 20]
@@ -365,6 +408,28 @@ $(function(){
         color: "#8dd168"
     }
   ];
+
+  $("#admin-flot-bar").length && $.plot($("#admin-flot-bar"), registrationData, {
+    xaxis: {
+        
+    },
+    yaxis: {
+        
+    },
+    grid: {
+        hoverable: true,
+        clickable: false,
+        borderWidth: 0
+    },
+    legend: {
+        labelBoxBorderColor: "none",
+        position: "left"
+    },
+    series: {
+        shadowSize: 1
+    },
+    tooltip: true,
+});
 
   $("#flot-bar").length && $.plot($("#flot-bar"), data1, {
       xaxis: {

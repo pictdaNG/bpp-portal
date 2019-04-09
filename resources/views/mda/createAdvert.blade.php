@@ -162,7 +162,7 @@
         <input name="project_status" type="radio" id="inlineCheckbox1" value="approved_project"><i></i> Approved Project
       </label>
       <label class="checkbox-inline i-checks">
-        <input type="radio" id="inlineCheckbox2" value="new_project"><i></i> New Project
+        <input name="project_status" type="radio" id="inlineCheckbox2" value="new_project"><i></i> New Project
       </label>
     </div>
     </div>
@@ -256,8 +256,6 @@
         <!-- <span class="help-block m-b-none">URL</span> -->
         </div>
     </div>
-
-  
 
     </form>
     </div>

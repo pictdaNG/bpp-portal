@@ -47,12 +47,15 @@
       <h4 class="modal-title">Select a category associated with your business</h4>
     </div>
     <div class="modal-body">
-    <form class="bs-example form-horizontal">
+    <form class="bs-example form-horizontal" id="categoryform" action="javascript:void(0)" method="POST">
+        <div class="alert alert-success d-none" id="msg_div">
+            <span id="res_message"></span>
+        </div>
         <div class="form-group">
             <label class="col-lg-2 control-label">Select a Category</label>
             <div class="col-lg-10">
             <select name="category" class="form-control">
-                <option value="default"></option>
+                <option value="helllo">1</option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -62,7 +65,7 @@
             <label class="col-lg-2 control-label">Select Sub-Category</label>
             <div class="col-lg-10">
             <select name="subcategory_1" class="form-control">
-                <option value="default"></option>
+                <option value="hey">2</option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -72,18 +75,68 @@
             <label class="col-lg-2 control-label">Select a Category</label>
             <div class="col-lg-10">
             <select name="subcategory_2" class="form-control">
-                <option value="default"></option>
+                <option value="helll">3</option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
 
+        <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+            <button type="submit" id="categoryBtn" name="categoryBtn" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+        </div>
+
     </form>
     </div>
-    <div class="modal-footer">
-      <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-      <a href="#" class="btn btn-sm btn-success">Save Data</a>
-    </div>
+    
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div>
+
+<script>
+    $("#categoryform").validate({
+        submitHandler: function(form) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+           // console.log(url + '/contractorcategory/create');
+
+            $.ajax({
+                type : 'POST',
+                url : url + '/contractorcategory/create',
+                data :$('#categoryform').serialize(),
+                dataType: 'JSON',
+                success:function(data){    
+                    $('#categoryBtn').html('Submitted');
+                    $('#categoryBtn').removeAttr('disabled');
+                    $('#res_message').show();
+                    $('#res_message').html(response.success);
+                    $('#msg_div').removeClass('d-none');
+                    setTimeout(function(){
+                        $('.close').trigger('click');
+                    },1000);
+                    console.log('hello....1')
+
+                },
+                beforeSend: function(){
+                    $('#categoryBtn').html('Sending..');
+                    $('#categoryBtn').attr('disabled', 'disabled');
+                    console.log('hello....2')
+
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    $('#categoryBtn').html('Try Again');
+                    $('#categoryBtn').removeAttr('disabled');
+                    //console.log('hello....3')
+
+                    
+                // show error to end user
+                }
+            });
+        }
+    })
+</script>

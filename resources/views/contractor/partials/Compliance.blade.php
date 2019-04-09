@@ -194,7 +194,7 @@ $("#complianceform").validate({
                 $('#compliance_message').html(data.success);
                 $('#compliance_div').removeClass('d-none');
 
-                document.getElementById("complianceform").reset(); 
+              //  document.getElementById("complianceform").reset(); 
                 setTimeout(function(){
                     $('#compliance_message').hide();
                     $('#compliance_div').hide();

@@ -86,11 +86,12 @@
                     dataType: dataType,
                     success:function(response){
                         $('#submitForm').html('Submitted');
+                        $('#submitForm').attr('disabled', 'disabled');
                         $('#res_message').show();
                         $('#res_message').html(response.success);
                         $('#msg_div').removeClass('d-none');
             
-                        document.getElementById("registrationForm").reset(); 
+                       // document.getElementById("registrationForm").reset(); 
                         setTimeout(function(){
                             $('#res_message').hide();
                             $('#msg_div').hide();

@@ -181,6 +181,8 @@ return [
         App\Providers\ContractorServiceProvider::class,
         App\Providers\ComplianceServiceProvider::class,
         App\Providers\DirectorServiceProvider::class,
+        App\Providers\ContractorCategoryServiceProvider::class,
+
 
 
     ],
