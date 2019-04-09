@@ -37,6 +37,20 @@ Route::post('/director/create', 'DirectorController@storeDirector')->name('store
 //ContractorCategory
 Route::post('/category/create', 'ContractorCategoryController@storeCategory');
 
+//ContractorPersonnel
+Route::post('/personnel/create', 'ContractorPersonnelController@storePersonnel');
+
+
+//contractorJobs
+Route::post('/job/create', 'ContractorJobsController@storeJob');
+
+
+//contractorFinance
+Route::post('/finance/create', 'ContractorFinanceController@storeFinance');
+
+
+//contractorMachinery
+Route::post('/machinery/create', 'ContractorMachineryController@storeMachinery');
 
 
 
@@ -46,11 +60,8 @@ Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
-<<<<<<< HEAD
 
 //
-=======
 Route::get('/contractors/report', 'ReportController@contractors')->name('contractorReport');
 Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
 Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');
->>>>>>> 3887dcb588ee9a19ae22a2c43a67137cc453bf40

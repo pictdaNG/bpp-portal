@@ -56,10 +56,14 @@
   <div class="modal-content">
     <div class="modal-header bg-primary">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Company's Work Experience</h4>
+      <h4 class="modal-title">Company's Finance</h4>
     </div>
     <div class="modal-body">
-    <form class="bs-example form-horizontal">
+    <form class="bs-example form-horizontal" id="financeForm" action="javascript:void(0)" method="POST">
+
+         <div class="alert alert-success d-none" id="finance_div">
+              <span id="finance_message"></span>
+        </div>
         
         <div class="form-group">
             <label class="col-lg-3 control-label">Select Year</label>
@@ -131,12 +135,59 @@
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
-
+        <div class="modal-footer">
+            <button type="submit"  id ="submitFinance" name="submitFinance" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+        </div>
     </form>
     </div>
-    <div class="modal-footer">
-        <a href="#" class="btn btn-sm btn-primary"> <i class="fa fa-save"></i> Save Data</a>
-    </div>
+    
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div>
+
+
+<script>
+        $("#financeForm").validate({
+            submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var host = '{{URL::to('/')}}';
+                var dataType =  'JSON';
+                $('#submitFinance').html('Sending..');
+                $.ajax({ 
+                    url : host + '/finance/create',
+                    type : 'POST',
+                    data :$("#financeForm").serialize(),
+                    dataType: dataType,
+                    success:function(response){
+                        $('#submitFinance').html('Submitted');
+                        $('#submitFinance').attr('disabled', 'disabled');
+                        $('#finance_message').show();
+                        $('#finance_message').html(response.success);
+                        $('#finance_message').removeClass('d-none');
+            
+                       // document.getElementById("registrationForm").reset(); 
+                        setTimeout(function(){
+                            $('#finance_message').hide();
+                            $('#finance_div').hide();
+                        },10000);
+                        
+                    },
+                    beforeSend: function(){
+                        $('#submitFinance').html('Loading...');
+                        $('#submitFinance').attr('disabled', 'disabled');
+                    },
+                    error: function(data) {
+                        $('#submitFinance').html('Try Again');
+                        $('#submitFinance').removeAttr('disabled');
+                        console.log(data)
+                    
+                    }
+                });
+
+            }
+        })
+    </script>

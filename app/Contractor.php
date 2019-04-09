@@ -19,5 +19,9 @@ class Contractor extends Model
     public function director(){
         return $this->hasMany('App\Director');
     }
+
+    public function personnel(){
+        return $this->hasMany('App\ContractorPersonnel');
+    }
     
 }

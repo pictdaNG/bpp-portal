@@ -55,7 +55,11 @@
       <h4 class="modal-title">Company's Work Experience</h4>
     </div>
     <div class="modal-body">
-    <form class="bs-example form-horizontal">
+    <form class="bs-example form-horizontal" id="jobForm" action="javascript:void(0)" method="POST">
+
+         <div class="alert alert-success d-none" id="job_div">
+              <span id="job_message"></span>
+        </div>
         <div class="form-group">
             <label class="col-lg-3 control-label">Select Job Category</label>
             <div class="col-lg-9">
@@ -134,12 +138,61 @@
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
+        <div class="modal-footer">
+        <button type="submit"  id ="submitJob" name="submitJob" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+        </div>
 
     </form>
     </div>
-    <div class="modal-footer">
-        <a href="#" class="btn btn-sm btn-primary"> <i class="fa fa-save"></i> Save Data</a>
-    </div>
+    
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div>
+
+
+<script>
+        $("#jobForm").validate({
+            submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var host = '{{URL::to('/')}}';
+                var dataType =  'JSON';
+                $('#submitJob').html('Sending..');
+                console.log($("#jobForm").serialize())
+                $.ajax({ 
+                    url : host + '/job/create',
+                    type : 'POST',
+                    data :$("#jobForm").serialize(),
+                    dataType: dataType,
+                    success:function(response){
+                        $('#submitJob').html('Submitted');
+                        $('#submitJob').attr('disabled', 'disabled');
+                        $('#job_message').show();
+                        $('#job_message').html(response.success);
+                        $('#job_div').removeClass('d-none');
+            
+                       // document.getElementById("registrationForm").reset(); 
+                        setTimeout(function(){
+                            $('#job_message').hide();
+                            $('#job_div').hide();
+                        },1000);
+                        
+                    },
+                    beforeSend: function(){
+                        $('#submitJob').html('Loading...');
+                        $('#submitJob').attr('disabled', 'disabled');
+                    },
+                    error: function(data) {
+                        $('#submitJob').html('Try Again');
+                        $('#submitJob').removeAttr('disabled');
+                        console.log(data)
+                    
+                    }
+                });
+
+            }
+        })
+    </script>
