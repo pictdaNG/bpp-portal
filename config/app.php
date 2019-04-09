@@ -179,6 +179,9 @@ return [
         // custom service providers
 
         App\Providers\ContractorServiceProvider::class,
+        App\Providers\ComplianceServiceProvider::class,
+        App\Providers\DirectorServiceProvider::class,
+
 
     ],
 
