@@ -244,7 +244,71 @@
     </div>
     <footer class="panel-footer">
         <div class="row">
-        <div class="col-lg-12"><button class="btn btn-primary text-center btn-lg btn-block">Complete Registration</button></div>
+        <div class="col-lg-12">
+            <a href="#completeRegistration" data-toggle="modal" class="btn btn-primary text-center btn-lg btn-block">Complete Registration</a>
+        </div>
         </div>
     </footer>
 </section>
+
+
+
+<div class="modal fade" id="completeRegistration">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header bg-primary">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Business Category Registration</h4>
+    </div>
+    <div class="modal-body">
+        <p>In compliance with the Plateau State Public Procurement Act, All State Contractors are to register under any section of the designated categories. Thank you.</p>
+    <form class="bs-example form-horizontal">
+        
+            <div class="checkbox i-checks">
+                <label>
+                    <input type="checkbox" value="">
+                    <i></i> General Contractors and Supply
+                </label>
+            </div>
+            <div class="checkbox i-checks">
+                <label>
+                    <input type="checkbox" checked value="">
+                    <i></i> Civil Engineering
+                </label>
+            </div>
+
+            <div class="checkbox i-checks">
+                <label>
+                    <input type="checkbox" value="">
+                    <i></i> Civil Engineering
+                </label>
+            </div>
+
+            <div class="checkbox i-checks">
+                <label>
+                    <input type="checkbox" value="">
+                    <i></i> Building Engineering
+                </label>
+            </div>
+
+            <div class="checkbox i-checks">
+                <label>
+                    <input type="checkbox" value="">
+                    <i></i> Electrical/Mechanical Engineering
+                </label>
+            </div>
+
+            <div class="checkbox i-checks">
+                <label>
+                    <input type="checkbox" value="">
+                    <i></i> Consultancy Services
+                </label>
+            </div>
+    </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-credit-card"></i> Proceed to Checkout</a>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div>
