@@ -407,15 +407,15 @@
                         </i>
                         <span class="font-bold">Reports</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
-                          <a href="/contractor/registration" class="auto">                                                        
+                          <a href="{{ route('contractorReport') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Company Registration</span>
+                            <span>Contractors</span>
                           </a>
                         </li>
-                    </ul> -->
+                    </ul>
                     </li>
 
                     <li >

@@ -46,5 +46,11 @@ Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
+<<<<<<< HEAD
 
 //
+=======
+Route::get('/contractors/report', 'ReportController@contractors')->name('contractorReport');
+Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
+Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');
+>>>>>>> 3887dcb588ee9a19ae22a2c43a67137cc453bf40

@@ -50,7 +50,7 @@
 <div class="modal fade" id="addPersonnel">
 <div class="modal-dialog">
   <div class="modal-content">
-    <div class="modal-header">
+    <div class="modal-header bg-primary">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
       <h4 class="modal-title">Personnel Bio-Data</h4>
     </div>
@@ -207,8 +207,7 @@
     </form>
     </div>
     <div class="modal-footer">
-      <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-      <a href="#" class="btn btn-sm btn-success">Save Data</a>
+    <a href="#" class="btn btn-sm btn-primary"> <i class="fa fa-save"></i> Save Data</a>
     </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
