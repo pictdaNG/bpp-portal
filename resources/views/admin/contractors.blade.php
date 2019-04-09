@@ -32,7 +32,7 @@
                                 <td>3424FG</td>
                                 <td>Private Limited</td>
                                 <td>
-                                    <a href="#" class="active" data-toggle="class"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
+                                    <a href="{{ route('contractorPreview', 1) }}" class="active" data-toggle="class"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
                                 </td>
                             </tr>
                         </tbody>
