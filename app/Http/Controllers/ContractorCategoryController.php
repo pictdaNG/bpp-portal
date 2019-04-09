@@ -14,7 +14,6 @@ class ContractorCategoryController extends Controller{
     public function storeCategory(Request $request) {
 
        try {
-           dd($request->all());
            $category = $this->repo->createCategory((object)$request->all());
              
            if ($category) {
@@ -25,7 +24,6 @@ class ContractorCategoryController extends Controller{
                 return response()->json(['responseText' => $e->getMessage()], 500);
             }
        } catch (QueryException $e) {
-           dd($e);
         return response()->json(['response' => $e->getMessage()], 500);
        }
     }

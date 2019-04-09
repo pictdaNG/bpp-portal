@@ -25,9 +25,9 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
 
     private function setContractorCategoryProperties($category, $request) {
         $user = Auth::user();
-        $category->company_name = $user->category;
-        $category->cac_number = $user->subcategory_1;
-        $category->address = $request->subcategory_2; 
+        $category->category = $request->category;
+        $category->subcategory_1 = $request->subcategory_1;
+        $category->subcategory_2 = $request->subcategory_2; 
         $category->user_id = $user->id;
 
     }

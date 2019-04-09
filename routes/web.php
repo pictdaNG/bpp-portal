@@ -35,7 +35,7 @@ Route::post('/director/create', 'DirectorController@storeDirector')->name('store
 
 
 //ContractorCategory
-Route::post('/contractorcategory/create', 'ContractorCategoryController@storeCategory')->name('store_Category');
+Route::post('/category/create', 'ContractorCategoryController@storeCategory');
 
 
 
