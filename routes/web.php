@@ -43,11 +43,6 @@ Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
-// admin tools
-Route::get('/admin/tools/compliance', 'AdminToolsController@compliance')->name('tools.compliance');
-Route::post('/admin/compliance/store', 'AdminToolsController@postCompliances')->name('compliance.store');
-Route::get( '/admin/compliance/delete/{id}', 'AdminToolsController@delete')->name('compliance.delete');
-Route::get( '/admin/compliance/edit/{id}', 'AdminToolsController@edit')->name('compliance.edit');
-Route::post( '/admin/compliance/update/{id}', 'AdminToolsController@update')->name('compliance.update');
-
-//
+Route::get('/contractors/report', 'ReportController@contractors')->name('contractorReport');
+Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
+Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');
