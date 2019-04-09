@@ -4,6 +4,7 @@
 <section class="hbox stretch">
     <section class="vbox">
         <section class="scrollable padder">
+            <br/>
             <section class="panel panel-info">
                 <header class="panel-heading">
                     Contractors
@@ -32,7 +33,7 @@
                                 <td>3424FG</td>
                                 <td>Private Limited</td>
                                 <td>
-                                    <a href="{{ route('contractorPreview', 1) }}" class="active" data-toggle="class"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
+                                    <a href="{{ route('contractorPreview', 1) }}" class="active"><i class="fa fa-search text-success text-active"></i></a>
                                 </td>
                             </tr>
                         </tbody>

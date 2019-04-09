@@ -4,6 +4,7 @@
 <section class="hbox stretch">
     <section class="vbox">
         <section class="scrollable padder">
+            <br/>
             <section class="panel panel-info">
                 <header class="panel-heading">
                     Ministries Department and Agencies (MDA)
@@ -64,7 +65,7 @@
             <div class="modal fade" id="addNewMDA">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-primary">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Add New MDA</h4>
                         </div>
@@ -173,8 +174,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-                            <a href="#" class="btn btn-sm btn-success">Save Data</a>
+                            <a href="#" class="btn btn-sm btn-primary">Save Data</a>
                         </div>
                     </div>
                     <!-- /.modal-content -->
