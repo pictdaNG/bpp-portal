@@ -5,32 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Database\QueryException;
-
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contractor\ContractorContract;
+use App\Repositories\Director\DirectorContract;
+
 //use Illuminate\Events\Dispatcher;
 
 
 class ContractorController extends Controller {
     protected $repo;
+    protected $directorRepo;
 
-    public function __construct(ContractorContract $contractorContract){
+    public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract){
         $this->middleware('auth');
         $this->repo = $contractorContract;
+        $this->directorRepo = $directorContract;
     }
     
     public function registration(Request $request){
-        return view('contractor/registration');
+         $user = $this->repo->getUserById();
+
+        return view('contractor/registration', ['user' => $user, 'directors' => $this->directorRepo->getCompanyDirectors() ]);
     }
 
 
     public function storeContractor(Request $request) {
-        $this->validate($request, [
-           'company_name' => 'required',
-           'cac_number' => 'required|numeric|digits:10',
-           'city' => 'required|alpha_num',
-           'country' => 'required',
-           'email' => 'required|email'
-        ]);
 
        // dd((object)$request->all());
 
@@ -42,12 +41,10 @@ class ContractorController extends Controller {
                
             } else {
             
-                return response()->json(['error'=>$validator->errors()->all()]);
+                return response()->json(['responseText' => $e->getMessage()], 500);
             }
        } catch (QueryException $e) {
-           return back()
-               ->withInput()
-               ->with('error', $e);
+        return response()->json(['response' => $e->getMessage()], 500);
        }
     }
 

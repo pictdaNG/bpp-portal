@@ -18,11 +18,25 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
-Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
+Route::get('/logout', 'HomeController@logout')->name('logout');
 
+
+//Contractor
+Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
 Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
+
+
+//Compliance
+Route::post('/compliance/create', 'ComplianceController@storeCompliance')->name('storeCompliance');
+
+
+//Director
+Route::post('/director/create', 'DirectorController@storeDirector')->name('storeDirector');
+
+
+
 
 //Admin
 Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
@@ -35,3 +49,5 @@ Route::post('/admin/compliance/store', 'AdminToolsController@postCompliances')->
 Route::get( '/admin/compliance/delete/{id}', 'AdminToolsController@delete')->name('compliance.delete');
 Route::get( '/admin/compliance/edit/{id}', 'AdminToolsController@edit')->name('compliance.edit');
 Route::post( '/admin/compliance/update/{id}', 'AdminToolsController@update')->name('compliance.update');
+
+//
