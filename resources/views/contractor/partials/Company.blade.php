@@ -2,18 +2,23 @@
         <section class="panel panel-default">
         <header class="panel-heading font-bold">Company Identification</header>
         <div class="panel-body">
-            <form id="regform" action="{{ route('contractor_storeCompany')}}" method="post" class="bs-example form-horizontal">
+            <form class="bs-example form-horizontal" id="registrationForm" action="javascript:void(0)" method="POST">
+
+            <div class="alert alert-success d-none" id="msg_div">
+              <span id="res_message"></span>
+            </div>
+         
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Registered Business Name</label>
                     <div class="col-lg-10">
-                    <input id="company_name" name="company_name" required class="form-control">
+                    <input id="company_name" disabled name="company_name"  value="{{$user->name}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">CAC RC No.</label>
                     <div class="col-lg-10">
-                    <input id="cac_number" name="cac_number" required class="form-control">
+                    <input id="cac_number" name="cac_number" disabled  value="{{$user->cac}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
@@ -41,7 +46,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                    <input id="email" name="email" required class="form-control">
+                    <input id="email" name="email" disabled  value="{{$user->email}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
@@ -62,36 +67,47 @@
         </div>
         </section>
     </div>
-    <script type="application/javascript">
 
+    <script>
+        $("#registrationForm").validate({
+            submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var host = '{{URL::to('/')}}';
+                var dataType =  'JSON';
+                $('#submitForm').html('Sending..');
+                $.ajax({ 
+                    url : host + '/contractor/create',
+                    type : 'POST',
+                    data :$("#registrationForm").serialize(),
+                    dataType: dataType,
+                    success:function(response){
+                        $('#submitForm').html('Submitted');
+                        $('#res_message').show();
+                        $('#res_message').html(response.success);
+                        $('#msg_div').removeClass('d-none');
+            
+                        document.getElementById("registrationForm").reset(); 
+                        setTimeout(function(){
+                            $('#res_message').hide();
+                            $('#msg_div').hide();
+                        },10000);
+                        
+                    },
+                    beforeSend: function(){
+                        $('#submitForm').html('Loading...');
+                        $('#submitForm').attr('disabled', 'disabled');
+                    },
+                    error: function() {
+                        $('#submitForm').html('Save Data');
+                        $('#submitForm').removeAttr('disabled');
+                    
+                    }
+                });
 
-        $('#regform').on('submit',function(e){
-            var form = $(this);
-            var submit = form.find("[type=submit]");
-            var submitOriginalText = submit.attr("value");
-
-            e.preventDefault();
-            var data = form.serialize();
-            var url = form.attr('action');
-            var post = form.attr('method');
-            var dataType =  'JSON',
-            $.ajax({
-                type : post,
-                url : url,
-                data :data,
-                dataType: dataType,
-                success:function(data){
-                submit.attr("value", "Submitted");
-                },
-                beforeSend: function(){
-                submit.attr("value", "Loading...");
-                submit.prop("disabled", true);
-                },
-                error: function() {
-                    submit.attr("value", submitOriginalText);
-                    submit.prop("disabled", false);
-                // show error to end user
-                }
-            })
+            }
         })
     </script>

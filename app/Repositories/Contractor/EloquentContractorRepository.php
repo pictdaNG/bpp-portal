@@ -3,6 +3,7 @@
 namespace App\Repositories\Contractor;
 
 use App\Contractor;
+use App\User;
 use App\Repositories\Contractor\ContractorContract;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -10,26 +11,26 @@ use Session;
 
 class EloquentContractorRepository implements ContractorContract{
 
- 
-    public function createContractor($request) {
-       
-       
+    public function createContractor($request) {  
         $contractor = new Contractor;
         $this->setContractorProperties($contractor, $request);
         return $contractor->save();
     }
 
-   
-    
-    
+
+    public function getUserById() {
+        return User::where("id", Auth::user()->id)->first();
+    }
+
     private function setContractorProperties($contractor, $request) {
-        $contractor->company_name = $request->company_name;
-        $contractor->cac_number = $request->cac_number;
+          $user = Auth::user();
+        $contractor->company_name = $user->name;
+        $contractor->cac_number = $user->cac;
         $contractor->address = $request->address;
         $contractor->city =  $request->city;
         $contractor->country = $request->country;
-        $contractor->email = $request->email;
-        $contractor->user_id = Auth::user()->id;
+        $contractor->email = $user->email;
+        $contractor->user_id = $user->id;
         $contractor->website = $request->website; 
 
     }

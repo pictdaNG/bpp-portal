@@ -25,11 +25,11 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        if($user->user_type == "admin"){
+        if(strtolower($user->user_type) == strtolower("admin")){
             return view('adminHome');
-        }else if($user->user_type == "mda"){
+        }else if(strtolower($user->user_type) == strtolower("mda")){
             return view('MDAHome');
-        }else if($user->user_type == "Contractor"){
+        }else if(strtolower($user->user_type) == strtolower("Contractor")){
             return view('home');
         }
         return redirect('/404');
