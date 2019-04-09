@@ -307,7 +307,9 @@
     </form>
     </div>
     <div class="modal-footer">
-      <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-credit-card"></i> Proceed to Checkout</a>
+      <p style="float: left;">Amount Payable: </p>
+      <!-- <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-credit-card"></i> Proceed to Checkout</a> -->
+      <button class="btn btn-danger" data-toggle="class:show inline" data-target="#spin" data-loading-text="Completing Registration.."><i class="fa fa-credit-card"></i> Proceed to Checkout</button> <i class="fa fa-spin fa-spinner hide" id="spin"></i>
     </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
