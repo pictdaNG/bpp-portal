@@ -31,7 +31,7 @@
                     </a>
                     </div>
                     <div class="col-md-6 b-b">
-                    <a href="#" class="block padder-v hover">
+                    <a href="{{ route('contractor_reports')}}" class="block padder-v hover">
                         <span class="i-s i-s-2x pull-left m-r-sm">
                         <i class="i i-hexagon2 i-s-base text-success-lt hover-rotate"></i>
                         <i class="i i-users2 i-sm text-white"></i>

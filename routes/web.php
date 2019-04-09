@@ -22,10 +22,16 @@ Route::get('/contractor/registration', 'ContractorController@registration')->nam
 
 Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/logout', 'HomeController@logout')->name('logout');
-// Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
+Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
 
 //Admin
 Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
+// admin tools
+Route::get('/admin/tools/compliance', 'AdminToolsController@compliance')->name('tools.compliance');
+Route::post('/admin/compliance/store', 'AdminToolsController@postCompliances')->name('compliance.store');
+Route::get( '/admin/compliance/delete/{id}', 'AdminToolsController@delete')->name('compliance.delete');
+Route::get( '/admin/compliance/edit/{id}', 'AdminToolsController@edit')->name('compliance.edit');
+Route::post( '/admin/compliance/update/{id}', 'AdminToolsController@update')->name('compliance.update');

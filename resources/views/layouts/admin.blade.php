@@ -445,15 +445,15 @@
                         </i>
                         <span class="font-bold">Administrative Tools</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
-                          <a href="/contractor/registration" class="auto">                                                        
+                          <a href="{{ route('tools.compliance')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
                             <span>Company Registration</span>
                           </a>
                         </li>
-                    </ul> -->
+                    </ul>
                     </li>
 
                     <li >
