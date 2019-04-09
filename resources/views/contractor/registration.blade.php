@@ -3,7 +3,8 @@
 @section('content')
 <section class="hbox stretch">
     <section class="vbox">
-        <section class="scrollable padder">  
+        <section class="scrollable padder">
+        <div class="row"> 
         <section class="panel panel-default">
             <header class="panel-heading bg-light">
                 <ul class="nav nav-tabs nav-justified">
@@ -32,6 +33,7 @@
                 </div>
             </div>
         </section>
+        </div>
         </section>
     </section>
 </section>
