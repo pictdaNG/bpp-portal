@@ -181,6 +181,10 @@ return [
         App\Providers\ContractorServiceProvider::class,
         App\Providers\ComplianceServiceProvider::class,
         App\Providers\DirectorServiceProvider::class,
+        App\Providers\OwnershipStructureProvider::class,
+        App\Providers\EquipmentServiceProvider::class,
+        App\Providers\CountryServiceProvider::class,
+        App\Providers\BusinessCategoryServiceProvider::class,
 
 
     ],

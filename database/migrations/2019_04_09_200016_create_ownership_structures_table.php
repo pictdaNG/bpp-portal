@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompliancesTable extends Migration
+class CreateOwnershipStructuresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCompliancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('compliances', function (Blueprint $table) {
+        Schema::create('ownership_structures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ownership_structure');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateCompliancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compliances');
+        Schema::dropIfExists('ownership_structures');
     }
 }

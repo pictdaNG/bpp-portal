@@ -451,7 +451,7 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="{{ route('tools.compliance')}}" class="auto">                                                        
+                          <a href="#" class="auto">                                                        
                             <i class="i i-dot"></i>
 
                             <span>Company Registration</span>
