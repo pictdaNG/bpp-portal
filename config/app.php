@@ -177,7 +177,6 @@ return [
 
 
         // custom service providers
-
         App\Providers\ContractorServiceProvider::class,
         App\Providers\ComplianceServiceProvider::class,
         App\Providers\DirectorServiceProvider::class,
@@ -190,6 +189,9 @@ return [
         App\Providers\ContractorJobsServiceProvider::class,
         App\Providers\ContractorFinanceServiceProvider::class,
         App\Providers\ContractorMachineryServiceProvider::class,
+        App\Providers\CompanyOwnershipServiceProvider::class,
+        App\Providers\BusinessSubCategory1ServiceProvider::class,
+        App\Providers\BusinessSubCategory2ServiceProvider::class,
 
 
 
