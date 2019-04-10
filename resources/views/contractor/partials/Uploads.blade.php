@@ -347,6 +347,7 @@ function resetCACFile(){
     $('#cac_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#cac_preview_btn').attr('disabled', 'disabled');
     $('#cac_preview_btn').attr('href', '#');
+    $('#resetCACBtn').attr('disabled', 'disabled');
 }
 
 function resetTCCFile(){
@@ -359,9 +360,11 @@ function resetTCCFile(){
     $('#tcc_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#tcc_preview_btn').attr('disabled', 'disabled');
     $('#tcc_preview_btn').attr('href', '#');
+    $('#resetTCCBtn').attr('disabled', 'disabled');
 }
 
 function resetTINFile(){
+
     $('#tin_file').prop("disabled", false);
     $('#tin_file_uploaded').html('');
     $('#tin_file_size').html('0kB');
@@ -371,6 +374,7 @@ function resetTINFile(){
     $('#tin_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#tin_preview_btn').attr('disabled', 'disabled');
     $('#tin_preview_btn').attr('href', '#');
+    $('#resetTINBtn').attr('disabled', 'disabled');
 }
 
 function resetPenComFile(){
@@ -383,6 +387,7 @@ function resetPenComFile(){
     $('#pencom_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#pencom_preview_btn').attr('disabled', 'disabled');
     $('#pencom_preview_btn').attr('href', '#');
+    $('#resetPenComBtn').attr('disabled', 'disabled');
 }
 
 function resetITFFile(){
@@ -395,7 +400,7 @@ function resetITFFile(){
     $('#itf_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#itf_preview_btn').attr('disabled', 'disabled');
     $('#itf_preview_btn').attr('href', '#');
-}
+    $('#resetITFBtn').attr('disabled', 'disabled');
 }
 
 function resetAuditedAccountFile(){
@@ -408,6 +413,7 @@ function resetAuditedAccountFile(){
     $('#audited_account_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#audited_account_preview_btn').attr('disabled', 'disabled');
     $('#audited_account_preview_btn').attr('href', '#');
+    $('#resetAuditedAccountBtn').attr('disabled', 'disabled');
 }
 
 function resetSwonAffidavitFile(){
@@ -420,6 +426,7 @@ function resetSwonAffidavitFile(){
     $('#swon_affidavit_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#swon_affidavit_preview_btn').attr('disabled', 'disabled');
     $('#swon_affidavit_preview_btn').attr('href', '#');
+    $('#resetSwonAffidavitBtn').attr('disabled', 'disabled');
 }
 
 function resetPlaccimaFile(){
@@ -432,6 +439,7 @@ function resetPlaccimaFile(){
     $('#placcima_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
     $('#placcima_preview_btn').attr('disabled', 'disabled');
     $('#placcima_preview_btn').attr('href', '#');
+    $('#resetplaccimaBtn').attr('disabled', 'disabled');
 }
 
 function uploadCACFile(){
