@@ -32,6 +32,8 @@ Route::post('/compliance/create', 'ComplianceController@storeCompliance')->name(
 
 //Director
 Route::post('/director/create', 'DirectorController@storeDirector')->name('storeDirector');
+Route::get('/director/directors', 'DirectorController@directors')->name('returnDirector');
+
 
 
 //ContractorCategory

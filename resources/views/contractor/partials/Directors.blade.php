@@ -23,7 +23,7 @@
             <th>Edit</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="directors">
         <?php  $i = 0; ?>
             @foreach ($directors as $director)
            
@@ -152,7 +152,44 @@
 
 
 <script type="application/javascript">
+    function loadDirectors(directors, cb){
+        $("#directorform").validate({
+        submitHandler: function(form) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({
+                type : 'GET',
+                url : url + directors,
+                //data :$('#directorform').serialize(),
+                //dataType: dataType,
+                success:function(data){    
+                      console.log('data ', data);
+                   // document.getElementById("directorform").reset(); 
+                    setTimeout(function(){
+                    },1000);
 
+
+                },
+                beforeSend: function(){
+                    $('#directorBtn').html('Sending..');
+                    $('#directorBtn').attr('disabled', 'disabled');
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    $('#directorBtn').html('Try Again');
+                    $('#directorBtn').removeAttr('disabled');
+                    
+                // show error to end user
+                }
+            });
+        }
+    })
+    }
 
     $("#directorform").validate({
         submitHandler: function(form) {
@@ -175,6 +212,14 @@
                     setTimeout(function(){
                         $('.close').trigger('click');
                     },1000);
+
+                    loadDirectors('/director/directors', function(data){
+                        html = '';
+                        //generate table tr
+                        $('#directors').html(html);
+                    });
+
+
                 },
                 beforeSend: function(){
                     $('#directorBtn').html('Sending..');

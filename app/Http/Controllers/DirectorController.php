@@ -11,7 +11,6 @@ use App\Repositories\Director\DirectorContract;
 
 class DirectorController extends Controller{
     protected $repo;
-
     public function __construct(DirectorContract $directorContract){
         $this->middleware('auth');
         $this->repo = $directorContract;
@@ -21,7 +20,6 @@ class DirectorController extends Controller{
         $directors = $this->repo->getCompanyDirectors();
         return response()->json(['directors'=> $directors], 200);
     }
-
 
     public function storeDirector(Request $request) {
        try {
