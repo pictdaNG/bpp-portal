@@ -12,9 +12,13 @@ class OwnershipStructureController extends Controller
 {
     protected $repo;
 
-    public function __construct(OwnershipContract $ownershipContract){
+    public function __construct(OwnershipStructureContract $ownershipContract){
         // $this->middleware('auth');
         $this->repo = $ownershipContract;
+    }
+
+    public function index() {
+        return view('admin.tools.ownership');
     }
 
     public function storeOwnershipStructure(Request $request) {

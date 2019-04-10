@@ -24,7 +24,7 @@
                                         <p><b>{{ $message }}</b></p>
                                     </div>
                                 @endif
-                                <form action="{{ route('compliance.store') }}" method="POST">
+                                <form action="" method="POST">
                                      {{csrf_field()}}
                                     <div class="row">
                                         <div class="col-md-5">
@@ -52,10 +52,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($data as $item)
+                                        
                                             <tr class="">
-                                                <td>{{$item->id}}</td>
-                                                <td>{{$item->ownership_structure}}</td>
+                                                <td></td>
+                                                <td></td>
                                                 <td><a href=""><button id="edit-modal" class="edit-modal btn btn-info">
                                                         <span class="glyphicon glyphicon-edit"></span> Edit
                                                     </button></a>
@@ -67,7 +67,7 @@
                                                    
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                    
                                         </tbody>
                                     </table>
                                 </div>
@@ -103,7 +103,7 @@
                                         <p><b>{{ $message }}</b></p>
                                     </div>
                                 @endif
-                                <form action="{{ route('compliance.store') }}" method="POST">
+                                <form action="" method="POST">
                                      {{csrf_field()}}
                                     <div class="row">
                                         <div class="col-md-5">
@@ -131,10 +131,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($data as $item)
+                                       
                                             <tr class="">
-                                                <td>{{$item->id}}</td>
-                                                <td>{{$item->ownership_structure}}</td>
+                                                <td></td>
+                                                <td></td>
                                                 <td><a href=""><button id="edit-modal" class="edit-modal btn btn-info">
                                                         <span class="glyphicon glyphicon-edit"></span> Edit
                                                     </button></a>
@@ -146,7 +146,7 @@
                                                    
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                      
                                         </tbody>
                                     </table>
                                 </div>
