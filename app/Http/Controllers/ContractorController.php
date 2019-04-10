@@ -8,6 +8,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contractor\ContractorContract;
 use App\Repositories\Director\DirectorContract;
+use App\Repositories\ContractorCategory\ContractorCategoryContract;
+
 
 //use Illuminate\Events\Dispatcher;
 
@@ -15,23 +17,28 @@ use App\Repositories\Director\DirectorContract;
 class ContractorController extends Controller {
     protected $repo;
     protected $directorRepo;
+    protected $contractorCategory;
 
-    public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract){
+    public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
+                 ContractorCategoryContract $contractorCategoryContract){
+
         $this->middleware('auth');
         $this->repo = $contractorContract;
         $this->directorRepo = $directorContract;
+        $this->contractorCategory = $contractorCategoryContract;
     }
     
     public function registration(Request $request){
          $user = $this->repo->getUserById();
+         $directors = $this->directorRepo->getCompanyDirectors();
+         $categories = $this->contractorCategory->getCategoriesById();
 
-        return view('contractor/registration', ['user' => $user, 'directors' => $this->directorRepo->getCompanyDirectors() ]);
+        return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
+        'contractorcategories' =>  $categories ]);
     }
 
 
     public function storeContractor(Request $request) {
-
-       // dd((object)$request->all());
 
        try {
            $contractor = $this->repo->createContractor((object)$request->all());

@@ -185,6 +185,16 @@ return [
         App\Providers\EquipmentServiceProvider::class,
         App\Providers\CountryServiceProvider::class,
         App\Providers\BusinessCategoryServiceProvider::class,
+        App\Providers\ContractorCategoryServiceProvider::class,
+        App\Providers\ContractorPersonnelServiceProvider::class,
+        App\Providers\ContractorJobsServiceProvider::class,
+        App\Providers\ContractorFinanceServiceProvider::class,
+        App\Providers\ContractorMachineryServiceProvider::class,
+
+
+
+
+
 
 
     ],

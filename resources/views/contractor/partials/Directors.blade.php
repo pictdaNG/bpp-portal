@@ -170,7 +170,8 @@
                 dataType: dataType,
                 success:function(data){    
                     $('#directorBtn').html('Submitted');
-                    document.getElementById("directorform").reset(); 
+                    $('#categoryBtn').removeAttr('disabled');
+                   // document.getElementById("directorform").reset(); 
                     setTimeout(function(){
                         $('.close').trigger('click');
                     },1000);

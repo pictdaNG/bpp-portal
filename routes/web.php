@@ -33,6 +33,28 @@ Route::post('/compliance/create', 'ComplianceController@storeCompliance')->name(
 //Director
 Route::post('/director/create', 'DirectorController@storeDirector')->name('storeDirector');
 
+
+//ContractorCategory
+Route::post('/category/create', 'ContractorCategoryController@storeCategory');
+
+//ContractorPersonnel
+Route::post('/personnel/create', 'ContractorPersonnelController@storePersonnel');
+
+
+//contractorJobs
+Route::post('/job/create', 'ContractorJobsController@storeJob');
+
+
+//contractorFinance
+Route::post('/finance/create', 'ContractorFinanceController@storeFinance');
+
+
+//contractorMachinery
+Route::post('/machinery/create', 'ContractorMachineryController@storeMachinery');
+
+
+
+
 //Admin
 Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 
