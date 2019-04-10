@@ -81,3 +81,6 @@ Route::get('/countries', 'CountryController@getAllCountries')->name('getAllCount
 
 // States
 Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
+
+Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->name('uploadContractorFile');
+Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
