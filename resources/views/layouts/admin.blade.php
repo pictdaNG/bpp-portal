@@ -14,6 +14,10 @@
   <link rel="stylesheet" href="{{ asset('/css/font.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
   <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
+  <!-- eddie added these three jquery files below -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
   <!--[if lt IE 9]>
     <script src="{{ asset('js/ie/html5shiv.js') }}"></script>
     <script src="{{ asset('js/ie/respond.min.js') }}"></script>
@@ -445,15 +449,15 @@
                         </i>
                         <span class="font-bold">Administrative Tools</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
-                          <a href="/contractor/registration" class="auto">                                                        
+                          <a href="#" class="auto">                                                        
                             <i class="i i-dot"></i>
 
                             <span>Company Registration</span>
                           </a>
                         </li>
-                    </ul> -->
+                    </ul>
                     </li>
 
                     <li >

@@ -55,7 +55,11 @@
       <h4 class="modal-title">Personnel Bio-Data</h4>
     </div>
     <div class="modal-body">
-    <form class="bs-example form-horizontal">
+    <form class="bs-example form-horizontal" id="personnelForm" action="javascript:void(0)" method="POST">
+
+         <div class="alert alert-success d-none" id="personnel_div">
+              <span id="personnel_message"></span>
+            </div>
         <div class="form-group">
             <label class="col-lg-2 control-label">First Name</label>
             <div class="col-lg-10">
@@ -66,7 +70,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Last Name</label>
             <div class="col-lg-10">
-            <input name="first_name" class="form-control">
+            <input name="last_name" class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -74,10 +78,10 @@
             <label class="col-lg-2 control-label">Gender</label>
             <div class="col-sm-10">
             <label class="checkbox-inline">
-                <input type="radio" value="male"> Male
+                <input type="radio" name="gender" value="male"> Male
             </label>
             <label class="checkbox-inline">
-                <input type="radio" value="female"> Female
+                <input type="radio" name="gender" value="female"> Female
             </label>
             </div>
         </div>
@@ -204,11 +208,59 @@
             </div>
         </div>
 
+        </div>
+            <div class="modal-footer">
+            <button type="submit"  id ="submitPersonnel" name="submitPersonnel" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+        </div>
+
     </form>
-    </div>
-    <div class="modal-footer">
-    <a href="#" class="btn btn-sm btn-primary"> <i class="fa fa-save"></i> Save Data</a>
-    </div>
+    
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div>
+
+<script>
+        $("#personnelForm").validate({
+            submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var host = '{{URL::to('/')}}';
+                var dataType =  'JSON';
+                $('#submitPersonnel').html('Sending..');
+                $.ajax({ 
+                    url : host + '/personnel/create',
+                    type : 'POST',
+                    data :$("#personnelForm").serialize(),
+                    dataType: dataType,
+                    success:function(response){
+                        $('#submitPersonnel').html('Submitted');
+                        $('#submitPersonnel').attr('disabled', 'disabled');
+                        $('#personnel_message').show();
+                        $('#personnel_message').html(response.success);
+                        $('#personnel_div').removeClass('d-none');
+            
+                       // document.getElementById("registrationForm").reset(); 
+                        setTimeout(function(){
+                            $('#personnel_message').hide();
+                            $('#personnel_div').hide();
+                        },1000);
+                        
+                    },
+                    beforeSend: function(){
+                        $('#submitPersonnel').html('Loading...');
+                        $('#submitPersonnel').attr('disabled', 'disabled');
+                    },
+                    error: function(data) {
+                        $('#submitPersonnel').html('Try Again');
+                        $('#submitPersonnel').removeAttr('disabled');
+                        console.log(data)
+                    
+                    }
+                });
+
+            }
+        })
+    </script>

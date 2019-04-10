@@ -17,6 +17,13 @@ class UserAdminSeeder extends Seeder
             'user_type' => 'admin',
             'phone' => '08161730129',
             'password' => bcrypt('faker00tX'),
+        ],
+        [
+            'name' => 'Facebook',
+            'email' => 'facebook@gmail.com',
+            'user_type' => 'contractor',
+            'phone' => '08161730129',
+            'password' => bcrypt('password'),
         ]]);
     }
 }

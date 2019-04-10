@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Country;
 
 class HomeController extends Controller
 {
@@ -25,11 +26,11 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        if($user->user_type == "admin"){
+        if(strtolower($user->user_type) == strtolower("admin")){
             return view('adminHome');
-        }else if($user->user_type == "mda"){
+        }else if(strtolower($user->user_type) == strtolower("mda")){
             return view('MDAHome');
-        }else if($user->user_type == "Contractor"){
+        }else if(strtolower($user->user_type) == strtolower("Contractor")){
             return view('home');
         }
         return redirect('/404');
@@ -39,4 +40,14 @@ class HomeController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    // public function country() {
+    //     $countries = Country::all()->pluck('name', 'id');
+    //     return view('welcome', compact('countries'));
+    // }
+
+    // public function getStates($id) {
+    //     $states = State::where('country_id', $id)->pluck('name', 'id');
+    //     return json_encode($states);
+    // }
 }
