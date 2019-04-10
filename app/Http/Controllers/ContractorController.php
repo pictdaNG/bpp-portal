@@ -55,4 +55,10 @@ class ContractorController extends Controller {
        }
     }
 
+
+    public function reportsContractor() {
+        echo("contracts reports data table");
+        return view('contractor.reports');
+    }
+
 }
