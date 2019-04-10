@@ -16,7 +16,7 @@ class EloquentEquipmentRepository implements EquipmentContract
     }
     
     
-    public function listOwnershipStructure()
+    public function listEquipments()
     {
         return Equipments::all();
     }
