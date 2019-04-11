@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     //    $this->call(OwnershipTableDataSeeder::class);
     //    $this->call(CountrySeeder::class);
        $this->call(OwnershipTableDataSeeder::class);
-       $this->call(CountrySeeder::class);
+    //    $this->call(CountrySeeder::class);
 
         $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
