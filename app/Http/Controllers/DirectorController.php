@@ -21,6 +21,8 @@ class DirectorController extends Controller{
         return response()->json(['directors'=> $directors], 200);
     }
 
+    
+
     public function storeDirector(Request $request) {
        try {
            $director = $this->repo->createDirector((object)$request->all());
@@ -36,4 +38,17 @@ class DirectorController extends Controller{
         return response()->json(['response' => $e->getMessage()], 500);
        }
     }
+
+    public function deleteDirector(Request $request) {
+        try {
+            $director = $this->repo->removeDirector($request->all());  
+            if ($director) {
+                return response()->json(['success'=>' Records Deleted Successfully'], 200);
+             } else {  
+                return response()->json(['responseText' => 'Failed to Delete'], 500);
+             }
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+        }
+     }
 }

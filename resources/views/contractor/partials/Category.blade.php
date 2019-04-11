@@ -19,16 +19,19 @@
             <th>Edit</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="categories">
+            @foreach ($allcategories as $category)
             <tr>
-            <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>
-                <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-            </td>
+                <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="post[]"><i></i></label></td>
+                <td>{{$category->category}}</td>
+                <td>{{$category->subcategory_1}}</td>
+                <td>{{$category->subcategory_2}}</td>
+                <td>
+                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                </td>
             </tr>
+            @endforeach
+
         </tbody>
         </table>
     </div>
@@ -96,44 +99,78 @@
 
 <script type="application/javascript">
 
-    $("#categoryform").validate({
-        submitHandler: function(form) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var url = '{{URL::to('/')}}';
-            var dataType =  'JSON';
-            $.ajax({
-                type : 'POST',
-                url : url + '/category/create',
-                data :$('#categoryform').serialize(),
-                dataType: dataType,
-                success:function(data){   
-                    console.log(data) 
-                    $('#categoryBtn').html('Submitted');
+    $("#categoryform").submit(function(evt){
+        evt.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({
+            type : 'POST',
+            url : url + '/category/create',
+            data :$('#categoryform').serialize(),
+            dataType: dataType,
+            success:function(data){   
+                $('#categoryBtn').html('Submitted');
+                $('#cat_message').show();
+                $('#cat_message').html(data.success);
+                $('#cat_div').show();
+                $('#cat_div').removeClass('d-none');
+                setTimeout(function(){
+                    $('.close').trigger('click');
+                    $('#cat_message').hide();
+                    $('#cat_div').hide();
+                    $('#categoryBtn').html('Save Data');
                     $('#categoryBtn').removeAttr('disabled');
-                    $('#cat_message').show();
-                    $('#cat_message').html(data.success);
-                    $('#cat_div').removeClass('d-none');
-                    setTimeout(function(){
-                        $('.close').trigger('click');
-                       $('#res_message').hide();
-                       $('#msg_div').hide();
-                    },1000);
-                },
-                beforeSend: function(){
-                    $('#categoryBtn').html('Sending..');
-                    $('#categoryBtn').attr('disabled', 'disabled');
-                },
-                error: function(data) {
-                    $('#categoryBtn').html('Try Again');
-                    $('#directorBtn').removeAttr('disabled');
-                    
-                // show error to end user
-                }
-            });
-        }
+                    document.getElementById("categoryform").reset(); 
+                },10000);
+
+                loadCategories('/category/categories', function(data){
+                });
+            },
+            beforeSend: function(){
+                $('#categoryBtn').html('Sending..');
+                $('#categoryBtn').attr('disabled', 'disabled');
+            },
+            error: function(data) {
+                $('#categoryBtn').html('Try Again');
+                $('#directorBtn').removeAttr('disabled');
+                
+            // show error to end user
+            }
+        });
     })
+
+    function loadCategories(categories, cb){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({
+            type : 'GET',
+            url : url + categories,
+            success:function(data){  
+                data = data.categories; 
+                $('#categories').empty();
+                $.each(data, function (i) {
+                    $('#categories').append(
+                        '<tr>'+
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td>'+data[i].category+'</td>' +
+                        '<td>'+data[i].subcategory_1+'</td>' +
+                        '<td>'+data[i].subcategory_2+'</td>'+
+                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '</tr>'
+                    );
+                });
+                  
+            },
+        });   
+    }
 </script>

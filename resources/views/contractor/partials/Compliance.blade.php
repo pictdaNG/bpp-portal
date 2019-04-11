@@ -104,7 +104,10 @@
                     <label class="col-lg-2 control-label">Ownership Structure.</label>
                     <div class="col-lg-10">
                     <select name="tcc_ownership_structure" required class="form-control">
-                        <option>Private Limited</option>
+                        @foreach ($ownerships as $ownership)
+                            <option value="{{$ownership->name}}">{{$ownership->name}}</option>
+                        @endforeach
+
                     </select>
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
@@ -179,8 +182,6 @@ $("#complianceform").validate({
             }
         });
         var url = '{{URL::to('/')}}';
-        //var post = form.attr('method');
-        console.log('url ', url);
         var dataType =  'JSON';
         $.ajax({
             type : 'POST',
@@ -189,15 +190,15 @@ $("#complianceform").validate({
             dataType: dataType,
             success:function(data){    
                 $('#complianceBtn').html('Submitted');
-                console.log('hello... ', data)
                 $('#compliance_message').show();
+                $('#compliance_div').show();
                 $('#compliance_message').html(data.success);
                 $('#compliance_div').removeClass('d-none');
-
-              //  document.getElementById("complianceform").reset(); 
                 setTimeout(function(){
                     $('#compliance_message').hide();
                     $('#compliance_div').hide();
+                    document.getElementById("complianceform").reset(); 
+                    $('#complianceBtn').removeAttr('disabled');
                 },10000);
             },
             beforeSend: function(){

@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit"  id ="submitForm" name="submitForm" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+                        <button type="submit"  id ="submitForm" name="submitForm" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
                     </div>
                 </div>
             </form>
@@ -69,46 +69,49 @@
     </div>
 
     <script>
-        $("#registrationForm").validate({
-            submitHandler: function(form) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                var host = '{{URL::to('/')}}';
-                var dataType =  'JSON';
-                $('#submitForm').html('Sending..');
-                $.ajax({ 
-                    url : host + '/contractor/create',
-                    type : 'POST',
-                    data :$("#registrationForm").serialize(),
-                    dataType: dataType,
-                    success:function(response){
-                        $('#submitForm').html('Submitted');
-                        $('#submitForm').attr('disabled', 'disabled');
-                        $('#res_message').show();
-                        $('#res_message').html(response.success);
-                        $('#msg_div').removeClass('d-none');
-            
-                       // document.getElementById("registrationForm").reset(); 
-                        setTimeout(function(){
+        $("#registrationForm").submit(function(evt ){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var host = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({ 
+                url : host + '/contractor/create',
+                type : 'POST',
+                data :$("#registrationForm").serialize(),
+                dataType: dataType,
+                success:function(response){
+                    $('#submitForm').html('Submitted');
+                    $('#res_message').show();
+                    $('#msg_div').show();
+
+                    $('#res_message').html(response.success);
+                    $('#msg_div').removeClass('d-none');
+        
+                    setTimeout(function(){
                             $('#res_message').hide();
                             $('#msg_div').hide();
-                        },10000);
-                        
-                    },
-                    beforeSend: function(){
-                        $('#submitForm').html('Loading...');
-                        $('#submitForm').attr('disabled', 'disabled');
-                    },
-                    error: function() {
-                        $('#submitForm').html('Save Data');
+                        $("#registrationForm").trigger('reset'); 
                         $('#submitForm').removeAttr('disabled');
-                    
-                    }
-                });
+                        $('#submitForm').html('Save Data');
 
-            }
+
+                    },10000);
+                    
+                },
+                beforeSend: function(){
+                    $('#submitForm').html('Loading...');
+                    $('#submitForm').attr('disabled', 'disabled');
+                },
+                error: function() {
+                    $('#submitForm').html('Save Data');
+                    $('#submitForm').removeAttr('disabled');
+                
+                }
+            });
+
         })
     </script>
