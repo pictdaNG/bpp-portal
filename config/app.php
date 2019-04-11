@@ -192,6 +192,8 @@ return [
         App\Providers\CompanyOwnershipServiceProvider::class,
         App\Providers\BusinessSubCategory1ServiceProvider::class,
         App\Providers\BusinessSubCategory2ServiceProvider::class,
+        App\Providers\EmploymentTypeServiceProvider::class,
+        App\Providers\QualificationServiceProvider::class,
 
 
 
