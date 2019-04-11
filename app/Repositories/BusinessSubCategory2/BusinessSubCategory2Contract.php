@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\BusinessSubCategory2;
 
-interface BusinessSubCategoryContract       
+interface BusinessSubCategory2Contract       
 {
     public function find($id);
     

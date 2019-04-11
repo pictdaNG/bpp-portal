@@ -23,6 +23,6 @@ class BusinessSubCategory2ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind('App\Repositories\BusinessSubCategory2\BusinessSubCategoryContract', 'App\Repositories\BusinessSubCategory2\EloquentBusinessSubCategoryRepository');
+        $this->app->bind('App\Repositories\BusinessSubCategory2\BusinessSubCategory2Contract', 'App\Repositories\BusinessSubCategory2\EloquentBusinessSubCategory2Repository');
     }
 }
