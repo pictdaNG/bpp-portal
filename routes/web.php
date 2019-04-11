@@ -91,3 +91,10 @@ Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
 // Company Ownership
 Route::get('/company/ownership', 'CompanyOwnershipController@getCompanyOwnership')->name('getCompanyOwnership');
 Route::get('/company/ownership/store', 'CompanyOwnershipController@storeCompanyOwnership')->name('storeCompanyOwnership');
+
+// Employment Type
+Route::get('/employment/type', 'EmploymentTypeController@getAllEmploymentType')->name('getAllEmploymentType');
+
+// qualifications
+Route::get('/qualifications', 'QualificationController@getQualifications')->name('getQualifications');
+Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
