@@ -24,6 +24,13 @@ class UserAdminSeeder extends Seeder
             'user_type' => 'contractor',
             'phone' => '08161730129',
             'password' => bcrypt('password'),
+        ],
+        [
+            'name' => 'nHub Nigeria',
+            'email' => 'ed@gmail.com',
+            'user_type' => 'contractor',
+            'phone' => '08161730129',
+            'password' => bcrypt('password'),
         ]]);
     }
 }

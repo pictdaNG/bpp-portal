@@ -1,11 +1,15 @@
 <?php
 namespace App\Repositories\Countries;
 
-interface CountriesContract       
-{
+interface CountriesContract{
     // public function find($id);
     
     public function listAllCountries();
+
+    public function allCountries();
+
+
+
     
     // public function create($requestData);
     

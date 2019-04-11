@@ -32,10 +32,17 @@ Route::post('/compliance/create', 'ComplianceController@storeCompliance')->name(
 
 //Director
 Route::post('/director/create', 'DirectorController@storeDirector')->name('storeDirector');
+Route::get('/director/directors', 'DirectorController@directors')->name('returnDirector');
+Route::post('/director/delete', 'DirectorController@deleteDirector')->name('deleteDirector');
+
 
 
 //ContractorCategory
 Route::post('/category/create', 'ContractorCategoryController@storeCategory');
+Route::post('/category/delete', 'ContractorCategoryController@deleteCategory');
+Route::get('/category/categories', 'ContractorCategoryController@categories')->name('returnCategories');
+
+
 
 //ContractorPersonnel
 Route::post('/personnel/create', 'ContractorPersonnelController@storePersonnel');

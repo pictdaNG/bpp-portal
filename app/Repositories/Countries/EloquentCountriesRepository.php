@@ -20,6 +20,11 @@ class EloquentCountriesRepository implements CountriesContract
     {
         return Country::all()->pluck('name', 'id');
     }
+
+
+    public function allCountries(){
+        return Country::all();
+    }
     
     
     // public function destroy($id)
