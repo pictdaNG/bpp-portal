@@ -68,14 +68,14 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">First Name</label>
             <div class="col-lg-10">
-            <input name="first_name" class="form-control">
+            <input name="first_name" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-2 control-label">Last Name</label>
             <div class="col-lg-10">
-            <input name="last_name" class="form-control">
+            <input name="last_name" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -94,7 +94,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Nationality</label>
             <div class="col-lg-10">
-            <select name="nationality" class="form-control">
+            <select name="nationality" required class="form-control">
                 @foreach ($countries as $country)
                      <option value="{{$country->name}}">{{$country->name}}</option>
                 @endforeach
@@ -122,7 +122,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Employment Type</label>
             <div class="col-lg-10">
-            <select name="employment_type" class="form-control">
+            <select name="employment_type" required class="form-control">
                 <option value="default"></option>
                 <option value="contract">Contract</option>
                 <option value="permanent">Permanent</option>
@@ -134,7 +134,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Years of Experience:</label>
             <div class="col-lg-10">
-            <input name="experience_years" class="form-control">
+            <input name="experience_years"  required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -142,7 +142,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">joining Date:</label>
             <div class="col-lg-10">
-            <input name="joining_date" class="form-control">
+            <input name="joining_date" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -150,7 +150,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Name of School:</label>
             <div class="col-lg-10">
-            <input name="school_name" class="form-control">
+            <input name="school_name"  required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -158,7 +158,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Qualification</label>
             <div class="col-lg-10">
-            <select name="qualification" class="form-control">
+            <select name="qualification" required class="form-control">
                 <option value="default"></option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
@@ -168,7 +168,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Country</label>
             <div class="col-lg-10">
-            <select name="country" class="form-control">
+            <select name="country" required class="form-control">
             @foreach ($countries as $country)
                 <option value="{{$country->name}}">{{$country->name}}</option>
             @endforeach
@@ -180,7 +180,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Year of Graduation</label>
             <div class="col-lg-10">
-            <input name="graduation_year" class="form-control">
+            <input name="graduation_year" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -188,7 +188,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Regulatory Body</label>
             <div class="col-lg-10">
-            <input name="regulatory_body" class="form-control">
+            <input name="regulatory_body" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -196,7 +196,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Membership ID</label>
             <div class="col-lg-10">
-            <input name="membership_id_no" class="form-control">
+            <input name="membership_id_no" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -204,7 +204,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Project Involved</label>
             <div class="col-lg-10">
-            <input name="project_involved" class="form-control">
+            <input name="project_involved" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -212,7 +212,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Description</label>
             <div class="col-lg-10">
-            <textarea name="description" class="form-control"></textarea>
+            <textarea name="description" required class="form-control"></textarea>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -350,7 +350,5 @@
         })
 
     }
-
-
 
     </script>

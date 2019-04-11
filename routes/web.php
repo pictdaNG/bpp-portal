@@ -47,6 +47,8 @@ Route::post('/personnel/delete', 'ContractorPersonnelController@deletePersonnel'
 
 //contractorJobs
 Route::post('/job/create', 'ContractorJobsController@storeJob');
+Route::get('/job/jobs', 'ContractorJobsController@getJobs')->name('returnJobs');
+Route::post('/job/delete', 'ContractorJobsController@deleteJob')->name('deleteJob');
 
 
 //contractorFinance
