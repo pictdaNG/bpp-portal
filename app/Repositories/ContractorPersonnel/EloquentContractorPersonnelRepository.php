@@ -22,6 +22,16 @@ class EloquentContractorPersonnelRepository implements ContractorPersonnelContra
         return ContractorPersonnel::where("user_id", Auth::user()->id)->get();
     }
 
+    public function removePersonnel($request){ 
+        $data = $request['pids'];
+        for($i=0; $i<sizeof($data); $i++){
+       // foreach($request['ids'] as $id){
+            $tmp = ContractorPersonnel::find($data[$i]);
+            $tmp->delete();
+        }
+        return true;
+    }
+
     private function setContractorPersonnelProperties($personnel, $request) {
         $user = Auth::user();
         $personnel->first_name = $request->first_name;

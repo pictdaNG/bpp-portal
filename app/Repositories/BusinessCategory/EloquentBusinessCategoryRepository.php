@@ -10,5 +10,9 @@ class EloquentBusinessCategoryRepository implements BusinessCategoryContract
     {
         return BusinessCategory::all()->pluck('name', 'id');
     }
+
+    public function allBusinessCategories(){
+        return BusinessCategory::all();
+    }
     
 }

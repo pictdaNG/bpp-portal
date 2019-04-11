@@ -21,8 +21,6 @@ class DirectorController extends Controller{
         return response()->json(['directors'=> $directors], 200);
     }
 
-    
-
     public function storeDirector(Request $request) {
        try {
            $director = $this->repo->createDirector((object)$request->all());

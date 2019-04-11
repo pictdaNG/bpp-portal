@@ -6,6 +6,8 @@ interface BusinessSubCategory2Contract
     public function find($id);
     
     public function listBusinessSubCategory();
+
+    public function allBusinessSubCategory();
     
     public function create($requestData);
     

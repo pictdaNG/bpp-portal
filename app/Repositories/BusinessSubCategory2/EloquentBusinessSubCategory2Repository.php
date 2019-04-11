@@ -20,6 +20,11 @@ class EloquentBusinessSubCategory2Repository implements BusinessSubCategory2Cont
     {
         return BusinessSubCategory2::all()->pluck('name', 'id');
     }
+
+    public function allBusinessSubCategory()
+    {
+        return BusinessSubCategory2::all();
+    }
     
     
     public function destroy($id)

@@ -35,18 +35,15 @@ Route::post('/director/create', 'DirectorController@storeDirector')->name('store
 Route::get('/director/directors', 'DirectorController@directors')->name('returnDirector');
 Route::post('/director/delete', 'DirectorController@deleteDirector')->name('deleteDirector');
 
-
-
 //ContractorCategory
 Route::post('/category/create', 'ContractorCategoryController@storeCategory');
 Route::post('/category/delete', 'ContractorCategoryController@deleteCategory');
 Route::get('/category/categories', 'ContractorCategoryController@categories')->name('returnCategories');
 
-
-
 //ContractorPersonnel
 Route::post('/personnel/create', 'ContractorPersonnelController@storePersonnel');
-
+Route::get('/personnel/personnels', 'ContractorPersonnelController@personnels')->name('returnPersonnel');
+Route::post('/personnel/delete', 'ContractorPersonnelController@deletePersonnel')->name('deletePersonnel');
 
 //contractorJobs
 Route::post('/job/create', 'ContractorJobsController@storeJob');
@@ -58,9 +55,6 @@ Route::post('/finance/create', 'ContractorFinanceController@storeFinance');
 
 //contractorMachinery
 Route::post('/machinery/create', 'ContractorMachineryController@storeMachinery');
-
-
-
 
 //Admin
 Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');

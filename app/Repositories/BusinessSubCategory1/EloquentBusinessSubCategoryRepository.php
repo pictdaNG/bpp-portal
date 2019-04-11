@@ -20,6 +20,12 @@ class EloquentBusinessSubCategoryRepository implements BusinessSubCategoryContra
     {
         return BusinessSubCategory1::all()->pluck('name', 'id');
     }
+
+
+    public function allBusinessSubCategory()
+    {
+        return BusinessSubCategory1::all();
+    }
     
     
     public function destroy($id)
