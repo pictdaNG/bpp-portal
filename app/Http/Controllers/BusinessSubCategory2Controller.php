@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Database\QueryException;
 
-use App\Repositories\BusinessSubCategory2\BusinessSubCategoryContract;
+use App\Repositories\BusinessSubCategory2\BusinessSubCategory2Contract;
 
 class BusinessSubCategory2Controller extends Controller
 {
     protected $repo;
 
-    public function __construct(BusinessSubCategoryContract $businessSubCategoryContract){
+    public function __construct(BusinessSubCategory2Contract $businessSubCategory2Contract){
         // $this->middleware('auth');
-        $this->repo = $businessSubCategoryContract;
+        $this->repo = $businessSubCategory2Contract;
     }
 
     public function getAllBusinessSubCategories() {
