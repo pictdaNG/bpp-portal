@@ -3,7 +3,7 @@ namespace App\Repositories\BusinessSubCategory2;
 
 use App\BusinessSubCategory2;
 
-class EloquentBusinessSubCategoryRepository implements BusinessSubCategoryContract
+class EloquentBusinessSubCategory2Repository implements BusinessSubCategory2Contract
 {
     public function create($requestData)
     {

@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class BusinessSubCategory2ServiceProvider extends ServiceProvider
+class QualificationServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -23,6 +23,6 @@ class BusinessSubCategory2ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind('App\Repositories\BusinessSubCategory2\BusinessSubCategory2Contract', 'App\Repositories\BusinessSubCategory2\EloquentBusinessSubCategory2Repository');
+        $this->app->bind('App\Repositories\Qualifications\QualificationContract', 'App\Repositories\Qualifications\EloquentQualificationRepository');
     }
 }

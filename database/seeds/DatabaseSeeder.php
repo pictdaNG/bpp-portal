@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserAdminSeeder::class);
         $this->call(UserMDASeeder::class);
+       //eddie....
+    //    $this->call(OwnershipTableDataSeeder::class);
+    //    $this->call(CountrySeeder::class);
        $this->call(OwnershipTableDataSeeder::class);
        $this->call(CountrySeeder::class);
 
@@ -21,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessCategorySeeder::class);
         $this->call(BusinessSubCategory1Seeder::class);
         $this->call(BusinessSubCategory2Seeder::class);
+        $this->call(EmploymentTypeSeeder::class);
     }
 }
