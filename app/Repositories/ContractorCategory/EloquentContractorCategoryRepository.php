@@ -23,6 +23,21 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
         return ContractorCategory::where("user_id", Auth::user()->id)->get();
     }
 
+    public function getCategories() {
+        return ContractorCategory::all();
+    }
+
+
+    public function removeCategory($request){ 
+        $data = $request['ids'];
+        for($i=0; $i<sizeof($data); $i++){
+       // foreach($request['ids'] as $id){
+            $tmp = ContractorCategory::find($data[$i]);
+            $tmp->delete();
+        }
+        return true;
+    }
+
     private function setContractorCategoryProperties($category, $request) {
         $user = Auth::user();
         $category->category = $request->category;

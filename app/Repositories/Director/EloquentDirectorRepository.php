@@ -22,6 +22,16 @@ class EloquentDirectorRepository implements DirectorContract{
         return Director::where("user_id", Auth::user()->id)->get();
     }
 
+    public function removeDirector($request){ 
+        $data = $request['ids'];
+        for($i=0; $i<sizeof($data); $i++){
+       // foreach($request['ids'] as $id){
+            $tmp = Director::find($data[$i]);
+            $tmp->delete();
+        }
+        return true;
+    }
+
     private function setDirectorProperties($director, $request) {
           //$user = Auth::user();
           //dd($request);

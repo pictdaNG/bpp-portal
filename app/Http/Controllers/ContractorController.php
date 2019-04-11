@@ -8,6 +8,10 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contractor\ContractorContract;
 use App\Repositories\Director\DirectorContract;
+use App\Repositories\OwnershipStructure\OwnershipStructureContract;
+use App\Repositories\Countries\CountriesContract;
+
+
 use App\Repositories\ContractorCategory\ContractorCategoryContract;
 use App\ContractorFile;
 
@@ -18,24 +22,33 @@ class ContractorController extends Controller {
     protected $repo;
     protected $directorRepo;
     protected $contractorCategory;
+    protected $ownerhip;
+    protected $county;
+
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
-                 ContractorCategoryContract $contractorCategoryContract){
+                 ContractorCategoryContract $contractorCategoryContract,
+                 OwnershipStructureContract $ownershipStructure, 
+                 CountriesContract $country){
 
         $this->middleware('auth');
         $this->repo = $contractorContract;
         $this->directorRepo = $directorContract;
         $this->contractorCategory = $contractorCategoryContract;
+        $this->ownership = $ownershipStructure;
+        $this->county = $country;
     }
     
     public function registration(Request $request){
          $user = $this->repo->getUserById();
          $directors = $this->directorRepo->getCompanyDirectors();
          $categories = $this->contractorCategory->getCategoriesById();
+         $owner_ship = $this->ownership->listOwnershipStructure();
+         $countries = $this->county->allCountries();
 
         return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
-        'contractorcategories' =>  $categories,
-
+        'contractorcategories' =>  $categories, 'ownerships' => $owner_ship,
+        'countries' => $countries, 'allcategories' => $categories, 'contractorcategories' =>  $categories,
         'cac' => ContractorFile::where('name', 'cac')->where('user_id', $user->id)->first(),
         'tcc' => ContractorFile::where('name', 'tcc')->where('user_id', $user->id)->first(),
         'tin' => ContractorFile::where('name', 'tin')->where('user_id', $user->id)->first(),
