@@ -2,49 +2,54 @@
     <header class="panel-heading">
         Personnel
     </header>
-    <div class="row wrapper">
-        <div class="col-sm-5 m-b-xs">
-        <a href="#addPersonnel" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Personnel</a> 
-        <button class="btn btn-sm btn-danger">Delete</button>                
+    <form class="bs-example form-horizontal"  id="deletePersonnel" method="POST">
+
+        <div class="row wrapper">
+            <div class="col-sm-5 m-b-xs">
+            <a href="#addPersonnel" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Personnel</a> 
+            <button type="submit" onclick="deletePersonnel()" class="btn btn-sm btn-danger">Delete</button>                
+            </div>
         </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped b-t b-light">
-        <thead>
-            <tr>
-            <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox"><i></i></label></th>
-            <th data-toggle="class">Full Name</th>
-            <th>Gender</th>
-            <th>Nationality</th>
-            <th>Passport No.</th>
-            <th>National ID</th>
-            <th>Employee Type</th>
-            <th>Joining Date</th>
-            <th>Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            <td>
-                <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-            </td>
-            </tr>
-        </tbody>
-        </table>
-    </div>
-    <footer class="panel-footer">
-        <div class="row">
-        
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox"><i></i></label></th>
+                <th data-toggle="class">Full Name</th>
+                <th>Gender</th>
+                <th>Nationality</th>
+                <th>Passport No.</th>
+                <th>National ID</th>
+                <th>Employee Type</th>
+                <th>Joining Date</th>
+                <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody id="personnels">
+                @foreach ($personnels as $personnel)
+                <tr>
+                <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="pids[]" value="{{$personnel->id}}"><i></i></label></td>
+                <td>{{$personnel['first_name'].' '.$personnel['last_name']}}</td>
+                <td>{{$personnel->gender}}</td>
+                <td>{{$personnel->nationality}}</td>
+                <td>{{$personnel->passport_no}}</td>
+                <td>{{$personnel->national_id_no}}</td>
+                <td>{{$personnel->employment_type}}</td>
+                <td>{{$personnel->joining_date}}</td>
+                <td>
+                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                </td>
+                </tr>
+            @endforeach
+            </tbody>
+            </table>
         </div>
-    </footer>
+        <footer class="panel-footer">
+            <div class="row">
+            
+            </div>
+        </footer>
+    </form>
 </section>
 
 <div class="modal fade" id="addPersonnel">
@@ -90,7 +95,9 @@
             <label class="col-lg-2 control-label">Nationality</label>
             <div class="col-lg-10">
             <select name="nationality" class="form-control">
-                <option>Nigeria</option>
+                @foreach ($countries as $country)
+                     <option value="{{$country->name}}">{{$country->name}}</option>
+                @endforeach
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -162,7 +169,9 @@
             <label class="col-lg-2 control-label">Country</label>
             <div class="col-lg-10">
             <select name="country" class="form-control">
-                <option>Nigeria</option>
+            @foreach ($countries as $country)
+                <option value="{{$country->name}}">{{$country->name}}</option>
+            @endforeach
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -220,47 +229,128 @@
 </div>
 
 <script>
-        $("#personnelForm").validate({
-            submitHandler: function(form) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                var host = '{{URL::to('/')}}';
-                var dataType =  'JSON';
-                $('#submitPersonnel').html('Sending..');
-                $.ajax({ 
-                    url : host + '/personnel/create',
-                    type : 'POST',
-                    data :$("#personnelForm").serialize(),
-                    dataType: dataType,
-                    success:function(response){
-                        $('#submitPersonnel').html('Submitted');
-                        $('#submitPersonnel').attr('disabled', 'disabled');
-                        $('#personnel_message').show();
-                        $('#personnel_message').html(response.success);
-                        $('#personnel_div').removeClass('d-none');
-            
-                       // document.getElementById("registrationForm").reset(); 
-                        setTimeout(function(){
-                            $('#personnel_message').hide();
-                            $('#personnel_div').hide();
-                        },1000);
-                        
-                    },
-                    beforeSend: function(){
-                        $('#submitPersonnel').html('Loading...');
-                        $('#submitPersonnel').attr('disabled', 'disabled');
-                    },
-                    error: function(data) {
-                        $('#submitPersonnel').html('Try Again');
-                        $('#submitPersonnel').removeAttr('disabled');
-                        console.log(data)
-                    
-                    }
-                });
-
+    $("#personnelForm").submit(function(evt){
+        evt.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+        var host = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({ 
+            url : host + '/personnel/create',
+            type : 'POST',
+            data :$("#personnelForm").serialize(),
+            dataType: dataType,
+            success:function(response){
+                $('#submitPersonnel').html('Submitted');
+                $('#submitPersonnel').attr('disabled', 'disabled');
+                $('#personnel_message').show();
+                $('#personnel_message').html(response.success);
+                $('#personnel_div').show();
+                $('#personnel_div').removeClass('d-none');
+                
+                document.getElementById("personnelForm").reset(); 
+                setTimeout(function(){
+                    $('#personnel_message').hide();
+                    $('#personnel_div').hide();
+                    $('#submitPersonnel').html('Save Data');
+                    $('#submitPersonnel').removeAttr('disabled');
+                    $('.close').trigger('click');
+                
+                },1000);
+                
+                loadPersonnels('/personnel/personnels', function(data){
+                });
+            },
+            beforeSend: function(){
+                $('#submitPersonnel').html('Loading...');
+                $('#submitPersonnel').attr('disabled', 'disabled');
+            },
+            error: function(data) {
+                $('#submitPersonnel').html('Try Again');
+                $('#submitPersonnel').removeAttr('disabled');
+            
+            }
+        });
+    })
+
+
+    function loadPersonnels(personnels, cb){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({
+            type : 'GET',
+            url : url + personnels,
+            success:function(data){  
+                //data = data.personnels; 
+                $('#personnels').empty();
+                $.each(data, function (i) {
+                    $('#personnels').append(
+                        '<tr>'+
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="pids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
+                        '<td>'+data[i].gender+'</td>' +
+                        '<td>'+data[i].nationality+'</td>'+
+                        '<td>'+data[i].passport_no+'</td>'+
+                        '<td>'+data[i].national_id_no+'</td>'+
+                        '<td>'+data[i].employment_type+'</td>'+
+                        '<td>'+data[i].joining_date+'</td>'+
+                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '</tr>'
+                    );
+                });
+                  
+            },
+        });   
+    }
+
+
+    function deletePersonnel(){
+        $("#deletePersonnel").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+        
+            $.ajax({
+                type : 'POST',
+                url : url + '/personnel/delete',
+                data :$('#deletePersonnel').serialize(),
+                dataType: dataType,
+                success:function(data){    
+                    $('#deleteBtn').html('Delete');
+                    $('#deleteBtn').removeAttr('disabled');
+                    document.getElementById("deletePersonnel").reset(); 
+                
+                    loadPersonnels('/personnel/personnels', function(data){
+                    });
+
+                },
+                beforeSend: function(){
+                    $('#deleteBtn').html('Sending..');
+                    $('#deleteBtn').attr('disabled', 'disabled');
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    
+                // show error to end user
+                }
+            });
         })
+
+    }
+
+
+
     </script>

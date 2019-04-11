@@ -213,11 +213,6 @@
             data :$('#deleteDirector').serialize(),
             dataType: dataType,
             success:function(data){    
-                $('#directorBtn').html('Submitted');
-                $('#directorBtn').removeAttr('disabled');
-                $('#directors_message').show();
-                $('#directors_message').html(data.success);
-                $('#directors_div').removeClass('d-none');
                 document.getElementById("deleteDirector").reset(); 
                 setTimeout(function(){
                     $('#directors_message').hide();

@@ -2,10 +2,11 @@
     <header class="panel-heading">
         Category
     </header>
+    <form class="bs-example form-horizontal"  id="deleteCategory" method="POST">
     <div class="row wrapper">
         <div class="col-sm-5 m-b-xs">
         <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Business Category</a> 
-        <button class="btn btn-sm btn-danger">Delete</button>                
+        <button type="submit" onclick="deleteCategory()" class="btn btn-sm btn-danger">Delete</button>                
         </div>
     </div>
     <div class="table-responsive">
@@ -22,7 +23,7 @@
         <tbody id="categories">
             @foreach ($allcategories as $category)
             <tr>
-                <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="post[]"><i></i></label></td>
+                <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="cates[]" value="{{$category['id']}}"><i></i></label></td>
                 <td>{{$category->category}}</td>
                 <td>{{$category->subcategory_1}}</td>
                 <td>{{$category->subcategory_2}}</td>
@@ -40,6 +41,7 @@
         
         </div>
     </footer>
+</form>
 </section>
 
 <div class="modal fade" id="addBusinessCategory">
@@ -58,7 +60,10 @@
             <label class="col-lg-2 control-label">Select a Category</label>
             <div class="col-lg-10">
             <select name="category" class="form-control">
-                <option value="hello">hello</option>
+            @foreach ($business_cates as $category)
+
+                <option value="{{$category->name}}">{{$category->name}}</option>
+            @endforeach
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -68,7 +73,11 @@
             <label class="col-lg-2 control-label">Select Sub-Category</label>
             <div class="col-lg-10">
             <select name="subcategory_1" class="form-control">
-                <option value="hello1">hello1</option>
+            @foreach ($business_cates1 as $category)
+
+             <option value="{{$category->name}}">{{$category->name}}</option>
+            @endforeach
+
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -78,7 +87,11 @@
             <label class="col-lg-2 control-label">Select a Category</label>
             <div class="col-lg-10">
             <select name="subcategory_2" class="form-control">
-                <option value="hello2">hello2</option>
+            @foreach ($business_cates1 as $category)
+
+             <option value="{{$category->name}}">{{$category->name}}</option>
+            @endforeach
+            
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -173,4 +186,46 @@
             },
         });   
     }
+
+    function deleteCategory(){
+    $("#deleteCategory").submit(function(evt){
+        evt.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+    
+        $.ajax({
+            type : 'POST',
+            url : url + '/category/delete',
+            data :$('#deleteCategory').serialize(),
+            dataType: dataType,
+            success:function(data){    
+                document.getElementById("deleteCategory").reset(); 
+                setTimeout(function(){
+
+                },10000);
+              
+                loadCategories('/category/categories', function(data){
+                });
+
+            },
+            beforeSend: function(){
+                $('#directorBtn').html('Sending..');
+                $('#directorBtn').attr('disabled', 'disabled');
+            },
+            error: function(data) {
+                console.log('error', data)
+                $('#directorBtn').html('Try Again');
+                $('#directorBtn').removeAttr('disabled');
+                
+            // show error to end user
+            }
+        });
+    })
+
+}
 </script>
