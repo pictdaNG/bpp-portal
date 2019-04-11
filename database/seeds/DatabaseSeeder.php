@@ -21,5 +21,10 @@ class DatabaseSeeder extends Seeder
        $this->call(OwnershipTableDataSeeder::class);
        $this->call(CountrySeeder::class);
 
+        $this->call(CountriesTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
+        $this->call(BusinessCategorySeeder::class);
+        $this->call(BusinessSubCategory1Seeder::class);
+        $this->call(BusinessSubCategory2Seeder::class);
     }
 }

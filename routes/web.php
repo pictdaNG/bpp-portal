@@ -83,8 +83,20 @@ Route::get('/equipment/types', 'EquipmentController@getEquipmentsType')->name('g
 // Business Categories
 Route::get('/business/categories', 'BusinessCategoryController@getAllBusinessCategories')->name('getAllBusinessCategories');
 
+// Business sub Categories 1
+Route::get('/business/subcategory1', 'BusinessSubCategory1Controller@getAllBusinessSubCategories')->name('getAllBusinessSubCategories');
+
+// Business sub Categories 2
+Route::get('/business/subcategory2', 'BusinessSubCategory2Controller@getAllBusinessSubCategories')->name('getAllBusinessSubCategories2');
+
 // Countries
 Route::get('/countries', 'CountryController@getAllCountries')->name('getAllCountries');
 
 // States
 Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
+
+Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->name('uploadContractorFile');
+Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
+// Company Ownership
+Route::get('/company/ownership', 'CompanyOwnershipController@getCompanyOwnership')->name('getCompanyOwnership');
+Route::get('/company/ownership/store', 'CompanyOwnershipController@storeCompanyOwnership')->name('storeCompanyOwnership');
