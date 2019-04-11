@@ -12,20 +12,37 @@ class ContractorCategoryController extends Controller{
     }
        
     public function storeCategory(Request $request) {
-
        try {
-           $category = $this->repo->createCategory((object)$request->all());
-             
+           $category = $this->repo->createCategory((object)$request->all());       
            if ($category) {
-               return response()->json(['success'=>'Added new records.'], 200);
-               
-            } else {
-            
-                return response()->json(['responseText' => $e->getMessage()], 500);
+               return response()->json(['success'=>'Added new records.'], 200);         
+            } else {  
+              return response()->json(['responseText' => 'Error Occured'], 500);
             }
        } catch (QueryException $e) {
         return response()->json(['response' => $e->getMessage()], 500);
        }
     }
+
+    public function deleteCategory(Request $request) {
+        try {
+            $category = $this->repo->removeCategory($request->all());     
+            if ($category) {
+                return response()->json(['success'=>' Records Deleted Successfully'], 200);
+             } else {  
+                return response()->json(['responseText' => 'Failed to Delete'], 500);
+             }
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+        }
+    }
+
+    public function categories() {
+        $categories = $this->repo->getCategoriesById();
+        return response()->json(['categories'=> $categories], 200);
+    }
+
+
+
 
 }

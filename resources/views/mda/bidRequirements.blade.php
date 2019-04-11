@@ -52,7 +52,7 @@
                 <br/>
                 <div class="row" style="padding-left: 10px; padding-right: 10px;">
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-default">Back to Lots</button>
+                        <a href="{{ route('newMdaAdvert') }}" class="btn btn-default">Back to Lots</a>
                     </div>
                     <div class="col-md-6 text-right">
                         <button type="submit" class="btn btn-primary">Update</button>

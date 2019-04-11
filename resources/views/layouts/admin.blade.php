@@ -23,6 +23,9 @@
     <script src="{{ asset('js/ie/respond.min.js') }}"></script>
     <script src="{{ asset('js/ie/excanvas.js') }}"></script>
   <![endif]-->
+  <script>
+    var base_url = '{{ url('/') }}';
+  </script>
 </head>
 <body class="" >
   <section class="vbox">
