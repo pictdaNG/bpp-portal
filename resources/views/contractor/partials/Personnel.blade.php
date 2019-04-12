@@ -142,7 +142,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">joining Date:</label>
             <div class="col-lg-10">
-            <input name="joining_date" required class="form-control">
+            <input type="date" name="joining_date" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -159,8 +159,9 @@
             <label class="col-lg-2 control-label">Qualification</label>
             <div class="col-lg-10">
             <select name="qualification" required class="form-control">
-                <option value="default"></option>
-            </select>
+            @foreach ($qualifications as $qualification)
+                <option value="{{$qualification->name}}">{{$qualification->name}}</option>
+            @endforeach            </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -343,6 +344,8 @@
                 },
                 error: function(data) {
                     console.log('error', data)
+                    $('#deleteBtn').html('Try Again');
+                    $('#deleteBtn').removeAttr('disabled');
                     
                 // show error to end user
                 }

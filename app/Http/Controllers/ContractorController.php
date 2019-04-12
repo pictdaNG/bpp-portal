@@ -13,10 +13,14 @@ use App\Repositories\Countries\CountriesContract;
 use App\Repositories\ContractorCategory\ContractorCategoryContract;
 use App\Repositories\BusinessCategory\BusinessCategoryContract;
 use App\Repositories\BusinessSubCategory1\BusinessSubCategoryContract;
-//use App\Repositories\BusinessCategory2\BusinessSubCategoryContract;
+use App\Repositories\BusinessSubCategory2\BusinessSubCategory2Contract;
 use App\Repositories\ContractorPersonnel\ContractorPersonnelContract;
 use App\Repositories\ContractorJobs\ContractorJobsContract;
-
+use App\Repositories\ContractorFinance\ContractorFinanceContract;
+use App\Repositories\Equipments\EquipmentContract;
+use App\Repositories\CompanyOwnership\CompanyOwnershipContract;
+use App\Repositories\Qualifications\QualificationContract; 
+use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 
 use App\ContractorFile;
 
@@ -33,17 +37,21 @@ class ContractorController extends Controller {
     protected $business_cate2;
     protected $contract_personnel;
     protected $contract_job;
-
-
-
+    protected $contractFinance;
+    protected $equipment;
+    protected $ownership;
+    protected $qualification;
+    protected $machinery;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
                  ContractorCategoryContract $contractorCategoryContract, OwnershipStructureContract $ownershipStructure, 
-                 CountriesContract $country,  BusinessCategoryContract $businessCategory, ContractorJobsContract $contractorJob,
-                 BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel ) {
-                    // when smiles fixes the sub category2 cantract name ish
-                   // BusinessSubCategory2Contract $businessCategory2
+                 CountriesContract $country,  BusinessCategoryContract $businessCategory, BusinessSubCategory2Contract $businessCategory2,
+                  ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
+                  ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
+                  QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery) {
+                  
+                    
 
         $this->middleware('auth');
         $this->repo = $contractorContract;
@@ -55,7 +63,12 @@ class ContractorController extends Controller {
         $this->business_cate1 = $businessCategory1;
         $this->contract_personnel = $contractorPersonnel;
         $this->contract_job = $contractorJob;
-       // $this->bussiness_cate2 = $businessCategory2;
+        $this->business_cate2 = $businessCategory2;
+        $this->contractFinance = $contractorFinanceContract;
+        $this->equipment = $equipmentsContract;
+        $this->tcc_ownership = $companyOwnership;
+        $this->qualification = $qualificationContract;
+        $this->machinery = $contractorMachinery;
 
     }
     
@@ -70,7 +83,12 @@ class ContractorController extends Controller {
          $b_categories1 = $this->business_cate1->allBusinessSubCategory();
          $personnels = $this->contract_personnel->getPersonnelsById();
          $jobs =$this->contract_job->getJobsById();
-        // $b_categories2= $this->business_cate1->allBusinessSubCategory();
+         $b_categories2= $this->business_cate2->allBusinessSubCategory();
+         $finances = $this->contractFinance->getFinancesById();
+         $equipments = $this->equipment->listEquipments();
+         $tcc_ownerships = $this->tcc_ownership->listCompanyOwnership();
+         $qualifications = $this->qualification->listQualifications();
+         $machineries = $this->machinery->getMachineriesById();
 
 
 
@@ -78,7 +96,8 @@ class ContractorController extends Controller {
         'contractorcategories' =>  $categories, 'ownerships' => $owner_ship,
         'countries' => $countries, 'allcategories' => $categories, 'contractorcategories' =>  $categories,
         'business_cates' => $b_categories, 'business_cates1' => $b_categories1,  'personnels' => $personnels,
-        'jobs' => $jobs,
+        'jobs' => $jobs, 'business_cates2' => $b_categories2, 'finances' => $finances, 'equipments' => $equipments,
+        'tcc_ownerships' => $tcc_ownerships, 'qualifications' => $qualifications, 'machineries' => $machineries,
         'cac' => ContractorFile::where('name', 'cac')->where('user_id', $user->id)->first(),
         'tcc' => ContractorFile::where('name', 'tcc')->where('user_id', $user->id)->first(),
         'tin' => ContractorFile::where('name', 'tin')->where('user_id', $user->id)->first(),
@@ -89,7 +108,7 @@ class ContractorController extends Controller {
         'placcima' => ContractorFile::where('name', 'placcima')->where('user_id', $user->id)->first(),
         ]);
 
-        //'businness_cates2' => $b_categories2,
+       
     }
 
 

@@ -117,7 +117,9 @@
                     <label class="col-lg-2 control-label">Company Ownership</label>
                     <div class="col-lg-10">
                     <select name="tcc_company_ownership" required class="form-control">
-                        <option>Nigeria Company</option>
+                         @foreach ($tcc_ownerships as $ownership)
+                            <option value="{{$ownership->name}}">{{$ownership->name}}</option>
+                        @endforeach
                     </select>
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>

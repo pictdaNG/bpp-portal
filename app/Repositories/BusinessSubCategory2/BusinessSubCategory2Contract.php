@@ -7,8 +7,8 @@ interface BusinessSubCategory2Contract
     
     public function listBusinessSubCategory();
 
-    public function allBusinessSubCategory();
-    
+    public function allBusinessSubCategory();  
+     
     public function create($requestData);
     
     public function update($id, $requestData);

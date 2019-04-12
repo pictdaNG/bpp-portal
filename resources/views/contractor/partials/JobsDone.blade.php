@@ -94,7 +94,7 @@
             <label class="col-lg-3 control-label">Sub-Category</label>
             <div class="col-lg-9">
             <select name="sub_sub_category" required class="form-control">
-                @foreach ($business_cates1 as $category)
+                @foreach ($business_cates2 as $category)
 
                     <option value="{{$category->name}}">{{$category->name}}</option>
                 @endforeach
@@ -262,6 +262,9 @@
             dataType: dataType,
             success:function(data){    
                 document.getElementById("deleteJob").reset(); 
+                $('#jobBtn').html('Delete');
+                $('#jobBtn').removeAttr('disabled'); 
+                  
                 loadJobs('/job/jobs', function(data){
                 });
 
@@ -271,7 +274,9 @@
                 $('#jobBtn').attr('disabled', 'disabled');
             },
             error: function(data) {
-                console.log('error', data)          
+                console.log('error', data)  
+                $('#jobBtn').html('Try Again');
+                $('#jobBtn').removeAttr('disabled');        
             // show error to end user
             }
         });
