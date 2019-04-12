@@ -21,6 +21,13 @@ class EloquentContractorJobsRepository implements ContractorJobsContract{
         return ContractorJobs::where("user_id", Auth::user()->id)->get();
     }
 
+    public function getJobsByIdandCategory($category) {
+        return ContractorJobs::where([
+            'user_id' => Auth::user()->id,
+            'job_category' => $category
+            ])->get();
+    }
+
 
     public function removeJob($request){ 
         $data = $request['jids'];

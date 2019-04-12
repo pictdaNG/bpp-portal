@@ -139,7 +139,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Award Date:</label>
             <div class="col-lg-9">
-            <input name="award_date" required class="form-control">
+            <input type="date" name="award_date" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>

@@ -16,6 +16,12 @@ class EloquentComplianceRepository implements ComplianceContract{
         return $compliance->save();
     }
 
+    public function getCompliancesById(){
+        return Compliance::where("user_id", Auth::user()->id)->get();
+
+    }
+
+
     private function setComplianceProperties($compliance, $request) {
        // dd($request);
         $user = Auth::user();
@@ -34,6 +40,7 @@ class EloquentComplianceRepository implements ComplianceContract{
         $compliance->itf_registration_no=  $request->itf_registration_no;
         $compliance->itf_certificate_no =  $request->itf_certificate_no;
         $compliance->itf_payment_date = $request->itf_payment_date;
+        $compliance->user_id = $user->id;
      
 
     }

@@ -61,7 +61,7 @@
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-primary">0%</span>
+                        <span class="h3 block m-t-xs text-primary">{{$percent_status['percentage']}}%</span>
                         <small class="text-muted text-u-c">Registration Progress</small>
                         </span>
                     </a>
@@ -78,8 +78,8 @@
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Construction/Works</small>
+                    <div class="h3 font-bold">{{$jobs['constructions']}}</div>
+                    <small class="text-muted">Construction | Works</small>
                     </div>
                 </div>
                 </div>
@@ -93,8 +93,8 @@
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Consultancy/Services</small>
+                    <div class="h3 font-bold">{{$jobs['consultancy']}}</div>
+                    <small class="text-muted">Consultancy | Services</small>
                     </div>
                 </div>
                 </div>
@@ -108,8 +108,8 @@
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Construction/Works</small>
+                    <div class="h3 font-bold">{{$jobs['supplies']}}</div>
+                    <small class="text-muted">Goods | Supplies</small>
                     </div>
                 </div>
                 </div>
@@ -127,60 +127,101 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-success m-t-sm">
+                      @if($percent_status['companies'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
+                     
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Identification</a></div>
+                        @if($percent_status['companies'])
                         <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                        @if($percent_status['compliances'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Business Registration & Compliance</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['compliances'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['directors'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Board of Directors</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['directors'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['categories'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Business Category</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['categories'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['personnels'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Staff/Personnel</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['personnels'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
@@ -188,12 +229,20 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['jobs'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Projects Executed</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['jobs'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
@@ -201,12 +250,20 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['finances'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Financial Statements</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['finances'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
@@ -214,12 +271,40 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['machines'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Equipment/Machineries</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['machines'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
+                      @if($percent_status['machines'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
+                        <i class="fa fa-circle"></i>
+                      </div>
+                      <div class="media-body">
+                        <div><a href="#">Documents</a></div>
+                        @if($percent_status['machines'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
