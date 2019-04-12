@@ -31,13 +31,13 @@
                     </a>
                     </div>
                     <div class="col-md-6 b-b">
-                    <a href="{{ route('contractor_reports')}}" class="block padder-v hover">
+                    <a href="{{ route('contractorReport')}}" class="block padder-v hover">
                         <span class="i-s i-s-2x pull-left m-r-sm">
                         <i class="i i-hexagon2 i-s-base text-success-lt hover-rotate"></i>
                         <i class="i i-users2 i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-success">0</span>
+                        <span class="h3 block m-t-xs text-success">{{ $getCompliance->count() }}</span>
                         <small class="text-muted text-u-c">Contractors</small>
                         </span>
                     </a>
