@@ -26,5 +26,11 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessSubCategory2Seeder::class);
         $this->call(EmploymentTypeSeeder::class);
         $this->call(ComplianceTableSeeder::class);
+        $this->call(EquipmentSeeder::class);
+        $this->call(CompanyOwnershipSeeder::class);
+        $this->call(QualificationSeeder::class);
+
+
+
     }
 }

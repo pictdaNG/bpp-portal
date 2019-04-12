@@ -20,6 +20,16 @@ class EloquentContractorFinanceRepository implements ContractorFinanceContract{
         return ContractorFinance::where("user_id", Auth::user()->id)->get();
     }
 
+    public function removeFinance($request) {
+        $data = $request['fids'];
+        for($i=0; $i<sizeof($data); $i++){
+       // foreach($request['ids'] as $id){
+            $tmp = ContractorFinance::find($data[$i]);
+            $tmp->delete();
+       }
+       return true;
+    }
+
     private function setContractorFinanceProperties($finance, $request) {
         $user = Auth::user();
         $finance->turn_over = $request->turn_over;

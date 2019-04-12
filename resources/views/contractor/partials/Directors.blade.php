@@ -177,7 +177,7 @@
                 data = data.directors; 
                 $('#directors').empty();
                 $.each(data, function (i) {
-                    $('#categories').append(
+                    $('#directors').append(
                         '<tr>'+
                         '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="+data[i].id+"><i></i></label></td>' +
                         '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
@@ -196,50 +196,47 @@
         });   
     }
     
- function deleteDirector(){
-    $("#deleteDirector").submit(function(evt){
-        evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var url = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-    
-        $.ajax({
-            type : 'POST',
-            url : url + '/director/delete',
-            data :$('#deleteDirector').serialize(),
-            dataType: dataType,
-            success:function(data){    
-                document.getElementById("deleteDirector").reset(); 
-                setTimeout(function(){
-                    $('#directors_message').hide();
-                    $('#directors_div').hide();
-                    $('.close').trigger('click');
-
-                },10000);
-              
-                loadDirectors('/director/directors', function(data){
-                });
-
-            },
-            beforeSend: function(){
-                $('#directorBtn').html('Sending..');
-                $('#directorBtn').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-                console.log('error', data)
-                $('#directorBtn').html('Try Again');
-                $('#directorBtn').removeAttr('disabled');
+    function deleteDirector(){
+        $("#deleteDirector").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+        
+            $.ajax({
+                type : 'POST',
+                url : url + '/director/delete',
+                data :$('#deleteDirector').serialize(),
+                dataType: dataType,
+                success:function(data){    
+                    document.getElementById("deleteDirector").reset(); 
+                    $('#directorBtn').html('Delete');
+                    $('#directorBtn').removeAttr('disabled');
                 
-            // show error to end user
-            }
-        });
-    })
+                    loadDirectors('/director/directors', function(data){
+                    });
 
-}
+                },
+                beforeSend: function(){
+                    $('#directorBtn').html('Sending..');
+                    $('#directorBtn').attr('disabled', 'disabled');
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    $('#directorBtn').html('Try Again');
+                    $('#directorBtn').removeAttr('disabled');
+                    
+                // show error to end user
+                }
+            });
+        })
+
+    }
+
     $("#directorform").submit(function(evt){
         evt.preventDefault();
         $.ajaxSetup({
@@ -286,8 +283,5 @@
             // show error to end user
             }
         });
-    })
-
-
-    
+    })  
 </script>
