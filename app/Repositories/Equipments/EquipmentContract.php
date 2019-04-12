@@ -6,6 +6,8 @@ interface EquipmentContract
     public function find($id);
     
     public function listEquipments();
+
+   // public function allEquipments();
     
     public function create($requestData);
     

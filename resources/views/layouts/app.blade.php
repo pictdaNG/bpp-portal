@@ -37,7 +37,7 @@
         </a>
         <a href="/" class="navbar-brand">
           <img src="{{ asset('/images/logo.png') }}" class="m-r-sm" alt="scale">
-          <span class="hidden-nav-xs">PBPP</span>
+          <span class="hidden-nav-xs">PLBPP</span>
         </a>
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
           <i class="fa fa-cog"></i>

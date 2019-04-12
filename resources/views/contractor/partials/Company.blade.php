@@ -39,8 +39,12 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Country</label>
                     <div class="col-lg-10">
-                    <input id="country" name="country" required class="form-control">
-                    <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+
+                        <select name="country" required class="form-control">
+                            @foreach ($countries as $country)
+                                <option value="{{$country->name}}">{{$country->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -53,7 +57,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Website</label>
                     <div class="col-lg-10">
-                    <input id="website" name="website" required class="form-control">
+                    <input id="website" name="website"  class="form-control">
                     <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>

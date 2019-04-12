@@ -2,10 +2,12 @@
     <header class="panel-heading">
         Machineries
     </header>
+    <form class="bs-example form-horizontal"  id="deleteMachinery" method="POST">
+
     <div class="row wrapper">
         <div class="col-sm-5 m-b-xs">
         <a href="#addEquipment" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Equipment</a> 
-        <button class="btn btn-sm btn-danger">Delete</button>                
+        <button type="submit" id="deleteMachine" onclick="deleteMachinery()" class="btn btn-sm btn-danger">Delete</button>                
         </div>
     </div>
     <div class="table-responsive">
@@ -23,20 +25,22 @@
             <th>Edit</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="machineries">
+            @foreach($machineries as $machinery)
             <tr>
-            <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
+            <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="mids[]" value="{{$machinery->id}}"><i></i></label></td>
+            <td>{{$machinery->equipment_type}}</td>
+            <td>{{$machinery->acquisition_date}}</td>
+            <td>{{$machinery->cost}}</td>
+            <td>{{$machinery->location}}</td>
+            <td>{{$machinery->serial_no}}</td>
+            <td>{{$machinery->specifics}}</td>
+            <td>{{$machinery->equipment_status}}</td>
             <td>
                 <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
             </td>
             </tr>
+            @endforeach
         </tbody>
         </table>
     </div>
@@ -45,6 +49,7 @@
         
         </div>
     </footer>
+    </form>
 </section>
 
 <div class="modal fade" id="addEquipment">
@@ -63,7 +68,9 @@
             <label class="col-lg-3 control-label">Equipment Type</label>
             <div class="col-lg-9">
             <select name="equipment_type" class="form-control">
-                <option value="default"></option>
+                @foreach ($equipments as $equipment)
+                     <option value="{{$equipment->equipment_type}}">{{$equipment->equipment_type}}</option>
+                @endforeach
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -72,7 +79,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Specify</label>
             <div class="col-lg-9">
-            <input name="specifics" class="form-control">
+            <input name="specifics" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -80,7 +87,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Acquisition Date:</label>
             <div class="col-lg-9">
-            <input name="acquisition_date" class="form-control">
+            <input  type="date" name="acquisition_date" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -88,7 +95,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Cost</label>
             <div class="col-lg-9">
-            <input name="cost" class="form-control">
+            <input name="cost"  required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -96,7 +103,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Location</label>
             <div class="col-lg-9">
-            <input name="location" class="form-control">
+            <input name="location" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -104,7 +111,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Serial No:</label>
             <div class="col-lg-9">
-            <input name="serial_no" class="form-control">
+            <input name="serial_no" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -112,7 +119,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Equipment Status</label>
             <div class="col-lg-9">
-            <select name="equipment_status" class="form-control">
+            <select name="equipment_status" required class="form-control">
                 <option value="default"></option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
@@ -130,48 +137,123 @@
 
 
 <script>
-        $("#machineryForm").validate({
-            submitHandler: function(form) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                var host = '{{URL::to('/')}}';
-                var dataType =  'JSON';
-                $('#submitMachinery').html('Sending..');
-                console.log($("#machineryForm").serialize())
-                $.ajax({ 
-                    url : host + '/machinery/create',
-                    type : 'POST',
-                    data :$("#machineryForm").serialize(),
-                    dataType: dataType,
-                    success:function(response){
-                        $('#submitMachinery').html('Submitted');
-                        $('#submitMachinery').attr('disabled', 'disabled');
-                        $('#machinery_message').show();
-                        $('#machinery_message').html(response.success);
-                        $('#machinery_div').removeClass('d-none');
-            
-                       // document.getElementById("registrationForm").reset(); 
-                        setTimeout(function(){
-                            $('#machinery_message').hide();
-                            $('#machinery_div').hide();
-                        },10000);
-                        
-                    },
-                    beforeSend: function(){
-                        $('#submitMachinery').html('Loading...');
-                        $('#submitMachinery').attr('disabled', 'disabled');
-                    },
-                    error: function(data) {
-                        $('#submitMachinery').html('Try Again');
-                        $('#submitMachinery').removeAttr('disabled');
-                        console.log(data)
-                    
-                    }
-                });
-
+    $("#machineryForm").submit(function(evt){
+         evt.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+        var host = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({ 
+            url : host + '/machinery/create',
+            type : 'POST',
+            data :$("#machineryForm").serialize(),
+            dataType: dataType,
+            success:function(response){
+                $('#submitMachinery').html('Submitted');
+                $('#submitMachinery').attr('disabled', 'disabled');
+                $('#machinery_message').show();
+                $('#machinery_message').html(response.success);
+                $('#machinery_div').show();
+                $('#machinery_div').removeClass('d-none');
+                document.getElementById("machineryForm").reset(); 
+                setTimeout(function(){
+                    $('#machinery_message').hide();
+                    $('#machinery_div').hide();
+                    $('.close').trigger('click');
+                    $('#submitMachinery').html('Save Data');
+                    $('#submitMachinery').removeAttr('disabled');
+                },1000);   
+
+                loadMachineries('/machinery/machineries', function(data){
+            });
+            },
+            beforeSend: function(){
+                $('#submitMachinery').html('Loading...');
+                $('#submitMachinery').attr('disabled', 'disabled');
+            },
+            error: function(data) {
+                $('#submitMachinery').html('Try Again');
+                $('#submitMachinery').removeAttr('disabled');
+                console.log(data)
+            
+            }
+        });
+
+    })
+
+    function loadMachineries(machineries, cb){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({
+            type : 'GET',
+            url : url + machineries,
+            success:function(data){  
+                $('#machineries').empty();
+                $.each(data, function (i) {
+                    $('#machineries').append(
+                        '<tr>'+
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td>'+data[i].equipment_type+'</td>' +
+                        '<td>'+data[i].acquisition_date+'</td>' +
+                        '<td>'+data[i].cost+'</td>'+
+                        '<td>'+data[i].location+'</td>'+
+                        '<td>'+data[i].serial_no+'</td>'+
+                        '<td>'+data[i].specifics+'</td>'+
+                        '<td>'+data[i].equipment_status+'</td>'+
+                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '</tr>'
+                    );
+                });
+                  
+            },
+        });   
+    }
+    
+    function deleteMachinery(){
+        $("#deleteMachinery").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+        
+            $.ajax({
+                type : 'POST',
+                url : url + '/machinery/delete',
+                data :$('#deleteMachinery').serialize(),
+                dataType: dataType,
+                success:function(data){    
+                    document.getElementById("deleteMachinery").reset(); 
+                    $('#deleteMachine').html('Delete');
+                    $('#deleteMachine').removeAttr('disabled');
+                    loadMachineries('/machinery/machineries', function(data){
+                    });
+
+                },
+                beforeSend: function(){
+                    $('#deleteMachine').html('Sending..');
+                    $('#deleteMachine').attr('disabled', 'disabled');
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    $('#deleteMachine').html('Try Again');
+                    $('#deleteMachine').removeAttr('disabled');
+                    
+                // show error to end user
+                }
+            });
         })
-    </script>
+
+    }
+ </script>

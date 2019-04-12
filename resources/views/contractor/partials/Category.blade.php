@@ -6,7 +6,7 @@
     <div class="row wrapper">
         <div class="col-sm-5 m-b-xs">
         <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Business Category</a> 
-        <button type="submit" onclick="deleteCategory()" class="btn btn-sm btn-danger">Delete</button>                
+        <button type="submit" id="cateBtn" onclick="deleteCategory()" class="btn btn-sm btn-danger">Delete</button>                
         </div>
     </div>
     <div class="table-responsive">
@@ -87,7 +87,7 @@
             <label class="col-lg-2 control-label">Select a Category</label>
             <div class="col-lg-10">
             <select name="subcategory_2" class="form-control">
-            @foreach ($business_cates1 as $category)
+            @foreach ($business_cates2 as $category)
 
              <option value="{{$category->name}}">{{$category->name}}</option>
             @endforeach
@@ -139,7 +139,7 @@
                     $('#categoryBtn').html('Save Data');
                     $('#categoryBtn').removeAttr('disabled');
                     document.getElementById("categoryform").reset(); 
-                },10000);
+                },1000);
 
                 loadCategories('/category/categories', function(data){
                 });
@@ -205,22 +205,21 @@
             dataType: dataType,
             success:function(data){    
                 document.getElementById("deleteCategory").reset(); 
-                setTimeout(function(){
-
-                },10000);
-              
+                $('#cateBtn').html('Delete');
+                $('#cateBtn').removeAttr('disabled');
+               
                 loadCategories('/category/categories', function(data){
                 });
 
             },
             beforeSend: function(){
-                $('#directorBtn').html('Sending..');
-                $('#directorBtn').attr('disabled', 'disabled');
+                $('#cateBtn').html('Sending..');
+                $('#cateBtn').attr('disabled', 'disabled');
             },
             error: function(data) {
                 console.log('error', data)
-                $('#directorBtn').html('Try Again');
-                $('#directorBtn').removeAttr('disabled');
+                $('#cateBtn').html('Try Again');
+                $('#cateBtn').removeAttr('disabled');
                 
             // show error to end user
             }

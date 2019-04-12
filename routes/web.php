@@ -25,10 +25,11 @@ Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
 Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/logout', 'HomeController@logout')->name('logout');
-Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
+// Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
 
 //Compliance
 Route::post('/compliance/create', 'ComplianceController@storeCompliance')->name('storeCompliance');
+Route::get('/compliance/list', 'ComplianceController@getCompliance')->name('getCompliance');
 
 //Director
 Route::post('/director/create', 'DirectorController@storeDirector')->name('storeDirector');
@@ -47,14 +48,20 @@ Route::post('/personnel/delete', 'ContractorPersonnelController@deletePersonnel'
 
 //contractorJobs
 Route::post('/job/create', 'ContractorJobsController@storeJob');
+Route::get('/job/jobs', 'ContractorJobsController@getJobs')->name('returnJobs');
+Route::post('/job/delete', 'ContractorJobsController@deleteJob')->name('deleteJob');
 
 
 //contractorFinance
 Route::post('/finance/create', 'ContractorFinanceController@storeFinance');
+Route::get('/finance/finances', 'ContractorFinanceController@getFinances')->name('returnFinances');
+Route::post('/finance/delete', 'ContractorFinanceController@deleteFinance')->name('deleteFinance');
 
 
 //contractorMachinery
 Route::post('/machinery/create', 'ContractorMachineryController@storeMachinery');
+Route::get('/machinery/machineries', 'ContractorMachineryController@getMachineries')->name('returnMachineries');
+Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery')->name('deleteMachinery');
 
 //Admin
 Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');

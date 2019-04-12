@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Repositories\Director\DirectorContract;
 
 
-
 class DirectorController extends Controller{
     protected $repo;
     public function __construct(DirectorContract $directorContract){

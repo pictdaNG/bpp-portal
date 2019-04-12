@@ -24,18 +24,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php  $i = 0; ?>
+                           @foreach ($getCompliance as $data)
                             <tr>
-                                <td>Test Company Limited</td>
-                                <td>378273</td>
-                                <td>378273</td>
-                                <td>55555</td>
-                                <td>i534232132</td>
-                                <td>3424FG</td>
-                                <td>Private Limited</td>
+                                <td>{{ $data['company_name'] }}</td>
+                                <td>{{ $data['cac_number'] }}</td>
+                                <td>{{ $data['tcc_tin_no'] }}</td>
+                                <td>{{ $data['pension_employer_code'] }}</td>
+                                <td>{{ $data['tcc_no'] }}</td>
+                                <td>{{ $data['itf_registration_no'] }}</td>
+                                <td>{{ $data['tcc_ownership_structure'] }}</td>
                                 <td>
-                                    <a href="{{ route('contractorPreview', 1) }}" class="active"><i class="fa fa-search text-success text-active"></i></a>
+                                    <a href="{{ route('contractorPreview',$data['id']) }}" class="active"><i class="fa fa-search text-success text-active"></i></a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

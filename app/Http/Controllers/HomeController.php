@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Country;
+
+use App\Repositories\Compliance\ComplianceContract;
 
 class HomeController extends Controller
 {
@@ -13,9 +14,14 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    protected $repo;
+    // protected $director;
+
+    public function __construct(ComplianceContract $complianceContract){
         $this->middleware('auth');
+        $this->repo = $complianceContract;
+        // $this->director = $directorContract;
+        // $this->personel = $contractorPersonnelContract;
     }
 
     /**
@@ -25,9 +31,10 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $getCompliance = $this->repo->listAllCompliance();
         $user = Auth::user();
         if(strtolower($user->user_type) == strtolower("admin")){
-            return view('adminHome');
+            return view('adminHome',  ['getCompliance' => $getCompliance]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
             return view('MDAHome');
         }else if(strtolower($user->user_type) == strtolower("Contractor")){
@@ -40,14 +47,4 @@ class HomeController extends Controller
         Auth::logout();
         return redirect('/');
     }
-
-    // public function country() {
-    //     $countries = Country::all()->pluck('name', 'id');
-    //     return view('welcome', compact('countries'));
-    // }
-
-    // public function getStates($id) {
-    //     $states = State::where('country_id', $id)->pluck('name', 'id');
-    //     return json_encode($states);
-    // }
 }

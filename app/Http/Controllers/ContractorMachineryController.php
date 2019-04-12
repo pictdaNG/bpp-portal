@@ -12,36 +12,41 @@ class ContractorMachineryController extends Controller {
 
 
     public function __construct(ContractorMachineryContract $contractorMachineryContract){
-
         $this->middleware('auth');
-        $this->repo = $contractorMachineryContract;
-      
+        $this->repo = $contractorMachineryContract;  
     }
-    
-    // public function registration(Request $request){
-    //      $user = $this->repo->getUserById();
-    //      $directors = $this->directorRepo->getCompanyDirectors();
-    //      $categories = $this->contractorCategory->getCategoriesById();
-
-    //     return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
-    //     'contractorcategories' =>  $categories ]);
-    // }
 
 
     public function storeMachinery(Request $request) {
-
        try {
-           $machinery = $this->repo->createMachinery((object)$request->all());
-             
+           $machinery = $this->repo->createMachinery((object)$request->all());     
            if ($machinery) {
-               return response()->json(['success'=>'Added new records.'], 200);
-               
-            } else {
-            
+               return response()->json(['success'=>'Added new records.'], 200);       
+            } else {   
                 return response()->json(['responseText' => $e->getMessage()], 500);
             }
        } catch (QueryException $e) {
         return response()->json(['response' => $e->getMessage()], 500);
        }
     }
+
+    public function getMachineries() {
+        $machineries = $this->repo->getMachineriesById();
+        return response()->json($machineries, 200);
+    }
+
+    public function deleteMachinery(Request $request) {
+        try {
+            $machinery = $this->repo->removeMachinery($request->all());  
+            if ($machinery) {
+                return response()->json(['success'=>' Records Deleted Successfully'], 200);
+             } else {  
+                return response()->json(['responseText' => 'Failed to Delete'], 500);
+             }
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+        }
+     }
+
+
 }
