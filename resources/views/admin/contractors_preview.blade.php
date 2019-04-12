@@ -47,7 +47,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php  $i = 0; ?>
+                        @foreach ($directors as $data)
                         <tr>
+                        <td>{{ $data['id'] }}</td>
+                        <td>{{ $data['first_name'] }} {{ $data['last_name'] }}</td>
+                        <td>{{ $data['gender'] }}</td>
+                        <td>{{ $data['nationality'] }}</td>
+                        <td>type</td>
+                        <td>1</td>
+                        <td>{{ $data['professional_membership'] }}</td>
+                        <td>{{ $data['membership_id_no'] }}</td>
+                        </tr>
+                        @endforeach
+                        <!-- <tr>
                         <td>1</td>
                         <td>Idrawfast</td>
                         <td>4c</td>
@@ -66,17 +79,7 @@
                         <td>4c</td>
                         <td>4c</td>
                         <td>Jul 25, 2013</td>
-                        </tr>
-                        <tr>
-                        <td>1</td>
-                        <td>Idrawfast</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>Jul 25, 2013</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                     </table>
                 </div>
@@ -103,17 +106,19 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($personel as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
+            <td>{{ $data['id'] }}</td>
+            <td>{{ $data['first_name'] }} {{ $data['last_name'] }}</td>
+            <td>{{ $data['gender'] }}</td>
+            <td>{{ $data['nationality'] }}</td>
+            <td>{{ $data['passport_no'] }}</td>
+            <td>{{ $data['national_id_no'] }}</td>
+            <td>{{ $data['employment_type'] }}</td>
+            <td>{{ $data['joining_date'] }}</td>
             </tr>
-            <tr>
+            @endforeach
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -132,7 +137,7 @@
             <td>4c</td>
             <td>4c</td>
             <td>Jul 25, 2013</td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>

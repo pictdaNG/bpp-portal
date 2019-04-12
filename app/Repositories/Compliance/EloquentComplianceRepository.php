@@ -45,6 +45,11 @@ class EloquentComplianceRepository implements ComplianceContract{
 
     }
 
+    public function listAllCompliance()
+    {
+        return Compliance::all();
+    }
+
 
 }
 

@@ -35,4 +35,22 @@ class ComplianceController extends Controller{
        }
     }
 
+    public function getCompliance() {
+
+        try {
+            $getCompliance = $this->repo->listAllCompliance();
+
+            if ($getCompliance) {
+                return response()->json(['success'=> $getCompliance], 200);
+            }
+            else {
+                return response()->json(['responseText' => 'Error retriving contractor compliance'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+    }
+
 }

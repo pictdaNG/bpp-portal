@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Country;
 
+use App\Repositories\Compliance\ComplianceContract;
+
+<<<<<<< HEAD
 use App\Repositories\Contractor\ContractorContract;
 use App\Repositories\ContractorPersonnel\ContractorPersonnelContract;
 use App\Repositories\ContractorJobs\ContractorJobsContract;
@@ -42,6 +44,23 @@ class HomeController extends Controller{
         $this->contract_compliance = $complianceContract;
         $this->contract_directors = $directorContract;
         $this->contract_categories = $categoryContract;    
+=======
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    protected $repo;
+    // protected $director;
+
+    public function __construct(ComplianceContract $complianceContract){
+        $this->middleware('auth');
+        $this->repo = $complianceContract;
+        // $this->director = $directorContract;
+        // $this->personel = $contractorPersonnelContract;
+>>>>>>> 755462f35cd321487ac9f85c9b8569f3627335be
     }
 
     /**
@@ -49,11 +68,17 @@ class HomeController extends Controller{
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+<<<<<<< HEAD
     public function index(Request $request){
 
+=======
+    public function index(Request $request)
+    {
+        $getCompliance = $this->repo->listAllCompliance();
+>>>>>>> 755462f35cd321487ac9f85c9b8569f3627335be
         $user = Auth::user();
         if(strtolower($user->user_type) == strtolower("admin")){
-            return view('adminHome');
+            return view('adminHome',  ['getCompliance' => $getCompliance]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
             return view('MDAHome');
         }else if(strtolower($user->user_type) == strtolower("Contractor")){
@@ -165,6 +190,9 @@ class HomeController extends Controller{
         Auth::logout();
         return redirect('/');
     }
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> 755462f35cd321487ac9f85c9b8569f3627335be
 }
