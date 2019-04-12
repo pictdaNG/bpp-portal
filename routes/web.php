@@ -47,14 +47,20 @@ Route::post('/personnel/delete', 'ContractorPersonnelController@deletePersonnel'
 
 //contractorJobs
 Route::post('/job/create', 'ContractorJobsController@storeJob');
+Route::get('/job/jobs', 'ContractorJobsController@getJobs')->name('returnJobs');
+Route::post('/job/delete', 'ContractorJobsController@deleteJob')->name('deleteJob');
 
 
 //contractorFinance
 Route::post('/finance/create', 'ContractorFinanceController@storeFinance');
+Route::get('/finance/finances', 'ContractorFinanceController@getFinances')->name('returnFinances');
+Route::post('/finance/delete', 'ContractorFinanceController@deleteFinance')->name('deleteFinance');
 
 
 //contractorMachinery
 Route::post('/machinery/create', 'ContractorMachineryController@storeMachinery');
+Route::get('/machinery/machineries', 'ContractorMachineryController@getMachineries')->name('returnMachineries');
+Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery')->name('deleteMachinery');
 
 //Admin
 Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');

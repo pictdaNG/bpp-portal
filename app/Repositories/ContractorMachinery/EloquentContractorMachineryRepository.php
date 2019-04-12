@@ -18,7 +18,17 @@ class EloquentContractorMachineryRepository implements ContractorMachineryContra
     }
 
     public function getMachineriesById() {
-        return ContractorJobs::where("user_id", Auth::user()->id)->get();
+        return ContractorMachinery::where("user_id", Auth::user()->id)->get();
+    }
+
+    public function removeMachinery($request){ 
+        $data = $request['mids'];
+        for($i=0; $i<sizeof($data); $i++){
+       // foreach($request['ids'] as $id){
+            $tmp = ContractorMachinery::find($data[$i]);
+            $tmp->delete();
+        }
+        return true;
     }
 
     private function setContractorJobsProperties($machine, $request) {
