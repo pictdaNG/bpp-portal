@@ -25,10 +25,11 @@ Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
 Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/logout', 'HomeController@logout')->name('logout');
-Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
+// Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
 
 //Compliance
 Route::post('/compliance/create', 'ComplianceController@storeCompliance')->name('storeCompliance');
+Route::get('/compliance/list', 'ComplianceController@getCompliance')->name('getCompliance');
 
 //Director
 Route::post('/director/create', 'DirectorController@storeDirector')->name('storeDirector');
