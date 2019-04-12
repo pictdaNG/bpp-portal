@@ -37,7 +37,7 @@
                         <i class="i i-users2 i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-success">0</span>
+                        <span class="h3 block m-t-xs text-success">{{ $getCompliance->count() }}</span>
                         <small class="text-muted text-u-c">Contractors</small>
                         </span>
                     </a>
