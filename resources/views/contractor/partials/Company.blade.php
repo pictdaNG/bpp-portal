@@ -103,7 +103,7 @@
                         $('#submitForm').html('Save Data');
 
 
-                    },10000);
+                    },1000);
                     
                 },
                 beforeSend: function(){

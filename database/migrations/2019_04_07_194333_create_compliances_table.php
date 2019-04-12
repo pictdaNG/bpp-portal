@@ -29,6 +29,8 @@ class CreateCompliancesTable extends Migration{
             $table->string('itf_registration_no');
             $table->string('itf_certificate_no');
             $table->string('itf_payment_date');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

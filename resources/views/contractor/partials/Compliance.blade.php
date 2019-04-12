@@ -201,7 +201,8 @@ $("#complianceform").validate({
                     $('#compliance_div').hide();
                     document.getElementById("complianceform").reset(); 
                     $('#complianceBtn').removeAttr('disabled');
-                },10000);
+                    $('#complianceBtn').html('Save Data');
+                },1000);
             },
             beforeSend: function(){
                 $('#complianceBtn').html('Sending..');

@@ -18,6 +18,12 @@ class EloquentContractorRepository implements ContractorContract{
     }
 
 
+    public function getCompanyById(){
+        return Contractor::where("user_id", Auth::user()->id)->get();
+
+    }
+
+
     public function getUserById() {
         return User::where("id", Auth::user()->id)->first();
     }
