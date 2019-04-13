@@ -53,7 +53,9 @@ class HomeController extends Controller{
 
         $user = Auth::user();
         if(strtolower($user->user_type) == strtolower("admin")){
-            return view('adminHome');
+            $compliances = $this->contract_compliance->listAllCompliance();
+            // dd($compliances);
+            return view('adminHome', ['getCompliance' => $compliances]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
             return view('MDAHome');
         }else if(strtolower($user->user_type) == strtolower("Contractor")){

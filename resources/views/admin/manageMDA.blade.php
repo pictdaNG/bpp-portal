@@ -40,15 +40,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php  $i = 0; ?>
+                        @foreach ($mdas as $data)
                             <tr>
                                 <td>
                                     <label class="checkbox m-l m-t-none m-b-none i-checks">
                                         <input type="checkbox" name="post[]"><i></i></label>
                                 </td>
-                                <td>The Federal Politechnic Nasarawa</td>
-                                <td>378273</td>
-                                <td>Economic Sector</td>
-                                <td>info@plateaustate.gov.ng</td>
+                                <td>{{ $data['name'] }}</td>
+                                <td>{{ $data['mda_code'] }}</td>
+                                <td>{{ $data['category'] }}</td>
+                                <td>{{ $data['email'] }}</td>
                                 <td>
                                     <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-edit text-success text"></i></a>
                                 </td>
@@ -56,6 +58,7 @@
                                     <a href="#" class="active" data-toggle="class"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
                                 </td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

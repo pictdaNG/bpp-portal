@@ -194,6 +194,7 @@ return [
         App\Providers\BusinessSubCategory2ServiceProvider::class,
         App\Providers\EmploymentTypeServiceProvider::class,
         App\Providers\QualificationServiceProvider::class,
+        App\Providers\MdaServiceProvider::class,
 
 
 
