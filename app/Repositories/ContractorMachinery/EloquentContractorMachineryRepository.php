@@ -23,12 +23,16 @@ class EloquentContractorMachineryRepository implements ContractorMachineryContra
 
     public function removeMachinery($request){ 
         $data = $request['mids'];
-        for($i=0; $i<sizeof($data); $i++){
-       // foreach($request['ids'] as $id){
-            $tmp = ContractorMachinery::find($data[$i]);
-            $tmp->delete();
-        }
-        return true;
+       try {
+            for($i=0; $i<sizeof($data); $i++){
+                 $tmp = ContractorMachinery::find($data[$i]);
+                 $tmp->delete();
+             }
+           return true;
+       }
+       catch(\Exception $e){
+           return false;
+       }
     }
 
     private function setContractorJobsProperties($machine, $request) {

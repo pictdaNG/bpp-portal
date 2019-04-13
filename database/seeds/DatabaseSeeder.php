@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EquipmentSeeder::class);
         $this->call(CompanyOwnershipSeeder::class);
         $this->call(QualificationSeeder::class);
+        $this->call(AdvertSeederTable::class);
+
 
 
 

@@ -24,12 +24,17 @@ class EloquentContractorPersonnelRepository implements ContractorPersonnelContra
 
     public function removePersonnel($request){ 
         $data = $request['pids'];
-        for($i=0; $i<sizeof($data); $i++){
-       // foreach($request['ids'] as $id){
-            $tmp = ContractorPersonnel::find($data[$i]);
-            $tmp->delete();
+        try {
+            for($i=0; $i<sizeof($data); $i++){
+                $tmp = ContractorPersonnel::find($data[$i]);
+                $tmp->delete();
+            }
+            return true;
         }
-        return true;
+        catch(\Exception $e){
+            return false;
+        }
+       
     }
 
     private function setContractorPersonnelProperties($personnel, $request) {

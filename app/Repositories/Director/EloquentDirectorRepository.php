@@ -24,10 +24,14 @@ class EloquentDirectorRepository implements DirectorContract{
 
     public function removeDirector($request){ 
         $data = $request['ids'];
-        for($i=0; $i<sizeof($data); $i++){
-       // foreach($request['ids'] as $id){
-            $tmp = Director::find($data[$i]);
-            $tmp->delete();
+        try {
+            for($i=0; $i<sizeof($data); $i++){
+                $tmp = Director::where('id', $data[$i] )->delete();
+    
+            }
+        }
+        catch(\Exception $e) {
+            return false;
         }
         return true;
     }

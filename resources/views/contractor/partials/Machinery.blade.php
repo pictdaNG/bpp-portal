@@ -200,7 +200,7 @@
                 $.each(data, function (i) {
                     $('#machineries').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
                         '<td>'+data[i].equipment_type+'</td>' +
                         '<td>'+data[i].acquisition_date+'</td>' +
                         '<td>'+data[i].cost+'</td>'+

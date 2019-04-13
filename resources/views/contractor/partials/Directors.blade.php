@@ -7,7 +7,7 @@
     <div class="row wrapper">
         <div class="col-sm-5 m-b-xs">
         <a href="#addMember" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add New Member</a> 
-        <button type="submit" class="btn btn-sm btn-danger" onClick="deleteDirector()" id="delete">Delete</button>                
+        <button type="submit" id="directorBtn" class="btn btn-sm btn-danger" onClick="deleteDirector()" id="delete">Delete</button>                
         </div>
     </div>
     <div class="table-responsive">
@@ -149,7 +149,7 @@
 
         <div class="modal-footer">
             <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-            <button type="submit" id="directorBtn" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+            <button type="submit" id="submitDirector" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
 
         </div>
 
@@ -179,7 +179,7 @@
                 $.each(data, function (i) {
                     $('#directors').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
                         '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
                         '<td>'+data[i].gender+'</td>' +
                         '<td>'+data[i].nationality+'</td>'+
@@ -215,8 +215,7 @@
                 success:function(data){    
                     document.getElementById("deleteDirector").reset(); 
                     $('#directorBtn').html('Delete');
-                    $('#directorBtn').removeAttr('disabled');
-                
+                    $('#directorBtn').removeAttr('disabled');     
                     loadDirectors('/director/directors', function(data){
                     });
 
@@ -252,8 +251,8 @@
             data :$('#directorform').serialize(),
             dataType: dataType,
             success:function(data){    
-                $('#directorBtn').html('Submitted');
-                $('#directorBtn').removeAttr('disabled');
+                $('#submitDirector').html('Submitted');
+                $('#submitDirector').removeAttr('disabled');
                 $('#directors_message').show();
                 $('#directors_div').show();
                 $('#directors_message').html(data.success);
@@ -263,7 +262,7 @@
                 setTimeout(function(){
                     $('#directors_message').hide();
                     $('#directors_div').hide();
-                    $('#directorBtn').html('Save Data');
+                    $('#submitDirector').html('Save Data');
                     $('.close').trigger('click');
                 },1000);
 
@@ -272,13 +271,13 @@
 
             },
             beforeSend: function(){
-                $('#directorBtn').html('Sending..');
-                $('#directorBtn').attr('disabled', 'disabled');
+                $('#submitDirector').html('Sending..');
+                $('#submitDirector').attr('disabled', 'disabled');
             },
             error: function(data) {
                 console.log('error', data)
-                $('#directorBtn').html('Try Again');
-                $('#directorBtn').removeAttr('disabled');
+                $('#submitDirector').html('Try Again');
+                $('#submitDirector').removeAttr('disabled');
                 
             // show error to end user
             }
