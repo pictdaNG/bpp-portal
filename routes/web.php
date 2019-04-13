@@ -72,6 +72,11 @@ Route::get('/contractors/report', 'ReportController@contractors')->name('contrac
 Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
 Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');
 
+//Adverts
+Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
+Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
+
+
 // ownership structure
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');

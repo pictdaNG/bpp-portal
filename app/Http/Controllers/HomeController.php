@@ -12,8 +12,9 @@ use App\Repositories\ContractorJobs\ContractorJobsContract;
 use App\Repositories\ContractorFinance\ContractorFinanceContract;
 use App\Repositories\Director\DirectorContract;
 use App\Repositories\ContractorMachinery\ContractorMachineryContract;
-use App\Repositories\Compliance\ComplianceContract;
+use App\Repositories\Compliance\ComplianceContract;  
 use App\Repositories\ContractorCategory\ContractorCategoryContract;
+use App\Repositories\Advert\AdvertContract;
 
 class HomeController extends Controller{
 
@@ -25,13 +26,14 @@ class HomeController extends Controller{
     protected $contract_compliance;
     protected $contract_directors;
     protected $contract_categories;
+    protected $contract_adverts;
 
 
 
     public function __construct(ContractorContract $contractorContract,  ContractorPersonnelContract $contractorPersonnelContract,
             ContractorJobsContract $contractorJobsContract,  ContractorFinanceContract $contractorFinanceContract ,
             ContractorMachineryContract $contractorMachinery, ComplianceContract $complianceContract, DirectorContract $directorContract,
-            ContractorCategoryContract $categoryContract ){
+            ContractorCategoryContract $categoryContract, AdvertContract $advertContract ){
 
         $this->middleware('auth');
         $this->company = $contractorContract;
@@ -42,6 +44,8 @@ class HomeController extends Controller{
         $this->contract_compliance = $complianceContract;
         $this->contract_directors = $directorContract;
         $this->contract_categories = $categoryContract;    
+        $this->contract_advert = $advertContract;    
+
     }
 
     /**
@@ -66,19 +70,17 @@ class HomeController extends Controller{
             $compliances = $this->contract_compliance->getCompliancesById(); 
             $directors = $this->contract_directors->getCompanyDirectors(); 
             $categories = $this->contract_categories->getCategoriesById();
-
             $consultancy = $this->contract_job->getJobsByIdandCategory('Consultancy | Services');
             $constructions = $this->contract_job->getJobsByIdandCategory('Constructions | Works');
             $supplies = $this->contract_job->getJobsByIdandCategory('Goods | Supply');
-
-            //dd($constructions);
-
-
+            $activeAdverts = $this->contract_advert->listAllAdvertsByStatus('active');
 
             $percent = $this->percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances );
             $jobs= $this->jobsDone($constructions, $supplies, $consultancy);
+            
+            $adverts = sizeof($activeAdverts) > 0 ? sizeof($activeAdverts) : 0;
  
-            return view('home', ['percent_status' => $percent, 'jobs' => $jobs]);
+            return view('home', ['percent_status' => $percent, 'jobs' => $jobs, 'adverts' => $adverts]);
         }
         return redirect('/404');
     }
@@ -157,7 +159,7 @@ class HomeController extends Controller{
             $status['machines'] = false;
 
         }
-        $status['percentage'] = round(($count/9)*100, 2);
+        $status['percentage'] = round(($count/8)*100, 2);
          return $status;
     }
 

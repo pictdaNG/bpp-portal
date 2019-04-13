@@ -17,14 +17,6 @@ class ContractorPersonnelController extends Controller
       
     }
     
-    // public function registration(Request $request){
-    //      $user = $this->repo->getUserById();
-    //      $directors = $this->directorRepo->getCompanyDirectors();
-    //      $categories = $this->contractorCategory->getCategoriesById();
-
-    //     return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
-    //     'contractorcategories' =>  $categories ]);
-    // }
 
     public function personnels(){
         $personnels = $this->repo->getPersonnelsById();
@@ -38,7 +30,7 @@ class ContractorPersonnelController extends Controller
            if ($personnel) {
                return response()->json(['success'=>'Added new records.'], 200);        
             } else {     
-                return response()->json(['responseText' => $e->getMessage()], 500);
+                return response()->json(['responseText' => 'Failed to Add Record'], 500);
             }
        } catch (QueryException $e) {
         return response()->json(['response' => $e->getMessage()], 500);

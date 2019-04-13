@@ -31,12 +31,17 @@ class EloquentContractorJobsRepository implements ContractorJobsContract{
 
     public function removeJob($request){ 
         $data = $request['jids'];
-        for($i=0; $i<sizeof($data); $i++){
-       // foreach($request['ids'] as $id){
-            $tmp = ContractorJobs::find($data[$i]);
-            $tmp->delete();
+        try {
+            for($i=0; $i<sizeof($data); $i++){
+                $tmp = ContractorJobs::find($data[$i]);
+                $tmp->delete();
+            }
+            return true;
+
         }
-        return true;
+        catch(\Exception $e){
+            return false;
+        }
     }
 
     private function setContractorJobsProperties($contractorjob, $request) {

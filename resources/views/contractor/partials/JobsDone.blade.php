@@ -184,13 +184,17 @@
                 $('#job_message').show();
                 $('#job_message').html(response.success);
                 $('#job_div').removeClass('d-none');
+                $('#submitJob').attr('disabled', 'disabled');
+
+
                 $('#job_div').show();
                 document.getElementById("jobForm").reset(); 
                 setTimeout(function(){
                     $('#job_message').hide();
                     $('#job_div').hide();
                     $('.close').trigger('click');
-                    $('#submitJob').attr('disabled', 'disabled');
+                    $('#submitJob').removeAttr('disabled');
+
                 },1000);
 
                 loadJobs('/job/jobs', function(data){
@@ -227,7 +231,7 @@
                 $.each(data, function (i) {
                     $('#jobs').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="jids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="jids[]" value="'+data[i].id+'"><i></i></label></td>' +
                         '<td>'+data[i].job_category +'</td>' +
                         '<td>'+data[i].job_category+ '</td>' +
                         '<td>'+data[i].job_title+'</td>'+

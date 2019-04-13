@@ -25,7 +25,7 @@
                         <i class="i i-plus2 i-1x text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-danger">0</span>
+                        <span class="h3 block m-t-xs text-danger">{{$adverts}}</span>
                         <small class="text-muted text-u-c">Adverts Published</small>
                         </span>
                     </a>
@@ -288,26 +288,7 @@
                       </div>
                     </div>
                   </li>
-                  <li class="list-group-item">
-                    <div class="media">
-                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      @if($percent_status['machines'])
-                        <div class="pull-right text-success m-t-sm">
-                         @else 
-                          <div class="pull-right text-muted m-t-sm"> 
-                         @endif
-                        <i class="fa fa-circle"></i>
-                      </div>
-                      <div class="media-body">
-                        <div><a href="#">Documents</a></div>
-                        @if($percent_status['machines'])
-                        <small class="text-muted">Completed</small>
-                         @else 
-                          <small class="text-muted">Not Completed</small>
-                         @endif
-                      </div>
-                    </div>
-                  </li>
+                  
                 </ul>
               </section>
             </div>

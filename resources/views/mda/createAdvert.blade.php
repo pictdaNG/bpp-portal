@@ -5,14 +5,17 @@
     <section class="vbox">
         <section class="scrollable padder">
           <br/>
-    <section class="panel panel-info">
+       <section class="panel panel-info">
                 <header class="panel-heading">
                 Adverts
                 </header>
+                <form class="bs-example form-horizontal" action="{{route('deleteAdvert')}}" Method="POST">
+                <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
+
                 <div class="row wrapper">
                 <div class="col-sm-9 m-b-xs">
                     <a href="#addNewMDA" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Create New</a> 
-                    <button class="btn btn-sm btn-danger">Delete</button>                
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>                
                 </div>
                   <div class="col-sm-3">
                     <div class="input-group">
@@ -27,7 +30,7 @@
                   <table class="table table-striped b-t b-light">
                   <thead>
                         <tr>
-                        <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox"><i></i></label></th>
+                        <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" ><i></i></label></th>
                         <th data-toggle="class">Budget Year</th>
                         <th>Project Title</th>
                         <th>Advert Type</th>
@@ -38,30 +41,28 @@
                         </tr>
                     </thead>
                     <tbody>
-            <tr>
-            <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>2017</td>
-            <td>2017 Capital Project For the Ministry</td>
-            <td>National Competitive Bidding</td>
-            <td>0</td>
-            <td>
-                2017-08-20
-            </td>
-            <td>
-               2017-08-27
-            </td>
-            <td>
+                    @foreach($adverts as $advert)
+                  <tr>
+                  <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="aids[]" value="{{$advert->id}}"><i></i></label></td>
+                  <td>{{$advert->budget_year}}</td>
+                  <td>{{$advert->name}}</td>
+                  <td>{{$advert->advert_type}}</td>
+                  <td>{{'0'}}</td>
+                  <td>{{$advert->advert_publish_date}}</td>
+                  <td>{{$advert->bid_opening_date}}</td>
+                  <td>
                 <a href="#addNewLot" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-file"></i></a> 
                 <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
                 <a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>
-                <a href="{{ route('bidRequirements', 1) }}" class="btn btn-default"><i class="fa fa-gear"></i></a>
+                <a href="{{ route('bidRequirements', $advert->id) }}" class="btn btn-default"><i class="fa fa-gear"></i></a>
             </td>
             </tr>
+            @endforeach
         </tbody>
-                  </table>
-                </div>
-                
-              </section>
+      </table>
+    </div>
+    </form>
+  </section>
 
 <div class="modal fade" id="addNewMDA">
 <div class="modal-dialog">
@@ -71,7 +72,7 @@
       <h4 class="modal-title">Advert Details</h4>
     </div>
     <div class="modal-body">
-    <form class="bs-example form-horizontal">
+    <form class="bs-example form-horizontal" id="advertForm" action="{{route('storeAdvert')}}" Method="POST">
         
     <div class="form-group">
         <label class="col-lg-3 control-label">Project Title</label>
@@ -130,15 +131,15 @@
         <label class="col-lg-3 control-label">Bid Opening Date</label>
         <div class="col-lg-9">
         <input type="date" name="bid_opening_date" class="form-control">
-        <!-- <span class="help-block m-b-none">URL</span> -->
+        <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
         </div>
     </div>
-
+    <div class="modal-footer">
+    <button type="submit"  id ="submitJob" name="submitJob" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+    </div>
     </form>
     </div>
-    <div class="modal-footer">
-      <a href="#" class="btn btn-sm btn-primary">Save Data</a>
-    </div>
+    
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div>
@@ -196,7 +197,7 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">Lot Description</label>
         <div class="col-lg-9">
-        <input type="text" name="description" class="form-control">
+        <textarea type="text" name="description" class="form-control"></textarea>
         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
         </div>
     </div>
@@ -224,7 +225,7 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">Lot Amount</label>
         <div class="col-lg-9">
-        <input type="date" name="lot_amount" class="form-control">
+        <input type="text" name="lot_amount" class="form-control">
         <!-- <span class="help-block m-b-none">URL</span> -->
         </div>
     </div>
@@ -249,13 +250,12 @@
     </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="col-lg-3 control-label">Requirements</label>
         <div class="col-lg-9">
         <input type="text" class="form-control">
-        <!-- <span class="help-block m-b-none">URL</span> -->
         </div>
-    </div>
+    </div> -->
 
     </form>
     </div>
@@ -271,3 +271,5 @@
 </section>
 </section>
 @endsection
+
+
