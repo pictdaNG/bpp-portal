@@ -258,7 +258,7 @@
                 $.each(data, function (i) {
                     $('#finances').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="fids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="fids[]" value="'+data[i].id+'"><i></i></label></td>' +
                         '<td>'+data[i].year+'</td>' +
                         '<td>'+data[i].turn_over+'</td>' +
                         '<td>'+data[i].total_asset+'</td>'+

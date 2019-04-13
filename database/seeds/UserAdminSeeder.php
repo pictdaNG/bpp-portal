@@ -21,7 +21,7 @@ class UserAdminSeeder extends Seeder
         [
             'name' => 'Facebook',
             'email' => 'facebook@gmail.com',
-            'user_type' => 'contractor',
+            'user_type' => 'mda',
             'phone' => '08161730129',
             'password' => bcrypt('password'),
         ],

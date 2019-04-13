@@ -295,7 +295,7 @@
                 $.each(data, function (i) {
                     $('#personnels').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="pids[]" value="+data[i].id+"><i></i></label></td>' +
+                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="pids[]" value="'+data[i].id+'"><i></i></label></td>' +
                         '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
                         '<td>'+data[i].gender+'</td>' +
                         '<td>'+data[i].nationality+'</td>'+

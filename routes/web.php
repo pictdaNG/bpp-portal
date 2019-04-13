@@ -74,6 +74,11 @@ Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequireme
 Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
 // Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
 
+//Adverts
+Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
+Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
+
+
 // ownership structure
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');

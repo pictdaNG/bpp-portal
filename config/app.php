@@ -195,6 +195,8 @@ return [
         App\Providers\EmploymentTypeServiceProvider::class,
         App\Providers\QualificationServiceProvider::class,
         App\Providers\MdaServiceProvider::class,
+        App\Providers\AdvertServiceProvider::class,
+
 
 
 
