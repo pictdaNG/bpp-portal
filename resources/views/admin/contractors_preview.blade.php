@@ -161,13 +161,15 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($categories as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
+            <td>$data['id']</td>
+            <td>$data['category']</td>
+            <td>$data['subcategory_1']</td>
+            <td>$data['subcategory_2']</td>
             </tr>
-            <tr>
+            @endforeach
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -178,7 +180,7 @@
             <td>Idrawfast</td>
             <td>4c</td>
             <td>4c</td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -207,18 +209,20 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($jobs as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            
+            <td>$data['id']</td>
+            <td>$data['job_category']</td>
+            <td>$data['sub_category']</td>
+            <td>$data['job_title']</td>
+            <td>$data['job_description']</td>
+            <td>$data['contact_phone']</td>
+            <td>$data['award_date']</td>
+            <td>$data['amount']</td>
             </tr>
-            <tr>
+        @endforeach
+
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -239,7 +243,7 @@
             <td>4c</td>
             <td>Jul 25, 2013</td>
             
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -269,19 +273,21 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($financies as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
+            <td>$data['id']</td>
+            <td>$data['year']</td>
+            <td>$data['turn_over']</td>
+            <td>$data['total_asset']</td>
+            <td>$data['total_liability']</td>
+            <td>$data['witholding_tax']</td>
+            <td>$data['tax_paid']</td>
+            <td>$data['tcc_no']</td>
+            <td>$data['audit_firm']</td>
+            <td>$data['report_date']</td>
             </tr>
-            <tr>
+        @endforeach
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -304,7 +310,7 @@
             <td>4c</td>
             <td>4c</td>
             <td>Jul 25, 2013</td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -332,17 +338,20 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($machineries as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
+            <td>$data['id']</td>
+            <td>$data['equipment_type']</td>
+            <td>$data['acquisition_date']</td>
+            <td>$data['cost']</td>
+            <td>$data['location']</td>
+            <td>$data['serial_no']</td>
+            <td>$data['serial_no']</td>
+            <td>$data['equipment_status']</td>
+            
             </tr>
-            <tr>
+        @endforeach
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -361,7 +370,7 @@
             <td>4c</td>
             <td>4c</td>
             <td>Jul 25, 2013</td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>

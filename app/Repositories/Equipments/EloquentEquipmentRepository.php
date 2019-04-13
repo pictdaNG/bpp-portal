@@ -32,9 +32,5 @@ class EloquentEquipmentRepository implements EquipmentContract
     {
        return Equipments::find($id)->update($requestData);
     }
-
-    // public function allEquipments(){
-
-    // }
     
 }
