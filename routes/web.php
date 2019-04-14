@@ -87,6 +87,7 @@ Route::get('/ownership', 'OwnershipStructureController@index')->name('getOwnersh
 // Equipments 
 Route::post('/equipment/type/create', 'EquipmentController@storeEquipments')->name('storeEquipments');
 Route::get('/equipment/types', 'EquipmentController@getEquipmentsType')->name('getEquipmentsType');
+Route::get('/equipments', 'EquipmentController@index')->name('getEquipments');
 
 // Business Categories
 Route::get('/business/categories', 'BusinessCategoryController@getAllBusinessCategories')->name('getAllBusinessCategories');
@@ -106,8 +107,9 @@ Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
 Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->name('uploadContractorFile');
 Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
 // Company Ownership
+Route::get('/company/ownership/list', 'CompanyOwnershipController@index')->name('companyOwnership');
 Route::get('/company/ownership', 'CompanyOwnershipController@getCompanyOwnership')->name('getCompanyOwnership');
-Route::get('/company/ownership/store', 'CompanyOwnershipController@storeCompanyOwnership')->name('storeCompanyOwnership');
+Route::post('/company/ownership/store', 'CompanyOwnershipController@storeCompanyOwnership')->name('storeCompanyOwnership');
 
 // Employment Type
 Route::get('/employment/type', 'EmploymentTypeController@getAllEmploymentType')->name('getAllEmploymentType');
@@ -115,3 +117,4 @@ Route::get('/employment/type', 'EmploymentTypeController@getAllEmploymentType')-
 // qualifications
 Route::get('/qualifications', 'QualificationController@getQualifications')->name('getQualifications');
 Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
+Route::get('/qualifications/list', 'QualificationController@index')->name('qualifications');

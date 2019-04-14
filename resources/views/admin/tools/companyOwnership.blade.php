@@ -3,7 +3,7 @@
 @section('content')
 <section class="panel panel-default">
     <header class="panel-heading">
-        Ownership Structure
+        Company Ownership
     </header>
     @if($errors->any())
         <div class="alert alert-danger">
@@ -18,9 +18,10 @@
         </div>
     @endif
     <form class="bs-example form-horizontal"  id="deleteCategory" method="POST">
+    {{csrf_field()}}
     <div class="row wrapper">
         <div class="col-sm-5 m-b-xs">
-        <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Ownership Structure</a> 
+        <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Company Ownership</a> 
         <!-- <button type="submit" id="cateBtn"  class="btn btn-sm btn-danger">Delete</button>                 -->
         </div>
     </div>
@@ -35,7 +36,7 @@
         </thead>
         <tbody id="categories">
         <?php  $i = 0; ?>
-            @foreach ( $ownership as $data)
+            @foreach ( $companyOwnership as $data)
             <tr>
                 <td>{{ 1 + $i++ }}</td>
                 <td>{{ $data['name'] }}</td>
@@ -61,18 +62,18 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Add Ownership Structure</h4>
+      <h4 class="modal-title">Add Company Ownership</h4>
     </div>
     <div class="modal-body">
-    <form class="bs-example form-horizontal" action="{{ route('storeOwnershipStructure') }}" method="POST">
+    <form class="bs-example form-horizontal" action="{{ route('storeCompanyOwnership') }}" method="POST">
     {{csrf_field()}}
         <div class="alert alert-success d-none" id="cat_div">
             <span id="cat_message"></span>
         </div>
         <div class="form-group">
-            <label class="col-lg-2 control-label">Ownership Structure</label>
+            <label class="col-lg-2 control-label">Company Ownership</label>
             <div class="col-lg-10">
-            <input type="text" class="form-control" name="name" placeholder="Ownership Structure" value="">
+            <input type="text" class="form-control" name="name" placeholder="Company Ownership" value="">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
