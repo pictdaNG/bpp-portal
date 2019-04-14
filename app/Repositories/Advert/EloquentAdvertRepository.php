@@ -1,14 +1,17 @@
 <?php
 namespace App\Repositories\Advert;
+//namespace Carbon;
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Auth;
 use App\Advert;
 use Session;
 
 
+
 class EloquentAdvertRepository implements AdvertContract {
    
     public function createAdvert($request) {
-
         $advert = new Advert;
         $this->setAdvertProperties($advert, $request);
         return $advert->save();
@@ -50,7 +53,7 @@ class EloquentAdvertRepository implements AdvertContract {
         $advert->advert_type = $request->advert_type; 
         $advert->advert_mode = $request->advert_mode;
         $advert->introduction = $request->introduction;
-        $advert->advert_publish_date = $request->advert_publish_date;
+        $advert->advert_publish_date = Carbon::now()->isoFormat('M/D/YYYY');
         $advert->bid_opening_date = $request->bid_opening_date;  
         $advert->user_id = $user->id;
 

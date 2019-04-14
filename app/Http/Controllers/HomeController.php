@@ -30,8 +30,8 @@ class HomeController extends Controller{
 
 
 
-    public function __construct(ContractorContract $contractorContract,  ContractorPersonnelContract $contractorPersonnelContract,
-            ContractorJobsContract $contractorJobsContract,  ContractorFinanceContract $contractorFinanceContract ,
+    public function __construct(ContractorContract $contractorContract, ContractorPersonnelContract $contractorPersonnelContract,
+            ContractorJobsContract $contractorJobsContract, ContractorFinanceContract $contractorFinanceContract ,
             ContractorMachineryContract $contractorMachinery, ComplianceContract $complianceContract, DirectorContract $directorContract,
             ContractorCategoryContract $categoryContract, AdvertContract $advertContract ){
 

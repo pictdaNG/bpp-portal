@@ -74,6 +74,7 @@ Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequireme
 
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
+Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts');
 Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
 
 

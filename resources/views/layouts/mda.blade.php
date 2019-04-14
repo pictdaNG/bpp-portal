@@ -6,6 +6,7 @@
   <meta name="description" content="e-Procurement Services" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
   <!-- CSRF Token -->
+  
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('/css/animate.css') }}" type="text/css" />
@@ -14,6 +15,10 @@
   <link rel="stylesheet" href="{{ asset('/css/font.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
   <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
+  
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+
   <!--[if lt IE 9]>
     <script src="{{ asset('js/ie/html5shiv.js') }}"></script>
     <script src="{{ asset('js/ie/respond.min.js') }}"></script>
@@ -384,6 +389,8 @@
   <script src="{{ asset('js/calendar/demo.js') }}"></script>
 
   <script src="{{ asset('js/sortable/jquery.sortable.js') }}"></script>
+
+
  
 </body>
 </html>

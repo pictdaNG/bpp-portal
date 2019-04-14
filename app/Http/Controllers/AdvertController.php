@@ -25,11 +25,10 @@ class AdvertController extends Controller{
 
     public function storeAdvert(Request $request) {
        try {
-           $advert = $this->repo->createAdvert((object)$request->all());       
-           if ($advert) {
-            $adverts = $this->repo->listAdvertsByUserId();
-               return view('mda.createAdvert', ['adverts' => $adverts]);        
-            } else {     
+            
+           if ($this->repo->createAdvert((object)$request->all())) {
+            return response()->json(['success' => 'Record Added Successfully'], 200);
+        } else {     
                 return response()->json(['responseText' => 'Failed to Add Record'], 500);
             }
        } catch (QueryException $e) {
@@ -37,15 +36,16 @@ class AdvertController extends Controller{
        }
     }
 
+
     public function deleteAdvert(Request $request) {
         try {
             $advert = $this->repo->removeAdvert($request); 
             $adverts = $this->repo->listAdvertsByUserId(); 
             if ($advert) {
-                
-                return view('mda.createAdvert', ['adverts' => $adverts]);        
+                return response()->json(['success' => 'records deleted successfully'], 200);
+                //return view('mda.createAdvert', ['adverts' => $adverts]);        
             } else {  
-                return view('mda.createAdvert', ['adverts' => $adverts]);
+                return response()->json(['success' => 'failed to delete records'], 500);
              }
         } catch (QueryException $e) {
          return response()->json(['response' => $e->getMessage()], 500);
