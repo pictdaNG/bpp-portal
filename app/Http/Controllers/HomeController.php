@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Country;
+use App\User;
 
 use App\Repositories\Contractor\ContractorContract;
 use App\Repositories\ContractorPersonnel\ContractorPersonnelContract;
@@ -75,14 +76,21 @@ class HomeController extends Controller{
             $consultancy = $this->contract_job->getJobsByIdandCategory('Consultancy | Services');
             $constructions = $this->contract_job->getJobsByIdandCategory('Constructions | Works');
             $supplies = $this->contract_job->getJobsByIdandCategory('Goods | Supply');
-            $activeAdverts = $this->contract_advert->listAllAdvertsByStatus('active');
+            $activeAdverts = $this->contract_advert->listActiveAdverts();
+            $closingBids = $this->contract_advert->closingBids();
+            //dd($activeAds);
+
+
+            
 
             $percent = $this->percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances );
             $jobs= $this->jobsDone($constructions, $supplies, $consultancy);
             
             $adverts = sizeof($activeAdverts) > 0 ? sizeof($activeAdverts) : 0;
  
-            return view('home', ['percent_status' => $percent, 'jobs' => $jobs, 'adverts' => $adverts]);
+            return view('home', ['percent_status' => $percent, 'jobs' => $jobs,
+                                'adverts' => $adverts, 'activeAdverts' => $activeAdverts, 
+                                'closingBids' => $closingBids]);
         }
         return redirect('/404');
     }
