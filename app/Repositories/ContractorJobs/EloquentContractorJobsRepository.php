@@ -3,6 +3,9 @@
 namespace App\Repositories\ContractorJobs;
 
 use App\ContractorJobs;
+use App\BusinessCategory;
+use App\BusinessSubCategory1;
+use App\BusinessSubCategory2;
 use App\User;
 use App\Repositories\ContractorJobs\ContractorJobsContract;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +27,7 @@ class EloquentContractorJobsRepository implements ContractorJobsContract{
     public function getJobsByIdandCategory($category) {
         return ContractorJobs::where([
             'user_id' => Auth::user()->id,
-            'job_category' => $category
+            'categoryId' => $category
             ])->get();
     }
 
@@ -46,12 +49,20 @@ class EloquentContractorJobsRepository implements ContractorJobsContract{
 
     private function setContractorJobsProperties($contractorjob, $request) {
         $user = Auth::user();
+
+        $category = BusinessCategory::where('name', $request->job_category )->first();
+        $category1 = BusinessSubCategory1::where('name', $request->sub_category )->first();
+        $category2 = BusinessSubCategory2::where('name', $request->sub_sub_category )->first();
+
         $contractorjob->job_category = $request->job_category;
+        $contractorjob->categoryId = $category->id;
         $contractorjob->sub_category = $request->sub_category;
+        $contractorjob->sub_categoryId = $category1->id;
         $contractorjob->sub_sub_category = $request->sub_sub_category; 
+        $contractorjob->sub_sub_categoryId = $category2->id; 
         $contractorjob->job_title= $request->job_title;
         $contractorjob->job_description = $request->job_description;
-        $contractorjob->nationality = $request->nationality;
+        $contractorjob->client = $request->client;
         $contractorjob->contact_phone = $request->contact_phone;
         $contractorjob->award_date = $request->award_date;
         $contractorjob->amount = $request->amount;  

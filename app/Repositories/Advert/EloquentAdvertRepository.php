@@ -8,8 +8,6 @@ use App\Advert;
 use App\AdvertLot;
 use Session;
 
-
-
 class EloquentAdvertRepository implements AdvertContract {
    
     public function createAdvert($request) {

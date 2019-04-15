@@ -25,21 +25,28 @@
             </tr>
         </thead>
         <tbody id="jobs">
-         @foreach ($jobs as $job)
+         @if(sizeof($jobs) > 0) {
+            @foreach ($jobs as $job)
+                <tr>
+                <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="jids[]" value="{{$job->id}}"><i></i></label></td>
+                <td>{{$job->job_category}}</td>
+                <td>{{$job->client}}</td>
+                <td>{{$job->job_title}}</td>
+                <td>{{$job->job_description}}</td>
+                <td>{{$job->contact_phone}}</td>
+                <td>{{$job->award_date}}</td>
+                <td>{{$job->amount}}</td>
+                <td>
+                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                </td>
+                </tr>
+            @endforeach
+        @else
             <tr>
-            <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="jids[]" value="{{$job->id}}"><i></i></label></td>
-            <td>{{$job->job_category}}</td>
-            <td>{{'???????'}}</td>
-            <td>{{$job->job_title}}</td>
-            <td>{{$job->job_description}}</td>
-            <td>{{$job->contact_phone}}</td>
-            <td>{{$job->award_date}}</td>
-            <td>{{$job->amount}}</td>
-            <td>
-                <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-            </td>
+                <td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
+            
             </tr>
-        @endforeach
+        @endif
         </tbody>
         </table>
     </div>
@@ -121,7 +128,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Client</label>
             <div class="col-lg-9">
-            <select name="nationality" required class="form-control">
+            <select name="client" required class="form-control">
                 <option value="default"></option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
@@ -131,7 +138,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Contact Phone:</label>
             <div class="col-lg-9">
-            <input name="contact_phone" required class="form-control">
+            <input type="number" name="contact_phone" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -147,7 +154,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Amount N:</label>
             <div class="col-lg-9">
-            <input name="amount" required class="form-control">
+            <input type="number" name="amount" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -228,21 +235,30 @@
              success:function(data){  
                 data = data.jobs; 
                 $('#jobs').empty();
-                $.each(data, function (i) {
+                if(data.length > 0){
+                    $.each(data, function (i) {
+                        $('#jobs').append(
+                            '<tr>'+
+                            '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="jids[]" value="'+data[i].id+'"><i></i></label></td>' +
+                            '<td>'+data[i].job_category +'</td>' +
+                            '<td>'+data[i].client+ '</td>' +
+                            '<td>'+data[i].job_title+'</td>'+
+                            '<td>'+data[i].job_description+'</td>'+
+                            '<td>'+data[i].contact_phone+'</td>'+
+                            '<td>'+data[i].award_date +'</td>'+
+                            '<td>'+data[i].amount+'</td>'+
+                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '</tr>'
+                        );
+                    });
+
+                }else {
                     $('#jobs').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="jids[]" value="'+data[i].id+'"><i></i></label></td>' +
-                        '<td>'+data[i].job_category +'</td>' +
-                        '<td>'+data[i].job_category+ '</td>' +
-                        '<td>'+data[i].job_title+'</td>'+
-                        '<td>'+data[i].job_description+'</td>'+
-                        '<td>'+data[i].contact_phone+'</td>'+
-                        '<td>'+data[i].award_date +'</td>'+
-                        '<td>'+data[i].amount+'</td>'+
-                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '<td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td>' +
                         '</tr>'
                     );
-                });
+                }
                   
             },
         });   
