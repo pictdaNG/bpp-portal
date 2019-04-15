@@ -28,7 +28,8 @@
             </tr>
         </thead>
         <tbody id="finances">
-        @foreach ($finances as $finance)
+        @if(sizeof($finances) > 0)
+         @foreach ($finances as $finance)
 
             <tr>
             <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="fids[]" value="{{$finance->id}}"><i></i></label></td>
@@ -46,6 +47,12 @@
             </td>
             </tr>
             @endforeach
+        @else
+            <tr>
+                <td colspan="10"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
+          
+            </tr>
+        @endif
         </tbody>
         </table>
     </div>
@@ -255,23 +262,32 @@
             success:function(data){  
                 data = data.finances; 
                 $('#finances').empty();
-                $.each(data, function (i) {
+                if(data.length > 0){
+                    $.each(data, function (i) {
+                        $('#finances').append(
+                            '<tr>'+
+                            '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="fids[]" value="'+data[i].id+'"><i></i></label></td>' +
+                            '<td>'+data[i].year+'</td>' +
+                            '<td>'+data[i].turn_over+'</td>' +
+                            '<td>'+data[i].total_asset+'</td>'+
+                            '<td>'+data[i].total_liability+'</td>'+
+                            '<td>'+data[i].witholding_tax+'</td>'+
+                            '<td>'+data[i].tax_paid+'</td>'+
+                            '<td>'+data[i].tcc_no+'</td>'+
+                            '<td>'+data[i].audit_firm+'</td>'+
+                            '<td>'+data[i].report_date+'</td>'+
+                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '</tr>'
+                        );
+                    });
+                }
+                else {
                     $('#finances').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="fids[]" value="'+data[i].id+'"><i></i></label></td>' +
-                        '<td>'+data[i].year+'</td>' +
-                        '<td>'+data[i].turn_over+'</td>' +
-                        '<td>'+data[i].total_asset+'</td>'+
-                        '<td>'+data[i].total_liability+'</td>'+
-                        '<td>'+data[i].witholding_tax+'</td>'+
-                        '<td>'+data[i].tax_paid+'</td>'+
-                        '<td>'+data[i].tcc_no+'</td>'+
-                        '<td>'+data[i].audit_firm+'</td>'+
-                        '<td>'+data[i].report_date+'</td>'+
-                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '<td colspan="10"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td>' +
                         '</tr>'
                     );
-                });
+                }
             },
         });   
     }

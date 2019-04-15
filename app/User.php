@@ -42,4 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Contractor');
     }
+
+
+    public function advert()
+    {
+        return $this->hasMay('App\Advert');
+    }
 }

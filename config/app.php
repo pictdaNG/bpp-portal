@@ -196,6 +196,10 @@ return [
         App\Providers\QualificationServiceProvider::class,
         App\Providers\MdaServiceProvider::class,
         App\Providers\AdvertServiceProvider::class,
+        App\Providers\AdvertLotServiceProvider::class,
+        App\Providers\TenderRequirementServiceProvider::class,
+
+
 
 
 

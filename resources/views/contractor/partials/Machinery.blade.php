@@ -26,21 +26,28 @@
             </tr>
         </thead>
         <tbody id="machineries">
-            @foreach($machineries as $machinery)
-            <tr>
-            <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="mids[]" value="{{$machinery->id}}"><i></i></label></td>
-            <td>{{$machinery->equipment_type}}</td>
-            <td>{{$machinery->acquisition_date}}</td>
-            <td>{{$machinery->cost}}</td>
-            <td>{{$machinery->location}}</td>
-            <td>{{$machinery->serial_no}}</td>
-            <td>{{$machinery->specifics}}</td>
-            <td>{{$machinery->equipment_status}}</td>
-            <td>
-                <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-            </td>
-            </tr>
-            @endforeach
+            @if(sizeof($machineries)> 0)
+                @foreach($machineries as $machinery)
+                <tr>
+                <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="mids[]" value="{{$machinery->id}}"><i></i></label></td>
+                <td>{{$machinery->equipment_type}}</td>
+                <td>{{$machinery->acquisition_date}}</td>
+                <td>{{$machinery->cost}}</td>
+                <td>{{$machinery->location}}</td>
+                <td>{{$machinery->serial_no}}</td>
+                <td>{{$machinery->specifics}}</td>
+                <td>{{$machinery->equipment_status}}</td>
+                <td>
+                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                </td>
+                </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
+                    
+                </tr>
+            @endif
         </tbody>
         </table>
     </div>
@@ -197,21 +204,29 @@
             url : url + machineries,
             success:function(data){  
                 $('#machineries').empty();
-                $.each(data, function (i) {
+                if(data.length > 0) {
+                    $.each(data, function (i) {
+                        $('#machineries').append(
+                            '<tr>'+
+                            '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
+                            '<td>'+data[i].equipment_type+'</td>' +
+                            '<td>'+data[i].acquisition_date+'</td>' +
+                            '<td>'+data[i].cost+'</td>'+
+                            '<td>'+data[i].location+'</td>'+
+                            '<td>'+data[i].serial_no+'</td>'+
+                            '<td>'+data[i].specifics+'</td>'+
+                            '<td>'+data[i].equipment_status+'</td>'+
+                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '</tr>'
+                        );
+                    });
+                }else {
                     $('#machineries').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
-                        '<td>'+data[i].equipment_type+'</td>' +
-                        '<td>'+data[i].acquisition_date+'</td>' +
-                        '<td>'+data[i].cost+'</td>'+
-                        '<td>'+data[i].location+'</td>'+
-                        '<td>'+data[i].serial_no+'</td>'+
-                        '<td>'+data[i].specifics+'</td>'+
-                        '<td>'+data[i].equipment_status+'</td>'+
-                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '<td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td>' +
                         '</tr>'
                     );
-                });
+                }
                   
             },
         });   

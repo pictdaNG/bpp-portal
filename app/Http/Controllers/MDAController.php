@@ -8,6 +8,8 @@ use Illuminate\Database\QueryException;
 
 use App\Repositories\MDA\MdaContract;
 use App\Repositories\Advert\AdvertContract;
+use App\Repositories\BusinessCategory\BusinessCategoryContract;
+
 use Auth;
 
 class MDAController extends Controller
@@ -19,12 +21,16 @@ class MDAController extends Controller
      */
     protected $repo;
     protected $advert_contract;
+    protected $contract_category;
 
-    public function __construct(MdaContract $mdaContract, AdvertContract $advertContract)
+
+    public function __construct(MdaContract $mdaContract, AdvertContract $advertContract, 
+    BusinessCategoryContract $categoryContract)
     {
         $this->middleware('auth');
         $this->repo = $mdaContract;
         $this->advert_contract = $advertContract;
+        $this->contract_category = $categoryContract;
 
     }
 
@@ -47,12 +53,14 @@ class MDAController extends Controller
     }
 
     public function createAdvert(Request $request){
-        $adverts = $this->advert_contract->listAdvertsByUserId();
-        return view('mda/createAdvert', ['adverts' => $adverts]);
+        $adverts = $this->advert_contract->listAdvertsByUserId(); 
+        $categories = $this->contract_category->allBusinessCategories();
+        return view('mda/createAdvert', ['adverts' => $adverts, 'categories' => $categories]);
     }
 
     public function bidRequirements(Request $request, $advertId){
-        return view('mda/bidRequirements');
+        $advert = $this->advert_contract->getAdvertById($advertId);      
+        return view('mda/bidRequirements', ['advert' => $advert]);
     }
 
     public function storeMdas(Request $request) {

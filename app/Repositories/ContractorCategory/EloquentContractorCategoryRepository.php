@@ -30,6 +30,7 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
 
     public function removeCategory($request){ 
         try {
+          //  dd($request);
             $data = $request['cates'];
             for($i=0; $i<sizeof($data); $i++){
                 $tmp = ContractorCategory::find($data[$i]);
@@ -40,6 +41,7 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
 
         }
         catch(\Exception $e){
+            dd($e->getMessage());
             return false;
         }
         

@@ -26,6 +26,7 @@
                 </tr>
             </thead>
             <tbody id="personnels">
+                @if(sizeof($personnels) > 0)
                 @foreach ($personnels as $personnel)
                 <tr>
                 <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="pids[]" value="{{$personnel->id}}"><i></i></label></td>
@@ -41,6 +42,12 @@
                 </td>
                 </tr>
             @endforeach
+            @else
+                <tr>
+                    <td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
+                
+                </tr>
+            @endif
             </tbody>
             </table>
         </div>
@@ -292,23 +299,32 @@
             success:function(data){  
                 //data = data.personnels; 
                 $('#personnels').empty();
-                $.each(data, function (i) {
+                if(data.length > 0){
+                    $.each(data, function (i) {
+                        $('#personnels').append(
+                            '<tr>'+
+                            '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="pids[]" value="'+data[i].id+'"><i></i></label></td>' +
+                            '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
+                            '<td>'+data[i].gender+'</td>' +
+                            '<td>'+data[i].nationality+'</td>'+
+                            '<td>'+data[i].passport_no+'</td>'+
+                            '<td>'+data[i].national_id_no+'</td>'+
+                            '<td>'+data[i].employment_type+'</td>'+
+                            '<td>'+data[i].joining_date+'</td>'+
+                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '</tr>'
+                        );
+                    });
+                }
+                else {
                     $('#personnels').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="pids[]" value="'+data[i].id+'"><i></i></label></td>' +
-                        '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
-                        '<td>'+data[i].gender+'</td>' +
-                        '<td>'+data[i].nationality+'</td>'+
-                        '<td>'+data[i].passport_no+'</td>'+
-                        '<td>'+data[i].national_id_no+'</td>'+
-                        '<td>'+data[i].employment_type+'</td>'+
-                        '<td>'+data[i].joining_date+'</td>'+
-                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '<td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td>' +
                         '</tr>'
                     );
-                });
-                  
-            },
+                }
+            }
+                      
         });   
     }
 
