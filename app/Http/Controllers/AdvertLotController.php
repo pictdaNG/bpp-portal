@@ -5,34 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Database\QueryException;
-use App\Repositories\Advert\AdvertContract;
-use App\Repositories\BusinessCategory\BusinessCategoryContract;
+use App\Repositories\AdvertLot\AdvertLotContract;
 
-
-
-class AdvertController extends Controller{
-
+class AdvertLotController extends Controller{
+    
     protected $repo;
-    protected $contract_category;
 
-    public function __construct(AdvertContract $advertContract, BusinessCategoryContract $categoryContract){
+    public function __construct(AdvertLotContract $advertLotContract){
         // $this->middleware('auth');
-        $this->repo = $advertContract;
-        $this->contract_category = $categoryContract;
+        $this->repo = $advertLotContract;
     }
 
-    public function Adverts(){
-        $adverts = $this->repo->listAdvertsByUserId();
-        $categories = $this->contract_category->listAllBusinessCategories();
+    public function AdvertLots(){
+        $adverts = $this->repo->listAdvertLotsByUserId();
       //  $lots = $this->repo->listAdvertLotsByAdverts();
-        return response()->json(['adverts' => $adverts, 'categories' => $categories], 200);
+        return response()->json(['adverts' =>$adverts], 200);
     }
 
 
-    public function storeAdvert(Request $request) {
+    public function storeAdvertLot(Request $request) {
        try {
-            
-           if ($this->repo->createAdvert((object)$request->all())) {
+            //dd($request->all());
+        if ($this->repo->createAdvertLot((object)$request->all())) {
             return response()->json(['success' => 'Record Added Successfully'], 200);
         } else {     
                 return response()->json(['responseText' => 'Failed to Add Record'], 500);
@@ -43,10 +37,10 @@ class AdvertController extends Controller{
     }
 
 
-    public function deleteAdvert(Request $request) {
+    public function deleteAdvertLot(Request $request) {
         try {
-            $advert = $this->repo->removeAdvert($request); 
-            $adverts = $this->repo->listAdvertsByUserId(); 
+            $advert = $this->repo->removeAdvertLot($request); 
+            $adverts = $this->repo->listAdvertLotsByUserId(); 
             if ($advert) {
                 return response()->json(['success' => 'records deleted successfully'], 200);
                 //return view('mda.createAdvert', ['adverts' => $adverts]);        

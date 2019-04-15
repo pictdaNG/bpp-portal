@@ -18,6 +18,13 @@
   
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+  <style type="text/css">
+    .hide {
+      display: none;
+    }
+</style>
+
+  
 
   <!--[if lt IE 9]>
     <script src="{{ asset('js/ie/html5shiv.js') }}"></script>

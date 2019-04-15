@@ -80,6 +80,12 @@ Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts')
 Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
 
 
+//AdvertLot
+Route::post('/advert-lot/create', 'AdvertLotController@storeAdvertLot')->name('storeAdvertLot');
+Route::get('/advert-lot/advertLots', 'AdvertLotController@advertLots')->name('returnAdvertLots');
+Route::post('/advert-lot/deleteAdvertLot', 'AdvertLotController@deleteAdvertLot')->name('deleteAdvert');
+
+
 // ownership structure
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');
