@@ -9,6 +9,8 @@
                 <header class="panel-heading">
                     Tender Requirement/Eligibility Criteria
                 </header>
+                <form class="bs-example form-horizontal" action="{{route('storeRequirement')}}" Method="POST">
+                  <input type="hidden" value="{{$advert->id}}" name="advertId"/>
                 <div class="table-responsive">
                     <table class="table table-striped b-t b-light">
                         <thead>
@@ -22,28 +24,28 @@
                                 <td>CAC Certificates</td>
                                 <td>
                                     <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" name="post[]"><i></i></label>
+                                        <input type="checkbox" value="cac certificate" name="requirement[]"><i></i></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Tax Clearance Certificates</td>
                                 <td>
                                     <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" name="post[]"><i></i></label>
+                                        <input type="checkbox" value="tax clearance certificate" name="requirement[]"><i></i></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>PenCom Certificate</td>
                                 <td>
                                     <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" name="post[]"><i></i></label>
+                                        <input type="checkbox" value="pencom certificate" name="requirement[]"><i></i></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>ITF Certificate</td>
                                 <td>
                                     <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" name="post[]"><i></i></label>
+                                        <input type="checkbox" value="ITF certificate"  name="requirement[]"><i></i></label>
                                 </td>
                             </tr>
                         </tbody>
@@ -56,8 +58,11 @@
                     </div>
                     <div class="col-md-6 text-right">
                         <button type="submit" class="btn btn-primary">Update</button>
+                        <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
+
                     </div>
                 </div>
+                </form>
                 <br/>
             </section>
         </section>

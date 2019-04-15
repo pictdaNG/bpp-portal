@@ -59,7 +59,8 @@ class MDAController extends Controller
     }
 
     public function bidRequirements(Request $request, $advertId){
-        return view('mda/bidRequirements');
+        $advert = $this->advert_contract->getAdvertById($advertId);      
+        return view('mda/bidRequirements', ['advert' => $advert]);
     }
 
     public function storeMdas(Request $request) {
