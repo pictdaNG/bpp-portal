@@ -26,11 +26,9 @@
             </tr>
         </thead>
         <tbody id="directors">
-        <?php  $i = 0; ?>
+            @if(sizeof($directors) > 0)
             @foreach ($directors as $director)
-           
             <tr>
-        
                 <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="{{$director['id']}}"><i></i></label></td>
                 <td>{{$director['first_name'].' '.$director['last_name']}}</td>
                 <td>{{$director['gender']}}</td>
@@ -45,6 +43,11 @@
                 </td>
             </tr>
             @endforeach
+            @else 
+            <tr>
+                <td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td> 
+            </tr>
+            @endif
         </tbody>
         </table>
     </div>
@@ -176,21 +179,30 @@
             success:function(data){  
                 data = data.directors; 
                 $('#directors').empty();
-                $.each(data, function (i) {
+                if(data.length > 0) {
+                    $.each(data, function (i) {
+                        $('#directors').append(
+                            '<tr>'+
+                            '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
+                            '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
+                            '<td>'+data[i].gender+'</td>' +
+                            '<td>'+data[i].nationality+'</td>'+
+                            '<td>'+data[i].country+'</td>'+
+                            '<td>'+data[i].identification+'</td>'+
+                            '<td>'+data[i].professional_membership+'</td>'+
+                            '<td>'+data[i].membership_id_no+'</td>'+
+                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '</tr>'
+                        );
+                    });
+                }
+                else {
                     $('#directors').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
-                        '<td>'+data[i].first_name+' '+data[i].last_name+'</td>' +
-                        '<td>'+data[i].gender+'</td>' +
-                        '<td>'+data[i].nationality+'</td>'+
-                        '<td>'+data[i].country+'</td>'+
-                        '<td>'+data[i].identification+'</td>'+
-                        '<td>'+data[i].professional_membership+'</td>'+
-                        '<td>'+data[i].membership_id_no+'</td>'+
-                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '<td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>' + 
                         '</tr>'
                     );
-                });
+                }
                   
             },
         });   

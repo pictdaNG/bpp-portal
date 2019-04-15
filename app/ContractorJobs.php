@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ContractorJobs extends Model{
     protected $fillable = [
        
-        'job_category', 'category_name', 'sub_category', 'sub_sub_category', 'job_title', 'job_description', 'nationality', 'contact_phone',
-        'award_date', 'amount', 
+        'job_category', 'category_name', 'sub_category', 'sub_sub_category', 'job_title', 'job_description', 'client', 'contact_phone',
+        'award_date', 'amount', 'sub_sub_categoryId', 'sub_categoryId',
      ];
 }

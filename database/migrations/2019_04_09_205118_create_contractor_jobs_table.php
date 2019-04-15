@@ -16,12 +16,14 @@ class CreateContractorJobsTable extends Migration
         Schema::create('contractor_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('job_category');
-            $table->string('category_name');
+            $table->integer('categoryId');
             $table->string('sub_category');
+            $table->integer('sub_categoryId');
             $table->string('sub_sub_category');
+            $table->integer('sub_sub_categoryId');
             $table->string('job_title');
             $table->string('job_description');
-            $table->string('nationality');
+            $table->string('client');
             $table->string('contact_phone');
             $table->string('award_date');
             $table->string('amount');

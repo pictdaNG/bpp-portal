@@ -301,6 +301,7 @@
                 <section class="panel-body">
                     <!-- When you have Content -->
                     <div class="line pull-in"></div>
+                    @if(sizeof($activeAdverts) >0)
                     @foreach($activeAdverts as $advert)
                     <article class="media">
                         <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
@@ -316,6 +317,9 @@
                         </div>
                     </article>
                     @endforeach
+                    @else
+                    <small class="block m-t-sm">No bids available</small>
+                    @endif
                 </section>
               </section>
             </div>
