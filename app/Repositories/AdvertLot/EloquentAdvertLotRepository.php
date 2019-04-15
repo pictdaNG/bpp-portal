@@ -24,7 +24,7 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
 
     public function listAdvertLotsByUserId(){
 
-    return Advert::where("user_id", Auth::user()->id)->get();
+         return Advert::where("user_id", Auth::user()->id)->get();
         
     }
 

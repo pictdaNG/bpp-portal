@@ -13,6 +13,11 @@ class Advert extends Model{
         'bid_opening_date', 
      ];
 
+
+     public function user(){
+        return $this->belongsTo('App\User');
+    }
+
      public function advertLot(){
         return $this->hasMany('App\AdvertLot');
     }

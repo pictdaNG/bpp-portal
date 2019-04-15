@@ -18,10 +18,15 @@ class EloquentAdvertRepository implements AdvertContract {
         return $advert->save();
     }
     
-    
-    public function listAllAdvertsByStatus($status){
-        //return Advert::where("status", $status)->get();
-        return Advert::all();
+
+    public function listActiveAdverts(){
+        return Advert::with('user')->where("bid_opening_date", ">", Carbon::now())->get();
+    }
+
+    public function closingBids(){    
+        $from =  Carbon::now();
+        $to = Carbon::now() ->addDays(7);;
+        return Advert::whereBetween('bid_opening_date', [$from, $to])->get();
 
     }
 
