@@ -28,7 +28,6 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         
     }
 
-
     public function listAllAdvertLots(){
         return AdvertLot::all();
     }
@@ -56,7 +55,7 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
 
         $advertLot->project_name = $projectName;
         $advertLot->project_status = $request->project_status;
-        $advertLot->project_id = $request->advert_id; 
+        $advertLot->advert_id = $request->advert_id; 
         $advertLot->package_no = $request->package_no;
         $advertLot->lot_no = $request->lot_no;
         $advertLot->description = $request->description;

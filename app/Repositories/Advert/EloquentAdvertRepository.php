@@ -25,12 +25,17 @@ class EloquentAdvertRepository implements AdvertContract {
 
     }
 
+
+    public function getAdvertById($advertId) {
+        return Advert::where("id", $advertId)->get()->first();
+    }
+
     public function listAdvertsByUserId(){
         $data=  Advert::where("user_id", Auth::user()->id)->get();
 
         $ads = array();
             for($i=0; $i<sizeof($data); $i++){
-                $lot = AdvertLot::where("project_id", $data[$i]->id)->get();
+                $lot = AdvertLot::where("advert_id", $data[$i]->id)->get();
                 $obj = new \stdClass;
                 $obj->id  =  $data[$i]->id;
                 $obj->name  =  $data[$i]->name;            

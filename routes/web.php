@@ -86,6 +86,12 @@ Route::get('/advert-lot/advertLots', 'AdvertLotController@advertLots')->name('re
 Route::post('/advert-lot/deleteAdvertLot', 'AdvertLotController@deleteAdvertLot')->name('deleteAdvert');
 
 
+//bidsRequirement
+Route::post('/bidRequirement/create/', 'TenderRequirementController@storeTenderRequirement')->name('storeRequirement');
+Route::get('/bidRequirement/requirements/{lotId}', 'TenderRequirementController@tenderRequirement')->name('returnRequirements');
+Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert')->name('deleteRequirements');
+
+
 // ownership structure
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');

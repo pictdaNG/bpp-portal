@@ -14,7 +14,7 @@ class CreateAdvertsTable extends Migration
     public function up(){
   
         Schema::create('adverts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id')->unsigned()->index();
             $table->string('name');
             $table->string('budget_year');
             $table->string('advert_type');
