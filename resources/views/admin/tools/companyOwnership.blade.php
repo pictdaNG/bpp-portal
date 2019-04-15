@@ -41,7 +41,7 @@
                 <td>{{ 1 + $i++ }}</td>
                 <td>{{ $data['name'] }}</td>
                 <td>
-                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                <!-- <a href="#editBusinessCategory" data-toggle="modal" class="btn btn-sm btn-success"><i class="fa fa-edit"></i>Edit</a>  -->
                     <button type="submit" id="cateBtn"  class="btn btn-sm btn-danger">Delete</button>                
                 </td>
             </tr>
@@ -63,6 +63,39 @@
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
       <h4 class="modal-title">Add Company Ownership</h4>
+    </div>
+    <div class="modal-body">
+    <form class="bs-example form-horizontal" action="{{ route('storeCompanyOwnership') }}" method="POST">
+    {{csrf_field()}}
+        <div class="alert alert-success d-none" id="cat_div">
+            <span id="cat_message"></span>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Company Ownership</label>
+            <div class="col-lg-10">
+            <input type="text" class="form-control" name="name" placeholder="Company Ownership" value="">
+            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <button type="submit" name="categoryBtn" id="categoryBtn" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+    </div>
+
+    </form>
+    </div>
+    
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="editBusinessCategory">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Edit Company Ownership</h4>
     </div>
     <div class="modal-body">
     <form class="bs-example form-horizontal" action="{{ route('storeCompanyOwnership') }}" method="POST">

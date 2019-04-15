@@ -41,8 +41,13 @@
                 <td>{{ 1 + $i++ }}</td>
                 <td>{{ $data['equipment_type'] }}</td>
                 <td>
-                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-                    <button type="submit" id="cateBtn"  class="btn btn-sm btn-danger">Delete</button>                
+                <form action="{{ route('equipment.delete', $data['id']) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button class="delete-modal btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </button>
+                    </form> 
                 </td>
             </tr>
             @endforeach

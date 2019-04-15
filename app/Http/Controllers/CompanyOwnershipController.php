@@ -71,4 +71,25 @@ class CompanyOwnershipController extends Controller
  
         }
     }
+
+    public function delete($id){
+
+        try {
+        
+            $companyOwnership = $this->repo->destroy($id);
+
+            if ($companyOwnership) {
+                
+                 return back()->with(['success'=>'Company Ownership deleted Succesfully.']);
+            }
+            else {
+                return response()->json(['responseText' => 'Error adding Company Ownership'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+        
+    }
 }

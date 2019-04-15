@@ -64,7 +64,7 @@ Route::get('/machinery/machineries', 'ContractorMachineryController@getMachineri
 Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery')->name('deleteMachinery');
 
 //Admin
-Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
+Route::get('/admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
@@ -83,11 +83,13 @@ Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdve
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');
 Route::get('/ownership', 'OwnershipStructureController@index')->name('getOwnership');
+Route::delete('/ownership/delete/{id}', 'OwnershipStructureController@delete')->name('ownership.delete');
 
 // Equipments 
 Route::post('/equipment/type/create', 'EquipmentController@storeEquipments')->name('storeEquipments');
 Route::get('/equipment/types', 'EquipmentController@getEquipmentsType')->name('getEquipmentsType');
 Route::get('/equipments', 'EquipmentController@index')->name('getEquipments');
+Route::delete('/equipment/delete/{id}', 'EquipmentController@delete')->name('equipment.delete');
 
 // Business Categories
 Route::get('/business/categories', 'BusinessCategoryController@getAllBusinessCategories')->name('getAllBusinessCategories');
@@ -118,3 +120,4 @@ Route::get('/employment/type', 'EmploymentTypeController@getAllEmploymentType')-
 Route::get('/qualifications', 'QualificationController@getQualifications')->name('getQualifications');
 Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
 Route::get('/qualifications/list', 'QualificationController@index')->name('qualifications');
+Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');

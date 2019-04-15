@@ -72,4 +72,24 @@ class QualificationController extends Controller
  
         }
     }
+
+    public function delete($id){
+        try {
+        
+            $qualification = $this->repo->destroy($id);
+
+            if ($qualification) {
+                
+                 return back()->with(['success'=>'Qualification deleted Succesfully.']);
+            }
+            else {
+                return response()->json(['responseText' => 'Error adding Company Ownership'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+        
+    }
 }

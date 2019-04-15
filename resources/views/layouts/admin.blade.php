@@ -474,13 +474,13 @@
                             <span>Qualifications</span>
                           </a>
                         </li>
-                        <li >
+                        <!-- <li >
                           <a href="{{ route('companyOwnership') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
                             <span>Company Ownership</span>
                           </a>
-                        </li>
+                        </li> -->
                     </ul>
                     </li>
 

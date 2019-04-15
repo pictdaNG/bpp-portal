@@ -73,7 +73,7 @@
                             <h4 class="modal-title">Add New MDA</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="bs-example form-horizontal">
+                            <form class="bs-example form-horizontal" id="categoryform" method="POST">
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Name of MDA</label>
@@ -102,7 +102,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">MDA Short Code</label>
                                     <div class="col-lg-9">
-                                        <input name="mda_code" class="form-control">
+                                        <input name="mda_shortcode" class="form-control">
                                         <span class="help-block m-b-none">URL</span>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input name="address" class="form-control">
+                                        <input name="email" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Bank Name</label>
                                     <div class="col-lg-9">
-                                        <select required name="subsector" class="form-control">
+                                        <select required name="bank_name" class="form-control">
                                             <option value="default"></option>
                                         </select>
                                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
@@ -170,14 +170,14 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Split Percentage</label>
                                     <div class="col-lg-9">
-                                        <input name="bank_account" class="form-control">
+                                        <input name="split_percentage" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <a href="#" class="btn btn-sm btn-primary">Save Data</a>
+                            <a href="#" id="categoryBtn" class="btn btn-sm btn-primary">Save Data</a>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -187,4 +187,123 @@
         </section>
     </section>
 </section>
+
+<script type="application/javascript">
+
+$("#categoryform").submit(function(evt){
+    evt.preventDefault();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '{{URL::to('/')}}';
+    var dataType =  'JSON';
+    $.ajax({
+        type : 'POST',
+        url : url + '/mda/create',
+        data :$('#categoryform').serialize(),
+        dataType: dataType,
+        success:function(data){   
+            $('#categoryBtn').html('Submitted');
+            $('#cat_message').show();
+            $('#cat_message').html(data.success);
+            $('#cat_div').show();
+            $('#cat_div').removeClass('d-none');
+            setTimeout(function(){
+                $('.close').trigger('click');
+                $('#cat_message').hide();
+                $('#cat_div').hide();
+                $('#categoryBtn').html('Save Data');
+                $('#categoryBtn').removeAttr('disabled');
+                document.getElementById("categoryform").reset(); 
+            },1000);
+
+            // loadCategories('/admin/manageMDA', function(data){
+            });
+        },
+        beforeSend: function(){
+            $('#categoryBtn').html('Sending..');
+            $('#categoryBtn').attr('disabled', 'disabled');
+        },
+        error: function(data) {
+            $('#categoryBtn').html('Try Again');
+            $('#directorBtn').removeAttr('disabled');
+            
+        // show error to end user
+        }
+    });
+})
+
+function loadCategories(categories, cb){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '{{URL::to('/')}}';
+    var dataType =  'JSON';
+    $.ajax({
+        type : 'GET',
+        url : url + categories,
+        success:function(data){  
+            data = data.categories; 
+            $('#categories').empty();
+            $.each(data, function (i) {
+                $('#categories').append(
+                    '<tr>'+
+                    '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
+                    '<td>'+data[i].category+'</td>' +
+                    '<td>'+data[i].subcategory_1+'</td>' +
+                    '<td>'+data[i].subcategory_2+'</td>'+
+                    '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                    '</tr>'
+                );
+            });
+              
+        },
+    });   
+}
+
+function deleteCategory(){
+$("#deleteCategory").submit(function(evt){
+    evt.preventDefault();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '{{URL::to('/')}}';
+    var dataType =  'JSON';
+
+    $.ajax({
+        type : 'POST',
+        url : url + '/category/delete',
+        data :$('#deleteCategory').serialize(),
+        dataType: dataType,
+        success:function(data){    
+            document.getElementById("deleteCategory").reset(); 
+            $('#cateBtn').html('Delete');
+            $('#cateBtn').removeAttr('disabled');
+           
+            loadCategories('/category/categories', function(data){
+            });
+
+        },
+        beforeSend: function(){
+            $('#cateBtn').html('Sending..');
+            $('#cateBtn').attr('disabled', 'disabled');
+        },
+        error: function(data) {
+            console.log('error', data)
+            $('#cateBtn').html('Try Again');
+            $('#cateBtn').removeAttr('disabled');
+            
+        // show error to end user
+        }
+    });
+})
+
+}
+</script>
 @endsection
