@@ -73,14 +73,11 @@ class HomeController extends Controller{
             $compliances = $this->contract_compliance->getCompliancesById(); 
             $directors = $this->contract_directors->getCompanyDirectors(); 
             $categories = $this->contract_categories->getCategoriesById();
-            $consultancy = $this->contract_job->getJobsByIdandCategory('Consultancy | Services');
-            $constructions = $this->contract_job->getJobsByIdandCategory('Constructions | Works');
-            $supplies = $this->contract_job->getJobsByIdandCategory('Goods | Supply');
+            $consultancy = $this->contract_job->getJobsByIdandCategory('2');
+            $constructions = $this->contract_job->getJobsByIdandCategory('1');
+            $supplies = $this->contract_job->getJobsByIdandCategory('3');
             $activeAdverts = $this->contract_advert->listActiveAdverts();
             $closingBids = $this->contract_advert->closingBids();
-            //dd($activeAds);
-
-
             
 
             $percent = $this->percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances );

@@ -16,6 +16,7 @@ class CreateContractorJobsTable extends Migration
         Schema::create('contractor_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('job_category');
+            $table->string('category_name');
             $table->string('sub_category');
             $table->string('sub_sub_category');
             $table->string('job_title');
