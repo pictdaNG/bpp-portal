@@ -22,6 +22,7 @@ class CreateAdvertsTable extends Migration
             $table->string('introduction');
             $table->string('advert_publish_date');
             $table->string('bid_opening_date');
+            $table->string('status');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
