@@ -331,14 +331,14 @@
         $.each(data, function (i) {
           $('#adverts').append(
               '<tr>'+
-              '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="aids[]" value="'+data[i].id+'"><i></i></label></td>' +
-              '<td>'+data[i].budget_year+'</td>' +
-              '<td>'+data[i].name+'</td>' +
-              '<td>'+data[i].advert_type+'</td>'+
-              '<td>'+data[i].lots+'</td>'+
-              '<td>'+data[i].advert_publish_date+'</td>'+
-              '<td>'+data[i].bid_opening_date+'</td>'+
-              '<td>'+
+                '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="aids[]" value="'+data[i].id+'"><i></i></label></td>' +
+                '<td>'+data[i].budget_year+'</td>' +
+                '<td>'+data[i].name+'</td>' +
+                '<td>'+data[i].advert_type+'</td>'+
+                '<td>'+data[i].lots+'</td>'+
+                '<td>'+data[i].advert_publish_date+'</td>'+
+                '<td>'+data[i].bid_opening_date+'</td>'+
+                '<td>'+
                 '<a href="#" data-id="'+data[i].id+'" data-name="'+data[i].name+'" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a>'+
                 '<a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>'+
                 '<a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>'+
