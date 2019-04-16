@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Database\QueryException;
+use App\ContractorFile;
+use Illuminate\Support\Facades\Auth;
 
 use App\Repositories\Compliance\ComplianceContract;
 use App\Repositories\Director\DirectorContract;
@@ -72,6 +74,8 @@ class ReportController extends Controller
             $jobs = $this->jobs->getJobsById();
             $financies = $this->finance->getFinancesById();
             $machineries = $this->machinery->getMachineriesById();
+            $user = Auth::user();
+            $getUploadfiles = ContractorFile::where('user_id', $user->id)->get();
  
             if ($personel) {
                 // return response()->json(['success'=> $getCompliance], 200);
@@ -81,7 +85,8 @@ class ReportController extends Controller
                     'categories' => $categories, 
                     'jobs' => $jobs,
                     'financies' => $financies,
-                    'machineries' => $machineries
+                    'machineries' => $machineries,
+                    'getUploadfiles' => $getUploadfiles
                     ]);
             }
             else {

@@ -170,4 +170,10 @@ class ContractorController extends Controller {
         return response()->json(['status' => 'success'], 200);
     } 
 
+    public function getContractorFile() {
+        $user = Auth::user();
+        $getUploadfiles = ContractorFile::where('name', $request->input('name'))->where('user_id', $user->id)->first();
+        return view('admin/contractors_preview', ['getUploadfiles' => $getUploadfiles]);
+    }
+
 }

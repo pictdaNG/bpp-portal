@@ -72,7 +72,8 @@ Route::get('/contractors/report', 'ReportController@contractors')->name('contrac
 Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
 Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');
 Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
-Route::get('/mda/delete', 'MDAController@getMdas')->name('getMdas');
+Route::post('/mda/delete', 'MDAController@deleteMda')->name('deleteMdas');
+Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
 
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
