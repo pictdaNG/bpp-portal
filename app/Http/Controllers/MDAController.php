@@ -37,10 +37,11 @@ class MDAController extends Controller
     public function mda(Request $request){
         try {
             $mdas = $this->repo->listMdas();
-
+            $categories = $this->contract_category->allBusinessCategories();
+            $banks = ['Access bank', 'Citibank', 'Ecobank', 'Fidelity Bank', 'First Bank', 'First City Monument Bank', 'Guaranty Trust Bank', 'Heritage Bank', 'Keystone Bank', 'Skye Bank', 'Stanbic IBTC Bank', 'Sterling Bank', 'Union Bank', 'United Bank for Africa', 'Wema bank', 'Zenith bank', 'Jaiz bank'];
             if ($mdas) {
                 // return response()->json(['success'=> $mdas], 200);
-                return view('admin/manageMDA', ['mdas' => $mdas]);
+                return view('admin/manageMDA', ['mdas' => $mdas, 'categories' => $categories, 'banks' => $banks]);
             }
             else {
                 return response()->json(['responseText' => 'Error retriving MDAs'], 500);
@@ -49,6 +50,19 @@ class MDAController extends Controller
         } catch (QueryException $e) {
          return response()->json(['response' => $e->getMessage()], 500);
  
+        }
+    }
+
+    public function deleteMda(Request $request) {
+        try {
+            $category = $this->repo->removeMda($request->all());     
+            if ($category) {
+                return response()->json(['success'=>' Mdas Deleted Successfully'], 200);
+             } else {  
+                return response()->json(['responseText' => 'Failed to Delete'], 500);
+             }
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
         }
     }
 
@@ -67,6 +81,7 @@ class MDAController extends Controller
 
         try {
             $data = $request->all();
+            // dd($data);
             $mdas = $this->repo->create($data);
 
             if ($mdas) {

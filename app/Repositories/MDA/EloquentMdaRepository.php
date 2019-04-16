@@ -32,5 +32,23 @@ class EloquentMdaRepository implements MdaContract
     {
        return Mda::find($id)->update($requestData);
     }
+
+    public function removeMda($request){ 
+        try {
+           dd($request);
+            // $data = $request['cates'];
+            // for($i=0; $i<sizeof($data); $i++){
+            //     $tmp = Mda::find($data[$i]);
+            //     $tmp->delete();
+                
+            // }
+            return true;
+
+        }
+        catch(\Exception $e){
+            dd($e->getMessage());
+            return false;
+        } 
+    }
     
 }
