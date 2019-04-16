@@ -19,6 +19,7 @@ class AdvertSeederTable extends Seeder
             'introduction' => 'hello please apply for this advert',
             'advert_publish_date' => '19/07/2019',
             'bid_opening_date' => '20/07/2019',
+            'status' => 'disabled',
             'user_id' => '3',
         ],
         [
@@ -29,6 +30,7 @@ class AdvertSeederTable extends Seeder
             'introduction' => 'hello please apply for this advert',
             'advert_publish_date' => '19/4/2019',
             'bid_opening_date' => '20/05/2019',
+            'status' => 'disabled',
             'user_id' => '3',
         ]]);
     }
