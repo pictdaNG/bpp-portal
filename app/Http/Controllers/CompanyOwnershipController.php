@@ -17,6 +17,24 @@ class CompanyOwnershipController extends Controller
         $this->repo = $companyOwnershipContract;
     }
 
+    public function index() {
+        try {
+            $companyOwnership = $this->repo->listCompanyOwnership();
+
+            if ($companyOwnership) {
+                return view('admin.tools.companyOwnership', ['companyOwnership' => $companyOwnership]);
+            }
+            else {
+                return response()->json(['responseText' => 'Error retriving Company Ownership'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+       
+    }
+
     public function getCompanyOwnership() {
 
         try {
@@ -52,5 +70,26 @@ class CompanyOwnershipController extends Controller
          return response()->json(['response' => $e->getMessage()], 500);
  
         }
+    }
+
+    public function delete($id){
+
+        try {
+        
+            $companyOwnership = $this->repo->destroy($id);
+
+            if ($companyOwnership) {
+                
+                 return back()->with(['success'=>'Company Ownership deleted Succesfully.']);
+            }
+            else {
+                return response()->json(['responseText' => 'Error adding Company Ownership'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+        
     }
 }

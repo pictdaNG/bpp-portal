@@ -43,9 +43,7 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
         catch(\Exception $e){
             dd($e->getMessage());
             return false;
-        }
-        
-        
+        } 
     }
 
     private function setContractorCategoryProperties($category, $request) {

@@ -64,7 +64,7 @@ Route::get('/machinery/machineries', 'ContractorMachineryController@getMachineri
 Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery')->name('deleteMachinery');
 
 //Admin
-Route::get('admin/manageMDA', 'MDAController@mda')->name('manageMDA');
+Route::get('/admin/manageMDA', 'MDAController@mda')->name('manageMDA');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
@@ -72,7 +72,7 @@ Route::get('/contractors/report', 'ReportController@contractors')->name('contrac
 Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
 Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');
 Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
-// Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
+Route::get('/mda/delete', 'MDAController@getMdas')->name('getMdas');
 
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
@@ -96,10 +96,13 @@ Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert'
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');
 Route::get('/ownership', 'OwnershipStructureController@index')->name('getOwnership');
+Route::delete('/ownership/delete/{id}', 'OwnershipStructureController@delete')->name('ownership.delete');
 
 // Equipments 
 Route::post('/equipment/type/create', 'EquipmentController@storeEquipments')->name('storeEquipments');
 Route::get('/equipment/types', 'EquipmentController@getEquipmentsType')->name('getEquipmentsType');
+Route::get('/equipments', 'EquipmentController@index')->name('getEquipments');
+Route::delete('/equipment/delete/{id}', 'EquipmentController@delete')->name('equipment.delete');
 
 // Business Categories
 Route::get('/business/categories', 'BusinessCategoryController@getAllBusinessCategories')->name('getAllBusinessCategories');
@@ -119,8 +122,9 @@ Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
 Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->name('uploadContractorFile');
 Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
 // Company Ownership
+Route::get('/company/ownership/list', 'CompanyOwnershipController@index')->name('companyOwnership');
 Route::get('/company/ownership', 'CompanyOwnershipController@getCompanyOwnership')->name('getCompanyOwnership');
-Route::get('/company/ownership/store', 'CompanyOwnershipController@storeCompanyOwnership')->name('storeCompanyOwnership');
+Route::post('/company/ownership/store', 'CompanyOwnershipController@storeCompanyOwnership')->name('storeCompanyOwnership');
 
 // Employment Type
 Route::get('/employment/type', 'EmploymentTypeController@getAllEmploymentType')->name('getAllEmploymentType');
@@ -128,3 +132,5 @@ Route::get('/employment/type', 'EmploymentTypeController@getAllEmploymentType')-
 // qualifications
 Route::get('/qualifications', 'QualificationController@getQualifications')->name('getQualifications');
 Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
+Route::get('/qualifications/list', 'QualificationController@index')->name('qualifications');
+Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');

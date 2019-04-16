@@ -12,4 +12,6 @@ interface MdaContract
     public function update($id, $requestData);
     
     public function destroy($id);
+
+    public function removeMda($request);
 }
