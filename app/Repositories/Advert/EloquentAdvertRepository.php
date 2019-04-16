@@ -18,13 +18,15 @@ class EloquentAdvertRepository implements AdvertContract {
     
 
     public function listActiveAdverts(){
-        return Advert::with('user')->where("bid_opening_date", ">", Carbon::now())->get();
+        return Advert::with('user')->where("bid_opening_date", ">", Carbon::now()->isoFormat('D/M/YYYY'))
+        ->where('status', 'active')->get();
     }
 
     public function closingBids(){    
-        $from =  Carbon::now();
-        $to = Carbon::now() ->addDays(7);;
-        return Advert::whereBetween('bid_opening_date', [$from, $to])->get();
+        $from =  Carbon::now()->isoFormat('D/M/YYYY');
+        $to = Carbon::now() ->addDays(7)->isoFormat('D/M/YYYY');
+        return Advert::whereBetween('bid_opening_date', [$from, $to])
+            ->where('status', 'active')->get();
 
     }
 
@@ -82,8 +84,9 @@ class EloquentAdvertRepository implements AdvertContract {
         $advert->advert_type = $request->advert_type; 
         $advert->advert_mode = $request->advert_mode;
         $advert->introduction = $request->introduction;
-        $advert->advert_publish_date = Carbon::now()->isoFormat('M/D/YYYY');
+        $advert->advert_publish_date = Carbon::now()->isoFormat('D/M/YYYY');
         $advert->bid_opening_date = $request->bid_opening_date;  
+        $advert->status = 'disabled';
         $advert->user_id = $user->id;
 
     }
