@@ -17,14 +17,34 @@ class EquipmentController extends Controller
         $this->repo = $equipmentContract;
     }
 
+    public function index() {
+        try {
+            $equipments = $this->repo->listEquipments();
+
+            if ($equipments) {
+                return view('admin.tools.equipments', ['equipments' => $equipments]);
+            }
+            else {
+                return response()->json(['responseText' => 'Error retriving Equipments type'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+       
+    }
+
     public function storeEquipments(Request $request) {
 
         try {
             $data = $request->all();
+            // dd($data);
             $equipments = $this->repo->create($data);
 
             if ($equipments) {
-                return response()->json(['success'=>'Equipments Type Added Succesfully.'], 200);
+                return redirect()->back()->with('success', 'Equipments Type Added Succesfully.');
+                // return response()->json(['success'=>'Equipments Type Added Succesfully.'], 200);
             }
             else {
                 return response()->json(['responseText' => 'Error adding Equipments type'], 500);
@@ -52,5 +72,25 @@ class EquipmentController extends Controller
          return response()->json(['response' => $e->getMessage()], 500);
  
         }
+    }
+
+    public function delete($id){
+        try {
+        
+            $equipment = $this->repo->destroy($id);
+
+            if ($equipment) {
+                
+                 return back()->with(['success'=>'Equipment deleted Succesfully.']);
+            }
+            else {
+                return response()->json(['responseText' => 'Error adding Company Ownership'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+        
     }
 }

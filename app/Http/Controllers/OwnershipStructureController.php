@@ -18,7 +18,21 @@ class OwnershipStructureController extends Controller
     }
 
     public function index() {
-        return view('admin.tools.ownership');
+        try {
+            $ownership = $this->repo->listOwnershipStructure();
+
+            if ($ownership) {
+                return view('admin.tools.ownership', ['ownership' => $ownership]);
+            }
+            else {
+                return response()->json(['responseText' => 'Error retriving ownership structure'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+        
     }
 
     public function storeOwnershipStructure(Request $request) {
@@ -28,7 +42,8 @@ class OwnershipStructureController extends Controller
             $ownership = $this->repo->create($data);
 
             if ($ownership) {
-                return response()->json(['success'=>'Record Added Succesfully.'], 200);
+                return redirect()->back()->with('success', 'Ownership Added Succesfully.');
+                // return response()->json(['success'=>'Record Added Succesfully.'], 200);
             }
             else {
                 return response()->json(['responseText' => 'Error adding record'], 500);
@@ -56,5 +71,25 @@ class OwnershipStructureController extends Controller
          return response()->json(['response' => $e->getMessage()], 500);
  
         }
+    }
+
+    public function delete($id){
+        try {
+        
+            $qualification = $this->repo->destroy($id);
+
+            if ($qualification) {
+                
+                 return back()->with(['success'=>'Ownership structure deleted Succesfully.']);
+            }
+            else {
+                return response()->json(['responseText' => 'Error deleting Company Ownership'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+        
     }
 }

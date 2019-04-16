@@ -47,7 +47,7 @@ class AdvertController extends Controller{
     public function deleteAdvert(Request $request) {
         try {
             $advert = $this->repo->removeAdvert($request); 
-            $adverts = $this->repo->listAdvertsByUserId(); 
+            // $adverts = $this->repo->listAdvertsByUserId(); 
             if ($advert) {
                 return response()->json(['success' => 'records deleted successfully'], 200);
                 //return view('mda.createAdvert', ['adverts' => $adverts]);        

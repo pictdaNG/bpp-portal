@@ -454,12 +454,33 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="{{ route('getOwnership') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Company Registration</span>
+                            <span>Ownership Structure</span>
                           </a>
                         </li>
+                        <li >
+                          <a href="{{ route('getEquipments') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Equipments Type</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="{{ route('qualifications') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Qualifications</span>
+                          </a>
+                        </li>
+                        <!-- <li >
+                          <a href="{{ route('companyOwnership') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Company Ownership</span>
+                          </a>
+                        </li> -->
                     </ul>
                     </li>
 

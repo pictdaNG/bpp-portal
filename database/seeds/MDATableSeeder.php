@@ -13,9 +13,17 @@ class MDATableSeeder extends Seeder
     {
         DB::table('mdas')->insert([[
             'name' => 'The Federal Politechnic Nasarawa',
+            'profile_pic' => 'logo',
             'mda_code' => '378273',
-            'category' => 'Economic Sector',
-            'email' => 'Economic Sector',
+            'mda_shortcode' => '378273',
+            'subsector' => 'Economic Sector',
+            'address' => 'Economic Sector',
+            'email' => 'sector@gmail.com',
+            'password' => 'password',
+            'mandate' => 'mandate',
+            'bank_name' => 'GTB',
+            'bank_account' => '1234567890',
+            'split_percentage' => '0.5'
         ]]);
     }
 }
