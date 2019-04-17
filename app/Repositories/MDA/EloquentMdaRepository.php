@@ -7,6 +7,18 @@ class EloquentMdaRepository implements MdaContract
 {
     public function create($requestData)
     {
+        $file = $requestData['profile_pic'];
+
+        $filename = $file->getClientOriginalName();
+
+        $destinationPath = 'uploads/';
+
+        // This will store only the filename. Update with full path if you like
+
+        $requestData['profile_pic'] = $filename; 
+
+        $uploadSuccess = $file->move($destinationPath, $filename);
+
        return Mda::create($requestData);
     }
     

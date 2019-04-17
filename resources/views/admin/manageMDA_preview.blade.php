@@ -11,7 +11,7 @@
                 
                     <div class="col-xs-6">
                         <!-- <img src="{{ asset('/images/p0.jpg') }}" height="200"/> -->
-                        <img src="{{secure_asset('uploads/'.$mdas->profile_pic)}}" height="200"/>
+                        <img src="{{asset('uploads/'.$mdas->profile_pic)}}" height="200"/>
                         <h4></h4>
                         <address>
                             Email: {{ $mdas->email }}<br/>
