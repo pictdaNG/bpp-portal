@@ -453,6 +453,13 @@
                         <span class="font-bold">Administrative Tools</span>
                       </a>
                       <ul class="nav dk">
+                      <li >
+                          <a href="{{ route('getPDFNames') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>PDF Name</span>
+                          </a>
+                        </li>
                         <li >
                           <a href="{{ route('getOwnership') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
@@ -465,6 +472,13 @@
                             <i class="i i-dot"></i>
 
                             <span>Equipments Type</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="{{ route('getFees') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Registration Fee</span>
                           </a>
                         </li>
                         <li >

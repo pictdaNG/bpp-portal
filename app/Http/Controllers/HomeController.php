@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+//use Auth;
 use App\Country;
 use App\User;
+use App\ContractorFile;
+use Illuminate\Support\Facades\Auth;
+
+
 
 use App\Repositories\Contractor\ContractorContract;
 use App\Repositories\ContractorPersonnel\ContractorPersonnelContract;
@@ -28,13 +32,13 @@ class HomeController extends Controller{
     protected $contract_directors;
     protected $contract_categories;
     protected $contract_adverts;
-
-
+    //protected $contract_uploads;
+    protected $uploads;
 
     public function __construct(ContractorContract $contractorContract, ContractorPersonnelContract $contractorPersonnelContract,
             ContractorJobsContract $contractorJobsContract, ContractorFinanceContract $contractorFinanceContract ,
             ContractorMachineryContract $contractorMachinery, ComplianceContract $complianceContract, DirectorContract $directorContract,
-            ContractorCategoryContract $categoryContract, AdvertContract $advertContract ){
+            ContractorCategoryContract $categoryContract, AdvertContract $advertContract  ){
 
         $this->middleware('auth');
         $this->company = $contractorContract;
@@ -73,14 +77,18 @@ class HomeController extends Controller{
             $compliances = $this->contract_compliance->getCompliancesById(); 
             $directors = $this->contract_directors->getCompanyDirectors(); 
             $categories = $this->contract_categories->getCategoriesById();
+            $uploads = $this->contract_uploads->getUploadsById();
             $consultancy = $this->contract_job->getJobsByIdandCategory('2');
             $constructions = $this->contract_job->getJobsByIdandCategory('1');
             $supplies = $this->contract_job->getJobsByIdandCategory('3');
             $activeAdverts = $this->contract_advert->listActiveAdverts();
             $closingBids = $this->contract_advert->closingBids();
+
+            $uploads = ContractorFile::where('user_id',  Auth::user()->id)->get();
+
             
 
-            $percent = $this->percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances );
+            $percent = $this->percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances, $uploads );
             $jobs= $this->jobsDone($constructions, $supplies, $consultancy);
             
             $adverts = sizeof($activeAdverts) > 0 ? sizeof($activeAdverts) : 0;
@@ -101,7 +109,7 @@ class HomeController extends Controller{
         return $status;    
     }
 
-    private function percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances){
+    private function percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances, $uploads){
         $count = 0;
         $status = array();
 
@@ -166,7 +174,11 @@ class HomeController extends Controller{
             $status['machines'] = false;
 
         }
-        $status['percentage'] = round(($count/8)*100, 2);
+        if(sizeof($uploads) > 0) {
+            $count++;
+            $status['machines'] = true;
+        }
+        $status['percentage'] = round(($count/9)*100, 2);
          return $status;
     }
 

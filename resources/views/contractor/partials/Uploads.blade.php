@@ -263,7 +263,7 @@
     <footer class="panel-footer">
         <div class="row">
         <div class="col-lg-12">
-            <a href="#completeRegistration" data-toggle="modal" class="btn btn-primary text-center btn-lg btn-block">Complete Registration</a>
+            <a  id="btnComplete" disabled="disabled" data-toggle="modal" class="btn btn-primary text-center btn-lg btn-block">Complete Registration</a>
         </div>
         </div>
     </footer>
@@ -281,53 +281,44 @@
     <div class="modal-body">
         <p>In compliance with the Plateau State Public Procurement Act, All State Contractors are to register under any section of the designated categories. Thank you.</p>
     <form class="bs-example form-horizontal">
-        
-            <div class="checkbox i-checks">
-                <label>
-                    <input type="checkbox" value="">
-                    <i></i> General Contractors and Supply
-                </label>
-            </div>
-            <div class="checkbox i-checks">
-                <label>
-                    <input type="checkbox" checked value="">
-                    <i></i> Civil Engineering
-                </label>
-            </div>
-
-            <div class="checkbox i-checks">
-                <label>
-                    <input type="checkbox" value="">
-                    <i></i> Civil Engineering
-                </label>
-            </div>
-
-            <div class="checkbox i-checks">
-                <label>
-                    <input type="checkbox" value="">
-                    <i></i> Building Engineering
-                </label>
-            </div>
-
-            <div class="checkbox i-checks">
-                <label>
-                    <input type="checkbox" value="">
-                    <i></i> Electrical/Mechanical Engineering
-                </label>
-            </div>
-
-            <div class="checkbox i-checks">
-                <label>
-                    <input type="checkbox" value="">
-                    <i></i> Consultancy Services
-                </label>
-            </div>
+        <table id="inventario" class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th><input type="checkbox" id="check-all" disabled="disabled"></th>
+                <th>Items</th>
+                <th style="visibility: hidden;"></th>
+            </tr>
+            </thead>
+            <tbody id="inventario-data">
+            @foreach($fees as $fee)
+            <?php $sumTotal = 0; $sumTotal+= $fee->amount; ?>
+                <tr>
+                    <td><input type="checkbox" class="data-check"></td>
+                    <td>{{$fee->name}}</td>
+                    <td style="visibility: hidden;" >{{$fee->amount}}</td>
+                </tr>
+            @endforeach
+            
+            
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Total payable</th>
+                <th><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
+                <th style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
+            </tr>
+            </tfoot>
+        </table>
+           
+           
     </form>
     </div>
     <div class="modal-footer">
-      <p style="float: left;">Amount Payable: </p>
+      <!-- <p style="float: left;">Amount Payable: </p> -->
       <!-- <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-credit-card"></i> Proceed to Checkout</a> -->
-      <button class="btn btn-danger" data-toggle="class:show inline" data-target="#spin" data-loading-text="Completing Registration.."><i class="fa fa-credit-card"></i> Proceed to Checkout</button> <i class="fa fa-spin fa-spinner hide" id="spin"></i>
+      <!-- <a class="btn btn-danger" href="{{action('ContractorController@getIRR')}}" disabled="disabled" data-toggle="class:show inline" id="spin" data-target="#spin" data-loading-text="Completing Registration.."><i class="fa fa-credit-card"></i> Proceed to Checkout</a> <i class="fa fa-spin fa-spinner hide" id="spin"></i> -->
+      <a class="btn btn-danger" id="spin" href="{{action('ContractorController@getIRR')}}" disabled="disabled" ><i class="fa fa-credit-card"></i> Proceed to Checkout</a> <i class="fa fa-spin fa-spinner hide" id="spin"></i>
+
     </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
@@ -348,6 +339,7 @@ function resetCACFile(){
     $('#cac_preview_btn').attr('disabled', 'disabled');
     $('#cac_preview_btn').attr('href', '#');
     $('#resetCACBtn').attr('disabled', 'disabled');
+
 }
 
 function resetTCCFile(){
@@ -361,6 +353,7 @@ function resetTCCFile(){
     $('#tcc_preview_btn').attr('disabled', 'disabled');
     $('#tcc_preview_btn').attr('href', '#');
     $('#resetTCCBtn').attr('disabled', 'disabled');
+
 }
 
 function resetTINFile(){
@@ -375,6 +368,7 @@ function resetTINFile(){
     $('#tin_preview_btn').attr('disabled', 'disabled');
     $('#tin_preview_btn').attr('href', '#');
     $('#resetTINBtn').attr('disabled', 'disabled');
+
 }
 
 function resetPenComFile(){
@@ -388,6 +382,7 @@ function resetPenComFile(){
     $('#pencom_preview_btn').attr('disabled', 'disabled');
     $('#pencom_preview_btn').attr('href', '#');
     $('#resetPenComBtn').attr('disabled', 'disabled');
+
 }
 
 function resetITFFile(){
@@ -401,6 +396,7 @@ function resetITFFile(){
     $('#itf_preview_btn').attr('disabled', 'disabled');
     $('#itf_preview_btn').attr('href', '#');
     $('#resetITFBtn').attr('disabled', 'disabled');
+
 }
 
 function resetAuditedAccountFile(){
@@ -414,6 +410,7 @@ function resetAuditedAccountFile(){
     $('#audited_account_preview_btn').attr('disabled', 'disabled');
     $('#audited_account_preview_btn').attr('href', '#');
     $('#resetAuditedAccountBtn').attr('disabled', 'disabled');
+
 }
 
 function resetSwonAffidavitFile(){
@@ -468,6 +465,8 @@ function uploadPlaccimaFile(){
     uploadFile('placcima', 'placcima_file', 'placcima_file_progress', 'placcima_file_upload_btn', 'placcima_file_status', 'placcima_file_size', 'placcima_preview_btn', 'resetplaccimaBtn', 'placcima_file_uploaded');
 }
 
+
+
 function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatus, cacFileSize, previewBtn, removeBtn, keyId){
     var fd = new FormData();
     var file = document.getElementById(divId).files[0];
@@ -508,6 +507,7 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
             $('#' + divId).attr('disabled', 'disabled');
             document.getElementById(divId).value = "";
             $('#' + keyId).html(data.key);
+            loadDocuments();
           } else {
             $('#' + divProgressId).removeClass("bg-info");
             $('#' + divProgressId).addClass("bg-danger");
@@ -523,5 +523,97 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
         console.log("xhr Error");
       }; 
       xhr.send(fd);
-}
+    }
+
+
+    function loadDocuments(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({
+            type : 'GET',
+            url : url + '/contractor/files',
+             success:function(data){  
+                 ({data: data.length})
+                if(data.length > 7){
+                    $('#btnComplete').attr('href', '#completeRegistration');
+                    $('#btnComplete').removeAttr('disabled');
+
+                }
+                  
+            },
+        });   
+    }
+
+    window.addEventListener('load', function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = '{{URL::to('/')}}';
+        var dataType =  'JSON';
+        $.ajax({
+            type : 'GET',
+            url : url + '/contractor/files',
+             success:function(data){  
+                 console.log({data: data.length})
+                if(data.length > 7){
+                    $('#btnComplete').attr('href', '#completeRegistration');
+                    $('#btnComplete').removeAttr('disabled');
+
+                }
+                  
+            },
+        });   
+   });
+
+
+
+    $(document).ready(function() {
+        $("#check-al").click(function() {
+            var isChecked = $(this).prop('checked');
+            $(".data-check").prop('checked', isChecked);
+            var $sumchecked = $('#sumchecked');
+            var $totalSum = $('#checked-prices-total-sum');
+
+            if (isChecked) {
+                $totalSum.html($('#totalAmount').html());
+                $sumchecked.css('visibility', 'visible');
+            } else {
+                $totalSum.html(0);
+                $sumchecked.css('visibility', 'hidden');
+            }
+        });
+
+
+        $('#inventario-data').on('change', 'input[type="checkbox"]', function(){
+            var $sumchecked = $('#sumchecked');
+            var $totalSum = $('#checked-prices-total-sum');
+            var totalSumValue = parseFloat($totalSum.html());
+            var price = parseFloat($(this).parent().next().next().html().replace(",", "."));
+
+            if ($(this).is(':checked')) {
+                totalSumValue += price;
+            } else {
+                totalSumValue -= price;
+            }
+
+            $totalSum.html(totalSumValue.toFixed(0));
+        // totalSumValue > 0 ? $sumchecked.css('visibility', 'visible') : $sumchecked.css('visibility', 'hidden');
+            if(totalSumValue > 0) {
+                $sumchecked.css('visibility', 'visible');
+                $('#spin').removeAttr('disabled');
+            } 
+            else {
+            // $sumchecked.css('visibility', 'hidden');
+                $('#spin').attr('disabled', 'disabled');
+            } 
+
+        });
+    });
 </script>

@@ -33,11 +33,12 @@ class AdvertController extends Controller{
        try {
             
            if ($this->repo->createAdvert((object)$request->all())) {
-            return response()->json(['success' => 'Record Added Successfully'], 200);
-        } else {     
+                return response()->json(['success' => 'Record Added Successfully'], 200);
+            } 
+            else {     
                 return response()->json(['responseText' => 'Failed to Add Record'], 500);
             }
-       } catch (QueryException $e) {
+        } catch (QueryException $e) {
         return response()->json(['response' => $e->getMessage()], 500);
        }
     }
