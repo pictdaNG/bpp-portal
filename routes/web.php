@@ -130,7 +130,12 @@ Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->
 Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
 Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->name('contractorFiles');
 Route::get('/contractor/viewirr/','ContractorController@getIRR')->name('getIRR');
-Route::get('/contractor/downloadPDF/','ContractorController@downloadPDF')->name('downloadPdf');
+Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
+
+// PDF Name
+Route::post('/admin/pdf/create', 'PDFCertificateNameController@storeName')->name('storePDFName');
+Route::get('/admin/pdf/names', 'PDFCertificateNameController@index')->name('getPDFNames');
+Route::delete('/admin/pdf/delete/{id}', 'PDFCertificateNameController@delete')->name('deletePDFName');
 
 
 // Company Ownership
