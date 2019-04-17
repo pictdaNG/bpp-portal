@@ -25,8 +25,7 @@ class MDAController extends Controller
 
 
     public function __construct(MdaContract $mdaContract, AdvertContract $advertContract, 
-    BusinessCategoryContract $categoryContract)
-    {
+    BusinessCategoryContract $categoryContract){
         $this->middleware('auth');
         $this->repo = $mdaContract;
         $this->advert_contract = $advertContract;
