@@ -199,6 +199,8 @@ return [
         App\Providers\AdvertLotServiceProvider::class,
         App\Providers\TenderRequirementServiceProvider::class,
         App\Providers\CategoryRegistrationFeeServiceProvider::class,
+        App\Providers\PDFCertifcateNameServiceProvider::class,
+
         Barryvdh\DomPDF\ServiceProvider::class,
 
 

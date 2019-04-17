@@ -21,14 +21,16 @@
                         
                         </tr>
                     </thead>
-                    <tbody id="adverts">  
+                    <tbody> 
+                    @foreach($names as $name) 
                     <tr>
-                        <td>projec</td>
-                        <td>project</td>
-                        <td>project</td>
+                        <td>{{$name['certification_type']}}</td>
+                        <td>{{$name['category_type']}}</td>
+                        <td>{{$name['category_type']}}</td>
                         
-                        <td><a href="#">Download</a> </td>
+                        <td><a href="{{action('ContractorController@downloadPDF', ['certification' =>$name->certification_type, 'category' =>$name->category_type])}}">Download</a> </td>
                     </tr>
+                    @endforeach
                 </tbody>
              </table>
         </div>

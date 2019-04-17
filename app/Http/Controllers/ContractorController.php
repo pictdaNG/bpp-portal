@@ -22,6 +22,8 @@ use App\Repositories\CompanyOwnership\CompanyOwnershipContract;
 use App\Repositories\Qualifications\QualificationContract; 
 use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use App\Repositories\CategoryFee\CategoryFeeContract; 
+use App\Repositories\PDFCertificateName\PDFCertificateNameContract; 
+
 
 
 use App\ContractorFile;
@@ -47,6 +49,7 @@ class ContractorController extends Controller {
     protected $qualification;
     protected $machinery;
     protected $contract_fee;
+    protected $contract_pdf;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
@@ -54,7 +57,8 @@ class ContractorController extends Controller {
                  CountriesContract $country,  BusinessCategoryContract $businessCategory, BusinessSubCategory2Contract $businessCategory2,
                   ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
                   ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
-                  QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract) {
+                  QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
+                  PDFCertificateNameContract $pdfCertificateName) {
                   
                     
 
@@ -75,6 +79,7 @@ class ContractorController extends Controller {
         $this->qualification = $qualificationContract;
         $this->machinery = $contractorMachinery;
         $this->contract_fees = $categoryFeeContract;
+        $this->contract_pdf = $pdfCertificateName;
 
     }
     
@@ -184,14 +189,16 @@ class ContractorController extends Controller {
     } 
 
 
-    public function downloadPDF(){
+    public function downloadPDF($certification, $category ){
         $user = User::where('id', Auth::user()->id)->get()->first();
-        $pdf = PDF::loadView('contractor/pdf', compact('user'));
+        $pdf = PDF::loadView('contractor/pdf', compact('user'), ['certification' => $certification,  'category' => $category, ]);
         return $pdf->download('irr.pdf');
       }
 
     public function getIRR(){
-        return view('contractor.partials.IrrDocs');
+        $names = $this->contract_pdf->listAllPDFName();
+
+        return view('contractor.partials.IrrDocs', ['names' => $names]);
     }
 
 }

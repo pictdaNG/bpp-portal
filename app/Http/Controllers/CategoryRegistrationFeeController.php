@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Database\QueryException;
+use Illuminate\Database\Exception;
 use App\Repositories\CategoryFee\CategoryFeeContract;
 
 class CategoryRegistrationFeeController extends Controller{
@@ -50,7 +50,7 @@ class CategoryRegistrationFeeController extends Controller{
                 return redirect()->route('getFees')->with(['fees' => $fees]);
             }
             
-        } catch (QueryException $e) {
+        } catch (Exception $e) {
          return response()->json(['response' => $e->getMessage()], 500);
  
         }
@@ -71,7 +71,7 @@ class CategoryRegistrationFeeController extends Controller{
                 return redirect()->route('getFees')->with(['fees' => $fees]);
             }
             
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('getFees')->with(['fees' => $fees]);
 
  
