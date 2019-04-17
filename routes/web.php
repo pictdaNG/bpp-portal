@@ -104,6 +104,13 @@ Route::get('/equipment/types', 'EquipmentController@getEquipmentsType')->name('g
 Route::get('/equipments', 'EquipmentController@index')->name('getEquipments');
 Route::delete('/equipment/delete/{id}', 'EquipmentController@delete')->name('equipment.delete');
 
+
+// Registration Fee
+Route::post('/Registration/fee/create', 'CategoryRegistrationFeeController@storeFee')->name('storeFee');
+//Route::get('/fee/fees', 'ContractorRegistrationFeeController@getEquipmentsType')->name('getEquipmentsType');
+Route::get('/fee/fees', 'CategoryRegistrationFeeController@index')->name('getFees');
+Route::delete('/fee/delete/', 'CategoryRegistrationFeeController@delete')->name('deleteFees');
+
 // Business Categories
 Route::get('/business/categories', 'BusinessCategoryController@getAllBusinessCategories')->name('getAllBusinessCategories');
 
@@ -121,6 +128,11 @@ Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
 
 Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->name('uploadContractorFile');
 Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
+Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->name('contractorFiles');
+Route::get('/contractor/viewirr/','ContractorController@getIRR')->name('getIRR');
+Route::get('/contractor/downloadPDF/','ContractorController@downloadPDF')->name('downloadPdf');
+
+
 // Company Ownership
 Route::get('/company/ownership/list', 'CompanyOwnershipController@index')->name('companyOwnership');
 Route::get('/company/ownership', 'CompanyOwnershipController@getCompanyOwnership')->name('getCompanyOwnership');

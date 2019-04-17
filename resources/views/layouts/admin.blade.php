@@ -468,6 +468,13 @@
                           </a>
                         </li>
                         <li >
+                          <a href="{{ route('getFees') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Registration Fee</span>
+                          </a>
+                        </li>
+                        <li >
                           <a href="{{ route('qualifications') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
 

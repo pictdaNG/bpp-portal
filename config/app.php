@@ -198,6 +198,10 @@ return [
         App\Providers\AdvertServiceProvider::class,
         App\Providers\AdvertLotServiceProvider::class,
         App\Providers\TenderRequirementServiceProvider::class,
+        App\Providers\CategoryRegistrationFeeServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+
 
 
 
@@ -258,6 +262,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
