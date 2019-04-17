@@ -15,6 +15,7 @@ use App\Repositories\ContractorCategory\ContractorCategoryContract;
 use App\Repositories\ContractorJobs\ContractorJobsContract;
 use App\Repositories\ContractorFinance\ContractorFinanceContract;
 use App\Repositories\ContractorMachinery\ContractorMachineryContract;
+use App\Repositories\Contractor\ContractorContract;
 
 class ReportController extends Controller
 {
@@ -25,6 +26,7 @@ class ReportController extends Controller
     protected $jobs;
     protected $finance;
     protected $machinery;
+    protected $contractor;
 
     public function __construct(
         ContractorCategoryContract $contractorCategoryContract, 
@@ -33,7 +35,8 @@ class ReportController extends Controller
         DirectorContract $directorContract, 
         ContractorJobsContract $contractorJobsContract, 
         ContractorFinanceContract $contractorFinanceContract,
-        ContractorMachineryContract $contractorMachineryContract
+        ContractorMachineryContract $contractorMachineryContract,
+        ContractorContract $contractorContract
     )
     {
         $this->middleware('auth');
@@ -44,6 +47,7 @@ class ReportController extends Controller
         $this->jobs = $contractorJobsContract;
         $this->finance = $contractorFinanceContract;
         $this->machinery = $contractorMachineryContract;
+        $this->contractor = $contractorContract;
     }
 
     public function contractors(){
@@ -74,6 +78,7 @@ class ReportController extends Controller
             $jobs = $this->jobs->getJobsById();
             $financies = $this->finance->getFinancesById();
             $machineries = $this->machinery->getMachineriesById();
+            $contractors = $this->contractor->getCompanyById();
             $user = Auth::user();
             $getUploadfiles = ContractorFile::where('user_id', $user->id)->get();
  
@@ -86,7 +91,8 @@ class ReportController extends Controller
                     'jobs' => $jobs,
                     'financies' => $financies,
                     'machineries' => $machineries,
-                    'getUploadfiles' => $getUploadfiles
+                    'getUploadfiles' => $getUploadfiles,
+                    'contractors' => $contractors
                     ]);
             }
             else {

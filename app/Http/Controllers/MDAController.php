@@ -115,4 +115,23 @@ class MDAController extends Controller
         }
     }
 
+    public function mdasPreview($id) {
+
+        try {
+            $mdas = $this->repo->find($id);
+            // dd($mdas);
+            if ($mdas) {
+                return view('admin/manageMDA_preview', ['mdas' => $mdas]);
+            }
+            else {
+                return response()->json(['responseText' => 'Error showing MDAs'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+      
+    }
+
 }

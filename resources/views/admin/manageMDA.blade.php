@@ -16,14 +16,14 @@
                         <a href="#addNewMDA" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add New</a>
                         <button id="mdaBtn" onclick="deleteMdas()" class="btn btn-sm btn-danger">Delete</button>
                     </div>
-                    <div class="col-sm-3">
+                    <!-- <div class="col-sm-3">
                         <div class="input-group">
                             <input type="text" class="input-sm form-control" placeholder="Search">
                             <span class="input-group-btn">
                         <button class="btn btn-sm btn-default" type="button">Go!</button>
                       </span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped b-t b-light">
@@ -37,7 +37,7 @@
                                 <th>MDA Code</th>
                                 <th>Category</th>
                                 <th>Email</th>
-                                <th>Edit</th>
+                                <!-- <th>Edit</th> -->
                                 <th>Preview</th>
                             </tr>
                         </thead>
@@ -53,11 +53,11 @@
                                 <td>{{ $data['mda_code'] }}</td>
                                 <td>{{ $data['subsector'] }}</td>
                                 <td>{{ $data['email'] }}</td>
-                                <td>
+                                <!-- <td>
                                     <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-edit text-success text"></i></a>
-                                </td>
+                                </td> -->
                                 <td>
-                                    <a href="#" class="active" data-toggle="class"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
+                                    <a href="{{ route('mdasPreview',$data['id']) }}" class="active"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
                                 </td>
                             </tr>
                         @endforeach
