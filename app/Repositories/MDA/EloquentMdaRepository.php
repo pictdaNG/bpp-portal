@@ -7,6 +7,18 @@ class EloquentMdaRepository implements MdaContract
 {
     public function create($requestData)
     {
+        $file = $requestData['profile_pic'];
+
+        $filename = $file->getClientOriginalName();
+
+        $destinationPath = 'uploads/';
+
+        // This will store only the filename. Update with full path if you like
+
+        $requestData['profile_pic'] = $filename; 
+
+        $uploadSuccess = $file->move($destinationPath, $filename);
+
        return Mda::create($requestData);
     }
     
@@ -35,13 +47,13 @@ class EloquentMdaRepository implements MdaContract
 
     public function removeMda($request){ 
         try {
-           dd($request);
-            // $data = $request['cates'];
-            // for($i=0; $i<sizeof($data); $i++){
-            //     $tmp = Mda::find($data[$i]);
-            //     $tmp->delete();
+        //    dd($request);
+            $data = $request['mda'];
+            for($i=0; $i<sizeof($data); $i++){
+                $tmp = Mda::find($data[$i]);
+                $tmp->delete();
                 
-            // }
+            }
             return true;
 
         }

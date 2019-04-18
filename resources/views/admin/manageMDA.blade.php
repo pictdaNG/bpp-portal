@@ -16,14 +16,14 @@
                         <a href="#addNewMDA" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add New</a>
                         <button id="mdaBtn" onclick="deleteMdas()" class="btn btn-sm btn-danger">Delete</button>
                     </div>
-                    <div class="col-sm-3">
+                    <!-- <div class="col-sm-3">
                         <div class="input-group">
                             <input type="text" class="input-sm form-control" placeholder="Search">
                             <span class="input-group-btn">
                         <button class="btn btn-sm btn-default" type="button">Go!</button>
                       </span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped b-t b-light">
@@ -37,7 +37,7 @@
                                 <th>MDA Code</th>
                                 <th>Category</th>
                                 <th>Email</th>
-                                <th>Edit</th>
+                                <!-- <th>Edit</th> -->
                                 <th>Preview</th>
                             </tr>
                         </thead>
@@ -47,17 +47,17 @@
                             <tr>
                                 <td>
                                     <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" name="post[]"><i></i></label>
+                                        <input type="checkbox" name="mda[]" value="{{ $data['id']}}"><i></i></label>
                                 </td>
                                 <td>{{ $data['name'] }}</td>
                                 <td>{{ $data['mda_code'] }}</td>
                                 <td>{{ $data['subsector'] }}</td>
                                 <td>{{ $data['email'] }}</td>
-                                <td>
+                                <!-- <td>
                                     <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-edit text-success text"></i></a>
-                                </td>
+                                </td> -->
                                 <td>
-                                    <a href="#" class="active" data-toggle="class"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
+                                    <a href="{{ route('mdasPreview',$data['id']) }}" class="active"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -202,6 +202,42 @@
 
 <script type="application/javascript">
 
+function deleteMdas(){
+      $("#deleteMdas").submit(function(evt){
+          evt.preventDefault();
+          $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+          var url = '{{URL::to('/')}}';
+          var dataType =  'JSON';
+      
+          $.ajax({
+              type : 'POST',
+              url : url + '/mda/delete',
+              data :$('#deleteMdas').serialize(),
+              dataType: dataType,
+              success:function(data){    
+                  $('#mdaBtn').html('Delete');
+                  $('#mdaBtn').removeAttr('disabled');     
+                  loadMdas('/mda/list/', function(data){
+                  });
+              },
+              beforeSend: function(){
+                  $('#mdaBtn').html('Sending..');
+                  $('#mdaBtn').attr('disabled', 'disabled');
+              },
+              error: function(data) {
+                  $('#mdaBtn').html('Try Again');
+                  $('#mdaBtn').removeAttr('disabled'); 
+              // show error to end user
+              }
+          });
+      })
+
+    }
+
 window.addEventListener('load', function () {
     $("#mdasform").submit(function(evt){
       evt.preventDefault();
@@ -237,7 +273,7 @@ window.addEventListener('load', function () {
               $('.close').trigger('click');
           },1000);
 
-          loadMdas('/admin/manageMDA/', function(data){
+          loadMdas('/mda/list/', function(data){
          });
 
         },
@@ -269,27 +305,28 @@ window.addEventListener('load', function () {
       type : 'GET',
       url : url + adverts,
       success:function(data){  
-        data = data.adverts; 
+          console.log('sddf', data);
+        data = data; 
         $('#mdas').empty();
         $.each(data, function (i) {
-            console.log(data);
-          $('#mdas').append(
-              '<tr>'+
-              '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="aids[]" value="'+data[i].id+'"><i></i></label></td>' +
-              '<td>'+data[i].budget_year+'</td>' +
-              '<td>'+data[i].name+'</td>' +
-              '<td>'+data[i].advert_type+'</td>'+
-              '<td>'+data[i].lots+'</td>'+
-              '<td>'+data[i].advert_publish_date+'</td>'+
-              '<td>'+data[i].bid_opening_date+'</td>'+
-              '<td>'+
-                '<a href="#" data-id="'+data[i].id+'" data-name="'+data[i].name+'" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a>'+
-                '<a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>'+
-                '<a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>'+
-                '<a href="/mda/advert/bidrequirement/'+data[i].id+'/" class="btn btn-default"><i class="fa fa-gear"></i></a>'+
-                '</td>'+
-              '</tr>'
-            );
+            console.log("mdas data", data);
+        //   $('#mdas').append(
+        //       '<tr>'+
+        //       '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="aids[]" value="'+data[i].id+'"><i></i></label></td>' +
+        //       '<td>'+data[i].budget_year+'</td>' +
+        //       '<td>'+data[i].name+'</td>' +
+        //       '<td>'+data[i].advert_type+'</td>'+
+        //       '<td>'+data[i].lots+'</td>'+
+        //       '<td>'+data[i].advert_publish_date+'</td>'+
+        //       '<td>'+data[i].bid_opening_date+'</td>'+
+        //       '<td>'+
+        //         '<a href="#" data-id="'+data[i].id+'" data-name="'+data[i].name+'" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a>'+
+        //         '<a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>'+
+        //         '<a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>'+
+        //         '<a href="/mda/advert/bidrequirement/'+data[i].id+'/" class="btn btn-default"><i class="fa fa-gear"></i></a>'+
+        //         '</td>'+
+        //       '</tr>'
+        //     );
             location.reload();
 
           });     
