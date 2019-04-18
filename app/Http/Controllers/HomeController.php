@@ -20,6 +20,7 @@ use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use App\Repositories\Compliance\ComplianceContract;  
 use App\Repositories\ContractorCategory\ContractorCategoryContract;
 use App\Repositories\Advert\AdvertContract;
+use App\Repositories\MDA\MdaContract;
 
 class HomeController extends Controller{
 
@@ -34,11 +35,12 @@ class HomeController extends Controller{
     protected $contract_adverts;
    // protected $contract_uploads;
     protected $uploads;
+    protected $mdas;
 
     public function __construct(ContractorContract $contractorContract, ContractorPersonnelContract $contractorPersonnelContract,
             ContractorJobsContract $contractorJobsContract, ContractorFinanceContract $contractorFinanceContract ,
             ContractorMachineryContract $contractorMachinery, ComplianceContract $complianceContract, DirectorContract $directorContract,
-            ContractorCategoryContract $categoryContract, AdvertContract $advertContract  ){
+            ContractorCategoryContract $categoryContract, AdvertContract $advertContract, MdaContract $mdaContract  ){
 
         $this->middleware('auth');
         $this->company = $contractorContract;
@@ -51,6 +53,7 @@ class HomeController extends Controller{
         $this->contract_categories = $categoryContract;    
         $this->contract_advert = $advertContract;  
        // $this->contract_uploads =   
+        $this->contract_mdas = $mdaContract;
 
     }
 
@@ -64,8 +67,12 @@ class HomeController extends Controller{
         $user = Auth::user();
         if(strtolower($user->user_type) == strtolower("admin")){
             $compliances = $this->contract_compliance->listAllCompliance();
+            $listMdas = $this->contract_mdas->listMdas();
+            $activeAdverts = $this->contract_advert->listActiveAdverts();
+            $closingBids = $this->contract_advert->closingBids();
             // dd($compliances);
-            return view('adminHome', ['getCompliance' => $compliances]);
+            return view('adminHome', ['getCompliance' => $compliances, 'listMdas' => $listMdas, 'activeAdverts' => $activeAdverts, 
+            'closingBids' => $closingBids]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
             return view('MDAHome');
         }else if(strtolower($user->user_type) == strtolower("Contractor")){

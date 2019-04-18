@@ -2,11 +2,24 @@
 namespace App\Repositories\MDA;
 
 use App\Mda;
+use App\User;
 
 class EloquentMdaRepository implements MdaContract
 {
     public function create($requestData)
     {
+        $newUser = new User;
+        $newUser->name = $requestData['name'];
+        $newUser->email = $requestData['email'];
+        $newUser->user_type = "mda";
+        $newUser->bank_name = $requestData['bank_name'];
+        $newUser->bank_account_no = $requestData['bank_account'];
+        $newUser->split_percentage = $requestData['split_percentage'];
+        $newUser->password = bcrypt($requestData['password']);
+        $newUser->website = $requestData['website'];
+        $newUser->phone = $requestData['phone'];
+        $newUser->save();
+
         $file = $requestData['profile_pic'];
 
         $filename = $file->getClientOriginalName();
@@ -16,7 +29,7 @@ class EloquentMdaRepository implements MdaContract
         // This will store only the filename. Update with full path if you like
 
         $requestData['profile_pic'] = $filename; 
-
+        $requestData['password'] = bcrypt($requestData['password']);
         $uploadSuccess = $file->move($destinationPath, $filename);
 
        return Mda::create($requestData);
@@ -30,7 +43,7 @@ class EloquentMdaRepository implements MdaContract
     
     public function listMdas()
     {
-        return Mda::all();
+        return Mda::paginate(15);
     }
     
     
