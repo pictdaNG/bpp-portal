@@ -95,6 +95,12 @@ Route::get('/bidRequirement/requirements/{lotId}', 'TenderRequirementController@
 Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert')->name('deleteRequirements');
 
 
+// bids eligibility
+Route::post('/admin/requirement/create', 'TenderEligibilityController@storeName')->name('storeName');
+Route::get('/admin/requirement/names', 'TenderEligibilityController@index')->name('getEligibility');
+Route::delete('/admin/requirement/delete/{id}', 'TenderEligibilityController@delete')->name('deleteName');
+
+
 // ownership structure
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');

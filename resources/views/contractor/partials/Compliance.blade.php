@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Parent Company</label>
                         <div class="col-lg-10">
-                        <input type="text" name="parent_company" required class="form-control">
+                        <input type="text" name="parent_company" value="{{$compliance['parent_company']}}"  required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">CAC Date of Reg.</label>
                         <div class="col-lg-10">
-                        <input type="date" name="cac_date_of_reg" required class="form-control">
+                        <input type="date" name="cac_date_of_reg" value="{{$compliance['cac_date_of_reg']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
@@ -51,28 +51,28 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Pension Employer Code</label>
                         <div class="col-lg-10">
-                            <input type="text" name="pension_employer_code" required class="form-control">
+                            <input type="text" name="pension_employer_code" value="{{$compliance['pension_employer_code']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Certificate Number</label>
                         <div class="col-lg-10">
-                            <input type="text" name="pension_certificate_number" required class="form-control">
+                            <input type="text" name="pension_certificate_number" value="{{$compliance['pension_certificate_number']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Expiring Date</label>
                         <div class="col-lg-10">
-                        <input type="date" name="pension_expiring_date" required class="form-control">
+                        <input type="date" name="pension_expiring_date" value="{{$compliance['pension_expiring_date']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">No. of Employee</label>
                         <div class="col-lg-10">
-                        <input type="number" name="pension_no_of_employee" required class="form-control">
+                        <input type="number" name="pension_no_of_employee" value="{{$compliance['pension_no_of_employee']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
@@ -89,14 +89,14 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">TCC No.</label>
                     <div class="col-lg-10">
-                    <input type="text" name="tcc_no" class="form-control">
+                    <input type="text" name="tcc_no" value="{{$compliance['tcc_no']}}" class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">TIN No.</label>
                     <div class="col-lg-10">
-                    <input type="text" name="tcc_tin_no" required class="form-control">
+                    <input type="text" name="tcc_tin_no" value="{{$compliance['tcc_tin_no']}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Registration No.</label>
                         <div class="col-lg-10">
-                        <input type="text" name="itf_registration_no" required class="form-control">
+                        <input type="text" name="itf_registration_no" value="{{$compliance['itf_registration_no']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Certificate No.</label>
                         <div class="col-lg-10">
-                        <input type="text" name="itf_certificate_no" required class="form-control">
+                        <input type="text" name="itf_certificate_no" value="{{$compliance['itf_certificate_no']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
 
@@ -155,7 +155,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Registration No.</label>
                         <div class="col-lg-10">
-                        <input type="date" name="itf_payment_date" required class="form-control">
+                        <input type="date" name="itf_payment_date" value="{{$compliance['itf_payment_date']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
@@ -199,7 +199,7 @@ $("#complianceform").validate({
                 setTimeout(function(){
                     $('#compliance_message').hide();
                     $('#compliance_div').hide();
-                    document.getElementById("complianceform").reset(); 
+                   // document.getElementById("complianceform").reset(); 
                     $('#complianceBtn').removeAttr('disabled');
                     $('#complianceBtn').html('Save Data');
                 },1000);

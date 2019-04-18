@@ -23,6 +23,8 @@ use App\Repositories\Qualifications\QualificationContract;
 use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use App\Repositories\CategoryFee\CategoryFeeContract; 
 use App\Repositories\PDFCertificateName\PDFCertificateNameContract; 
+use App\Repositories\Compliance\ComplianceContract;
+
 
 
 
@@ -50,6 +52,7 @@ class ContractorController extends Controller {
     protected $machinery;
     protected $contract_fee;
     protected $contract_pdf;
+    protected $contract_compliance;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
@@ -58,7 +61,7 @@ class ContractorController extends Controller {
                   ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
                   ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
                   QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
-                  PDFCertificateNameContract $pdfCertificateName) {
+                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract ) {
                   
                     
 
@@ -80,6 +83,7 @@ class ContractorController extends Controller {
         $this->machinery = $contractorMachinery;
         $this->contract_fees = $categoryFeeContract;
         $this->contract_pdf = $pdfCertificateName;
+        $this->contract_compliance = $complianceContract;
 
     }
     
@@ -101,6 +105,8 @@ class ContractorController extends Controller {
          $qualifications = $this->qualification->listQualifications();
          $machineries = $this->machinery->getMachineriesById();
          $fees = $this->contract_fees->listAllFee();
+         $company = $this->repo->getCompanyById();
+         $compliance = $this->contract_compliance->getCompliancesById();
 
 
 
@@ -109,7 +115,7 @@ class ContractorController extends Controller {
         'countries' => $countries, 'allcategories' => $categories, 'contractorcategories' =>  $categories,
         'business_cates' => $b_categories, 'business_cates1' => $b_categories1,  'personnels' => $personnels,
         'jobs' => $jobs, 'business_cates2' => $b_categories2, 'finances' => $finances, 'equipments' => $equipments,
-        'fees' => $fees,
+        'fees' => $fees, 'company' => $company, 'compliance' => $compliance,
         'tcc_ownerships' => $tcc_ownerships, 'qualifications' => $qualifications, 'machineries' => $machineries,
         'cac' => ContractorFile::where('name', 'cac')->where('user_id', $user->id)->first(),
         'tcc' => ContractorFile::where('name', 'tcc')->where('user_id', $user->id)->first(),
@@ -135,7 +141,7 @@ class ContractorController extends Controller {
                
             } else {
             
-                return response()->json(['responseText' => $e->getMessage()], 500);
+                return response()->json(['responseText'=> 'error ocurred'], 500);
             }
        } catch (QueryException $e) {
         return response()->json(['response' => $e->getMessage()], 500);

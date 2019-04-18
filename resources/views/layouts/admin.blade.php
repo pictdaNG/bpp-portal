@@ -454,6 +454,13 @@
                       </a>
                       <ul class="nav dk">
                       <li >
+                          <a href="{{ route('getEligibility') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Eligibility</span>
+                          </a>
+                        </li>
+                      <li >
                           <a href="{{ route('getPDFNames') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
 

@@ -32,7 +32,7 @@ class HomeController extends Controller{
     protected $contract_directors;
     protected $contract_categories;
     protected $contract_adverts;
-    //protected $contract_uploads;
+   // protected $contract_uploads;
     protected $uploads;
 
     public function __construct(ContractorContract $contractorContract, ContractorPersonnelContract $contractorPersonnelContract,
@@ -49,7 +49,8 @@ class HomeController extends Controller{
         $this->contract_compliance = $complianceContract;
         $this->contract_directors = $directorContract;
         $this->contract_categories = $categoryContract;    
-        $this->contract_advert = $advertContract;    
+        $this->contract_advert = $advertContract;  
+       // $this->contract_uploads =   
 
     }
 
@@ -77,7 +78,7 @@ class HomeController extends Controller{
             $compliances = $this->contract_compliance->getCompliancesById(); 
             $directors = $this->contract_directors->getCompanyDirectors(); 
             $categories = $this->contract_categories->getCategoriesById();
-            $uploads = $this->contract_uploads->getUploadsById();
+           // $uploads = $this->contract_uploads->getUploadsById();
             $consultancy = $this->contract_job->getJobsByIdandCategory('2');
             $constructions = $this->contract_job->getJobsByIdandCategory('1');
             $supplies = $this->contract_job->getJobsByIdandCategory('3');
