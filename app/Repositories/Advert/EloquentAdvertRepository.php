@@ -26,13 +26,15 @@ class EloquentAdvertRepository implements AdvertContract {
         $from =  Carbon::now()->isoFormat('D/M/YYYY');
         $to = Carbon::now() ->addDays(7)->isoFormat('D/M/YYYY');
         return Advert::whereBetween('bid_opening_date', [$from, $to])
-            ->where('status', 'active')->get();
+            ->where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
     }
 
 
     public function getAdvertById($advertId) {
-        return Advert::where("id", $advertId)->get()->first();
+        return Advert::where("id", $advertId)->orderBy('created_at', 'desc')->get()->first();
     }
 
     public function listAdvertsByUserId(){

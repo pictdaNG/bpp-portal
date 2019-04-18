@@ -137,7 +137,7 @@ class HomeController extends Controller{
             $status['finances'] = false;
         }
 
-        if(sizeof($companies) > 0) {
+        if($companies != null) {
             $count++;
             $status['companies'] = true;
         }
@@ -159,7 +159,7 @@ class HomeController extends Controller{
         }else {
             $status['categories'] = false;
         }
-        if(sizeof($compliances) > 0) {
+        if($compliances !=null) {
             $count++;
             $status['compliances'] = true;
         }
