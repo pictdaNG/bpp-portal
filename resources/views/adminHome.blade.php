@@ -19,13 +19,13 @@
                 <div class="panel b-a">
                 <div class="row m-n">
                     <div class="col-md-6 b-b b-r">
-                    <a href="#" class="block padder-v hover">
+                    <a href="{{ route('manageMDA')}}" class="block padder-v hover">
                         <span class="i-s i-s-2x pull-left m-r-sm">
                         <i class="i i-hexagon2 i-s-base text-danger hover-rotate"></i>
                         <i class="i i-plus2 i-1x text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-danger">0</span>
+                        <span class="h3 block m-t-xs text-danger">{{ $listMdas->count() }}</span>
                         <small class="text-muted text-u-c">Registered MDAs</small>
                         </span>
                     </a>
@@ -49,7 +49,7 @@
                         <i class="i i-location i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-info">0</span>
+                        <span class="h3 block m-t-xs text-info">{{ $activeAdverts->count() }}</span>
                         <small class="text-muted text-u-c">Pubished Adverts</small>
                         </span>
                     </a>
@@ -61,7 +61,7 @@
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-primary">0</span>
+                        <span class="h3 block m-t-xs text-primary">{{ $closingBids->count() }}</span>
                         <small class="text-muted text-u-c">Bids Submitted</small>
                         </span>
                     </a>

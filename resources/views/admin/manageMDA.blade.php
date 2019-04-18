@@ -63,6 +63,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {{ $mdas->links() }}
                 </div>
             </form>
             </section>
