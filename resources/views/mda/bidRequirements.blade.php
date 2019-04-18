@@ -20,34 +20,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>CAC Certificates</td>
-                                <td>
-                                    <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" value="cac certificate" name="requirement[]"><i></i></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tax Clearance Certificates</td>
-                                <td>
-                                    <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" value="tax clearance certificate" name="requirement[]"><i></i></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>PenCom Certificate</td>
-                                <td>
-                                    <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" value="pencom certificate" name="requirement[]"><i></i></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ITF Certificate</td>
-                                <td>
-                                    <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" value="ITF certificate"  name="requirement[]"><i></i></label>
-                                </td>
-                            </tr>
+                            @if(sizeof($names) > 0)
+                                @foreach($names as $name)
+                                <tr>
+                                    <td>{{$name->certificate_name}}</td>
+                                    <td>
+                                        <label class="checkbox m-l m-t-none m-b-none i-checks">
+                                            <input type="checkbox" value="{{$name->certificate_name}}" name="requirement[]"><i></i></label>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="2">
+                                        No Record Found
+                                    </td>
+                                </tr>
+                            @endif
+
                         </tbody>
                     </table>
                 </div>

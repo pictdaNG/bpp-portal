@@ -13,11 +13,23 @@ class EloquentComplianceRepository implements ComplianceContract{
     public function createCompliance($request) {  
         $compliance = new Compliance;
         $this->setComplianceProperties($compliance, $request);
+
+        $search = Compliance::where('user_id', Auth::user()->id)->get()->first();
+
+        if($search) {
+            $this->setComplianceProperties($search, $request);
+            return $search->save();
+        }
+        else {
+            $this->setComplianceProperties($compliance, $request);
+            return $compliance->save();
+
+        }
         return $compliance->save();
     }
 
     public function getCompliancesById(){
-        return Compliance::where("user_id", Auth::user()->id)->get();
+        return Compliance::where("user_id", Auth::user()->id)->first();
 
     }
 

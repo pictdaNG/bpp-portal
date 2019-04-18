@@ -290,15 +290,18 @@
             </tr>
             </thead>
             <tbody id="inventario-data">
-            @foreach($fees as $fee)
-            <?php $sumTotal = 0; $sumTotal+= $fee->amount; ?>
-                <tr>
-                    <td><input type="checkbox" class="data-check"></td>
-                    <td>{{$fee->name}}</td>
-                    <td style="visibility: hidden;" >{{$fee->amount}}</td>
-                </tr>
-            @endforeach
-            
+            <?php $sumTotal = 0;?> 
+             @if(sizeof($fees) > 0)
+              
+                @foreach($fees as $fee)
+                <?php $sumTotal+= $fee->amount; ?>
+                    <tr>
+                        <td><input type="checkbox" class="data-check"></td>
+                        <td>{{$fee->name}}</td>
+                        <td style="visibility: hidden;" >{{$fee->amount}}</td>
+                    </tr>
+                @endforeach
+           
             
             </tbody>
             <tfoot>
@@ -307,6 +310,12 @@
                 <th><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
                 <th style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
             </tr>
+            @else 
+                <tr>
+                    
+                    <td colspan = "2">No Record Found</td>
+                 </tr>
+            @endif
             </tfoot>
         </table>
            
