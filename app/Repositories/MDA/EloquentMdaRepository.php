@@ -13,9 +13,11 @@ class EloquentMdaRepository implements MdaContract
         $newUser->email = $requestData['email'];
         $newUser->user_type = "mda";
         $newUser->bank_name = $requestData['bank_name'];
-        $newUser->bank_account = $requestData['bank_account'];
+        $newUser->bank_account_no = $requestData['bank_account'];
         $newUser->split_percentage = $requestData['split_percentage'];
         $newUser->password = bcrypt($requestData['password']);
+        $newUser->website = $requestData['website'];
+        $newUser->phone = $requestData['phone'];
         $newUser->save();
 
         $file = $requestData['profile_pic'];
