@@ -15,11 +15,40 @@ class EloquentAdvertRepository implements AdvertContract {
         $this->setAdvertProperties($advert, $request);
         return $advert->save();
     }
+
+    public function editAdvert($request) {
+       // dd($request);
+        $advert = Advert::find($request->id);
+        $advert->tender_collection = $request->tender_collection;
+        $advert->tender_submission = $request->tender_submission;
+        $advert->tender_opening = $request->tender_opening;
+        return $advert->save();
+    }
     
 
     public function listActiveAdverts(){
         return Advert::with('user')->where("bid_opening_date", ">", Carbon::now()->isoFormat('D/M/YYYY'))
         ->where('status', 'active')->get();
+    }
+
+
+    public function listAdvertsByMDA(){
+        return Advert::where('user_id', Auth::user()->id)
+            ->with('advertLot.tenderRequirement')
+            ->with('advertLot')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+    }
+
+    public function getAdsById($id){
+        return Advert::where('id', $id)
+            ->with('advertLot.tenderRequirement')
+            ->with('advertLot')
+            ->with('tenderRequirement')
+            ->with('user')
+            ->get()->first();
+
     }
 
     public function closingBids(){    
@@ -32,9 +61,10 @@ class EloquentAdvertRepository implements AdvertContract {
 
     }
 
+    
 
     public function getAdvertById($advertId) {
-        return Advert::where("id", $advertId)->orderBy('created_at', 'desc')->get()->first();
+        return Advert::where("id", $advertId)->get()->first();
     }
 
     public function listAdvertsByUserId(){

@@ -55,7 +55,7 @@
                   <td>
                 <a href="#" data-id="{{ $advert->id }}" data-name="{{ $advert->name}}" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a> 
                 <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                <a href="{{route('returnAdvert', $advert->id)}}" class="btn btn-default"><i class="fa fa-eye"></i></a>
                 <a href="{{ route('bidRequirements', $advert->id) }}" class="btn btn-default"><i class="fa fa-gear"></i></a>
             </td>
             </tr>
@@ -214,7 +214,7 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">Lot Amount</label>
         <div class="col-lg-9">
-        <input type="text" required name="lot_amount" class="form-control">
+        <input type="number" required name="lot_amount" class="form-control">
         </div>
     </div>
 

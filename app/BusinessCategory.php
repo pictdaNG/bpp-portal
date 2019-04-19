@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class BusinessCategory extends Model
 {
     protected $fillable = ['name'];
+
+    public function advertLot(){
+        return $this->hasMany('App\BusinessCategory');
+    }
 }

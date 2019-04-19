@@ -19,7 +19,7 @@ class MDAController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return voidl istAdsByUserIdandCategory
      */
     protected $repo;
     protected $advert_contract;
@@ -136,6 +136,14 @@ class MDAController extends Controller
  
         }
       
+    }
+
+    
+
+    public function getAdvertById($advertId) {
+        $advert = $this->advert_contract->getAdsById($advertId);
+       // dd($advert);
+        return view('mda.AdvertPreview')->with(['advert' => $advert]);
     }
 
 }

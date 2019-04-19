@@ -108,8 +108,6 @@ class ContractorController extends Controller {
          $company = $this->repo->getCompanyById();
          $compliance = $this->contract_compliance->getCompliancesById();
 
-
-
         return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
         'contractorcategories' =>  $categories, 'ownerships' => $owner_ship,
         'countries' => $countries, 'allcategories' => $categories, 'contractorcategories' =>  $categories,

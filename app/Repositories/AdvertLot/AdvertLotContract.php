@@ -7,4 +7,5 @@ interface AdvertLotContract{
     public function listAllAdvertLots();
     public function listAdvertLotsByUserId();
     public function removeAdvertLot($request);
+    public function listAdsByUserIdandCategory($categoryId);
 }

@@ -16,8 +16,8 @@ class CreateAdvertLotsTable extends Migration{
             $table->string('package_no');
             $table->string('lot_no');
             $table->string('description');
-            $table->string('lot_category');
-            $table->string('lot_category_name');
+            $table->string('advert_lot_business_category_id');
+            $table->string('category_name');
             $table->string('lot_amount');
             $table->string('tender_document');
             $table->integer('user_id')->unsigned()->nullable();

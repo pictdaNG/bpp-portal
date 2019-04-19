@@ -8,4 +8,10 @@ class TenderRequirement extends Model{
     
      protected $fillable = ['name', 'lot_id', 'lot_no', 'advert_id', 'project_name', 'user_id' ];
     
+
+     public function advertLot(){
+          return $this->belongsTo('App\AdvertLot');
+      }
+
+      
 }

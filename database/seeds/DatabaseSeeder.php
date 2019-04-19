@@ -31,6 +31,12 @@ class DatabaseSeeder extends Seeder
         $this->call(QualificationSeeder::class);
         $this->call(MDATableSeeder::class);
         $this->call(AdvertSeederTable::class);
+        $this->call(PDFNameSeederTable::class);
+        $this->call(CategoryFeeSeederTable::class);
+        $this->call(TenderEligibilitySeederTable::class);
+
+
+
 
 
 

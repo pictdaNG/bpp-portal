@@ -75,13 +75,17 @@ Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
 Route::post('/mda/delete', 'MDAController@deleteMda')->name('deleteMdas');
 Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
 Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
+Route::get('/mda/advert/preview/{advertId}', 'MDAController@getAdvertById')->name('returnAdvert');
+
+
 
 
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
 Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts');
 Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
-
+Route::get('/advert/preview/{advertId}', 'AdvertController@getAdvertById');
+Route::post('/advert/update/{advertId}', 'AdvertController@updateAdvert');
 
 //AdvertLot
 Route::post('/advert-lot/create', 'AdvertLotController@storeAdvertLot')->name('storeAdvertLot');
@@ -93,6 +97,7 @@ Route::post('/advert-lot/deleteAdvertLot', 'AdvertLotController@deleteAdvertLot'
 Route::post('/bidRequirement/create/', 'TenderRequirementController@storeTenderRequirement')->name('storeRequirement');
 Route::get('/bidRequirement/requirements/{lotId}', 'TenderRequirementController@tenderRequirement')->name('returnRequirements');
 Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert')->name('deleteRequirements');
+
 
 
 // bids eligibility
