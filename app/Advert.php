@@ -10,7 +10,7 @@ class Advert extends Model{
     protected $fillable = [
        
         'name', 'budget_year',  'advert_type', 'advert_mode', 'introduction', 'advert_publish_date',
-        'bid_opening_date', 'status', 
+        'bid_opening_date', 'status', 'tender_collection', 'tender_submission', 'tender_opening', 
      ];
 
 
@@ -20,6 +20,10 @@ class Advert extends Model{
 
      public function advertLot(){
         return $this->hasMany('App\AdvertLot');
+    }
+
+    public function tenderRequirement(){
+        return $this->hasMany('App\TenderRequirement');
     }
     
 }

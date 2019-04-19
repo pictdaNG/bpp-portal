@@ -315,8 +315,8 @@ section.panel-body.slim-scroll {
                               <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                               <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
                           </div>
-                          <a href="#" class="h4">{{$advert->name}}</a>
-                          <small class="block"><a href="#" class="">{{$advert->user->name}}</a></small>
+                          <a href="{{action('AdvertController@getAdvertById', $advert->id)}}" class="h4">{{$advert->name}}</a>
+                          <small class="block"><a href="{{action('AdvertController@getAdvertById', $advert->id)}}" class="">{{$advert->user->name}}</a></small>
                           <small class="block m-t-sm">{{$advert->introduction}}</small>
                           </div>
                       </article>

@@ -1,0 +1,154 @@
+@extends('layouts.mda')
+
+@section('content')
+
+<style>
+.text-align {
+    text-align: center;
+    position: relative;
+    margin-right: 8em;
+}
+  </style>
+
+
+  <section class="hbox stretch">
+    <section id="content">
+      <section class="vbox">
+        <section class="scrollable padder">
+              <form action="javascript:void(0)" method="POST" id="updateAdvertForm">     
+
+          <div class="m-b-md">
+            <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
+              <img src="{{ asset('/images/logo.png') }}"  class="img-responsive" height="200" width="200" alt="">    
+            </div>
+          </div>
+
+          <div class="row text-align">
+            <h4 class="text-primary">{{ Auth::user()->name }}</h4>
+            <p>{{ Auth::user()->address }}</p>
+            <h4 class="text-success">{{$advert->name}}</h4>
+          </div>
+
+          <div class="row m-l-md">
+            <div class="col-sm-6">
+              <span>     
+                <h4 class="m-t-md"><i class="fas fa-address-book"></i> INTRODUCTION</h4>
+              </span>
+              <small class="">  {{$advert->introduction}}</small>
+              <span>
+                <h4 class="m-t-md"><i class="fas fa-address-book"></i> LOT DESCRIPTION</h4>
+              </span>
+              <?php $i = 1; ?>
+              @if(sizeof($advert->advertLot))
+                @foreach($advert->advertLot as $lot)
+                <p><strong>LOT {{$i++}}: </strong>{{$lot->description}}</p>
+                @endforeach
+              @else
+               <strong>NO AVAILABLE LOT </strong>
+              @endif
+              <span>        
+                <h4  class="m-t-md"><i class="fas fa-address-book"></i> TENDER REQUIREMENTS</h4>
+              </span>
+                @if(sizeof($advert->tenderRequirement ) > 0)
+              <ol>
+                
+                  @foreach($advert->tenderRequirement as $requirement)
+                  <li>{{$requirement->name}}</li>
+                  @endforeach
+                
+              </ol>
+              @else 
+                 <strong>NO RECORD FOUND </strong>
+                @endif
+              <div class="col-md-6">
+                  <button class="btn btn-primary" disabled="disabled" id="submitBtn">Save &amp; Continue</button>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <span>        
+                <h4 class="m-t-md"><i class="fas fa-address-book"></i> COLLECTION OF TENDER DOCUMENTS</h4>
+              </span>
+              <textarea style="width: 100%; background-color: transparent; border: 0px" id="tender_collection" name="tender_collection" placeholder="Click here to edit this default text" type="text">{{$advert->tender_collection}}</textarea>
+              <span>
+                
+                <h4 class="m-t-md"><i class="fas fa-address-book"></i> SUBMISSION OF TENDER DOCUMENTS</h4>
+              </span>
+              <textarea style="width: 100%; background-color: transparent; border: 0px" id="tender_submission" name="tender_submission" placeholder="Click here to edit this default text" type="text">{{$advert->tender_submission}}</textarea>
+              <h4 class="m-t-md"><i class="fas fa-address-book"></i> OPENING OF TENDER DOCUMENTS</h4>
+              <textarea style="width: 100%; background-color: transparent; border: 0px" id="tender_opening" name="tender_opening" placeholder="Click here to edit this default text" type="text">{{$advert->tender_opening}}</textarea>
+              <input type="hidden" name="id" value="{{$advert->id}}">
+              <!-- <span>   
+                <h4  class="m-t-md"><i class="fas fa-address-book"></i> OPENING OF TENDER DOCUMENTS</h4>
+              </span>
+              <input style="width: 100%; background-color: transparent; border: 0px" placeholder="Click here to edit this default text" type="text">          -->
+            </div>  
+            </form>
+   
+          </section>
+        </section>
+      <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+    </section>
+  </section>
+
+@endsection
+
+<script>
+  window.addEventListener('load', function () {
+    $("#updateAdvertForm").submit(function(evt){
+      evt.preventDefault();
+      evt.stopImmediatePropagation();
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      var url = '{{URL::to('/')}}';
+      var dataType =  'JSON';
+        $.ajax({
+        type : 'POST',
+        url : url + '/advert/update/1',
+        data :$('#updateAdvertForm').serialize(),
+        dataType: dataType,
+        success:function(data){  
+          console.log('success', data)
+
+          $('#submitBtn').html('Submitted');
+          $('#submitBtn').removeAttr('disabled');
+          setTimeout(function(){
+              $('#submitBtn').html('Save Data');
+          },1000);
+        },
+        beforeSend: function(){
+          $('#submitBtn').html('Sending..');
+          $('#submitBtn').attr('disabled', 'disabled');
+        },
+        error: function(data) {
+          console.log('error', data)
+          $('#submitBtn').html('Try Again');
+          $('#submitBtn').removeAttr('disabled');
+            
+        // show error to end user
+        }
+      });
+    }) 
+  }) 
+  
+
+   window.addEventListener('load', function () {
+    $('#tender_collection, #tender_submission, #tender_opening').bind('keyup', function() {
+      (allFilled()) ? $('#submitBtn').removeAttr('disabled') : $('#submitBtn').attr('disabled', 'disabled');
+    });
+
+    function allFilled() {
+        var filled = true;
+        $('body textarea').each(function() {
+            if($(this).val() == '') filled = false;
+        });
+        return filled;
+    }
+   });
+ 
+   
+ </script>
+
+

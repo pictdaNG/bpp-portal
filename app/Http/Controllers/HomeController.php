@@ -20,6 +20,8 @@ use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use App\Repositories\Compliance\ComplianceContract;  
 use App\Repositories\ContractorCategory\ContractorCategoryContract;
 use App\Repositories\Advert\AdvertContract;
+use App\Repositories\AdvertLot\AdvertLotContract;
+
 use App\Repositories\MDA\MdaContract;
 
 class HomeController extends Controller{
@@ -33,6 +35,8 @@ class HomeController extends Controller{
     protected $contract_directors;
     protected $contract_categories;
     protected $contract_adverts;
+    protected $contract_advertLot;
+
    // protected $contract_uploads;
     protected $uploads;
     protected $mdas;
@@ -40,7 +44,7 @@ class HomeController extends Controller{
     public function __construct(ContractorContract $contractorContract, ContractorPersonnelContract $contractorPersonnelContract,
             ContractorJobsContract $contractorJobsContract, ContractorFinanceContract $contractorFinanceContract ,
             ContractorMachineryContract $contractorMachinery, ComplianceContract $complianceContract, DirectorContract $directorContract,
-            ContractorCategoryContract $categoryContract, AdvertContract $advertContract, MdaContract $mdaContract  ){
+            ContractorCategoryContract $categoryContract, AdvertContract $advertContract, MdaContract $mdaContract, AdvertLotContract $advertLotContract  ){
 
         $this->middleware('auth');
         $this->company = $contractorContract;
@@ -52,6 +56,7 @@ class HomeController extends Controller{
         $this->contract_directors = $directorContract;
         $this->contract_categories = $categoryContract;    
         $this->contract_advert = $advertContract;  
+        $this->contract_advertLot = $advertLotContract;
        // $this->contract_uploads =   
         $this->contract_mdas = $mdaContract;
 
@@ -74,7 +79,15 @@ class HomeController extends Controller{
             return view('adminHome', ['getCompliance' => $compliances, 'listMdas' => $listMdas, 'activeAdverts' => $activeAdverts, 
             'closingBids' => $closingBids]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
-            return view('MDAHome');
+             $myAdverts =  $this->contract_advert->listAdvertsByMDA();
+             
+             $constructions = $this->contract_advertLot->listAdsByUserIdandCategory('1');
+                $consultancy = $this->contract_advertLot->listAdsByUserIdandCategory('2');
+                $supplies = $this->contract_advertLot->listAdsByUserIdandCategory('3');
+                $adsCategory= $this->jobsDone($constructions, $supplies, $consultancy);
+
+            return view('MDAHome', ['myAdverts'=> $myAdverts, 'adsCategory' => $adsCategory]);
+   
         }else if(strtolower($user->user_type) == strtolower("Contractor")){
 
             $companies = $this->company->getCompanyById();
@@ -190,10 +203,13 @@ class HomeController extends Controller{
          return $status;
     }
 
+
     public function logout(){
         Auth::logout();
         return redirect('/');
     }
+
+
 
     
 }
