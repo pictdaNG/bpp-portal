@@ -581,8 +581,6 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
         });   
    });
 
-
-
     $(document).ready(function() {
         $("#check-al").click(function() {
             var isChecked = $(this).prop('checked');

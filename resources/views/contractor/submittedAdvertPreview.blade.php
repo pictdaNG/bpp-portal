@@ -8,9 +8,6 @@
     position: relative;
     margin-right: 8em;
 }
-.pt40 {
-  padding-top: 20px;
-}
   </style>
 
 
@@ -19,8 +16,8 @@
     <section id="content">
       <section class="vbox">
         <section class="scrollable padder">
-        <div class=" text-left-xs text-right pt40 ">
-                  <a href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-success btn-sm" id="submitBtn">Apply For Tender</a>
+        <div class=" text-left-xs text-right ">
+                  <a href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-success disabled" id="submitBtn">Applied</a>
               </div>
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
@@ -37,16 +34,16 @@
           <div class="row m-l-md">
             <div class="col-sm-6">
               <span>     
-                <h4 class="m-t-md"><i class="i i-stack"></i> INTRODUCTION</h4>
+                <h4 class="m-t-md"><i class="fa fa-address-book"></i> INTRODUCTION</h4>
               </span>
-              <small class="" style="margin-left: 22px">  {{$advert->introduction}}</small>
+              <small class="">  {{$advert->introduction}}</small>
               <span>
-                <h4 class="m-t-md"><i class="i i-stack"></i> LOT DESCRIPTION</h4>
+                <h4 class="m-t-md"><i class="fa fa-address-book"></i> LOT DESCRIPTION</h4>
               </span>
               <?php $i = 1; ?>
               @if(sizeof($advert->advertLot) > 0)
                 @foreach($advert->advertLot as $lot)
-                <p style="margin-left: 22px" ><strong>LOT {{$i++}}: </strong>{{$lot->description}}</p>
+                <p><strong>LOT {{$i++}}: </strong>{{$lot->description}}</p>
                 @endforeach
               @else
                 <span>        
@@ -54,51 +51,51 @@
                 </span>
               @endif
               <span>        
-                <h4  class="m-t-md"><i class="i i-stack"></i> TENDER REQUIREMENTS</h4>
+                <h4  class="m-t-md"><i class="fa fa-address-book"></i> TENDER REQUIREMENTS</h4>
               </span>
               @if(sizeof($advert->tenderRequirement) > 0)
               
               <?php $i = 1; ?>
               @foreach($advert->tenderRequirement as $requirement)
-               <p style="margin-left: 22px">{{$i++}}. {{$requirement->name}}</p>
+               <p>{{$i++}}. {{$requirement->name}}</p>
               @endforeach
                 
               
               @else
-                  <span style="margin-left: 22px">        
+                  <span>        
                     <strong>NO RECORD FOUND</strong>
                   </span>
                 @endif
             </div>
             <div class="col-sm-6">
               <span>        
-                <h4 class="m-t-md"><i class="glyphicon glyphicon-hand-right"></i> COLLECTION OF TENDER DOCUMENTS</h4>
+                <h4 class="m-t-md"><i class="fa fa-address-book"></i> COLLECTION OF TENDER DOCUMENTS</h4>
               </span>
               @if(!empty($advert->tender_collection))
-                <p style="margin-left: 22px">{{$advert->tender_collection}}</p>
+                <p>{{$advert->tender_collection}}</p>
               @else
-                <span style="margin-left: 22px">        
+                <span>        
                   <strong>NO RECORD FOUND</strong>
                 </span>
               @endif
               <span>
                 
-                <h4 class="m-t-md"><i class="glyphicon glyphicon-hand-right"></i> SUBMISSION OF TENDER DOCUMENTS</h4>
+                <h4 class="m-t-md"><i class="fa fa-address-book"></i> SUBMISSION OF TENDER DOCUMENTS</h4>
               </span>
               @if(!empty($advert->tender_submission))
-              <p style="margin-left: 22px">{{$advert->tender_submission}}</p>
+              <p>{{$advert->tender_submission}}</p>
               @else
-                <p><strong style="margin-left: 22px">NO RECORD FOUND</strong></p>
+                <p><strong>NO RECORD FOUND</strong></p>
               @endif
-              <h4 class="m-t-md"><i class="glyphicon glyphicon-hand-right"></i> OPENING OF TENDER DOCUMENTS</h4>
+              <h4 class="m-t-md"><i class="fa fa-address-book"></i> OPENING OF TENDER DOCUMENTS</h4>
               @if(!empty($advert->tender_opening))
               <p>{{$advert->tender_opening}}</p>
               @else
-                <p style="margin-left: 22px"><strong>NO RECORD FOUND</strong></p>
+                <p><strong>NO RECORD FOUND</strong></p>
               @endif 
-              <h4 class="m-t-md"><i class="glyphicon glyphicon-hand-right"></i> NOTE</h4>
+              <h4 class="m-t-md"><i class="fa fa-address-book"></i> NOTE</h4>
             
-              <p style="margin-left: 22px">1. No Late submission</p>
+              <p>1. No Late submission</p>
                          
             </div>     
           </section>

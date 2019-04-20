@@ -25,7 +25,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                 <?php $i = 1 ?>
+                                 <?php $i = 1;?>
+                                 
                                 @foreach($sales as $data)
                                          
                                     <tr>

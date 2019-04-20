@@ -20,7 +20,11 @@
       
       <section class="vbox">
         <section class="scrollable padder">
-          <form action="javascript:void(0)" method="POST" id="updateAdvertForm">     
+          <div class=" text-left-xs text-right pt40">
+            <button href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-rounded btn-sm btn-icon btn-success" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Approve Advert"><i class="i i-like"></i></button>
+            <button href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-rounded btn-sm btn-icon btn-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Decline Advert"><i class="i i-dislike"></i></button>
+          </div>
+              <form action="javascript:void(0)" method="POST" id="updateAdvertForm">     
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
               <img src="{{ asset('uploads/'.Auth::user()->profile_pic) }}"  class="img-responsive" height="200" width="200" alt="">    
@@ -48,7 +52,7 @@
                 <p style="margin-left: 22px"><strong>LOT {{$i++}}: </strong>{{$lot->description}}</p>
                 @endforeach
               @else
-                <span style="margin-left: 22px"><strong>NO AVAILABLE LOT </strong></span>
+               <strong>NO AVAILABLE LOT </strong>
               @endif
               <span>        
                 <h4  class="m-t-md"><i class="i i-stack"></i> TENDER REQUIREMENTS</h4>
@@ -60,7 +64,7 @@
                     @endforeach
                   </ol>
                 @else 
-                  <p style="margin-left: 22px"><strong>NO RECORD FOUND </strong></p>
+                  <p><strong>NO RECORD FOUND </strong></p>
                 @endif
               <div class="col-md-6">
                   <button class="btn btn-primary" disabled="disabled" id="submitBtn">Save &amp; Continue</button>
@@ -93,64 +97,3 @@
   </section>
 
 @endsection
-
-<script>
-  window.addEventListener('load', function () {
-    $("#updateAdvertForm").submit(function(evt){
-      evt.preventDefault();
-      evt.stopImmediatePropagation();
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
-      var url = '{{URL::to('/')}}';
-      var dataType =  'JSON';
-        $.ajax({
-        type : 'POST',
-        url : url + '/advert/update/1',
-        data :$('#updateAdvertForm').serialize(),
-        dataType: dataType,
-        success:function(data){  
-          console.log('success', data)
-
-          $('#submitBtn').html('Submitted');
-          $('#submitBtn').removeAttr('disabled');
-          setTimeout(function(){
-              $('#submitBtn').html('Save Data');
-          },1000);
-        },
-        beforeSend: function(){
-          $('#submitBtn').html('Sending..');
-          $('#submitBtn').attr('disabled', 'disabled');
-        },
-        error: function(data) {
-          console.log('error', data)
-          $('#submitBtn').html('Try Again');
-          $('#submitBtn').removeAttr('disabled');
-            
-        // show error to end user
-        }
-      });
-    }) 
-  }) 
-  
-
-   window.addEventListener('load', function () {
-    $('#tender_collection, #tender_submission, #tender_opening').bind('keyup', function() {
-      (allFilled()) ? $('#submitBtn').removeAttr('disabled') : $('#submitBtn').attr('disabled', 'disabled');
-    });
-
-    function allFilled() {
-        var filled = true;
-        $('body textarea').each(function() {
-            if($(this).val() == '') filled = false;
-        });
-        return filled;
-    }
-   });
- 
-   
- </script>
-
-

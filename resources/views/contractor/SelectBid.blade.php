@@ -7,9 +7,9 @@
             <br/>
             <section class="panel panel-default">
                 <header class="panel-heading">
-                   <strong> {{$advert->user->name}} </strong> <br>
-                   Project Title: {{strtoupper($advert->introduction)}} <br>
-                   Advert Type: {{strtoupper($advert->advert_type)}}
+                  <p> <strong> {{$advert->user->name}} </strong> </p>
+                  <p> Project Title: {{strtoupper($advert->introduction)}} </p>
+                  <p> Advert Type: {{strtoupper($advert->advert_type)}} </p>
                 </header>
                 <form class="bs-example form-horizontal" action="{{route('storesales')}}" method="POST">
 
@@ -32,7 +32,7 @@
                                 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="lots">
                 
                                 @foreach($advert->advertLot as $lot)
                                          
@@ -50,14 +50,14 @@
                             </tbody>
                         </table>
                     </div>
-                    <br/>
                     <div class="row" style="padding-left: 10px; padding-right: 10px;">
                     <div class="col-md-6">
+                         <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />  
                             <!-- <a href="{{ route('newMdaAdvert') }}" class="btn btn-default">Back to Lots</a> -->
                         </div>
                         <div class="col-md-6 text-right">
-                            <button type="submit" class="btn btn-primary">Apply For Tender</button>
-                            <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
+                            <button type="submit" id="submitBtn" disabled="disabled" class="btn btn-primary">Submit Application</button>
+                         
 
                         </div>
                     </div>
@@ -68,5 +68,22 @@
         </section>
     </section>
 </section>
+<script>
+
+    window.addEventListener('load', function () {
+        $(document).ready(function() {
+            var sumchecked = 0;
+            $('#lots').on('change', 'input[type="checkbox"]', function(){
+                ($(this).is(':checked')) ? sumchecked++ : sumchecked--;
+                (sumchecked > 0) ? $('#submitBtn').removeAttr('disabled') : $('#submitBtn').attr('disabled', 'disabled');
+            
+
+            });
+        });
+    });
+
+</script>
+
+
 @endsection
 

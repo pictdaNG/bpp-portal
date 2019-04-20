@@ -22,10 +22,14 @@ class EloquentTenderEligibilityRepository implements TenderEligibilityContract
     }
     
     
-    public function destroy($id)
-    {
-        $client = TenderEligibility::findorFail($id);
-        return $client->delete();
+    public function destroy($request){     
+
+        $data = $request->ids;
+        for($i = 0; $i < sizeof($data); $i++ ){
+         $client = TenderEligibility::where('id', $data[$i])->delete();
+        }
+        return $client;
+     
     }
     
     public function update($id, $requestData)

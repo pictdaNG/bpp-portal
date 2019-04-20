@@ -128,9 +128,11 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Client</label>
             <div class="col-lg-9">
-            <select name="client" required class="form-control">
+            <input type="text" name="client" required class="form-control">
+
+            <!-- <select name="client" required class="form-control">
                 <option value="default"></option>
-            </select>
+            </select> -->
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
