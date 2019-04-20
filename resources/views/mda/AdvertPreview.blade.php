@@ -26,7 +26,7 @@
           <div class="row text-align">
             <h4 class="text-primary">{{ Auth::user()->name }}</h4>
             <p>{{ Auth::user()->address }}</p>
-            <h4 class="text-success">{{$advert->name}}</h4>
+            <h4 class="text-success">{{strtoupper($advert->name)}}</h4>
           </div>
 
           <div class="row m-l-md">

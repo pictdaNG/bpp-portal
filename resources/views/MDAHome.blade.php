@@ -31,7 +31,7 @@ section.panel-body.slim-scroll {
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">{{$adsCategory['constructions']}}</div>
+                    <div class="h3 font-bold">{{$data['constructions']}}</div>
                     <small class="text-muted">Construction/Works</small>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ section.panel-body.slim-scroll {
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">{{$adsCategory['consultancy']}}</div>
+                    <div class="h3 font-bold">{{$data['consultancy']}}</div>
                     <small class="text-muted">Consultancy/Services</small>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ section.panel-body.slim-scroll {
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">{{$adsCategory['supplies']}}</div>
+                    <div class="h3 font-bold">{{$data['supplies']}}</div>
                     <small class="text-muted">Goods/Supply</small>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ section.panel-body.slim-scroll {
                         <i class="i i-location i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-success">N0.00</span>
+                        <span class="h3 block m-t-xs text-success">{{$data['totalSales']}}</span>
                         <small class="text-muted text-u-c">Revenue Generated</small>
                         </span>
                     </a>
@@ -113,7 +113,7 @@ section.panel-body.slim-scroll {
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-info">0</span>
+                        <span class="h3 block m-t-xs text-info">{{$data['salesCount']}}</span>
                         <small class="text-muted text-u-c">No of Bids Bought</small>
                         </span>
                     </a>
