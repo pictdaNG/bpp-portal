@@ -201,6 +201,7 @@ return [
         App\Providers\TenderEligibilityServiceProvider::class,
         App\Providers\CategoryRegistrationFeeServiceProvider::class,
         App\Providers\PDFCertifcateNameServiceProvider::class,
+        App\Providers\SalesServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
 

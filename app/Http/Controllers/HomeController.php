@@ -20,6 +20,8 @@ use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use App\Repositories\Compliance\ComplianceContract;  
 use App\Repositories\ContractorCategory\ContractorCategoryContract;
 use App\Repositories\Advert\AdvertContract;
+use App\Repositories\Sales\SalesContract;
+
 use App\Repositories\AdvertLot\AdvertLotContract;
 
 use App\Repositories\MDA\MdaContract;
@@ -36,13 +38,14 @@ class HomeController extends Controller{
     protected $contract_categories;
     protected $contract_adverts;
     protected $contract_advertLot;
+    protected $contract_sales;
 
    // protected $contract_uploads;
     protected $uploads;
     protected $mdas;
 
     public function __construct(ContractorContract $contractorContract, ContractorPersonnelContract $contractorPersonnelContract,
-            ContractorJobsContract $contractorJobsContract, ContractorFinanceContract $contractorFinanceContract ,
+            ContractorJobsContract $contractorJobsContract, ContractorFinanceContract $contractorFinanceContract , SalesContract $salesContract,
             ContractorMachineryContract $contractorMachinery, ComplianceContract $complianceContract, DirectorContract $directorContract,
             ContractorCategoryContract $categoryContract, AdvertContract $advertContract, MdaContract $mdaContract, AdvertLotContract $advertLotContract  ){
 
@@ -57,6 +60,7 @@ class HomeController extends Controller{
         $this->contract_categories = $categoryContract;    
         $this->contract_advert = $advertContract;  
         $this->contract_advertLot = $advertLotContract;
+        $this->contract_sales = $salesContract;
        // $this->contract_uploads =   
         $this->contract_mdas = $mdaContract;
 
@@ -75,18 +79,21 @@ class HomeController extends Controller{
             $listMdas = $this->contract_mdas->listMdas();
             $activeAdverts = $this->contract_advert->listActiveAdverts();
             $closingBids = $this->contract_advert->closingBids();
-            // dd($compliances);
             return view('adminHome', ['getCompliance' => $compliances, 'listMdas' => $listMdas, 'activeAdverts' => $activeAdverts, 
             'closingBids' => $closingBids]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
              $myAdverts =  $this->contract_advert->listAdvertsByMDA();
              
              $constructions = $this->contract_advertLot->listAdsByUserIdandCategory('1');
-                $consultancy = $this->contract_advertLot->listAdsByUserIdandCategory('2');
-                $supplies = $this->contract_advertLot->listAdsByUserIdandCategory('3');
-                $adsCategory= $this->jobsDone($constructions, $supplies, $consultancy);
+            $consultancy = $this->contract_advertLot->listAdsByUserIdandCategory('2');
+            $supplies = $this->contract_advertLot->listAdsByUserIdandCategory('3');
 
-            return view('MDAHome', ['myAdverts'=> $myAdverts, 'adsCategory' => $adsCategory]);
+            $totalSales = $this->contract_sales->totalSales();
+            $salesCount = $this->contract_sales->salesCount();
+
+            $data= $this->dashboardData($constructions, $supplies, $consultancy, $totalSales, $salesCount);
+
+            return view('MDAHome', ['myAdverts'=> $myAdverts, 'data' => $data]);
    
         }else if(strtolower($user->user_type) == strtolower("Contractor")){
 
@@ -105,28 +112,37 @@ class HomeController extends Controller{
             $activeAdverts = $this->contract_advert->listActiveAdverts();
             $closingBids = $this->contract_advert->closingBids();
 
+            $submittedBids = $this->contract_sales->listSalesByUserId();
+
+
             $uploads = ContractorFile::where('user_id',  Auth::user()->id)->get();
 
             
 
             $percent = $this->percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances, $uploads );
-            $jobs= $this->jobsDone($constructions, $supplies, $consultancy);
+            $jobs= $this->dashboardData($constructions, $supplies, $consultancy, null, null);
             
             $adverts = sizeof($activeAdverts) > 0 ? sizeof($activeAdverts) : 0;
  
             return view('home', ['percent_status' => $percent, 'jobs' => $jobs,
                                 'adverts' => $adverts, 'activeAdverts' => $activeAdverts, 
-                                'closingBids' => $closingBids]);
+                                'closingBids' => $closingBids, 'submittedBids' => $submittedBids]);
         }
         return redirect('/404');
     }
 
 
-    public function jobsDone($constructions, $supplies, $consultancy) {
+    
+
+
+    public function dashboardData($constructions, $supplies, $consultancy, $totalSales, $salesCount) {
         $status = array();   
         $status['constructions'] =  (sizeof($constructions) > 0) ? sizeof($constructions) : 0;  
         $status['supplies'] =  (sizeof($supplies) > 0) ?  sizeof($supplies) : 0;  
         $status['consultancy'] = (sizeof($consultancy) > 0) ? sizeof($consultancy) : 0;  
+        $status['totalSales'] = number_format( $totalSales);
+        $status['salesCount'] = $salesCount;
+
         return $status;    
     }
 

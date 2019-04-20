@@ -42,7 +42,7 @@ section.panel-body.slim-scroll {
                         <i class="i i-users2 i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-success">0</span>
+                        <span class="h3 block m-t-xs text-success">{{sizeof($submittedBids)}}</span>
                         <small class="text-muted text-u-c">Bids Submitted</small>
                         </span>
                     </a>
@@ -66,7 +66,7 @@ section.panel-body.slim-scroll {
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-primary">{{$percent_status['percentage']}}%</span>
+                        <span class="h3 block m-t-xs text-primary" id="completedPercentage">{{$percent_status['percentage']}}%</span>
                         <small class="text-muted text-u-c">Registration Progress</small>
                         </span>
                     </a>
@@ -306,23 +306,23 @@ section.panel-body.slim-scroll {
                 </header>
                   <section class="panel-body slim-scroll" data-height="230px" data-size="10px">
                     @if(sizeof($activeAdverts) >0)
-                    @foreach($activeAdverts as $advert)
-                      <article class="media">
-                          <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                          <div class="media-body">
-                          <div class="pull-right media-xs text-center text-muted">
-                              <?php $date = Carbon\Carbon::parse($advert->date_published);  $newDate = $date->isoFormat('MMM Do'); ?>
-                              <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
-                              <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
-                          </div>
-                          <a href="{{action('AdvertController@getAdvertById', $advert->id)}}" class="h4">{{$advert->name}}</a>
-                          <small class="block"><a href="{{action('AdvertController@getAdvertById', $advert->id)}}" class="">{{$advert->user->name}}</a></small>
-                          <small class="block m-t-sm">{{$advert->introduction}}</small>
-                          </div>
-                      </article>
-                    @endforeach
+                      @foreach($activeAdverts as $advert)
+                        <article class="media">
+                            <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                            <div class="media-body">
+                            <div class="pull-right media-xs text-center text-muted">
+                                <?php $date = Carbon\Carbon::parse($advert->date_published);  $newDate = $date->isoFormat('MMM Do'); ?>
+                                <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
+                                <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
+                            </div>
+                            <a href="{{action('AdvertController@getAdvertById', $advert->id)}}" id="adLink" class="h4 disabled">{{$advert->name}}</a>
+                            <small class="block"><a href="{{action('AdvertController@getAdvertById', $advert->id)}}"  id="adLink" class="disabled">{{$advert->user->name}}</a></small>
+                            <small class="block m-t-sm">{{$advert->introduction}}</small>
+                            </div>
+                        </article>
+                      @endforeach
                     @else
-                      <small class="block m-t-sm">No bids available</small>
+                      <small class="block m-t-sm">NO RECORD FOUND</small>
                     @endif
                   </section>
                 </section>
@@ -335,32 +335,25 @@ section.panel-body.slim-scroll {
                 <b>Bids Submitted</b>
                 </header>
                 <section class="panel-body slim-scroll" data-height="230px" data-size="10px">
-                <article class="media">
-                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                        <div class="media-body">
-                        <div class="pull-right media-xs text-center text-muted">
-                            <strong class="h4">17</strong><br>
-                            <small class="label bg-light">FEB</small>
-                        </div>
-                        <a href="#" class="h4">Plateau State Polytechnic</a>
-                        <small class="block"><a href="#" class="">Retnan Daser</a></small>
-                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
-                        </div>
-                    </article>
-
-                    <div class="line pull-in"></div>
-                    <article class="media">
-                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                        <div class="media-body">
-                        <div class="pull-right media-xs text-center text-muted">
-                            <strong class="h4">17</strong><br>
-                            <small class="label bg-light">FEB</small>
-                        </div>
-                        <a href="#" class="h4">Construction of Lecture Theatre UniJos</a>
-                        <small class="block"><a href="#" class="">Logical Address Ltd.</a></small>
-                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
-                        </div>
-                    </article>
+                   @if(sizeof($submittedBids) >0)
+                      @foreach($submittedBids as $bid)
+                        <article class="media">
+                            <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                            <div class="media-body">
+                            <div class="pull-right media-xs text-center text-muted">
+                                <?php $date = Carbon\Carbon::parse($bid->created_at);  $newDate = $date->isoFormat('MMM Do'); ?>
+                                <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
+                                <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
+                            </div>
+                            <a href="{{action('AdvertController@getAdvertById', $bid->advert_id)}}" class="h4 disabled">{{$bid->advert_name}}</a>
+                            <small class="block"><a href="{{action('AdvertController@getAdvertById', $bid->advert_id)}}" class="disabled">{{$bid->mda_name}}</a></small>
+                            <small class="block m-t-sm">{{$bid->lot_description}}</small>
+                            </div>
+                        </article>
+                      @endforeach
+                    @else
+                      <small class="block m-t-sm">NO RECORD FOUND</small>
+                    @endif
                   </section>
                 
               </section>
@@ -380,4 +373,16 @@ section.panel-body.slim-scroll {
     </aside>
     <!-- / side content -->
     </section>
+</section>
 @endsection
+
+<script>
+
+  window.addEventListener('load', function () {
+     let span = document.getElementById('completedPercentage')
+   return (Number(span.innerHTML.replace('%', '')) < 100 ) ? $('.disabled').removeAttr('href'): null;
+    
+   });
+
+</script>
+

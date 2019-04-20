@@ -78,8 +78,6 @@ Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
 Route::get('/mda/advert/preview/{advertId}', 'MDAController@getAdvertById')->name('returnAdvert');
 
 
-
-
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
 Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts');
@@ -145,6 +143,8 @@ Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorF
 Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->name('contractorFiles');
 Route::get('/contractor/viewirr/','ContractorController@getIRR')->name('getIRR');
 Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
+Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvertById');
+
 
 // PDF Name
 Route::post('/admin/pdf/create', 'PDFCertificateNameController@storeName')->name('storePDFName');
@@ -165,3 +165,13 @@ Route::get('/qualifications', 'QualificationController@getQualifications')->name
 Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
 Route::get('/qualifications/list', 'QualificationController@index')->name('qualifications');
 Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');
+
+
+
+//sales
+Route::get('/sales/list', 'SalesController@getSalesByUserId')->name('getSales');
+Route::post('/sales/store', 'SalesController@storeSales')->name('storesales');
+Route::get('/bid/pdf/{advertId}', 'SalesController@getSalesByUserandAdvert')->name('purchases');
+Route::get('/bid/downloadPDF/','SalesController@downloadPDF')->name('getPdf');
+
+//Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');

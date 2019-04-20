@@ -17,7 +17,7 @@
       <section class="vbox">
         <section class="scrollable padder">
         <div class=" text-left-xs text-right ">
-                  <a href="" class="btn btn-success" id="submitBtn">Apply For Tender</a>
+                  <a href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-success" id="submitBtn">Apply For Tender</a>
               </div>
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
@@ -26,9 +26,9 @@
           </div>
 
           <div class="row text-align">
-            <h4 class="text-primary"><strong>{{ $advert->user->name }}</strong></h4>
+            <h4 class="text-primary"><strong>{{strtoupper($advert->user->name)}}</strong></h4>
             <p>{{ $advert->user->address }}</p>
-            <h4 class="text-success"><strong>{{$advert->name}}</strong></h4>
+            <h4 class="text-success"><strong>{{strtoupper($advert->name)}}</strong></h4>
           </div>
 
           <div class="row m-l-md">

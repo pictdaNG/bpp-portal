@@ -19,7 +19,7 @@ class MDAController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return voidl istAdsByUserIdandCategory
+     * @return void
      */
     protected $repo;
     protected $advert_contract;
