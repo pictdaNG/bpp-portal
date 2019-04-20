@@ -75,15 +75,18 @@ Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
 Route::post('/mda/delete', 'MDAController@deleteMda')->name('deleteMdas');
 Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
 Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
-Route::get('/mda/advert/preview/{advertId}', 'MDAController@getAdvertById')->name('returnAdvert');
+Route::get('/mda/advert/preview/{advertId}', 'MDAController@getMDAAdvertById');
+
 
 
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
 Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts');
 Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
-Route::get('/advert/preview/{advertId}', 'AdvertController@getAdvertById');
+Route::get('/advert/active/preview/{advertId}', 'AdvertController@getAdvertById')->name('returnAds');
 Route::post('/advert/update/{advertId}', 'AdvertController@updateAdvert');
+Route::get('/advert/applied/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
+
 
 //AdvertLot
 Route::post('/advert-lot/create', 'AdvertLotController@storeAdvertLot')->name('storeAdvertLot');
@@ -101,7 +104,7 @@ Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert'
 // bids eligibility
 Route::post('/admin/requirement/create', 'TenderEligibilityController@storeName')->name('storeName');
 Route::get('/admin/requirement/names', 'TenderEligibilityController@index')->name('getEligibility');
-Route::delete('/admin/requirement/delete/{id}', 'TenderEligibilityController@delete')->name('deleteName');
+Route::post('/admin/requirement/delete/', 'TenderEligibilityController@delete')->name('deleteName');
 
 
 // ownership structure
@@ -149,7 +152,7 @@ Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvert
 // PDF Name
 Route::post('/admin/pdf/create', 'PDFCertificateNameController@storeName')->name('storePDFName');
 Route::get('/admin/pdf/names', 'PDFCertificateNameController@index')->name('getPDFNames');
-Route::delete('/admin/pdf/delete/{id}', 'PDFCertificateNameController@delete')->name('deletePDFName');
+Route::post('/admin/pdf/delete/', 'PDFCertificateNameController@delete')->name('deletePDFName');
 
 
 // Company Ownership

@@ -27,6 +27,16 @@ class EloquentTenderRequirementRepository implements TenderRequirementContract{
         return TenderRequirement::where("lot_id", $lotId)->get();
     }
 
+    // public function destroy($request){     
+
+    //     $data = $request->ids;
+    //     for($i = 0; $i < sizeof($data); $i++ ){
+    //      $client = TenderRequirement::where('id', $data[$i])->delete();
+    //     }
+    //     return $client;
+     
+    // }
+
     private function setTenderRequirementProperties($requirement, $request, $index) {
           $user = Auth::user();
           $advert = AdvertLot::where("advert_id", $request->advertId )->get();

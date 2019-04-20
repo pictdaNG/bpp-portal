@@ -90,10 +90,14 @@ class HomeController extends Controller{
 
             $totalSales = $this->contract_sales->totalSales();
             $salesCount = $this->contract_sales->salesCount();
+            $submittedBids = $this->contract_sales->getSubmittionsByMDA();
+            $agregateSales = $this->contract_sales->submittedApplications();
+
+            //dd($agregateSales);
 
             $data= $this->dashboardData($constructions, $supplies, $consultancy, $totalSales, $salesCount);
 
-            return view('MDAHome', ['myAdverts'=> $myAdverts, 'data' => $data]);
+            return view('MDAHome', ['myAdverts'=> $myAdverts, 'data' => $data, 'submittedBids' => $submittedBids, 'agregateSales' => $agregateSales]);
    
         }else if(strtolower($user->user_type) == strtolower("Contractor")){
 

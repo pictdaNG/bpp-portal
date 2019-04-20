@@ -22,13 +22,17 @@
                     <p><b>{{ $message }}</b></p>
                 </div>
             @endif
-            <form class="bs-example form-horizontal" method="POST">
+            <form class="bs-example form-horizontal" action="{{route('deletePDFName')}}" method="POST">
 
                 {{csrf_field()}}
                 <div class="row wrapper">
                     <div class="col-sm-5 m-b-xs">
                         <a href="#PDFRegistration" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add PDF Name</a> 
+                        <button id="btnDelete"  disabled class="delete-modal btn btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span> Delete
+                        </button>
                     </div>
+                    
                 </div>
    
                 <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
@@ -36,28 +40,29 @@
                     <table class="table table-striped b-t b-light">
                         <thead>
                             <tr>
+                               
+                                <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input disabled type="checkbox"><i></i></label></th>
                                 <th data-toggle="class">Certification Type</th>
                                 <th>Category Type</th>
                                 <th>Date</th>
-                                <th>Action</th>
                             
                             </tr>
                         </thead>
-                        <tbody> 
-                            @foreach($names as $name) 
-                                <tr>
-                                    <td>{{$name['certification_type']}}</td>
-                                    <td>{{$name['category_type']}}</td>
-                                    <td>{{$name['certification_type']}}</td>   
-                                    <input type="hidden" value="{{$name['id']}}" id="pdfId" name="id"/>
-
-                                    <td>
-                                        <a href="javascript:void(0)"class="delete-modal btn btn-danger">
-                                            <span class="glyphicon glyphicon-trash"></span> Delete
-                                        </a>
-                                    </td>
+                        <tbody id="pdfnames"> 
+                            @if(sizeof($names) > 0)
+                                @foreach($names as $name) 
+                                    <tr>
+                                        <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="nids[]" value="{{$name->id}}"><i></i></label></td>
+                                        <td>{{$name['certification_type']}}</td>
+                                        <td>{{$name['category_type']}}</td>
+                                        <td>{{$name['certification_type']}}</td>   
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>   
+                                    <td colspan="4">NO RECORD FOUND</td>   
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -107,5 +112,20 @@
 </section>
 </section>
 </section>
+
+<script>
+
+    window.addEventListener('load', function () {
+      $(document).ready(function() {
+        var sumchecked = 0;
+        $('#pdfnames').on('change', 'input[type="checkbox"]', function(){
+          ($(this).is(':checked')) ? sumchecked++ : sumchecked--;
+          (sumchecked > 0) ? $('#btnDelete').removeAttr('disabled') : $('#btnDelete').attr('disabled', 'disabled');
+          
+        });
+      });
+    });
+
+</script>
 
 @endsection

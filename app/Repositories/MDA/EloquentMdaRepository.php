@@ -18,12 +18,12 @@ class EloquentMdaRepository implements MdaContract
         $newUser->password = bcrypt($requestData['password']);
         $newUser->website = $requestData['website'];
         $newUser->phone = $requestData['phone'];
+        $newuser->profile_pic = $file->getClientOriginalName();
+        $newuser->address = $request['address'];
         $newUser->save();
 
         $file = $requestData['profile_pic'];
-
         $filename = $file->getClientOriginalName();
-
         $destinationPath = 'uploads/';
 
         // This will store only the filename. Update with full path if you like
@@ -71,7 +71,7 @@ class EloquentMdaRepository implements MdaContract
 
         }
         catch(\Exception $e){
-            dd($e->getMessage());
+            //dd($e->getMessage());
             return false;
         } 
     }

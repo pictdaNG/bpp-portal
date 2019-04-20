@@ -56,11 +56,11 @@ class TenderEligibilityController extends Controller{
         }
     }
 
-    public function delete($id){
+    public function delete(Request $request){
 
         try {
         
-            $name = $this->repo->destroy($id);
+            $name = $this->repo->destroy($request);
             $names = $this->repo->listAllEligibility();
 
 

@@ -16,7 +16,6 @@ class EloquentSalesRepository implements SalesContract
         for( $i = 0; $i<sizeof($data); $i++) {
             $lot = AdvertLot::where('id', $data[$i])->first();
             $sales = new Sales;
-           // dd($lot);
             $sales->advert_lot_id =  $data[$i];
             $sales->lot_description = $lot->description;
             $sales->advert_id = $lot->advert_id;
@@ -28,12 +27,8 @@ class EloquentSalesRepository implements SalesContract
             $sales->user_id = $user->id;
             $sales->user_name = $user->name;
             $sales->save();
-            return $sales->advert_id;
         }
-       
-
-
-      // return Sales::create($requestData);
+        return $sales->advert_id;
     }
     
     public function find($id)
@@ -55,7 +50,8 @@ class EloquentSalesRepository implements SalesContract
 
     public function listSalesByUserandAdvertId($advertId){
         return Sales::where('advert_id', $advertId)
-            ->where('mda_id', Auth::user()->id)->get();
+            ->where('user_id', Auth::user()->id)
+             ->orderBy('created_at', 'desc')->get();
     }
 
     public function totalSales() {
@@ -64,6 +60,19 @@ class EloquentSalesRepository implements SalesContract
 
     public function salesCount(){
         return Sales::where('mda_id', Auth::user()->id)->count();
+    }
+
+    public function submittedApplications(){
+         return Sales::where('mda_id', Auth::user()->id)
+         ->distinct('advert_lot_id')
+         ->count('advert_lot_id');
+
+    }
+
+
+    public function getSubmittionsByMDA(){
+        return Sales::where('mda_id', Auth::user()->id)->
+        orderBy('created_at', 'desc')->get();
     }
     
     

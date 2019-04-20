@@ -14,8 +14,7 @@ use App\Repositories\TenderEligibility\TenderEligibilityContract;
 
 use Auth;
 
-class MDAController extends Controller
-{
+class MDAController extends Controller{
     /**
      * Create a new controller instance.
      *
@@ -140,7 +139,7 @@ class MDAController extends Controller
 
     
 
-    public function getAdvertById($advertId) {
+    public function getMDAAdvertById($advertId) {
         $advert = $this->advert_contract->getAdsById($advertId);
        // dd($advert);
         return view('mda.AdvertPreview')->with(['advert' => $advert]);

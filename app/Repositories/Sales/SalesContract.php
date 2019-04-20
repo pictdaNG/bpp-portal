@@ -20,4 +20,8 @@ interface SalesContract
     public function totalSales();
 
     public function salesCount();
+
+    public function getSubmittionsByMDA();
+
+    public function submittedApplications();
 }

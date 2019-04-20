@@ -77,7 +77,7 @@ section.panel-body.slim-scroll {
                         <i class="i i-plus2 i-1x text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-danger">0</span>
+                        <span class="h3 block m-t-xs text-danger">{{$data['salesCount'] }}</span>
                         <small class="text-muted text-u-c">Application Submitted</small>
                         </span>
                     </a>
@@ -113,7 +113,7 @@ section.panel-body.slim-scroll {
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-info">{{$data['salesCount']}}</span>
+                        <span class="h3 block m-t-xs text-info">{{ $agregateSales }}</span>
                         <small class="text-muted text-u-c">No of Bids Bought</small>
                         </span>
                     </a>
@@ -133,15 +133,20 @@ section.panel-body.slim-scroll {
                     @if(sizeof($myAdverts) >0)
                     @foreach($myAdverts as $advert)
                       <article class="media">
-                          <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                            <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x text-info"></i>
+                                <i class="fa fa-file-o fa-stack-1x text-white"></i>
+                              </span>
+                            </div>                 
                           <div class="media-body">
                           <div class="pull-right media-xs text-center text-muted">
                               <?php $date = Carbon\Carbon::parse($advert->date_published);  $newDate = $date->isoFormat('MMM Do'); ?>
                               <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                               <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
                           </div>
-                          <a href="{{route('returnAdvert', $advert->id)}}" class="h4">{{$advert->name}}</a>
-                          <small class="block"><a href="{{route('returnAdvert', $advert->id)}}" class="">{{$advert->user->name}}</a></small>
+                          <a href="{{action('MDAController@getMDAAdvertById', $advert->id)}}" class="h4">{{$advert->name}}</a>
+                          <small class="block"><a href="{{action('MDAController@getMDAAdvertById', $advert->id)}}" class="">{{$advert->user->name}}</a></small>
                           <small class="block m-t-sm">{{$advert->introduction}}</small>
                           </div>
                       </article>
@@ -158,35 +163,33 @@ section.panel-body.slim-scroll {
                 <header class="panel-heading">
                 <b>Bids Submitted</b>
                 </header>
-                <section class="panel-body">
-                    <!-- When you have Content -->
-                    <div class="line pull-in"></div>
-                    <article class="media">
-                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                        <div class="media-body">
-                        <div class="pull-right media-xs text-center text-muted">
-                            <strong class="h4">17</strong><br>
-                            <small class="label bg-light">FEB</small>
-                        </div>
-                        <a href="#" class="h4">Plateau State Polytechnic</a>
-                        <small class="block"><a href="#" class="">Retnan Daser</a></small>
-                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
-                        </div>
-                    </article>
+                <section class="panel-body slim-scroll" data-height="230px" data-size="10px">
+                     @if(sizeof($myAdverts) >0)
+                        @foreach($submittedBids as $record)
+                            <article class="media">
+                                    <div class="pull-left">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x text-info"></i>
+                                        <i class="fa fa-file-o fa-stack-1x text-white"></i>
+                                    </span>
+                                    </div>                 
+                                <div class="media-body">
+                                    <div class="pull-right media-xs text-center text-muted">
+                                        <?php $date = Carbon\Carbon::parse($record->created_at);  $newDate = $date->isoFormat('MMM Do'); ?>
+                                        <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
+                                        <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
+                                    </div>
+                                    <span class="h4">{{$record->advert_name}}</span>
+                                    <small class="block">{{$record->user_name}}</small>
+                                    <small class="block m-t-sm">{{$record->lot_description}}</small>
+                                </div>
+                            </article>
+                        @endforeach
+                    @else
+                        <small class="block m-t-sm">No Record Available</small>
+                    @endif
 
                     <div class="line pull-in"></div>
-                    <article class="media">
-                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                        <div class="media-body">
-                        <div class="pull-right media-xs text-center text-muted">
-                            <strong class="h4">17</strong><br>
-                            <small class="label bg-light">FEB</small>
-                        </div>
-                        <a href="#" class="h4">Construction of Lecture Theatre UniJos</a>
-                        <small class="block"><a href="#" class="">Logical Address Ltd.</a></small>
-                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
-                        </div>
-                    </article>
                 </section>
               </section>
             </div>

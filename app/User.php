@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasMay('App\Advert');
     }
+
+    public function MDA(){
+        return $this->hasOne('App\User');
+    }
 }

@@ -308,15 +308,20 @@ section.panel-body.slim-scroll {
                     @if(sizeof($activeAdverts) >0)
                       @foreach($activeAdverts as $advert)
                         <article class="media">
-                            <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                            <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x text-info"></i>
+                                <i class="fa fa-file-o fa-stack-1x text-white"></i>
+                              </span>
+                            </div>              
                             <div class="media-body">
                             <div class="pull-right media-xs text-center text-muted">
                                 <?php $date = Carbon\Carbon::parse($advert->date_published);  $newDate = $date->isoFormat('MMM Do'); ?>
                                 <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                                 <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
                             </div>
-                            <a href="{{action('AdvertController@getAdvertById', $advert->id)}}" id="adLink" class="h4 disabled">{{$advert->name}}</a>
-                            <small class="block"><a href="{{action('AdvertController@getAdvertById', $advert->id)}}"  id="adLink" class="disabled">{{$advert->user->name}}</a></small>
+                            <a href="{{route('returnAds', $advert->id)}}" id="adLink" class="h4 block m-t-xs disabled">{{$advert->name}}</a>
+                            <small class="block m-t-xs">{{$advert->user->name}}</small>
                             <small class="block m-t-sm">{{$advert->introduction}}</small>
                             </div>
                         </article>
@@ -338,16 +343,21 @@ section.panel-body.slim-scroll {
                    @if(sizeof($submittedBids) >0)
                       @foreach($submittedBids as $bid)
                         <article class="media">
-                            <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
+                          <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x text-info"></i>
+                                <i class="fa fa-file-o fa-stack-1x text-white"></i>
+                              </span>
+                            </div>                
                             <div class="media-body">
-                            <div class="pull-right media-xs text-center text-muted">
+                              <div class="pull-right media-xs text-center text-muted">
                                 <?php $date = Carbon\Carbon::parse($bid->created_at);  $newDate = $date->isoFormat('MMM Do'); ?>
                                 <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                                 <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
-                            </div>
-                            <a href="{{action('AdvertController@getAdvertById', $bid->advert_id)}}" class="h4 disabled">{{$bid->advert_name}}</a>
-                            <small class="block"><a href="{{action('AdvertController@getAdvertById', $bid->advert_id)}}" class="disabled">{{$bid->mda_name}}</a></small>
-                            <small class="block m-t-sm">{{$bid->lot_description}}</small>
+                              </div>
+                              <a href="{{action('AdvertController@getSubmittedAdvertById', $bid->advert_id)}}" class="h4 disabled">{{$bid->advert_name}}</a>
+                              <small class="block">{{$bid->mda_name}}</small>
+                              <small class="block m-t-sm">{{$bid->lot_description}}</small>
                             </div>
                         </article>
                       @endforeach
@@ -374,8 +384,6 @@ section.panel-body.slim-scroll {
     <!-- / side content -->
     </section>
 </section>
-@endsection
-
 <script>
 
   window.addEventListener('load', function () {
@@ -385,4 +393,5 @@ section.panel-body.slim-scroll {
    });
 
 </script>
+@endsection
 

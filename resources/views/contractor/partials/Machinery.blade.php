@@ -44,7 +44,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
+                    <td colspan="9"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
                     
                 </tr>
             @endif
@@ -102,7 +102,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Cost</label>
             <div class="col-lg-9">
-            <input name="cost"  required class="form-control">
+            <input type="number" name="cost"  required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -223,7 +223,7 @@
                 }else {
                     $('#machineries').append(
                         '<tr>'+
-                        '<td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td>' +
+                        '<td colspan="9"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td>' +
                         '</tr>'
                     );
                 }

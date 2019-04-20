@@ -27,8 +27,11 @@ class EloquentAdvertRepository implements AdvertContract {
     
 
     public function listActiveAdverts(){
-        return Advert::with('user')->where("bid_opening_date", ">", Carbon::now()->isoFormat('D/M/YYYY'))
-        ->where('status', 'active')->get();
+        return Advert::with('user')
+        ->where("bid_opening_date", ">", Carbon::now()->isoFormat('D/M/YYYY'))
+        ->where('status', 'active')
+        ->orderBy('created_at', 'desc')
+        ->get();
     }
 
 
