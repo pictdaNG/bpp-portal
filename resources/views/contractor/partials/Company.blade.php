@@ -25,14 +25,14 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Office Address</label>
                     <div class="col-lg-10">
-                    <input  id="address" name="address" required class="form-control">
+                    <input  id="address" name="address" value="{{$company['address']}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">City</label>
                     <div class="col-lg-10">
-                    <input id="city" name="city" required class="form-control">
+                    <input id="city" name="city" value="{{$company['city']}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Website</label>
                     <div class="col-lg-10">
-                    <input id="website" name="website"  class="form-control">
+                    <input id="website" name="website" value="{{$company['website']}}"  class="form-control">
                     <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
@@ -98,12 +98,12 @@
                     setTimeout(function(){
                             $('#res_message').hide();
                             $('#msg_div').hide();
-                        $("#registrationForm").trigger('reset'); 
+                        //$("#registrationForm").trigger('reset'); 
                         $('#submitForm').removeAttr('disabled');
                         $('#submitForm').html('Save Data');
 
 
-                    },10000);
+                    },1000);
                     
                 },
                 beforeSend: function(){

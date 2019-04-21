@@ -22,12 +22,16 @@ class EloquentContractorFinanceRepository implements ContractorFinanceContract{
 
     public function removeFinance($request) {
         $data = $request['fids'];
-        for($i=0; $i<sizeof($data); $i++){
-       // foreach($request['ids'] as $id){
-            $tmp = ContractorFinance::find($data[$i]);
-            $tmp->delete();
-       }
-       return true;
+        try {
+            for($i=0; $i<sizeof($data); $i++){
+                $tmp = ContractorFinance::find($data[$i]);
+                $tmp->delete();
+           }
+           return true;
+        }
+        catch(\Exception $e){
+            return false;
+        }
     }
 
     private function setContractorFinanceProperties($finance, $request) {

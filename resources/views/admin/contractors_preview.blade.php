@@ -9,20 +9,22 @@
             <section class="panel panel-default">
                 <div class="panel-body">
                 <div class="row">
+                @foreach ($contractors as $data)
                     <div class="col-xs-6">
                         <img src="{{ asset('/images/p0.jpg') }}" height="200"/>
-                        <h4>nHub Incubator and Accelerator Limited.</h4>
+                        <h4>$data['company_name']</h4>
                         <address>
-                            Email: info@nhubnigeria.com<br/>
-                            Website: https://nhubnigeria.com<br/>
-                            Address: 3rd Floor TAEN Complex, Jos<br/>
+                            Email: $data['email']<br/>
+                            Website: $data['website']<br/>
+                            Address: $data['address']<br/>
                             Telephone: 08161730129<br/>
                         </address>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="h4">Contractor IRR #N/A</p>
-                        <h5>Date Registered: 2017-07-17 10:00</h5>
+                        <p class="h4">Contractor IRR # $data['cac_number']</p>
+                        <h5>Date Registered: $data['created_at']</h5>
                     </div>
+                @endforeach
                 </div>
                 </div>
             </section>
@@ -161,13 +163,15 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($categories as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
+            <td>$data['id']</td>
+            <td>$data['category']</td>
+            <td>$data['subcategory_1']</td>
+            <td>$data['subcategory_2']</td>
             </tr>
-            <tr>
+            @endforeach
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -178,7 +182,7 @@
             <td>Idrawfast</td>
             <td>4c</td>
             <td>4c</td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -207,18 +211,20 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($jobs as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            
+            <td>$data['id']</td>
+            <td>$data['job_category']</td>
+            <td>$data['sub_category']</td>
+            <td>$data['job_title']</td>
+            <td>$data['job_description']</td>
+            <td>$data['contact_phone']</td>
+            <td>$data['award_date']</td>
+            <td>$data['amount']</td>
             </tr>
-            <tr>
+        @endforeach
+
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -239,7 +245,7 @@
             <td>4c</td>
             <td>Jul 25, 2013</td>
             
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -269,19 +275,21 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($financies as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
+            <td>$data['id']</td>
+            <td>$data['year']</td>
+            <td>$data['turn_over']</td>
+            <td>$data['total_asset']</td>
+            <td>$data['total_liability']</td>
+            <td>$data['witholding_tax']</td>
+            <td>$data['tax_paid']</td>
+            <td>$data['tcc_no']</td>
+            <td>$data['audit_firm']</td>
+            <td>$data['report_date']</td>
             </tr>
-            <tr>
+        @endforeach
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -304,7 +312,7 @@
             <td>4c</td>
             <td>4c</td>
             <td>Jul 25, 2013</td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -332,17 +340,20 @@
             </tr>
         </thead>
         <tbody>
+        @foreach ($machineries as $data)
             <tr>
-            <td>1</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
+            <td>$data['id']</td>
+            <td>$data['equipment_type']</td>
+            <td>$data['acquisition_date']</td>
+            <td>$data['cost']</td>
+            <td>$data['location']</td>
+            <td>$data['serial_no']</td>
+            <td>$data['serial_no']</td>
+            <td>$data['equipment_status']</td>
+            
             </tr>
-            <tr>
+        @endforeach
+            <!-- <tr>
             <td>2</td>
             <td>Idrawfast</td>
             <td>4c</td>
@@ -361,7 +372,7 @@
             <td>4c</td>
             <td>4c</td>
             <td>Jul 25, 2013</td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -375,14 +386,16 @@
                 </header>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> CAC Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> TIN Certificate</a></div>
+                    @foreach ($getUploadfiles as $data)
+                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ $data['name'] }}</a></div>
+                    @endforeach
+                        <!-- <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> TIN Certificate</a></div>
                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> PenCom Certificate</a></div>
                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> Audited Account Certificate</a></div>
                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> TCC Certificate</a></div>
                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> Affidavit Certificate</a></div>
                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> ITF Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> PLACCIMA Certificate</a></div>
+                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> PLACCIMA Certificate</a></div> -->
                     </div>
                 </div>
             </section>

@@ -1,6 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
+<style>
+section.panel-body.slim-scroll {
+  overflow: auto !important;
+  height: 150px !important;
+}
+  </style>
 <section class="hbox stretch">
     <section>
         <section class="vbox">
@@ -25,7 +30,7 @@
                         <i class="i i-plus2 i-1x text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-danger">0</span>
+                        <span class="h3 block m-t-xs text-danger">{{$adverts}}</span>
                         <small class="text-muted text-u-c">Adverts Published</small>
                         </span>
                     </a>
@@ -37,7 +42,7 @@
                         <i class="i i-users2 i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-success">0</span>
+                        <span class="h3 block m-t-xs text-success">{{sizeof($submittedBids)}}</span>
                         <small class="text-muted text-u-c">Bids Submitted</small>
                         </span>
                     </a>
@@ -49,7 +54,7 @@
                         <i class="i i-location i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-info">0</span>
+                        <span class="h3 block m-t-xs text-info">{{sizeof($closingBids)}}</span>
                         <small class="text-muted text-u-c">Bids Closing in 7 Days</small>
                         </span>
                     </a>
@@ -61,7 +66,7 @@
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-primary">0%</span>
+                        <span class="h3 block m-t-xs text-primary" id="completedPercentage">{{$percent_status['percentage']}}%</span>
                         <small class="text-muted text-u-c">Registration Progress</small>
                         </span>
                     </a>
@@ -78,8 +83,8 @@
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Construction/Works</small>
+                    <div class="h3 font-bold">{{$jobs['constructions']}}</div>
+                    <small class="text-muted">Construction | Works</small>
                     </div>
                 </div>
                 </div>
@@ -93,8 +98,8 @@
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Consultancy/Services</small>
+                    <div class="h3 font-bold">{{$jobs['consultancy']}}</div>
+                    <small class="text-muted">Consultancy | Services</small>
                     </div>
                 </div>
                 </div>
@@ -108,8 +113,8 @@
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-12">
-                    <div class="h3 font-bold">0</div>
-                    <small class="text-muted">Construction/Works</small>
+                    <div class="h3 font-bold">{{$jobs['supplies']}}</div>
+                    <small class="text-muted">Goods | Supplies</small>
                     </div>
                 </div>
                 </div>
@@ -127,60 +132,101 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-success m-t-sm">
+                      @if($percent_status['companies'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
+                     
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Identification</a></div>
+                        @if($percent_status['companies'])
                         <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                        @if($percent_status['compliances'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Business Registration & Compliance</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['compliances'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['directors'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Board of Directors</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['directors'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['categories'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Business Category</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['categories'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['personnels'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Staff/Personnel</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['personnels'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
@@ -188,12 +234,20 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['jobs'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Projects Executed</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['jobs'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
@@ -201,12 +255,20 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['finances'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Company Financial Statements</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['finances'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
@@ -214,79 +276,96 @@
                   <li class="list-group-item">
                     <div class="media">
                       <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
-                      <div class="pull-right text-muted m-t-sm">
+                      @if($percent_status['machines'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
                         <i class="fa fa-circle"></i>
                       </div>
                       <div class="media-body">
                         <div><a href="#">Equipment/Machineries</a></div>
-                        <small class="text-muted">Not Completed</small>
+                        @if($percent_status['machines'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
                       </div>
                     </div>
                   </li>
+                  
                 </ul>
               </section>
             </div>
 
             <div class="col-md-6">
+
               <section class="panel panel-info portlet-item">
-                <header class="panel-heading">
+                <header class="panel-heading">                    
                 <b>Recently Advertised Bids</b>
                 </header>
-                <section class="panel-body">
-                    <!-- When you have Content -->
-                    <div class="line pull-in"></div>
-                    <article class="media">
-                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                        <div class="media-body">
-                        <div class="pull-right media-xs text-center text-muted">
-                            <strong class="h4">17</strong><br>
-                            <small class="label bg-light">FEB</small>
-                        </div>
-                        <a href="#" class="h4">Federal Polytechnic Nassarawa</a>
-                        <small class="block"><a href="#" class="">Eddie Bigs</a></small>
-                        <small class="block m-t-sm">Contractors/Supplier/Consultants for 2014 Budget Implementation of the fund</small>
-                        </div>
-                    </article>
+                  <section class="panel-body slim-scroll" data-height="230px" data-size="10px">
+                    @if(sizeof($activeAdverts) >0)
+                      @foreach($activeAdverts as $advert)
+                        <article class="media">
+                            <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x text-info"></i>
+                                <i class="fa fa-file-o fa-stack-1x text-white"></i>
+                              </span>
+                            </div>              
+                            <div class="media-body">
+                            <div class="pull-right media-xs text-center text-muted">
+                                <?php $date = Carbon\Carbon::parse($advert->date_published);  $newDate = $date->isoFormat('MMM Do'); ?>
+                                <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
+                                <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
+                            </div>
+                            <a href="{{route('returnAds', $advert->id)}}" id="adLink" class="h4 block m-t-xs disabled">{{$advert->name}}</a>
+                            <small class="block m-t-xs">{{$advert->user->name}}</small>
+                            <small class="block m-t-sm">{{$advert->introduction}}</small>
+                            </div>
+                        </article>
+                      @endforeach
+                    @else
+                      <small class="block m-t-sm">NO RECORD FOUND</small>
+                    @endif
+                  </section>
                 </section>
-              </section>
+            
             </div>
 
             <div class="col-md-6">
-
-            <section class="panel panel-primary portlet-item">
+                <section class="panel panel-primary portlet-item">
                 <header class="panel-heading">
                 <b>Bids Submitted</b>
                 </header>
-                <section class="panel-body">
-                    <!-- When you have Content -->
-                    <div class="line pull-in"></div>
-                    <article class="media">
-                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                        <div class="media-body">
-                        <div class="pull-right media-xs text-center text-muted">
-                            <strong class="h4">17</strong><br>
-                            <small class="label bg-light">FEB</small>
-                        </div>
-                        <a href="#" class="h4">Plateau State Polytechnic</a>
-                        <small class="block"><a href="#" class="">Retnan Daser</a></small>
-                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
-                        </div>
-                    </article>
-
-                    <div class="line pull-in"></div>
-                    <article class="media">
-                        <span class="pull-left thumb-sm"><i class="fa fa-file-o fa-3x icon-muted"></i></span>                
-                        <div class="media-body">
-                        <div class="pull-right media-xs text-center text-muted">
-                            <strong class="h4">17</strong><br>
-                            <small class="label bg-light">FEB</small>
-                        </div>
-                        <a href="#" class="h4">Construction of Lecture Theatre UniJos</a>
-                        <small class="block"><a href="#" class="">Logical Address Ltd.</a></small>
-                        <small class="block m-t-sm">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
-                        </div>
-                    </article>
-                </section>
+                <section class="panel-body slim-scroll" data-height="230px" data-size="10px">
+                   @if(sizeof($submittedBids) >0)
+                      @foreach($submittedBids as $bid)
+                        <article class="media">
+                          <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x text-info"></i>
+                                <i class="fa fa-file-o fa-stack-1x text-white"></i>
+                              </span>
+                            </div>                
+                            <div class="media-body">
+                              <div class="pull-right media-xs text-center text-muted">
+                                <?php $date = Carbon\Carbon::parse($bid->created_at);  $newDate = $date->isoFormat('MMM Do'); ?>
+                                <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
+                                <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
+                              </div>
+                              <a href="{{action('AdvertController@getSubmittedAdvertById', $bid->advert_id)}}" class="h4 disabled">{{$bid->advert_name}}</a>
+                              <small class="block">{{$bid->mda_name}}</small>
+                              <small class="block m-t-sm">{{$bid->lot_description}}</small>
+                            </div>
+                        </article>
+                      @endforeach
+                    @else
+                      <small class="block m-t-sm">NO RECORD FOUND</small>
+                    @endif
+                  </section>
+                
               </section>
             </div>
 
@@ -304,4 +383,15 @@
     </aside>
     <!-- / side content -->
     </section>
+</section>
+<script>
+
+  window.addEventListener('load', function () {
+     let span = document.getElementById('completedPercentage')
+   return (Number(span.innerHTML.replace('%', '')) < 100 ) ? $('.disabled').removeAttr('href'): null;
+    
+   });
+
+</script>
 @endsection
+

@@ -21,8 +21,18 @@ use App\Repositories\Equipments\EquipmentContract;
 use App\Repositories\CompanyOwnership\CompanyOwnershipContract;
 use App\Repositories\Qualifications\QualificationContract; 
 use App\Repositories\ContractorMachinery\ContractorMachineryContract;
+use App\Repositories\CategoryFee\CategoryFeeContract; 
+use App\Repositories\PDFCertificateName\PDFCertificateNameContract; 
+use App\Repositories\Compliance\ComplianceContract;
+use App\Repositories\Advert\AdvertContract;
+
+
+
+
 
 use App\ContractorFile;
+use App\User;
+use PDF;
 
 //use Illuminate\Events\Dispatcher;
 
@@ -42,6 +52,10 @@ class ContractorController extends Controller {
     protected $ownership;
     protected $qualification;
     protected $machinery;
+    protected $contract_fee;
+    protected $contract_pdf;
+    protected $contract_compliance;
+    protected $contract_advert;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
@@ -49,7 +63,8 @@ class ContractorController extends Controller {
                  CountriesContract $country,  BusinessCategoryContract $businessCategory, BusinessSubCategory2Contract $businessCategory2,
                   ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
                   ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
-                  QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery) {
+                  QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
+                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract ) {
                   
                     
 
@@ -69,6 +84,10 @@ class ContractorController extends Controller {
         $this->tcc_ownership = $companyOwnership;
         $this->qualification = $qualificationContract;
         $this->machinery = $contractorMachinery;
+        $this->contract_fees = $categoryFeeContract;
+        $this->contract_pdf = $pdfCertificateName;
+        $this->contract_compliance = $complianceContract;
+        $this->contract_advert = $advertContract;
 
     }
     
@@ -89,14 +108,16 @@ class ContractorController extends Controller {
          $tcc_ownerships = $this->tcc_ownership->listCompanyOwnership();
          $qualifications = $this->qualification->listQualifications();
          $machineries = $this->machinery->getMachineriesById();
-
-
+         $fees = $this->contract_fees->listAllFee();
+         $company = $this->repo->getCompanyById();
+         $compliance = $this->contract_compliance->getCompliancesById();
 
         return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
         'contractorcategories' =>  $categories, 'ownerships' => $owner_ship,
         'countries' => $countries, 'allcategories' => $categories, 'contractorcategories' =>  $categories,
         'business_cates' => $b_categories, 'business_cates1' => $b_categories1,  'personnels' => $personnels,
         'jobs' => $jobs, 'business_cates2' => $b_categories2, 'finances' => $finances, 'equipments' => $equipments,
+        'fees' => $fees, 'company' => $company, 'compliance' => $compliance,
         'tcc_ownerships' => $tcc_ownerships, 'qualifications' => $qualifications, 'machineries' => $machineries,
         'cac' => ContractorFile::where('name', 'cac')->where('user_id', $user->id)->first(),
         'tcc' => ContractorFile::where('name', 'tcc')->where('user_id', $user->id)->first(),
@@ -122,7 +143,7 @@ class ContractorController extends Controller {
                
             } else {
             
-                return response()->json(['responseText' => $e->getMessage()], 500);
+                return response()->json(['responseText'=> 'error ocurred'], 500);
             }
        } catch (QueryException $e) {
         return response()->json(['response' => $e->getMessage()], 500);
@@ -133,6 +154,11 @@ class ContractorController extends Controller {
     public function reportsContractor() {
         echo("contracts reports data table");
         return view('contractor.reports');
+    }
+
+    public function getDocumentsByUserId(){
+        return ContractorFile::where('user_id',  Auth::user()->id)->get();
+
     }
 
     public function uploadContractorFile(Request $request){
@@ -169,5 +195,30 @@ class ContractorController extends Controller {
         $cf->delete();
         return response()->json(['status' => 'success'], 200);
     } 
+
+    public function getContractorFile() {
+        $user = Auth::user();
+        $getUploadfiles = ContractorFile::where('name', $request->input('name'))->where('user_id', $user->id)->first();
+        return view('admin/contractors_preview', ['getUploadfiles' => $getUploadfiles]);
+    }
+
+    public function downloadPDF($certification, $category ){
+        $user = User::where('id', Auth::user()->id)->get()->first();
+        $pdf = PDF::loadView('contractor/pdf', compact('user'), ['certification' => $certification,  'category' => $category, ]);
+        return $pdf->download('irr.pdf');
+      }
+
+    public function getIRR(){
+        $names = $this->contract_pdf->listAllPDFName();
+
+        return view('contractor.partials.IrrDocs', ['names' => $names]);
+    }
+
+
+    public function getAdvertById($advertId) {
+        $advert = $this->contract_advert->getAdsById($advertId);
+       // dd($advert);
+        return view('contractor.SelectBid')->with(['advert' => $advert]);
+    }
 
 }

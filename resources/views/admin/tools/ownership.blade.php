@@ -1,164 +1,97 @@
 @extends('layouts.admin')
 
 @section('content')
-<section class="hbox stretch">
-    <section class="vbox">
-    <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                         <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Compliance / Ownership Structure</h4>
-                            </div>
-                            <div class="content">
-                                   @if($errors->any())
-                                    <div class="alert alert-danger">
-                                    @foreach($errors->all() as $error)
-                                        <p>{{ $error }}</p>
-                                    @endforeach()
-                                    </div>
-                                @endif
-                                  @if ($message = Session::get('success'))
-                                    <div class="alert alert-success">
-                                        <p><b>{{ $message }}</b></p>
-                                    </div>
-                                @endif
-                                <form action="" method="POST">
-                                     {{csrf_field()}}
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Ownership Structure</label>
-                                                <input type="text" class="form-control" name="ownership_structure" placeholder="Ownership structure" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-info btn-fill pull-right"><i class="glyphicon glyphicon-th"></i>Submit</button>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                             <hr>
-                            <!--tables-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                   <table class="table table-bordered table-striped table-condensed" id="table" >
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">#</th>
-                                                <th class="text-center">Ownership Structure</th>
-                                                <th class="text-center">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        
-                                            <tr class="">
-                                                <td></td>
-                                                <td></td>
-                                                <td><a href=""><button id="edit-modal" class="edit-modal btn btn-info">
-                                                        <span class="glyphicon glyphicon-edit"></span> Edit
-                                                    </button></a>
-                                                    <a href="" onclick="return confirm('Do you really want to delete This?')">
-                                                    <button class="delete-modal btn btn-danger">
-                                                        <span class="glyphicon glyphicon-trash"></span> Delete
-                                                    </button>
-                                                    </a>
-                                                   
-                                                </td>
-                                            </tr>
-                                    
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!--end table-->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+<section class="panel panel-default">
+    <header class="panel-heading">
+        Ownership Structure
+    </header>
+    @if($errors->any())
+        <div class="alert alert-danger">
+        @foreach($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach()
         </div>
-    </section>
-    
-    <section class="vbox">
-    <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                         <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Compliance / Equipments</h4>
-                            </div>
-                            <div class="content">
-                                   @if($errors->any())
-                                    <div class="alert alert-danger">
-                                    @foreach($errors->all() as $error)
-                                        <p>{{ $error }}</p>
-                                    @endforeach()
-                                    </div>
-                                @endif
-                                  @if ($message = Session::get('success'))
-                                    <div class="alert alert-success">
-                                        <p><b>{{ $message }}</b></p>
-                                    </div>
-                                @endif
-                                <form action="" method="POST">
-                                     {{csrf_field()}}
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Equipments Type</label>
-                                                <input type="text" class="form-control" name="equipment_type" placeholder="Equipment Type" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-info btn-fill pull-right"><i class="glyphicon glyphicon-th"></i>Submit</button>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                             <hr>
-                            <!--tables-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                   <table class="table table-bordered table-striped table-condensed" id="table" >
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">#</th>
-                                                <th class="text-center">Ownership Structure</th>
-                                                <th class="text-center">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                       
-                                            <tr class="">
-                                                <td></td>
-                                                <td></td>
-                                                <td><a href=""><button id="edit-modal" class="edit-modal btn btn-info">
-                                                        <span class="glyphicon glyphicon-edit"></span> Edit
-                                                    </button></a>
-                                                    <a href="" onclick="return confirm('Do you really want to delete This?')">
-                                                    <button class="delete-modal btn btn-danger">
-                                                        <span class="glyphicon glyphicon-trash"></span> Delete
-                                                    </button>
-                                                    </a>
-                                                   
-                                                </td>
-                                            </tr>
-                                      
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!--end table-->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+    @endif
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p><b>{{ $message }}</b></p>
         </div>
-    </section> 
-
+    @endif
+    <form class="bs-example form-horizontal"  id="deleteCategory" method="POST">
+    <div class="row wrapper">
+        <div class="col-sm-5 m-b-xs">
+        <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Ownership Structure</a> 
+        <!-- <button type="submit" id="cateBtn"  class="btn btn-sm btn-danger">Delete</button>                 -->
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+        <thead>
+            <tr>
+            <th data-toggle="class">S/N</th>
+            <th>Name</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="categories">
+        <?php  $i = 0; ?>
+            @foreach ( $ownership as $data)
+            <tr>
+                <td>{{ 1 + $i++ }}</td>
+                <td>{{ $data['name'] }}</td>
+                <td>
+                    <form action="{{ route('ownership.delete', $data['id']) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="delete-modal btn btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span> Delete
+                        </button>
+                    </form>              
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+        
+        </div>
+    </footer>
+</form>
 </section>
+
+<div class="modal fade" id="addBusinessCategory">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Add Ownership Structure</h4>
+    </div>
+    <div class="modal-body">
+    <form class="bs-example form-horizontal" action="{{ route('storeOwnershipStructure') }}" method="POST">
+    {{csrf_field()}}
+        <div class="alert alert-success d-none" id="cat_div">
+            <span id="cat_message"></span>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Ownership Structure</label>
+            <div class="col-lg-10">
+            <input type="text" class="form-control" name="name" placeholder="Ownership Structure" value="">
+            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <button type="submit" name="categoryBtn" id="categoryBtn" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
+    </div>
+
+    </form>
+    </div>
+    
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div>
+
 @endsection

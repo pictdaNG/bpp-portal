@@ -29,13 +29,21 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
 
 
     public function removeCategory($request){ 
-        $data = $request['cates'];
-        for($i=0; $i<sizeof($data); $i++){
-       // foreach($request['ids'] as $id){
-            $tmp = ContractorCategory::find($data[$i]);
-            $tmp->delete();
+        try {
+          //  dd($request);
+            $data = $request['cates'];
+            for($i=0; $i<sizeof($data); $i++){
+                $tmp = ContractorCategory::find($data[$i]);
+                $tmp->delete();
+                
+            }
+            return true;
+
         }
-        return true;
+        catch(\Exception $e){
+            dd($e->getMessage());
+            return false;
+        } 
     }
 
     private function setContractorCategoryProperties($category, $request) {

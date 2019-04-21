@@ -30,6 +30,11 @@ a:focus {
   color: #181a1c;
   text-decoration: none;
 }
+
+.alert{
+  display: none
+}
+
 label {
   font-weight: normal;
 }
@@ -1161,8 +1166,8 @@ body.container {
   }
   .slimScrollDiv,
   .slim-scroll {
-    overflow: visible !important;
-    height: auto !important;
+    overflow: auto !important;
+    height: 200px !important;
   }
   .slimScrollBar,
   .slimScrollRail {

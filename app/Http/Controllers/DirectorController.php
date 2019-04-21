@@ -38,6 +38,7 @@ class DirectorController extends Controller{
 
     public function deleteDirector(Request $request) {
         try {
+            
             $director = $this->repo->removeDirector($request->all());  
             if ($director) {
                 return response()->json(['success'=>' Records Deleted Successfully'], 200);

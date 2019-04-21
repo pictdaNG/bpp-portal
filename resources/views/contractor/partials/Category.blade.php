@@ -21,6 +21,7 @@
             </tr>
         </thead>
         <tbody id="categories">
+            @if(sizeof($allcategories) > 0)
             @foreach ($allcategories as $category)
             <tr>
                 <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="cates[]" value="{{$category['id']}}"><i></i></label></td>
@@ -32,6 +33,11 @@
                 </td>
             </tr>
             @endforeach
+            @else
+                <tr>
+                    <td colspan="5"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
+                </tr>
+            @endif
 
         </tbody>
         </table>
@@ -171,17 +177,26 @@
             success:function(data){  
                 data = data.categories; 
                 $('#categories').empty();
-                $.each(data, function (i) {
+                if(data.length > 0) {
+                    $.each(data, function (i) {
+                        $('#categories').append(
+                            '<tr>'+
+                            '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="cates[]" value="'+data[i].id+'"><i></i></label></td>' +
+                            '<td>'+data[i].category+'</td>' +
+                            '<td>'+data[i].subcategory_1+'</td>' +
+                            '<td>'+data[i].subcategory_2+'</td>'+
+                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '</tr>'
+                        );
+                    });
+                }
+                else {
                     $('#categories').append(
                         '<tr>'+
-                        '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="+data[i].id+"><i></i></label></td>' +
-                        '<td>'+data[i].category+'</td>' +
-                        '<td>'+data[i].subcategory_1+'</td>' +
-                        '<td>'+data[i].subcategory_2+'</td>'+
-                        '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                        '<td colspan="5"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td>' +
                         '</tr>'
                     );
-                });
+                }
                   
             },
         });   

@@ -17,6 +17,24 @@ class QualificationController extends Controller
         $this->repo = $qualificationContract;
     }
 
+    public function index() {
+        try {
+            $qualification = $this->repo->listQualifications();
+
+            if ($qualification) {
+                return view('admin.tools.qualifications', ['qualification' => $qualification]);
+            }
+            else {
+                return response()->json(['responseText' => 'Error retriving Equipments type'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+       
+    }
+
     public function storeQualifications(Request $request) {
 
         try {
@@ -24,7 +42,8 @@ class QualificationController extends Controller
             $qualification = $this->repo->create($data);
 
             if ($qualification) {
-                return response()->json(['success'=>'Qualifications Added Succesfully.'], 200);
+                return redirect()->back()->with('success', 'Qualification Added Succesfully.');
+                // return response()->json(['success'=>'Qualifications Added Succesfully.'], 200);
             }
             else {
                 return response()->json(['responseText' => 'Error adding qualifications'], 500);
@@ -52,5 +71,25 @@ class QualificationController extends Controller
          return response()->json(['response' => $e->getMessage()], 500);
  
         }
+    }
+
+    public function delete($id){
+        try {
+        
+            $qualification = $this->repo->destroy($id);
+
+            if ($qualification) {
+                
+                 return back()->with(['success'=>'Qualification deleted Succesfully.']);
+            }
+            else {
+                return response()->json(['responseText' => 'Error adding Company Ownership'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+        
     }
 }

@@ -275,7 +275,7 @@
                     </li>
 
                     <li >
-                      <a href="#" class="auto">
+                      <a href="{{ action('AdvertController@getAdverts') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
@@ -453,13 +453,55 @@
                         <span class="font-bold">Administrative Tools</span>
                       </a>
                       <ul class="nav dk">
-                        <li >
-                          <a href="#" class="auto">                                                        
+                      <li >
+                          <a href="{{ route('getEligibility') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Company Registration</span>
+                            <span>Eligibility</span>
                           </a>
                         </li>
+                      <li >
+                          <a href="{{ route('getPDFNames') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>PDF Name</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="{{ route('getOwnership') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Ownership Structure</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="{{ route('getEquipments') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Equipments Type</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="{{ route('getFees') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Registration Fee</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="{{ route('qualifications') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Qualifications</span>
+                          </a>
+                        </li>
+                        <!-- <li >
+                          <a href="{{ route('companyOwnership') }}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Company Ownership</span>
+                          </a>
+                        </li> -->
                     </ul>
                     </li>
 

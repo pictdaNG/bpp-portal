@@ -194,6 +194,21 @@ return [
         App\Providers\BusinessSubCategory2ServiceProvider::class,
         App\Providers\EmploymentTypeServiceProvider::class,
         App\Providers\QualificationServiceProvider::class,
+        App\Providers\MdaServiceProvider::class,
+        App\Providers\AdvertServiceProvider::class,
+        App\Providers\AdvertLotServiceProvider::class,
+        App\Providers\TenderRequirementServiceProvider::class,
+        App\Providers\TenderEligibilityServiceProvider::class,
+        App\Providers\CategoryRegistrationFeeServiceProvider::class,
+        App\Providers\PDFCertifcateNameServiceProvider::class,
+        App\Providers\SalesServiceProvider::class,
+
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+
+
+
+
 
 
 
@@ -251,6 +266,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
