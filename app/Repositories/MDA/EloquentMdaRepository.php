@@ -8,6 +8,8 @@ class EloquentMdaRepository implements MdaContract
 {
     public function create($requestData)
     {
+
+       // dd($requestData);
         $newUser = new User;
         $newUser->name = $requestData['name'];
         $newUser->email = $requestData['email'];
@@ -18,8 +20,8 @@ class EloquentMdaRepository implements MdaContract
         $newUser->password = bcrypt($requestData['password']);
         $newUser->website = $requestData['website'];
         $newUser->phone = $requestData['phone'];
-        $newuser->profile_pic = $file->getClientOriginalName();
-        $newuser->address = $request['address'];
+        $newUser->profile_pic = $requestData['profile_pic']->getClientOriginalName();
+        $newUser->address = $requestData['address'];
         $newUser->save();
 
         $file = $requestData['profile_pic'];

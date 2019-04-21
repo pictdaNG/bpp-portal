@@ -67,7 +67,7 @@ class EloquentAdvertRepository implements AdvertContract {
     
 
     public function getAdvertById($advertId) {
-        return Advert::where("id", $advertId)->get()->first();
+        return Advert::with('tenderRequirement')->where("id", $advertId)->get()->first();
     }
 
     public function listAdvertsByUserId(){

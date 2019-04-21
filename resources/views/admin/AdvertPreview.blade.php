@@ -23,7 +23,7 @@
           <section class="scrollable padder">
             <div class=" text-left-xs text-right pt40">
               <form action="{{action('AdvertController@toggleAdvert', [$advert->id, 'active' ])}}" method="POST" id="updateAdvertForm">
-                <div class=" text-left-xs text-right pt40">
+                <div class=" text-left-xs text-right pt40" style="margin-bottom:10px">
                   <input type="hidden" name="status" id="status" value="{{$advert->status}}">
                   <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
                   <button class="btn btn-rounded btn-sm btn-icon btn-success" id="approve" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Approve Advert"><i class="i i-like"></i></button>

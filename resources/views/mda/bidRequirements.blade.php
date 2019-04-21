@@ -19,14 +19,20 @@
                                 <th width="100">Required</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="names">
                             @if(sizeof($names) > 0)
                                 @foreach($names as $name)
                                 <tr>
                                     <td>{{$name->certificate_name}}</td>
                                     <td>
+                                        <?php
+                                        $found = false;
+                                        foreach($advert->tenderRequirement as $item){
+                                            if($item->tender_eligibility_id == $name->id) $found = true;
+                                        }
+                                        ?>
                                         <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                            <input type="checkbox" value="{{$name->certificate_name}}" name="requirement[]"><i></i></label>
+                                        <input {{ $found ? "checked" : ""}} type="checkbox" value="{{$name->id}}" name="requirement[]"><i></i></label>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -41,13 +47,12 @@
                         </tbody>
                     </table>
                 </div>
-                <br/>
                 <div class="row" style="padding-left: 10px; padding-right: 10px;">
                     <div class="col-md-6">
                         <a href="{{ route('newMdaAdvert') }}" class="btn btn-default">Back to Lots</a>
                     </div>
                     <div class="col-md-6 text-right">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" name="updateBtn" id="updateBtn" class="btn btn-primary">Update</button>
                         <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
 
                     </div>
@@ -58,4 +63,19 @@
         </section>
     </section>
 </section>
+
+<script>
+
+    // window.addEventListener('load', function () {
+    //   $(document).ready(function() {
+    //     var sumchecked = 0;
+    //     $('#names').on('change', 'input[type="checkbox"]', function(){
+    //       ($(this).is(':checked')) ? sumchecked++ : sumchecked--;
+    //       (sumchecked > 0) ? $('#updateBtn').removeAttr('disabled') : $('#updateBtn').attr('disabled', 'disabled');
+          
+    //     });
+    //   });
+    // });
+
+</script>
 @endsection
