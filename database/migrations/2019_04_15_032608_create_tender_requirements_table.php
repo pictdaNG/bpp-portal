@@ -24,6 +24,8 @@ class CreateTenderRequirementsTable extends Migration
            // $table->foreign('advert_id')->references('id')->on('adverts');
             $table->string('project_name');
           //  $table->foreign('project_name')->references('project_name')->on('advert_lots');
+           //  $table->integer('tender_eligibility_id');
+          //  $table->foreign('tender_eligibility_id')->references('tender_eligibility_id')->on('tender_eligibilities');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

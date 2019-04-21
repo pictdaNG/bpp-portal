@@ -58,7 +58,7 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         $category =  BusinessCategory::where("id", $request->lot_category)->get();
         $projectName = $request->project_name !=null ? $request->project_name : '';
         $imageName = $request->advert_id.'.'.time().'.'.$request->tender_document->getClientOriginalExtension();
-        $request->tender_document->move(public_path('uploads'), $imageName);
+        $request->tender_document->move(public_path('uploads/'), $imageName);
 
         $advertLot->project_name = $projectName;
         $advertLot->project_status = $request->project_status;
