@@ -152,7 +152,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Website</label>
                                     <div class="col-lg-9">
-                                        <input type="password" name="website" class="form-control">
+                                        <input type="text" name="website" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Telephone</label>
                                     <div class="col-lg-9">
-                                        <input type="password" name="phone" class="form-control">
+                                        <input type="text" name="phone" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Split Percentage</label>
                                     <div class="col-lg-9">
-                                        <input name="split_percentage" class="form-control">
+                                        <input type="number" name="split_percentage" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
