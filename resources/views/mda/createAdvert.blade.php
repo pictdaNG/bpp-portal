@@ -455,7 +455,7 @@
     window.addEventListener('load', function () {
      let data = document.getElementById('lots').innerHTML
      if(Number(data) > 0 ) {
-      return $('#req').removeClass('disabled');
+      return $('.btnLink').removeClass('disabled');
      }
     
    });

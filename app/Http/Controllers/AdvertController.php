@@ -84,4 +84,16 @@ class AdvertController extends Controller{
         return view('contractor.SubmittedAdvertPreview')->with(['advert' => $advert]);
     }
 
+    public function getAdverts(){
+        $adverts = $this->repo->listAllAdverts();
+        return view('admin.AdvertList')->with(['adverts' => $adverts]); 
+    }
+    
+    public function toggleAdvert($advertId, $status) {
+        $toggle = $this->repo->updateAdvertStatus($advertId, $status);
+        $adverts = $this->repo->listAllAdverts();
+        return redirect()->route('adminAdverts')->with(['adverts' => $adverts]); 
+
+    }
+
 }

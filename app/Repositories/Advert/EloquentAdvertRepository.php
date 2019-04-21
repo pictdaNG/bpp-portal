@@ -94,7 +94,9 @@ class EloquentAdvertRepository implements AdvertContract {
 }
 
     public function listAllAdverts(){
-        return Advert::all();
+        return Advert::with('user')
+        ->orderBy('created_at', 'desc')
+        ->get();;
     }
 
     public function removeAdvert($request) {
@@ -110,6 +112,12 @@ class EloquentAdvertRepository implements AdvertContract {
        }
     }
 
+    public function updateAdvertStatus($advertId, $status){
+        $advert = Advert::find($advertId);
+        $advert->status = $status;
+        return $advert->save();
+    }
+
 
     private function setAdvertProperties($advert, $request) {
         $user = Auth::user();
@@ -121,7 +129,7 @@ class EloquentAdvertRepository implements AdvertContract {
         $advert->introduction = $request->introduction;
         $advert->advert_publish_date = Carbon::now()->isoFormat('D/M/YYYY');
         $advert->bid_opening_date = $request->bid_opening_date;  
-        $advert->status = 'disabled';
+        $advert->status = 'pending';
         $advert->user_id = $user->id;
 
     }

@@ -77,6 +77,13 @@ Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
 Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
 Route::get('/mda/advert/preview/{advertId}', 'MDAController@getMDAAdvertById');
 
+Route::get('/admin/adverts/', 'AdvertController@getAdverts')->name('adminAdverts');
+Route::get('/mda/adverts/preview/{advertId}', 'MDAController@getMDAAdvertById');
+Route::get('/admin/adverts/preview/{advertId}', 'MDAController@viewAdvertById');
+
+
+
+
 
 
 //Adverts
@@ -86,6 +93,8 @@ Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdve
 Route::get('/advert/active/preview/{advertId}', 'AdvertController@getAdvertById')->name('returnAds');
 Route::post('/advert/update/{advertId}', 'AdvertController@updateAdvert');
 Route::get('/advert/applied/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
+Route::post('/admin/advert/{advertId}/{status}', 'AdvertController@toggleAdvert');
+
 
 
 //AdvertLot
@@ -105,6 +114,8 @@ Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert'
 Route::post('/admin/requirement/create', 'TenderEligibilityController@storeName')->name('storeName');
 Route::get('/admin/requirement/names', 'TenderEligibilityController@index')->name('getEligibility');
 Route::post('/admin/requirement/delete/', 'TenderEligibilityController@delete')->name('deleteName');
+
+
 
 
 // ownership structure

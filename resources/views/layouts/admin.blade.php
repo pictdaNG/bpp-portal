@@ -275,7 +275,7 @@
                     </li>
 
                     <li >
-                      <a href="#" class="auto">
+                      <a href="{{ action('AdvertController@getAdverts') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
