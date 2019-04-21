@@ -73,12 +73,12 @@ class OwnershipStructureController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete(Request $request){
         try {
         
-            $qualification = $this->repo->destroy($id);
+            $ownership = $this->repo->destroy($request);
 
-            if ($qualification) {
+            if ($ownership) {
                 
                  return back()->with(['success'=>'Ownership structure deleted Succesfully.']);
             }

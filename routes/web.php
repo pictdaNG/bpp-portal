@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
+   // return view('welcome');
 });
 
 Auth::routes();
@@ -122,7 +123,7 @@ Route::post('/admin/requirement/delete/', 'TenderEligibilityController@delete')-
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
 Route::get('/ownership/structures', 'OwnershipStructureController@getOwnershipStructure')->name('getOwnershipStructure');
 Route::get('/ownership', 'OwnershipStructureController@index')->name('getOwnership');
-Route::delete('/ownership/delete/{id}', 'OwnershipStructureController@delete')->name('ownership.delete');
+Route::post('/ownership/delete/', 'OwnershipStructureController@delete')->name('ownership.delete');
 
 // Equipments 
 Route::post('/equipment/type/create', 'EquipmentController@storeEquipments')->name('storeEquipments');

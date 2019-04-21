@@ -22,10 +22,10 @@ class EloquentOwnershipRepository implements OwnershipStructureContract
     }
     
     
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $client = OwnershipStructure::findorFail($id);
-        return $client->delete();
+        return OwnershipStructure::destroy($ids->ids);
+       // return $client->delete();
     }
     
     public function update($id, $requestData)
