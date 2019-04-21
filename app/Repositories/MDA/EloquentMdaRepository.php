@@ -28,8 +28,6 @@ class EloquentMdaRepository implements MdaContract
         $filename = $file->getClientOriginalName();
         $destinationPath = 'uploads/';
 
-        // This will store only the filename. Update with full path if you like
-
         $requestData['profile_pic'] = $filename; 
         $requestData['password'] = bcrypt($requestData['password']);
         $uploadSuccess = $file->move($destinationPath, $filename);
