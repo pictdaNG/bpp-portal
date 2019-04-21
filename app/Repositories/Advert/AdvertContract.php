@@ -10,4 +10,5 @@ interface AdvertContract{
     public function removeAdvert($request);
     public function closingBids();
     public function getAdsById($id);
+    public function updateAdvertStatus($advertId, $status);
 }
