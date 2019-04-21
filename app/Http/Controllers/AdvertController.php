@@ -43,6 +43,20 @@ class AdvertController extends Controller{
        }
     }
 
+    public function updateAdvert(Request $request) {
+        try {
+             
+            if ($this->repo->editAdvert((object)$request->all())) {
+                 return response()->json(['success' => 'Record Added Successfully'], 200);
+             } 
+             else {     
+                 return response()->json(['responseText' => 'Failed to Add Record'], 500);
+             }
+         } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+        }
+     }
+
 
     public function deleteAdvert(Request $request) {
         try {
@@ -58,5 +72,28 @@ class AdvertController extends Controller{
          return response()->json(['response' => $e->getMessage()], 500);
         }
      }
+
+     public function getAdvertById($advertId) {
+        $advert = $this->repo->getAdsById($advertId);
+       // dd($advert);
+        return view('contractor.AdvertPreview')->with(['advert' => $advert]);
+    }
+
+    public function getSubmittedAdvertById($advertId) {
+        $advert = $this->repo->getAdsById($advertId);
+        return view('contractor.SubmittedAdvertPreview')->with(['advert' => $advert]);
+    }
+
+    public function getAdverts(){
+        $adverts = $this->repo->listAllAdverts();
+        return view('admin.AdvertList')->with(['adverts' => $adverts]); 
+    }
+    
+    public function toggleAdvert($advertId, $status) {
+        $toggle = $this->repo->updateAdvertStatus($advertId, $status);
+        $adverts = $this->repo->listAllAdverts();
+        return redirect()->route('adminAdverts')->with(['adverts' => $adverts]); 
+
+    }
 
 }

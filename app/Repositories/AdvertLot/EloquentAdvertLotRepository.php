@@ -32,6 +32,13 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         return AdvertLot::all();
     }
 
+    public function listAdsByUserIdandCategory($categoryId){
+        return AdvertLot::where("user_id", Auth::user()->id)
+        ->where('advert_lot_business_category_id', $categoryId )
+        ->get();
+    }
+
+
     public function removeAdvertLot($request) {
         try{
             $data = $request->aids;
@@ -51,7 +58,7 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         $category =  BusinessCategory::where("id", $request->lot_category)->get();
         $projectName = $request->project_name !=null ? $request->project_name : '';
         $imageName = $request->advert_id.'.'.time().'.'.$request->tender_document->getClientOriginalExtension();
-        $request->tender_document->move(public_path('images'), $imageName);
+        $request->tender_document->move(public_path('uploads/'), $imageName);
 
         $advertLot->project_name = $projectName;
         $advertLot->project_status = $request->project_status;
@@ -59,8 +66,8 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         $advertLot->package_no = $request->package_no;
         $advertLot->lot_no = $request->lot_no;
         $advertLot->description = $request->description;
-        $advertLot->lot_category = $request->lot_category;  
-        $advertLot->lot_category_name = $category[0]->name;
+        $advertLot->advert_lot_business_category_id = $request->lot_category;  
+        $advertLot->category_name = $category[0]->name;
         $advertLot->lot_amount = $request->lot_amount;
         $advertLot->tender_document = $imageName;  
         $advertLot->user_id = $user->id;

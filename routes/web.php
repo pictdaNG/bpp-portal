@@ -75,12 +75,26 @@ Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
 Route::post('/mda/delete', 'MDAController@deleteMda')->name('deleteMdas');
 Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
 Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
+Route::get('/mda/advert/preview/{advertId}', 'MDAController@getMDAAdvertById');
+
+Route::get('/admin/adverts/', 'AdvertController@getAdverts')->name('adminAdverts');
+Route::get('/mda/adverts/preview/{advertId}', 'MDAController@getMDAAdvertById');
+Route::get('/admin/adverts/preview/{advertId}', 'MDAController@viewAdvertById');
+
+
+
+
 
 
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
 Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts');
 Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
+Route::get('/advert/active/preview/{advertId}', 'AdvertController@getAdvertById')->name('returnAds');
+Route::post('/advert/update/{advertId}', 'AdvertController@updateAdvert');
+Route::get('/advert/applied/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
+Route::post('/admin/advert/{advertId}/{status}', 'AdvertController@toggleAdvert');
+
 
 
 //AdvertLot
@@ -95,10 +109,13 @@ Route::get('/bidRequirement/requirements/{lotId}', 'TenderRequirementController@
 Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert')->name('deleteRequirements');
 
 
+
 // bids eligibility
 Route::post('/admin/requirement/create', 'TenderEligibilityController@storeName')->name('storeName');
 Route::get('/admin/requirement/names', 'TenderEligibilityController@index')->name('getEligibility');
-Route::delete('/admin/requirement/delete/{id}', 'TenderEligibilityController@delete')->name('deleteName');
+Route::post('/admin/requirement/delete/', 'TenderEligibilityController@delete')->name('deleteName');
+
+
 
 
 // ownership structure
@@ -140,11 +157,13 @@ Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorF
 Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->name('contractorFiles');
 Route::get('/contractor/viewirr/','ContractorController@getIRR')->name('getIRR');
 Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
+Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvertById');
+
 
 // PDF Name
 Route::post('/admin/pdf/create', 'PDFCertificateNameController@storeName')->name('storePDFName');
 Route::get('/admin/pdf/names', 'PDFCertificateNameController@index')->name('getPDFNames');
-Route::delete('/admin/pdf/delete/{id}', 'PDFCertificateNameController@delete')->name('deletePDFName');
+Route::post('/admin/pdf/delete/', 'PDFCertificateNameController@delete')->name('deletePDFName');
 
 
 // Company Ownership
@@ -160,3 +179,13 @@ Route::get('/qualifications', 'QualificationController@getQualifications')->name
 Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
 Route::get('/qualifications/list', 'QualificationController@index')->name('qualifications');
 Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');
+
+
+
+//sales
+Route::get('/sales/list', 'SalesController@getSalesByUserId')->name('getSales');
+Route::post('/sales/store', 'SalesController@storeSales')->name('storesales');
+Route::get('/bid/pdf/{advertId}', 'SalesController@getSalesByUserandAdvert')->name('purchases');
+Route::get('/bid/downloadPDF/','SalesController@downloadPDF')->name('getPdf');
+
+//Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');

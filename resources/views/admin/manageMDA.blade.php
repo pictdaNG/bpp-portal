@@ -108,7 +108,7 @@
                                     <label class="col-lg-3 control-label">MDA Short Code</label>
                                     <div class="col-lg-9">
                                         <input name="mda_shortcode" class="form-control">
-                                        <span class="help-block m-b-none">URL</span>
+                                        
                                     </div>
                                 </div>
 
@@ -128,7 +128,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Address</label>
                                     <div class="col-lg-9">
-                                        <input required name="address" class="form-control">
+                                        <textarea required name="address" class="form-control"></textarea>
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>

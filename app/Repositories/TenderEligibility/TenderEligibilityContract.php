@@ -11,5 +11,5 @@ interface TenderEligibilityContract{
     
     public function update($id, $request);
     
-    public function destroy($id);
+    public function destroy($request);
 }

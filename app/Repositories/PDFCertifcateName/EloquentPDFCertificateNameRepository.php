@@ -22,10 +22,14 @@ class EloquentPDFCertificateNameRepository implements PDFCertificateNameContract
     }
     
     
-    public function destroy($id)
-    {
-        $client = PDFCertificateName::findorFail($id);
-        return $client->delete();
+    public function destroy($request){     
+
+        $data = $request->nids;
+        for($i = 0; $i < sizeof($data); $i++ ){
+         $client = PDFCertificateName::where('id', $data[$i])->delete();
+        }
+        return $client;
+     
     }
     
     public function update($id, $requestData)

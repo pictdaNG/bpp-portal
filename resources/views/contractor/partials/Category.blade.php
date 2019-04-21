@@ -35,7 +35,7 @@
             @endforeach
             @else
                 <tr>
-                    <td colspan="4"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
+                    <td colspan="5"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>
                 </tr>
             @endif
 

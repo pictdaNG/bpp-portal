@@ -24,6 +24,8 @@ use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use App\Repositories\CategoryFee\CategoryFeeContract; 
 use App\Repositories\PDFCertificateName\PDFCertificateNameContract; 
 use App\Repositories\Compliance\ComplianceContract;
+use App\Repositories\Advert\AdvertContract;
+
 
 
 
@@ -53,6 +55,7 @@ class ContractorController extends Controller {
     protected $contract_fee;
     protected $contract_pdf;
     protected $contract_compliance;
+    protected $contract_advert;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
@@ -61,7 +64,7 @@ class ContractorController extends Controller {
                   ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
                   ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
                   QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
-                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract ) {
+                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract ) {
                   
                     
 
@@ -84,6 +87,7 @@ class ContractorController extends Controller {
         $this->contract_fees = $categoryFeeContract;
         $this->contract_pdf = $pdfCertificateName;
         $this->contract_compliance = $complianceContract;
+        $this->contract_advert = $advertContract;
 
     }
     
@@ -107,8 +111,6 @@ class ContractorController extends Controller {
          $fees = $this->contract_fees->listAllFee();
          $company = $this->repo->getCompanyById();
          $compliance = $this->contract_compliance->getCompliancesById();
-
-
 
         return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
         'contractorcategories' =>  $categories, 'ownerships' => $owner_ship,
@@ -210,6 +212,13 @@ class ContractorController extends Controller {
         $names = $this->contract_pdf->listAllPDFName();
 
         return view('contractor.partials.IrrDocs', ['names' => $names]);
+    }
+
+
+    public function getAdvertById($advertId) {
+        $advert = $this->contract_advert->getAdsById($advertId);
+       // dd($advert);
+        return view('contractor.SelectBid')->with(['advert' => $advert]);
     }
 
 }

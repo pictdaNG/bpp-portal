@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserAdminSeeder::class);
-        $this->call(UserMDASeeder::class);
+        // $this->call(UserMDASeeder::class);
        //eddie....
     //    $this->call(OwnershipTableDataSeeder::class);
     //    $this->call(CountrySeeder::class);
@@ -25,12 +25,18 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessSubCategory1Seeder::class);
         $this->call(BusinessSubCategory2Seeder::class);
         $this->call(EmploymentTypeSeeder::class);
-        $this->call(ComplianceTableSeeder::class);
+        // $this->call(ComplianceTableSeeder::class);
         $this->call(EquipmentSeeder::class);
         $this->call(CompanyOwnershipSeeder::class);
         $this->call(QualificationSeeder::class);
-        $this->call(MDATableSeeder::class);
-        $this->call(AdvertSeederTable::class);
+        // $this->call(MDATableSeeder::class);
+        // $this->call(AdvertSeederTable::class);
+        $this->call(PDFNameSeederTable::class);
+        $this->call(CategoryFeeSeederTable::class);
+        $this->call(TenderEligibilitySeederTable::class);
+
+
+
 
 
 

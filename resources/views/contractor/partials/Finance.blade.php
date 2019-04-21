@@ -81,14 +81,14 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Select Year</label>
             <div class="col-lg-9">
-            <input name="year" required class="form-control">
+            <input type="number" name="year" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-3 control-label">Turn Over (N)</label>
             <div class="col-lg-9">
-            <input name="turn_over" required class="form-control">
+            <input type="number" name="turn_over" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -96,7 +96,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Total Assets (N)</label>
             <div class="col-lg-9">
-            <input name="total_asset" required class="form-control">
+            <input type="number" name="total_asset" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -104,7 +104,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Total Liability:</label>
             <div class="col-lg-9">
-            <input name="total_liability" required class="form-control">
+            <input type="number" name="total_liability" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -112,7 +112,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Witholding Tax (N):</label>
             <div class="col-lg-9">
-            <input name="witholding_tax" required class="form-control">
+            <input type="number" name="witholding_tax" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -120,7 +120,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Tax Paid (N):</label>
             <div class="col-lg-9">
-            <input name="tax_paid" required class="form-control">
+            <input type="number" name="tax_paid" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -128,7 +128,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">TCC No.:</label>
             <div class="col-lg-9">
-            <input name="tcc_no" required class="form-control">
+            <input type="number" name="tcc_no" required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>

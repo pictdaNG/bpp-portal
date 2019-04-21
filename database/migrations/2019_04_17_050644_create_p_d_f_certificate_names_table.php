@@ -28,6 +28,6 @@ class CreatePDFCertificateNamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('p_d_f_certifcate_names');
+        Schema::dropIfExists('p_d_f_certificate_names');
     }
 }

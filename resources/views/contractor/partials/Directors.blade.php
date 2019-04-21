@@ -45,7 +45,7 @@
             @endforeach
             @else 
             <tr>
-                <td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td> 
+                <td colspan="9"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record found</label></td> 
             </tr>
             @endif
         </tbody>
@@ -199,7 +199,7 @@
                 else {
                     $('#directors').append(
                         '<tr>'+
-                            '<td colspan="8"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>' + 
+                            '<td colspan="9"><label class="checkbox m-l m-t-none m-b-none i-checks">No Record Found</label></td>' + 
                         '</tr>'
                     );
                 }
