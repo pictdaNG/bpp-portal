@@ -1,65 +1,75 @@
 @extends('layouts.admin')
 
 @section('content')
-<section class="panel panel-default">
-    <header class="panel-heading">
-        Ownership Structure
-    </header>
-    @if($errors->any())
-        <div class="alert alert-danger">
-        @foreach($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach()
-        </div>
-    @endif
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p><b>{{ $message }}</b></p>
-        </div>
-    @endif
-    <form class="bs-example form-horizontal"  id="deleteCategory" method="POST">
-    <div class="row wrapper">
-        <div class="col-sm-5 m-b-xs">
-        <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Ownership Structure</a> 
-        <!-- <button type="submit" id="cateBtn"  class="btn btn-sm btn-danger">Delete</button>                 -->
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped b-t b-light">
-        <thead>
-            <tr>
-            <th data-toggle="class">S/N</th>
-            <th>Name</th>
-            <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="categories">
-        <?php  $i = 0; ?>
-            @foreach ( $ownership as $data)
-            <tr>
-                <td>{{ 1 + $i++ }}</td>
-                <td>{{ $data['name'] }}</td>
-                <td>
-                    <form action="{{ route('ownership.delete', $data['id']) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="delete-modal btn btn-danger">
+
+
+<section class="hbox stretch">
+    <section class="vbox">
+        <section class="scrollable padder">
+          <br/>
+        <section class="panel panel-info">
+            <header class="panel-heading">
+                 Ownership Structure
+            </header>
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach()
+                </div>
+             @endif
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p><b>{{ $message }}</b></p>
+                </div>
+            @endif
+            <form class="bs-example form-horizontal" action="{{route('ownership.delete') }}" method="POST">
+
+                {{csrf_field()}}
+                <div class="row wrapper">
+                    <div class="col-sm-5 m-b-xs">
+                        <a href="#PDFRegistration" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add PDF Name</a> 
+                        <button id="btnDelete"  disabled class="delete-modal btn btn-danger">
                             <span class="glyphicon glyphicon-trash"></span> Delete
                         </button>
-                    </form>              
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-        </table>
-    </div>
-    <footer class="panel-footer">
-        <div class="row">
-        
-        </div>
-    </footer>
-</form>
-</section>
+                    </div>
+                    
+                </div>
+   
+                <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
+                <div class="table-responsive">
+                    <table class="table table-striped b-t b-light">
+                        <thead>
+                            <tr>
+                               
+                                <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input disabled type="checkbox"><i></i></label></th>
+                                <th width="20">S/NO</th>
+                                <th data-toggle="class">Category Name</th>
+                                <th>Date Created </th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody id="ownership"> 
+                            @if(sizeof($ownership) > 0)
+                                <?php $i = 1; ?>
+                                @foreach ( $ownership as $data)
+                                    <tr>
+                                        <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="{{$data->id}}"><i></i></label></td>
+                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $data['name'] }}</td>
+                                        <td>{{$data['created_at']}}
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>   
+                                    <td colspan="4">NO RECORD FOUND</td>   
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                </form>
+         </section>
 
 <div class="modal fade" id="addBusinessCategory">
 <div class="modal-dialog">
@@ -93,5 +103,21 @@
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div>
+
+<script>
+
+    window.addEventListener('load', function () {
+      $(document).ready(function() {
+        var sumchecked = 0;
+        $('#ownership').on('change', 'input[type="checkbox"]', function(){
+          ($(this).is(':checked')) ? sumchecked++ : sumchecked--;
+          (sumchecked > 0) ? $('#btnDelete').removeAttr('disabled') : $('#btnDelete').attr('disabled', 'disabled');
+          
+        });
+      });
+    });
+
+</script>
+
 
 @endsection
