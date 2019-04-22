@@ -129,7 +129,7 @@ Route::post('/ownership/delete/', 'OwnershipStructureController@delete')->name('
 Route::post('/equipment/type/create', 'EquipmentController@storeEquipments')->name('storeEquipments');
 Route::get('/equipment/types', 'EquipmentController@getEquipmentsType')->name('getEquipmentsType');
 Route::get('/equipments', 'EquipmentController@index')->name('getEquipments');
-Route::delete('/equipment/delete/{id}', 'EquipmentController@delete')->name('equipment.delete');
+Route::post('/equipment/delete/', 'EquipmentController@delete')->name('equipment.delete');
 
 
 // Registration Fee
@@ -179,7 +179,7 @@ Route::get('/employment/type', 'EmploymentTypeController@getAllEmploymentType')-
 Route::get('/qualifications', 'QualificationController@getQualifications')->name('getQualifications');
 Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
 Route::get('/qualifications/list', 'QualificationController@index')->name('qualifications');
-Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');
+Route::post('/qualifications/delete/', 'QualificationController@delete')->name('qualifications.delete');
 
 
 

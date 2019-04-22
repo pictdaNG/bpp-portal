@@ -11,5 +11,5 @@ interface QualificationContract
     
     public function update($id, $requestData);
     
-    public function destroy($id);
+    public function destroy($ids);
 }

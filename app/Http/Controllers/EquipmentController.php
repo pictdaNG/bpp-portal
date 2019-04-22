@@ -74,10 +74,10 @@ class EquipmentController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete(Request $request){
         try {
         
-            $equipment = $this->repo->destroy($id);
+            $equipment = $this->repo->destroy($request);
 
             if ($equipment) {
                 

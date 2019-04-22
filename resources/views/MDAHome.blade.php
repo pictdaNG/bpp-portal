@@ -141,7 +141,7 @@ section.panel-body.slim-scroll {
                             </div>                 
                           <div class="media-body">
                           <div class="pull-right media-xs text-center text-muted">
-                              <?php $date = Carbon\Carbon::parse($advert->date_published);  $newDate = $date->isoFormat('MMM Do'); ?>
+                              <?php $date = Carbon\Carbon::parse($advert->created_at);  $newDate = $date->isoFormat('MMM Do'); ?>
                               <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                               <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
                           </div>
@@ -164,7 +164,7 @@ section.panel-body.slim-scroll {
                 <b>Bids Submitted</b>
                 </header>
                 <section class="panel-body slim-scroll" data-height="230px" data-size="10px">
-                     @if(sizeof($myAdverts) >0)
+                     @if(sizeof($submittedBids) >0)
                         @foreach($submittedBids as $record)
                             <article class="media">
                                     <div class="pull-left">
