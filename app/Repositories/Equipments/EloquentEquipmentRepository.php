@@ -22,10 +22,10 @@ class EloquentEquipmentRepository implements EquipmentContract
     }
     
     
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $client = Equipments::findorFail($id);
-        return $client->delete();
+        return Equipments::destroy($ids->ids);
+        //return $client->delete();
     }
     
     public function update($id, $requestData)

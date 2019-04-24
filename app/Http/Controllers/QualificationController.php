@@ -73,10 +73,10 @@ class QualificationController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete(Request $request){
         try {
         
-            $qualification = $this->repo->destroy($id);
+            $qualification = $this->repo->destroy($request);
 
             if ($qualification) {
                 

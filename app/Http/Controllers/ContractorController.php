@@ -221,4 +221,11 @@ class ContractorController extends Controller {
         return view('contractor.SelectBid')->with(['advert' => $advert]);
     }
 
+
+    public function getAdverts() {
+        $adverts = $this->contract_advert->listAllAdvertsForContractor();
+       // dd($advert);
+        return view('contractor.AdvertList')->with(['adverts' => $adverts]);
+    }
+
 }

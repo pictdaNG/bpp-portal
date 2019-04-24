@@ -34,6 +34,13 @@ class EloquentAdvertRepository implements AdvertContract {
         ->get();
     }
 
+    public function listAllAdvertsForContractor(){
+        return Advert::with('user')
+      //  ->where('status',  'active')
+        ->orderBy('created_at', 'desc')
+        ->get();;
+    }
+
 
     public function listAdvertsByMDA(){
         return Advert::where('user_id', Auth::user()->id)

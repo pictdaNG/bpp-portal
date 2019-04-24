@@ -132,6 +132,7 @@
             <select name="employment_type" required class="form-control">
                 <option value="default"></option>
                 <option value="contract">Contract</option>
+                <option value="contract">Part-Time</option>
                 <option value="permanent">Permanent</option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->

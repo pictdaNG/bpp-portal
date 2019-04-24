@@ -22,10 +22,10 @@ class EloquentQualificationRepository implements QualificationContract
     }
     
     
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $client = Qualification::findorFail($id);
-        return $client->delete();
+      return  $client = Qualification::destroy($ids->ids);
+        //return $client->delete();
     }
     
     public function update($id, $requestData)

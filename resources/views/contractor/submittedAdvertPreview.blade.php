@@ -8,6 +8,10 @@
     position: relative;
     margin-right: 8em;
 }
+
+.pt40 {
+  padding-top: 20px;
+}
   </style>
 
 
@@ -16,8 +20,8 @@
     <section id="content">
       <section class="vbox">
         <section class="scrollable padder">
-        <div class=" text-left-xs text-right ">
-                  <a href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-success disabled" id="submitBtn">Applied</a>
+        <div class=" text-left-xs text-right pt40">
+                  <a href="#" class="btn btn-success disabled btn-sm" id="submitBtn">Applied</a>
               </div>
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">

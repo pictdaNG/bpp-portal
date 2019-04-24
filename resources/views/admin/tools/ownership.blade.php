@@ -28,7 +28,7 @@
                 {{csrf_field()}}
                 <div class="row wrapper">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="#PDFRegistration" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add PDF Name</a> 
+                        <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add PDF Name</a> 
                         <button id="btnDelete"  disabled class="delete-modal btn btn-danger">
                             <span class="glyphicon glyphicon-trash"></span> Delete
                         </button>
