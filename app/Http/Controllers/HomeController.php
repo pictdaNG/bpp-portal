@@ -97,7 +97,8 @@ class HomeController extends Controller{
 
             $data= $this->dashboardData($constructions, $supplies, $consultancy, $totalSales, $salesCount);
 
-            return view('MDAHome', ['myAdverts'=> $myAdverts, 'data' => $data, 'submittedBids' => $submittedBids, 'agregateSales' => $agregateSales]);
+            return view('MDAHome', ['myAdverts'=> $myAdverts, 'data' => $data, 'submittedBids' => $submittedBids,
+                             'agregateSales' => $agregateSales]);
    
         }else if(strtolower($user->user_type) == strtolower("Contractor")){
 

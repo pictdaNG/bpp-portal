@@ -287,7 +287,7 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="{{action('ContractorController@getAdverts')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>All Adverts</span>
                           </a>
@@ -376,7 +376,7 @@
         </aside>
         <!-- /.aside -->
         <section id="content">
-          @yield('content')
+           @yield('content')
           <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
         </section>
       </section>

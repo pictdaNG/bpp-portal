@@ -1,6 +1,10 @@
 <form class="bs-example form-horizontal" id="complianceform" action="javascript:void(0)" method="POST">
 
-    <div class="alert alert-success d-none" id="compliance_div">
+    <!-- <div class="alert alert-success d-none" id="compliance_div">
+        <span id="compliance_message"></span>
+    </div> -->
+
+    <div class="alert alert-success d-none"  style="margin-bottom:10px;height:45px" id="compliance_div">
         <span id="compliance_message"></span>
     </div>
          
@@ -9,6 +13,7 @@
             <section class="panel panel-default">
                 <header class="panel-heading font-bold">Business Registration</header>
                 <div class="panel-body">
+                    
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Registered Business Name</label>
                         <div class="col-lg-10">
@@ -104,7 +109,7 @@
                     <label class="col-lg-2 control-label">Ownership Structure.</label>
                     <div class="col-lg-10">
                     <select name="tcc_ownership_structure" required class="form-control">
-                        @foreach ($ownerships as $ownership)
+                        @foreach ($tcc_ownerships as $ownership)
                             <option value="{{$ownership->name}}">{{$ownership->name}}</option>
                         @endforeach
 
@@ -153,7 +158,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">Registration No.</label>
+                        <label class="col-lg-2 control-label">Registration Date.</label>
                         <div class="col-lg-10">
                         <input type="date" name="itf_payment_date" value="{{$compliance['itf_payment_date']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
@@ -194,6 +199,7 @@ $("#complianceform").validate({
                 $('#complianceBtn').html('Submitted');
                 $('#compliance_message').show();
                 $('#compliance_div').show();
+                $('#compliance_div').attr('class', 'alert-success');
                 $('#compliance_message').html(data.success);
                 $('#compliance_div').removeClass('d-none');
                 setTimeout(function(){
@@ -208,12 +214,15 @@ $("#complianceform").validate({
                 $('#complianceBtn').html('Sending..');
                 $('#complianceBtn').attr('disabled', 'disabled');
             },
-            error: function(data) {
-                console.log('error', data)
+            error: function(res) {
+             
                 $('#complianceBtn').html('Try Again');
                 $('#complianceBtn').removeAttr('disabled');
-                
-            // show error to end user
+                $('#compliance_message').show();
+                $('#compliance_div').show();
+                $('#compliance_div').attr('class', 'alert-danger');
+                $('#compliance_message').html(res.responseJSON.err);
+                $('#compliance_div').removeClass('d-none');
             }
         });
     }

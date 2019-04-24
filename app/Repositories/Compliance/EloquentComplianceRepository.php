@@ -5,6 +5,7 @@ namespace App\Repositories\Compliance;
 use App\Compliance;
 use App\Repositories\Compliance\ComplianceContract;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Session;
 
 
@@ -15,17 +16,34 @@ class EloquentComplianceRepository implements ComplianceContract{
         $this->setComplianceProperties($compliance, $request);
 
         $search = Compliance::where('user_id', Auth::user()->id)->get()->first();
+          //2019-04-03 //2019-04-22
+        if($compliance->cac_date_of_reg > Carbon::now()->isoFormat('YYYY-MM-D')) {
+            return 2;
+        }
+       
+        else if($compliance->pension_expiring_date < Carbon::now()->isoFormat('YYYY-MM-D')) {
+            return 4;
+        }
+
+        else if($compliance->pension_no_of_employee < 1) {
+            return 5;
+        }
+        else if($compliance->itf_payment_date > Carbon::now()->isoFormat('YYYY-MM-D')) {
+            return 3;
+        }
 
         if($search) {
             $this->setComplianceProperties($search, $request);
-            return $search->save();
+             $search->save();
+            return 1;
         }
         else {
             $this->setComplianceProperties($compliance, $request);
-            return $compliance->save();
+            $compliance->save();
+            return 1;
 
         }
-        return $compliance->save();
+        return 0;
     }
 
     public function getCompliancesById(){

@@ -20,7 +20,7 @@
       <section class="vbox">
         <section class="scrollable padder">
         <div class=" text-left-xs text-right pt40 ">
-                  <a href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-success btn-sm" id="submitBtn">Apply For Tender</a>
+                  <a href="{{action('ContractorController@getAdvertById', $advert->id)}}" class="btn btn-success btn-sm" id="submitBtn"><strong>APPLY FOR TENDER</strong></a>
               </div>
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">

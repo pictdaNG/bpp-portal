@@ -11,4 +11,5 @@ interface AdvertContract{
     public function closingBids();
     public function getAdsById($id);
     public function updateAdvertStatus($advertId, $status);
+    public function listAllAdvertsForContractor();
 }
