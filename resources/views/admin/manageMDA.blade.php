@@ -76,7 +76,8 @@
                             <h4 class="modal-title">Add New MDA</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="bs-example form-horizontal" action="javascript:void(0)" id="mdasform" method="POST" enctype="multipart/form-data">
+                            <form class="bs-example form-horizontal" id="mdasform" action="{{route('manageMDA.store')}}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="alert alert-success d-none" id="mdas_div">
                                 <span id="mdas_message"></span>
                             </div>
@@ -231,8 +232,8 @@
           var dataType =  'JSON';
       
           $.ajax({
-              type : 'POST',
-              url : url + '/mda/delete',
+              method : 'POST',
+              url : url + '/manageMDA/delete',
               data :$('#deleteMdas').serialize(),
               dataType: dataType,
               success:function(data){    
@@ -255,59 +256,55 @@
 
     })
 
-
-
-
-
     window.addEventListener('load', function () {
         $("#mdasform").submit(function(evt){
-        evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var url = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $.ajax({
-            type : "POST",
-            url : url + '/mda_controller/storeMdas',
-            data: new FormData( this ),
-            contentType: false,
-            processData: false,
-            dataType: dataType,
-        
-            success:function(data){  
-            $('#mdasBtn').html('Submitted');
-            $('#mdasBtn').removeAttr('disabled');
-            $('#mdas_message').show();
-            $('#mdas_div').show();
-            $('#mdas_message').html(data.success);
-            $('#mdas_div').removeClass('d-none');
-            document.getElementById("mdasform").reset();        
-            setTimeout(function(){
-                $('#mdas_message').hide();
-                $('#mdas_div').hide();
-                $('#mdasBtn').html('Save Data');
-                $('.close').trigger('click');
-            },1000);
-
-            loadMdas('mda_controller', function(data){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
+            var url = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({
+                type : "POST",
+                url : $('#mdasform').attr('action'),
+                data: new FormData( this ),
+                contentType: false,
+                processData: false,
+                dataType: dataType,
+            
+                success:function(data){  
+                    $('#mdasBtn').html('Submitted');
+                    $('#mdasBtn').removeAttr('disabled');
+                    $('#mdas_message').show();
+                    $('#mdas_div').show();
+                    $('#mdas_message').html(data.success);
+                    $('#mdas_div').removeClass('d-none');
+                    document.getElementById("mdasform").reset();        
+                    setTimeout(function(){
+                        $('#mdas_message').hide();
+                        $('#mdas_div').hide();
+                        $('#mdasBtn').html('Save Data');
+                        $('.close').trigger('click');
+                    },1000);
 
-            },
-            beforeSend: function(){
-            $('#mdasBtn').html('Sending..');
-            $('#mdasBtn').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-            console.log('error', data)
-            $('#mdasBtn').html('Try Again');
-            $('#mdasBtn').removeAttr('disabled');
-                
-            // show error to end user
-            }
-        });
+                    loadMdas('mda_controller', function(data){
+                    });
+
+                },
+                beforeSend: function(){
+                    $('#mdasBtn').html('Sending..');
+                    $('#mdasBtn').attr('disabled', 'disabled');
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    $('#mdasBtn').html('Try Again');
+                    $('#mdasBtn').removeAttr('disabled');
+                        
+                    // show error to end user
+                }
+            });
         });
    });
 

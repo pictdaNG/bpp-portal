@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Database\QueryException;
-
+use App\Mda;
 use App\Repositories\MDA\MdaContract;
 use App\Repositories\Advert\AdvertContract;
 use App\Repositories\BusinessCategory\BusinessCategoryContract;
@@ -36,7 +36,7 @@ class MDAController extends Controller{
 
     }
 
-    public function index(Request $request){
+    public function index(){
         try {
             $mdas = $this->repo->listMdas();
             $categories = $this->contract_category->allBusinessCategories();
@@ -100,11 +100,12 @@ class MDAController extends Controller{
         return view('mda/bidRequirements', ['advert' => $advert, 'names' => $names]);
     }
 
-    public function storeMdas(Request $request) {
+    public function store(Request $request) {
 
         try {
             $data = $request->all();
             // dd($data);
+          // $mda =  Mda::Create($data);
             $mdas = $this->repo->create($data);
 
             if ($mdas) {
@@ -118,6 +119,18 @@ class MDAController extends Controller{
          return response()->json(['responseeeeee' => $e->getMessage()], 500);
  
         }
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
     }
 
     public function mdasPreview($id) {
