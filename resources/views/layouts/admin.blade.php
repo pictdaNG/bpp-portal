@@ -15,10 +15,9 @@
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
   <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
   <!-- eddie added these three jquery files below -->
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>   -->
-  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script> -->
   <!--[if lt IE 9]>
     <script src="{{ asset('js/ie/html5shiv.js') }}"></script>
     <script src="{{ asset('js/ie/respond.min.js') }}"></script>
@@ -381,7 +380,7 @@
                     </li>
 
                     <li >
-                      <a href="{{ route('manageMDA') }}" class="auto">
+                      <a href="{{ route('manageMDA.index') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
@@ -544,7 +543,9 @@
       </section>
     </section>
   </section>
-  <script src="{{ asset('js/jquery.min.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
   <!-- Bootstrap -->
   <script src="{{ asset('js/bootstrap.js') }}"></script>
   <!-- App -->

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Illuminate\Database\QueryException;
 use App\Mda;
@@ -15,8 +14,7 @@ use App\Repositories\TenderEligibility\TenderEligibilityContract;
 
 use Auth;
 
-class MDAController extends Controller
-{
+class MDController extends Controller{
     /**
      * Create a new controller instance.
      *
@@ -75,6 +73,21 @@ class MDAController extends Controller
         }
     }
 
+   
+
+    public function deleteMda(Request $request) {
+        try {
+            $category = $this->repo->removeMda($request->all());     
+            if ($category) {
+                return response()->json(['success'=>' Mdas Deleted Successfully'], 200);
+             } else {  
+                return response()->json(['responseText' => 'Failed to Delete'], 500);
+             }
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+        }
+    }
+
     public function createAdvert(Request $request){
         $adverts = $this->advert_contract->listAdvertsByUserId(); 
         $categories = $this->contract_category->allBusinessCategories();
@@ -87,26 +100,14 @@ class MDAController extends Controller
         return view('mda/bidRequirements', ['advert' => $advert, 'names' => $names]);
     }
 
+    public function store(Request $request) {
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
         try {
             $data = $request->all();
             // dd($data);
-          // $mda =  Mda::Create($data);
-          // dd($mda);
-            $mdas = $this->repo->create($data);
+           $mda =  Mda::Create($data);
+           dd($mda);
+            //$mdas = $this->repo->create($data);
 
             if ($mdas) {
                 return response()->json(['success'=>'MDA Added Succesfully.'], 200);
@@ -121,7 +122,17 @@ class MDAController extends Controller
         }
     }
 
-
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
 
     public function mdasPreview($id) {
 
@@ -154,56 +165,4 @@ class MDAController extends Controller
         return view('admin.AdvertPreview')->with(['advert' => $advert]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id){
-        try {
-            $category = $this->repo->removeMda($request->all());     
-            if ($category) {
-                return response()->json(['success'=>' Mdas Deleted Successfully'], 200);
-             } else {  
-                return response()->json(['responseText' => 'Failed to Delete'], 500);
-             }
-        } catch (QueryException $e) {
-         return response()->json(['response' => $e->getMessage()], 500);
-        }
-    }
 }

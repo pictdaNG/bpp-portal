@@ -76,7 +76,8 @@
                             <h4 class="modal-title">Add New MDA</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="bs-example form-horizontal" action="javascript:void(0)" id="mdasform" method="POST" enctype="multipart/form-data">
+                            <form class="bs-example form-horizontal"  id="mdasform" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="alert alert-success d-none" id="mdas_div">
                                 <span id="mdas_message"></span>
                             </div>
@@ -219,7 +220,7 @@
 
 <script type="application/javascript">
 
-function deleteMdas(){
+    window.addEventListener('load', function () {
       $("#deleteMdas").submit(function(evt){
           evt.preventDefault();
           $.ajaxSetup({
@@ -231,14 +232,14 @@ function deleteMdas(){
           var dataType =  'JSON';
       
           $.ajax({
-              type : 'POST',
-              url : url + '/mda/delete',
+              method : 'POST',
+              url : url + '/manageMDA/delete',
               data :$('#deleteMdas').serialize(),
               dataType: dataType,
               success:function(data){    
                   $('#mdaBtn').html('Delete');
                   $('#mdaBtn').removeAttr('disabled');     
-                  loadMdas('/mda/list/', function(data){
+                  loadMdas('/mda_controller/', function(data){
                   });
               },
               beforeSend: function(){
@@ -253,60 +254,60 @@ function deleteMdas(){
           });
       })
 
-    }
+    })
 
-window.addEventListener('load', function () {
-    $("#mdasform").submit(function(evt){
-      evt.preventDefault();
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
-      var url = '{{URL::to('/')}}';
-      var dataType =  'JSON';
-      $.ajax({
-        type : 'POST',
-        url : url + '/mda/create/',
-        data: new FormData( this ),
-        contentType: false,
-        processData: false,
-      // data :$('#lotForm').serialize(),
-       // data : new FormData($("#lotForm")[0]),
-        dataType: dataType,
-      
-        success:function(data){  
-          $('#mdasBtn').html('Submitted');
-          $('#mdasBtn').removeAttr('disabled');
-          $('#mdas_message').show();
-          $('#mdas_div').show();
-          $('#mdas_message').html(data.success);
-          $('#mdas_div').removeClass('d-none');
-          document.getElementById("mdasform").reset();        
-          setTimeout(function(){
-              $('#mdas_message').hide();
-              $('#mdas_div').hide();
-              $('#mdasBtn').html('Save Data');
-              $('.close').trigger('click');
-          },1000);
-
-          loadMdas('/mda/list/', function(data){
-         });
-
-        },
-        beforeSend: function(){
-          $('#mdasBtn').html('Sending..');
-          $('#mdasBtn').attr('disabled', 'disabled');
-        },
-        error: function(data) {
-          console.log('error', data)
-          $('#mdasBtn').html('Try Again');
-          $('#mdasBtn').removeAttr('disabled');
+    window.addEventListener('load', function () {
+        $("#mdasform").on( "submit",function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+          //  console.log('url ',  url+/);
+            var dataType =  'JSON';
+            $.ajax({
+                type : "POST",
+                url : "{{url('/manageMDA')}}",
+                data: new FormData( this ),
+                contentType: false,
+                processData: false,
+                dataType: dataType,
             
-        // show error to end user
-        }
-      });
-    });
+                success:function(data){  
+                    $('#mdasBtn').html('Submitted');
+                    $('#mdasBtn').removeAttr('disabled');
+                    $('#mdas_message').show();
+                    $('#mdas_div').show();
+                    $('#mdas_message').html(data.success);
+                    $('#mdas_div').removeClass('d-none');
+                    document.getElementById("mdasform").reset();        
+                    setTimeout(function(){
+                        $('#mdas_message').hide();
+                        $('#mdas_div').hide();
+                        $('#mdasBtn').html('Save Data');
+                        $('.close').trigger('click');
+                    },1000);
+                    console.log({'messagessssssssss': data.success})
+
+                    loadMdas('mda_controller', function(data){
+                    });
+
+                },
+                beforeSend: function(){
+                    $('#mdasBtn').html('Sending..');
+                    $('#mdasBtn').attr('disabled', 'disabled');
+                },
+                error: function(data) {
+                    console.log('error', data)
+                    $('#mdasBtn').html('Try Again');
+                    $('#mdasBtn').removeAttr('disabled');
+                        
+                    // show error to end user
+                }
+            });
+        });
    });
 
 
@@ -327,23 +328,6 @@ window.addEventListener('load', function () {
         $('#mdas').empty();
         $.each(data, function (i) {
             console.log("mdas data", data);
-        //   $('#mdas').append(
-        //       '<tr>'+
-        //       '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="aids[]" value="'+data[i].id+'"><i></i></label></td>' +
-        //       '<td>'+data[i].budget_year+'</td>' +
-        //       '<td>'+data[i].name+'</td>' +
-        //       '<td>'+data[i].advert_type+'</td>'+
-        //       '<td>'+data[i].lots+'</td>'+
-        //       '<td>'+data[i].advert_publish_date+'</td>'+
-        //       '<td>'+data[i].bid_opening_date+'</td>'+
-        //       '<td>'+
-        //         '<a href="#" data-id="'+data[i].id+'" data-name="'+data[i].name+'" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a>'+
-        //         '<a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>'+
-        //         '<a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>'+
-        //         '<a href="/mda/advert/bidrequirement/'+data[i].id+'/" class="btn btn-default"><i class="fa fa-gear"></i></a>'+
-        //         '</td>'+
-        //       '</tr>'
-        //     );
             location.reload();
 
           });     
