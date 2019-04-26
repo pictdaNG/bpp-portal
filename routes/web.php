@@ -71,8 +71,6 @@ Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery'
 Route::resource('manageMDA', 'MDAController');
 //Route::post('manageMDA', 'MDAController@store');
 
-
-
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
 Route::get('/contractors/report', 'ReportController@contractors')->name('contractorReport');
@@ -88,11 +86,6 @@ Route::get('/admin/adverts/', 'AdvertController@getAdverts')->name('adminAdverts
 Route::get('/mda/adverts/preview/{advertId}', 'MDAController@getMDAAdvertById');
 Route::get('/admin/adverts/preview/{advertId}', 'MDAController@viewAdvertById');
 
-
-
-
-
-
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
 Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts');
@@ -101,8 +94,6 @@ Route::get('/advert/active/preview/{advertId}', 'AdvertController@getAdvertById'
 Route::post('/advert/update/{advertId}', 'AdvertController@updateAdvert');
 Route::get('/adverts/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
 Route::post('/admin/advert/{advertId}/{status}', 'AdvertController@toggleAdvert');
-
-
 
 //AdvertLot
 Route::post('/advert-lot/create', 'AdvertLotController@storeAdvertLot')->name('storeAdvertLot');
@@ -115,15 +106,10 @@ Route::post('/bidRequirement/create/', 'TenderRequirementController@storeTenderR
 Route::get('/bidRequirement/requirements/{lotId}', 'TenderRequirementController@tenderRequirement')->name('returnRequirements');
 Route::post('/bidRequirement/delete', 'TenderRequirementController@deleteAdvert')->name('deleteRequirements');
 
-
-
 // bids eligibility
 Route::post('/admin/requirement/create', 'TenderEligibilityController@storeName')->name('storeName');
 Route::get('/admin/requirement/names', 'TenderEligibilityController@index')->name('getEligibility');
 Route::post('/admin/requirement/delete/', 'TenderEligibilityController@delete')->name('deleteName');
-
-
-
 
 // ownership structure
 Route::post('/ownership/structure/create', 'OwnershipStructureController@storeOwnershipStructure')->name('storeOwnershipStructure');
@@ -166,12 +152,10 @@ Route::get('/contractor/viewirr/','ContractorController@getIRR')->name('getIRR')
 Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
 Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvertById');
 
-
 // PDF Name
 Route::post('/admin/pdf/create', 'PDFCertificateNameController@storeName')->name('storePDFName');
 Route::get('/admin/pdf/names', 'PDFCertificateNameController@index')->name('getPDFNames');
 Route::post('/admin/pdf/delete/', 'PDFCertificateNameController@delete')->name('deletePDFName');
-
 
 // Company Ownership
 Route::get('/company/ownership/list', 'CompanyOwnershipController@index')->name('companyOwnership');
@@ -186,8 +170,6 @@ Route::get('/qualifications', 'QualificationController@getQualifications')->name
 Route::post('/qualifications/store', 'QualificationController@storeQualifications')->name('storeQualifications');
 Route::get('/qualifications/list', 'QualificationController@index')->name('qualifications');
 Route::post('/qualifications/delete/', 'QualificationController@delete')->name('qualifications.delete');
-
-
 
 //sales
 Route::get('/sales/list', 'SalesController@getSalesByUserId')->name('getSales');
