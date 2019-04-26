@@ -55,7 +55,7 @@ class EloquentSalesRepository implements SalesContract
     }
 
     public function totalSales() {
-        return \Sales::where('mda_id', Auth::user()->id)->sum('amount');
+        return Sales::where('mda_id', Auth::user()->id)->sum('amount');
     }
 
     public function salesCount(){
