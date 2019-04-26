@@ -380,7 +380,7 @@
                     </li>
 
                     <li >
-                      <a href="{{ action('mda_contract') }}" class="auto">
+                      <a href="{{ action('mda_controller') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
