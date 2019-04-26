@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Country;
 use App\User;
 use App\ContractorFile;
+use App\Sales;
 use Illuminate\Support\Facades\Auth;
 
 
