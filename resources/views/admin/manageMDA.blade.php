@@ -238,7 +238,7 @@
               success:function(data){    
                   $('#mdaBtn').html('Delete');
                   $('#mdaBtn').removeAttr('disabled');     
-                  loadMdas('/mda/list/', function(data){
+                  loadMdas('/mda_controller/', function(data){
                   });
               },
               beforeSend: function(){
@@ -271,7 +271,7 @@
         var dataType =  'JSON';
         $.ajax({
             type : "POST",
-            url : url + '/mda/create/',
+            url : url + '/mda_controller/storeMdas',
             data: new FormData( this ),
             contentType: false,
             processData: false,
@@ -292,7 +292,7 @@
                 $('.close').trigger('click');
             },1000);
 
-            loadMdas('/mda/list/', function(data){
+            loadMdas('mda_controller', function(data){
             });
 
             },

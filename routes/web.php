@@ -67,7 +67,10 @@ Route::get('/machinery/machineries', 'ContractorMachineryController@getMachineri
 Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery')->name('deleteMachinery');
 
 //Admin
-Route::get('/admin/manageMDA', 'MDAController@mda')->name('manageMDA');
+//Route::get('/admin/manageMDA', 'MDAController@mda')->name('manageMDA');
+
+Route::resource('mda_controller', 'MDAController')->name('manageMDA');
+
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');

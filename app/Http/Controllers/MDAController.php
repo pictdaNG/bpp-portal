@@ -37,7 +37,7 @@ class MDAController extends Controller{
     }
 
 
-    public function getMdas() {
+    public function index() {
         try {
             $mdas = $this->repo->listMdas();
             
