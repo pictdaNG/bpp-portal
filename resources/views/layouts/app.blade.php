@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
   <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" />
+
    <!-- eddie added these three jquery files below  for ajax form submission-->
    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>   -->
    
@@ -380,9 +382,14 @@
       </section>
     </section>
   </section>
+
+  
+
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <!-- Bootstrap -->
   <script src="{{ asset('js/bootstrap.js') }}"></script>
   <!-- App -->
@@ -403,7 +410,7 @@
 
   <script src="{{ asset('js/sortable/jquery.sortable.js') }}"></script>
   <script src="{{ asset('js/app.plugin.js') }}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
   <script>
   $( document ).ready(function() {
     $.ajaxSetup({
@@ -413,5 +420,20 @@
     })
   });
   </script>
+
+  @if(Session::has('message'))
+    var type= "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+      case 'info':
+        toastr.info("{{ Session::get('message') }}");
+      case 'warning':
+        toastr.warning("{{ Session::get('message') }}");
+      case 'success':
+        toastr.warning("{{ Session::get('message') }}");
+      case 'error':
+        toastr.warning("{{ Session::get('message') }}");
+        break
+    }
+  @endif
 </body>
 </html>

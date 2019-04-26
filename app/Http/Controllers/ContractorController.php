@@ -139,6 +139,10 @@ class ContractorController extends Controller {
            $contractor = $this->repo->createContractor((object)$request->all());
              
            if ($contractor) {
+                $notification = array(
+                    'message' => 'Game Added successfully',
+                    'alert-type' => 'success'
+                );
                return response()->json(['success'=>'Added new records.'], 200);
                
             } else {
@@ -225,6 +229,7 @@ class ContractorController extends Controller {
     public function getAdverts() {
         $adverts = $this->contract_advert->listAllAdvertsForContractor();
        // dd($advert);
+       session()->set('success', 'Item created successfully.');
         return view('contractor.AdvertList')->with(['adverts' => $adverts]);
     }
 

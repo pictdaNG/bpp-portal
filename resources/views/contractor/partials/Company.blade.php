@@ -73,49 +73,52 @@
     </div>
 
     <script>
-        $("#registrationForm").submit(function(evt ){
-            evt.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var host = '{{URL::to('/')}}';
-            var dataType =  'JSON';
-            $.ajax({ 
-                url : host + '/contractor/create',
-                type : 'POST',
-                data :$("#registrationForm").serialize(),
-                dataType: dataType,
-                success:function(response){
-                    $('#submitForm').html('Submitted');
-                    $('#res_message').show();
-                    $('#msg_div').show();
+        window.addEventListener('load', function () {
+            $("#registrationForm").submit(function(evt ){
+                evt.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var host = '{{URL::to('/')}}';
+                var dataType =  'JSON';
+                $.ajax({ 
+                    url : host + '/contractor/create',
+                    type : 'POST',
+                    data :$("#registrationForm").serialize(),
+                    dataType: dataType,
+                    success:function(response){
+                        $('#submitForm').html('Submitted');
+                        $('#res_message').show();
+                        $('#msg_div').show();
 
-                    $('#res_message').html(response.success);
-                    $('#msg_div').removeClass('d-none');
-        
-                    setTimeout(function(){
-                            $('#res_message').hide();
-                            $('#msg_div').hide();
-                        //$("#registrationForm").trigger('reset'); 
-                        $('#submitForm').removeAttr('disabled');
+                        $('#res_message').html(response.success);
+                        $('#msg_div').removeClass('d-none');
+                        toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+            
+                        setTimeout(function(){
+                                $('#res_message').hide();
+                                $('#msg_div').hide();
+                            //$("#registrationForm").trigger('reset'); 
+                            $('#submitForm').removeAttr('disabled');
+                            $('#submitForm').html('Save Data');
+
+
+                        },1000);
+                        
+                    },
+                    beforeSend: function(){
+                        $('#submitForm').html('Loading...');
+                        $('#submitForm').attr('disabled', 'disabled');
+                    },
+                    error: function() {
                         $('#submitForm').html('Save Data');
-
-
-                    },1000);
+                        $('#submitForm').removeAttr('disabled');
                     
-                },
-                beforeSend: function(){
-                    $('#submitForm').html('Loading...');
-                    $('#submitForm').attr('disabled', 'disabled');
-                },
-                error: function() {
-                    $('#submitForm').html('Save Data');
-                    $('#submitForm').removeAttr('disabled');
-                
-                }
-            });
+                    }
+                });
 
+            })
         })
     </script>
