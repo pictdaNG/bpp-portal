@@ -76,7 +76,7 @@
                             <h4 class="modal-title">Add New MDA</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="bs-example form-horizontal" id="mdasform" action="{{route('manageMDA.store')}}" enctype="multipart/form-data">
+                            <form class="bs-example form-horizontal"  id="mdasform" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="alert alert-success d-none" id="mdas_div">
                                 <span id="mdas_message"></span>
@@ -257,7 +257,7 @@
     })
 
     window.addEventListener('load', function () {
-        $("#mdasform").submit(function(evt){
+        $("#mdasform").on( "submit",function(evt){
             evt.preventDefault();
             $.ajaxSetup({
                 headers: {
@@ -265,10 +265,11 @@
                 }
             });
             var url = '{{URL::to('/')}}';
+          //  console.log('url ',  url+/);
             var dataType =  'JSON';
             $.ajax({
                 type : "POST",
-                url : $('#mdasform').attr('action'),
+                url : "{{url('/manageMDA')}}",
                 data: new FormData( this ),
                 contentType: false,
                 processData: false,
@@ -288,6 +289,7 @@
                         $('#mdasBtn').html('Save Data');
                         $('.close').trigger('click');
                     },1000);
+                    console.log({'messagessssssssss': data.success})
 
                     loadMdas('mda_controller', function(data){
                     });

@@ -69,6 +69,8 @@ Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery'
 //Admin
 
 Route::resource('manageMDA', 'MDAController');
+//Route::post('manageMDA', 'MDAController@store');
+
 
 
 //MDA
