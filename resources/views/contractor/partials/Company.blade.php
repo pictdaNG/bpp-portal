@@ -88,6 +88,12 @@
                     type : 'POST',
                     data :$("#registrationForm").serialize(),
                     dataType: dataType,
+
+                    beforeSend: function(){
+                        $('#submitForm').html('Loading...');
+                        $('#submitForm').attr('disabled', 'disabled');
+                    },
+                    
                     success:function(response){
                         $('#submitForm').html('Submitted');
                         $('#res_message').show();
@@ -95,7 +101,7 @@
 
                         $('#res_message').html(response.success);
                         $('#msg_div').removeClass('d-none');
-                        toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+                        toastr.success('Success!', response.success);
             
                         setTimeout(function(){
                                 $('#res_message').hide();
@@ -108,13 +114,12 @@
                         },1000);
                         
                     },
-                    beforeSend: function(){
-                        $('#submitForm').html('Loading...');
-                        $('#submitForm').attr('disabled', 'disabled');
-                    },
-                    error: function() {
+                    
+                    error: function(error) {
                         $('#submitForm').html('Save Data');
                         $('#submitForm').removeAttr('disabled');
+                        toastr.error('Error!', 'Inconceivable!')
+
                     
                     }
                 });
