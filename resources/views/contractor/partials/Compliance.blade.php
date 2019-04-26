@@ -94,14 +94,14 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">TCC No.</label>
                     <div class="col-lg-10">
-                    <input type="text" name="tcc_no" value="{{$compliance['tcc_no']}}" class="form-control">
+                    <input type="number" name="tcc_no" value="{{$compliance['tcc_no']}}" class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">TIN No.</label>
                     <div class="col-lg-10">
-                    <input type="text" name="tcc_tin_no" value="{{$compliance['tcc_tin_no']}}" required class="form-control">
+                    <input type="number" maxlength="10" name="tcc_tin_no" value="{{$compliance['tcc_tin_no']}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Registration No.</label>
                         <div class="col-lg-10">
-                        <input type="text" name="itf_registration_no" value="{{$compliance['itf_registration_no']}}" required class="form-control">
+                        <input type="number" name="itf_registration_no" value="{{$compliance['itf_registration_no']}}" required class="form-control">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
@@ -180,51 +180,45 @@
 
 <script type="application/javascript">
 
+    window.addEventListener('load', function () {
+        $("#complianceform").validate({
+            submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var url = '{{URL::to('/')}}';
+                var dataType =  'JSON';
+                $.ajax({
+                    type : 'POST',
+                    url : url + '/compliance/create',
+                    data :$('#complianceform').serialize(),
+                    dataType: dataType,
+                    success:function(response){    
+                        $('#complianceBtn').html('Submitted');
+                        setTimeout(function(){
+                            $('#compliance_message').hide();
+                            $('#compliance_div').hide();
+                            $('#complianceBtn').removeAttr('disabled');
+                            $('#complianceBtn').html('Save Data');
+                        },1000);
+                        toastr.success(response.success, {timeOut: 1000});
 
-$("#complianceform").validate({
-    submitHandler: function(form) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function(){
+                        $('#complianceBtn').html('Sending..');
+                        $('#complianceBtn').attr('disabled', 'disabled');
+                    },
+                    error: function(response) {
+                          console.log({response})
+                        $('#complianceBtn').html('Try Again');
+                        $('#complianceBtn').removeAttr('disabled');
+                        toastr.error(response.responseJSON.error); //{timeOut: 5000}
+
+                    }
+                });
             }
-        });
-        var url = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $.ajax({
-            type : 'POST',
-            url : url + '/compliance/create',
-            data :$('#complianceform').serialize(),
-            dataType: dataType,
-            success:function(data){    
-                $('#complianceBtn').html('Submitted');
-                $('#compliance_message').show();
-                $('#compliance_div').show();
-                $('#compliance_div').attr('class', 'alert-success');
-                $('#compliance_message').html(data.success);
-                $('#compliance_div').removeClass('d-none');
-                setTimeout(function(){
-                    $('#compliance_message').hide();
-                    $('#compliance_div').hide();
-                   // document.getElementById("complianceform").reset(); 
-                    $('#complianceBtn').removeAttr('disabled');
-                    $('#complianceBtn').html('Save Data');
-                },1000);
-            },
-            beforeSend: function(){
-                $('#complianceBtn').html('Sending..');
-                $('#complianceBtn').attr('disabled', 'disabled');
-            },
-            error: function(res) {
-             
-                $('#complianceBtn').html('Try Again');
-                $('#complianceBtn').removeAttr('disabled');
-                $('#compliance_message').show();
-                $('#compliance_div').show();
-                $('#compliance_div').attr('class', 'alert-danger');
-                $('#compliance_message').html(res.responseJSON.err);
-                $('#compliance_div').removeClass('d-none');
-            }
-        });
-    }
-})
+        })
+    });
 </script>

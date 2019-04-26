@@ -18,18 +18,23 @@ class EloquentComplianceRepository implements ComplianceContract{
         $search = Compliance::where('user_id', Auth::user()->id)->get()->first();
           //2019-04-03 //2019-04-22
         if($compliance->cac_date_of_reg > Carbon::now()->isoFormat('YYYY-MM-D')) {
-            return 2;
+            return 'Invalid CAC Registration Date';
+        }
+        else 
+        if(strlen($compliance->tcc_tin_no) != 10 ) {
+
+            return  'Invalid Tin Number';
         }
        
         else if($compliance->pension_expiring_date < Carbon::now()->isoFormat('YYYY-MM-D')) {
-            return 4;
+            return 'Invalid Pencom Expiry Date';
         }
 
         else if($compliance->pension_no_of_employee < 1) {
-            return 5;
+            return 'Invalid No of  Employees';
         }
         else if($compliance->itf_payment_date > Carbon::now()->isoFormat('YYYY-MM-D')) {
-            return 3;
+            return 'Invalid ITF Registration Date';
         }
 
         if($search) {
