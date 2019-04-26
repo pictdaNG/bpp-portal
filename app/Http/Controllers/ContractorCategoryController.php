@@ -14,10 +14,10 @@ class ContractorCategoryController extends Controller{
     public function storeCategory(Request $request) {
        try {
            $category = $this->repo->createCategory((object)$request->all());       
-           if ($category) {
-               return response()->json(['success'=>'Added new records.'], 200);         
+           if ($category == 1) {
+               return response()->json(['success'=>'Record Added Successfully.'], 200);         
             } else {  
-              return response()->json(['responseText' => 'Error Occured'], 500);
+              return response()->json(['error' => $category], 500);
             }
        } catch (QueryException $e) {
         return response()->json(['response' => $e->getMessage()], 500);

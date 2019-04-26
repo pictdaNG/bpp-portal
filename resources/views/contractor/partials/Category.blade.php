@@ -118,50 +118,56 @@
 
 <script type="application/javascript">
 
-    $("#categoryform").submit(function(evt){
-        evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var url = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $.ajax({
-            type : 'POST',
-            url : url + '/category/create',
-            data :$('#categoryform').serialize(),
-            dataType: dataType,
-            success:function(data){   
-                $('#categoryBtn').html('Submitted');
-                $('#cat_message').show();
-                $('#cat_message').html(data.success);
-                $('#cat_div').show();
-                $('#cat_div').removeClass('d-none');
-                setTimeout(function(){
-                    $('.close').trigger('click');
-                    $('#cat_message').hide();
-                    $('#cat_div').hide();
-                    $('#categoryBtn').html('Save Data');
-                    $('#categoryBtn').removeAttr('disabled');
-                    document.getElementById("categoryform").reset(); 
-                },1000);
+    window.addEventListener('load', function () {
+        $("#categoryform").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({
+                type : 'POST',
+                url : url + '/category/create',
+                data :$('#categoryform').serialize(),
+                dataType: dataType,
+                success:function(response){   
+                    $('#categoryBtn').html('Submitted');
+                    $('#cat_message').show();
+                    $('#cat_message').html(response.success);
+                    $('#cat_div').show();
+                    $('#cat_div').removeClass('d-none');
+                    setTimeout(function(){
+                        $('.close').trigger('click');
+                        $('#cat_message').hide();
+                        $('#cat_div').hide();
+                        $('#categoryBtn').html('Save Data');
+                        $('#categoryBtn').removeAttr('disabled');
+                        document.getElementById("categoryform").reset(); 
+                    },1000);
+                    toastr.success(response.success, {timeOut: 1000});
 
-                loadCategories('/category/categories', function(data){
-                });
-            },
-            beforeSend: function(){
-                $('#categoryBtn').html('Sending..');
-                $('#categoryBtn').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-                $('#categoryBtn').html('Try Again');
-                $('#directorBtn').removeAttr('disabled');
-                
-            // show error to end user
-            }
-        });
-    })
+
+                    loadCategories('/category/categories', function(response){
+                    });
+                },
+                beforeSend: function(){
+                    $('#categoryBtn').html('Sending..');
+                    $('#categoryBtn').attr('disabled', 'disabled');
+                },
+                error: function(response) {
+                    $('#categoryBtn').html('Try Again');
+                    $('#categoryBtn').removeAttr('disabled');
+                    toastr.error(response.responseJSON.error); //{timeOut: 5000}  
+
+                    
+                // show error to end user
+                }
+            });
+        })
+    });
 
     function loadCategories(categories, cb){
         $.ajaxSetup({
@@ -225,6 +231,7 @@
                
                 loadCategories('/category/categories', function(data){
                 });
+                
 
             },
             beforeSend: function(){

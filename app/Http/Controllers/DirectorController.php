@@ -24,15 +24,15 @@ class DirectorController extends Controller{
        try {
            $director = $this->repo->createDirector((object)$request->all());
              
-           if ($director) {
-               return response()->json(['success'=>'Added new records.'], 200);
+           if ($director == 1) {
+               return response()->json(['success'=>'Recorded Added Sucessfully'], 200);
                
             } else {
             
-                return response()->json(['responseText' => $e->getMessage()], 500);
+                return response()->json(['error' => $director], 500);
             }
        } catch (QueryException $e) {
-        return response()->json(['response' => $e->getMessage()], 500);
+        return response()->json(['error' => $e->getMessage()], 500);
        }
     }
 

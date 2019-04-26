@@ -247,52 +247,54 @@
         })
 
     }
+    window.addEventListener('load', function () {
+        $("#directorform").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({
+                type : 'POST',
+                url : url + '/director/create',
+                data :$('#directorform').serialize(),
+                dataType: dataType,
+                success:function(response){    
+                    $('#submitDirector').html('Submitted');
+                    $('#submitDirector').removeAttr('disabled');
+                    $('#directors_message').show();
+                    $('#directors_div').show();
+                    $('#directors_message').html(response.success);
+                    $('#directors_div').removeClass('d-none');
 
-    $("#directorform").submit(function(evt){
-        evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var url = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $.ajax({
-            type : 'POST',
-            url : url + '/director/create',
-            data :$('#directorform').serialize(),
-            dataType: dataType,
-            success:function(data){    
-                $('#submitDirector').html('Submitted');
-                $('#submitDirector').removeAttr('disabled');
-                $('#directors_message').show();
-                $('#directors_div').show();
-                $('#directors_message').html(data.success);
-                $('#directors_div').removeClass('d-none');
+                    document.getElementById("directorform").reset(); 
+                    setTimeout(function(){
+                        $('#directors_message').hide();
+                        $('#directors_div').hide();
+                        $('#submitDirector').html('Save Data');
+                        $('.close').trigger('click');
+                    },1000);
+                    toastr.success(response.success, {timeOut: 1000});
 
-                document.getElementById("directorform").reset(); 
-                setTimeout(function(){
-                    $('#directors_message').hide();
-                    $('#directors_div').hide();
-                    $('#submitDirector').html('Save Data');
-                    $('.close').trigger('click');
-                },1000);
+                    loadDirectors('/director/directors', function(data){
+                    });
 
-                loadDirectors('/director/directors', function(data){
-                });
-
-            },
-            beforeSend: function(){
-                $('#submitDirector').html('Sending..');
-                $('#submitDirector').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-                console.log('error', data)
-                $('#submitDirector').html('Try Again');
-                $('#submitDirector').removeAttr('disabled');
-                
-            // show error to end user
-            }
-        });
+                },
+                beforeSend: function(){
+                    $('#submitDirector').html('Sending..');
+                    $('#submitDirector').attr('disabled', 'disabled');
+                },
+                error: function(response) {
+                    console.log('error', response)
+                    $('#submitDirector').html('Try Again');
+                    $('#submitDirector').removeAttr('disabled');
+                    toastr.error(response.responseJSON.error); //{timeOut: 5000}  
+                // show error to end user
+                }
+            });
+        })
     })  
 </script>

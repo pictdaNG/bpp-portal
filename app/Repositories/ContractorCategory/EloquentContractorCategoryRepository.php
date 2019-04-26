@@ -14,8 +14,13 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
     public function createCategory($request) { 
         //dd($request); 
         $category = new ContractorCategory;
+        $search = ContractorCategory::where('category', $request->category)->get();
+        if(sizeof($search) > 0) {
+            return 'Category Already Exist';
+        }
         $this->setContractorCategoryProperties($category, $request);
-        return $category->save();
+        $category->save();
+        return 1;
     }
 
 

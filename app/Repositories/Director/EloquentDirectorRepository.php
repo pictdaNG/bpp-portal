@@ -13,8 +13,18 @@ class EloquentDirectorRepository implements DirectorContract{
 
     public function createDirector($request) {  
         $director = new Director;
+       
+        if(1 === preg_match('~[0-9]~', $request->first_name)){
+            return 'Invalid First Name';
+        }
+        else if(1 === preg_match('~[0-9]~', $request->last_name)){
+            return 'Invalid Last Name';
+        }
         $this->setDirectorProperties($director, $request);
-        return $director->save();
+        $director->save();
+        return 1;
+        
+        
     }
 
 
