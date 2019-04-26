@@ -139,18 +139,15 @@ class ContractorController extends Controller {
            $contractor = $this->repo->createContractor((object)$request->all());
              
            if ($contractor) {
-                $notification = array(
-                    'message' => 'Game Added successfully',
-                    'alert-type' => 'success'
-                );
-               return response()->json(['success'=>'Added new records.'], 200);
+                
+               return response()->json(['success'=>'Record Update Succesful.'], 200);
                
             } else {
             
-                return response()->json(['responseText'=> 'error ocurred'], 500);
+                return response()->json(['error'=> 'Error Occured Contact Admin'], 500);
             }
        } catch (QueryException $e) {
-        return response()->json(['response' => $e->getMessage()], 500);
+        return response()->json(['error' => $e->getMessage()], 500);
        }
     }
 

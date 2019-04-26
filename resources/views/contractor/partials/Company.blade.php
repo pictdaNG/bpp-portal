@@ -101,7 +101,7 @@
 
                         $('#res_message').html(response.success);
                         $('#msg_div').removeClass('d-none');
-                        toastr.success('Success!', response.success);
+                        toastr.success(response.success, {timeOut: 1000});
             
                         setTimeout(function(){
                                 $('#res_message').hide();
@@ -115,10 +115,10 @@
                         
                     },
                     
-                    error: function(error) {
+                    error: function(response) {
                         $('#submitForm').html('Save Data');
                         $('#submitForm').removeAttr('disabled');
-                        toastr.error('Error!', 'Inconceivable!')
+                        toastr.error('Error!', response.error); //{timeOut: 5000}
 
                     
                     }
