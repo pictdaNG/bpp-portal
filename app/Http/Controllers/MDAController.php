@@ -36,25 +36,7 @@ class MDAController extends Controller{
 
     }
 
-
-    public function index() {
-        try {
-            $mdas = $this->repo->listMdas();
-            
-            if ($mdas) {
-                return response()->json(['success'=> $mdas], 200);
-            }
-            else {
-                return response()->json(['responseText' => 'Error retriving MDAs'], 500);
-            }
-            
-        } catch (QueryException $e) {
-         return response()->json(['response' => $e->getMessage()], 500);
- 
-        }
-    }
-
-    public function mda(Request $request){
+    public function index(Request $request){
         try {
             $mdas = $this->repo->listMdas();
             $categories = $this->contract_category->allBusinessCategories();
@@ -72,6 +54,26 @@ class MDAController extends Controller{
  
         }
     }
+
+
+    public function getMdas() {
+        try {
+            $mdas = $this->repo->listMdas();
+            
+            if ($mdas) {
+                return response()->json(['success'=> $mdas], 200);
+            }
+            else {
+                return response()->json(['responseText' => 'Error retriving MDAs'], 500);
+            }
+            
+        } catch (QueryException $e) {
+         return response()->json(['response' => $e->getMessage()], 500);
+ 
+        }
+    }
+
+   
 
     public function deleteMda(Request $request) {
         try {
