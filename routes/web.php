@@ -68,8 +68,12 @@ Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery'
 
 //Admin
 
-Route::resource('manageMDA', 'MDAController');
-//Route::post('manageMDA', 'MDAController@store');
+//Route::resource('manageMDA', 'MDAController');
+
+Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
+Route::post('/mda/delete', 'MDAController@deleteMda')->name('deleteMdas');
+Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
+Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
@@ -83,8 +87,10 @@ Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
 Route::get('/mda/advert/preview/{advertId}', 'MDAController@getMDAAdvertById');
 
 Route::get('/admin/adverts/', 'AdvertController@getAdverts')->name('adminAdverts');
+Route::get('/admin/adverts/opening', 'AdvertController@getAdvertsOpening');
 Route::get('/mda/adverts/preview/{advertId}', 'MDAController@getMDAAdvertById');
 Route::get('/admin/adverts/preview/{advertId}', 'MDAController@viewAdvertById');
+Route::get('/admin/open/{advertId}', 'MDAController@viewAdvertOpeningById')->name('viewAdvertOpeningById');
 
 //Adverts
 Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert');
@@ -128,7 +134,7 @@ Route::post('/equipment/delete/', 'EquipmentController@delete')->name('equipment
 Route::post('/Registration/fee/create', 'CategoryRegistrationFeeController@storeFee')->name('storeFee');
 //Route::get('/fee/fees', 'ContractorRegistrationFeeController@getEquipmentsType')->name('getEquipmentsType');
 Route::get('/fee/fees', 'CategoryRegistrationFeeController@index')->name('getFees');
-Route::delete('/fee/delete/', 'CategoryRegistrationFeeController@delete')->name('deleteFees');
+Route::post('/fee/delete/', 'CategoryRegistrationFeeController@delete')->name('deleteFees');
 
 // Business Categories
 Route::get('/business/categories', 'BusinessCategoryController@getAllBusinessCategories')->name('getAllBusinessCategories');

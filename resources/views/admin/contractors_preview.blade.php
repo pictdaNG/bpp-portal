@@ -9,6 +9,7 @@
             <section class="panel panel-default">
                 <div class="panel-body">
                 <div class="row">
+                <?php //dd($contractors); ?>
                 @foreach ($contractors as $data)
                     <div class="col-xs-6">
                         <img src="{{ asset('/images/p0.jpg') }}" height="200"/>
@@ -62,26 +63,7 @@
                         <td>{{ $data['membership_id_no'] }}</td>
                         </tr>
                         @endforeach
-                        <!-- <tr>
-                        <td>1</td>
-                        <td>Idrawfast</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>Jul 25, 2013</td>
-                        </tr>
-                        <tr>
-                        <td>1</td>
-                        <td>Idrawfast</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>4c</td>
-                        <td>Jul 25, 2013</td>
-                        </tr> -->
+                
                     </tbody>
                     </table>
                 </div>
@@ -120,27 +102,7 @@
             <td>{{ $data['joining_date'] }}</td>
             </tr>
             @endforeach
-            <!-- <tr>
-            <td>2</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            </tr> -->
-        </tbody>
+           
         </table>
                 </div>
                 </div>
@@ -171,18 +133,7 @@
             <td>$data['subcategory_2']</td>
             </tr>
             @endforeach
-            <!-- <tr>
-            <td>2</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            </tr> -->
+          
         </tbody>
         </table>
                 </div>
@@ -224,28 +175,6 @@
             </tr>
         @endforeach
 
-            <!-- <tr>
-            <td>2</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            
-            </tr> -->
         </tbody>
         </table>
                 </div>
@@ -289,30 +218,7 @@
             <td>$data['report_date']</td>
             </tr>
         @endforeach
-            <!-- <tr>
-            <td>2</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            </tr> -->
+          
         </tbody>
         </table>
                 </div>
@@ -353,26 +259,7 @@
             
             </tr>
         @endforeach
-            <!-- <tr>
-            <td>2</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>Idrawfast</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>4c</td>
-            <td>Jul 25, 2013</td>
-            </tr> -->
+        
         </tbody>
         </table>
                 </div>
@@ -389,13 +276,7 @@
                     @foreach ($getUploadfiles as $data)
                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ $data['name'] }}</a></div>
                     @endforeach
-                        <!-- <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> TIN Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> PenCom Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> Audited Account Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> TCC Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> Affidavit Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> ITF Certificate</a></div>
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i> PLACCIMA Certificate</a></div> -->
+                       
                     </div>
                 </div>
             </section>

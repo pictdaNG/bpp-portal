@@ -10,16 +10,14 @@
                 <h3 class="m-b-xs text-black">Dashboard</h3>
                 <small>Welcome back, {{ Auth::user()->name }}</small>
             </div>
-            <div class="col-sm-6 text-right text-left-xs m-t-md">
-                <a href="#nav, #sidebar" class="btn btn-icon b-2x btn-info btn-rounded" data-toggle="class:nav-xs, show"><i class="fa fa-bars"></i></a>
-            </div>
+           
             </section>
             <div class="row">
             <div class="col-sm-6">
                 <div class="panel b-a">
                 <div class="row m-n">
                     <div class="col-md-6 b-b b-r">
-                    <a href="{{ route('manageMDA.index')}}" class="block padder-v hover">
+                    <a href="{{ route('getMdas')}}" class="block padder-v hover">
                         <span class="i-s i-s-2x pull-left m-r-sm">
                         <i class="i i-hexagon2 i-s-base text-danger hover-rotate"></i>
                         <i class="i i-plus2 i-1x text-white"></i>
@@ -61,7 +59,7 @@
                         <i class="i i-alarm i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-primary">{{ $closingBids->count() }}</span>
+                        <span class="h3 block m-t-xs text-primary">{{ $totalBids }}</span>
                         <small class="text-muted text-u-c">Bids Submitted</small>
                         </span>
                     </a>
@@ -78,15 +76,15 @@
                 </div>
                 <div class="padder-v text-center clearfix">                            
                     <div class="col-xs-4 b-r">
-                    <div class="h3 font-bold">3</div>
+                    <div class="h3 font-bold">{{$constructions}}</div>
                     <small class="text-muted">Works</small>
                     </div>
                     <div class="col-xs-4 b-r">
-                    <div class="h3 font-bold">3</div>
+                    <div class="h3 font-bold">{{$consultancy}}</div>
                     <small class="text-muted">Services</small>
                     </div>
                     <div class="col-xs-4">
-                    <div class="h3 font-bold">0</div>
+                    <div class="h3 font-bold">{{$supplies}}</div>
                     <small class="text-muted">Goods</small>
                     </div>
                 </div>
@@ -126,13 +124,7 @@
         </section>
     </section>
     <!-- side content -->
-    <aside class="aside-md bg-black hide" id="sidebar">
-        <section class="vbox animated fadeInRight">
-            <section class="scrollable">
-                <div class="wrapper"><strong>Live feed</strong></div>
-            </section>
-        </section>              
-    </aside>
+    
     <!-- / side content -->
     </section>
 @endsection

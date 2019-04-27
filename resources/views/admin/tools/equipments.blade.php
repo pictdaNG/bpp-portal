@@ -11,18 +11,7 @@
             <header class="panel-heading">
                 Equipments Registration            
             </header>
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach()
-                </div>
-             @endif
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p><b>{{ $message }}</b></p>
-                </div>
-            @endif
+            
             <form class="bs-example form-horizontal" action="{{ route('equipment.delete') }}" method="POST">
 
                 {{csrf_field()}}
@@ -87,7 +76,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Equipment Type</label>
             <div class="col-lg-10">
-            <input type="text" class="form-control" name="equipment_type" placeholder="Equipment Type" value="">
+            <input type="text" class="form-control"  required name="equipment_type" placeholder="Equipment Type" value="">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>

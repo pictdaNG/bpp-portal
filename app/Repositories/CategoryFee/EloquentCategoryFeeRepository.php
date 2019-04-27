@@ -24,8 +24,8 @@ class EloquentCategoryFeeRepository implements CategoryFeeContract
     
     public function destroy($request)
     {
-        $client = CategoryRegistrationFee::findorFail($request->id);
-        return $client->delete();
+       // dd($request);
+        return CategoryRegistrationFee::destroy($request->ids);
     }
     
     public function update($id, $requestData)

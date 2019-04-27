@@ -33,7 +33,7 @@ class EloquentMdaRepository implements MdaContract
             return 'Invalid Phone Number';
         }
 
-        else if(strlen($requestData['bank_account'] != 10) ) {
+        else if(strlen($requestData['bank_account']) != 10 ) {
             return 'Invalid Bank Account';
         }
         else if($requestData['split_percentage'] < 0 || $requestData['split_percentage'] > 100 ) {

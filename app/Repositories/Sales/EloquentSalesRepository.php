@@ -54,8 +54,13 @@ class EloquentSalesRepository implements SalesContract
              ->orderBy('created_at', 'desc')->get();
     }
 
-    public function totalSales() {
+    public function mySales() {
         return Sales::where('mda_id', Auth::user()->id)->sum('amount');
+    }
+
+
+    public function totalSales() {
+        return Sales::all()->count();
     }
 
     public function salesCount(){

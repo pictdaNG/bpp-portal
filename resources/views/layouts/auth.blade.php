@@ -29,7 +29,7 @@
   <footer id="footer">
     <div class="text-center padder">
       <p>
-        <small>Powered by PICTDA<br>&copy; 2013</small>
+        <small>Powered by PICTDA<br>&copy; 2019</small>
       </p>
     </div>
   </footer>

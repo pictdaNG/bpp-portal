@@ -79,9 +79,16 @@ class HomeController extends Controller{
             $compliances = $this->contract_compliance->listAllCompliance();
             $listMdas = $this->contract_mdas->listMdas();
             $activeAdverts = $this->contract_advert->listActiveAdverts();
+            $totalSales = $this->contract_sales->totalSales();
+
+            $constructions = $this->contract_advertLot->countAdvertsByCategory('1');
+            $consultancy = $this->contract_advertLot->countAdvertsByCategory('2');
+            $supplies = $this->contract_advertLot->countAdvertsByCategory('3');
+
             $closingBids = $this->contract_advert->closingBids();
             return view('adminHome', ['getCompliance' => $compliances, 'listMdas' => $listMdas, 'activeAdverts' => $activeAdverts, 
-            'closingBids' => $closingBids]);
+            'closingBids' => $closingBids, 'totalBids' => $totalSales, 'constructions' => $constructions, 'consultancy' => $consultancy,
+            'supplies' => $supplies]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
              $myAdverts =  $this->contract_advert->listAdvertsByMDA();
              
@@ -89,7 +96,7 @@ class HomeController extends Controller{
             $consultancy = $this->contract_advertLot->listAdsByUserIdandCategory('2');
             $supplies = $this->contract_advertLot->listAdsByUserIdandCategory('3');
 
-            $totalSales = $this->contract_sales->totalSales();
+            $totalSales = $this->contract_sales->mySales();
             $salesCount = $this->contract_sales->salesCount();
             $submittedBids = $this->contract_sales->getSubmittionsByMDA();
             $agregateSales = $this->contract_sales->submittedApplications();
@@ -119,11 +126,7 @@ class HomeController extends Controller{
             $closingBids = $this->contract_advert->closingBids();
 
             $submittedBids = $this->contract_sales->listSalesByUserId();
-
-
             $uploads = ContractorFile::where('user_id',  Auth::user()->id)->get();
-
-            
 
             $percent = $this->percentage($personnels, $jobs, $finances, $companies, $directors, $categories, $machines, $compliances, $uploads );
             $jobs= $this->dashboardData($constructions, $supplies, $consultancy, null, null);

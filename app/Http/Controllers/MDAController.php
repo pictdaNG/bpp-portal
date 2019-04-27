@@ -11,22 +11,14 @@ use App\Repositories\MDA\MdaContract;
 use App\Repositories\Advert\AdvertContract;
 use App\Repositories\BusinessCategory\BusinessCategoryContract;
 use App\Repositories\TenderEligibility\TenderEligibilityContract;
-
-
 use Auth;
 
-class MDAController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+class MDAController extends Controller{
+  
     protected $repo;
     protected $advert_contract;
     protected $contract_category;
     protected $contract_requirement;
-
 
     public function __construct(MdaContract $mdaContract, AdvertContract $advertContract, 
     BusinessCategoryContract $categoryContract, TenderEligibilityContract $eligibilityContract){
@@ -44,7 +36,6 @@ class MDAController extends Controller
             $categories = $this->contract_category->allBusinessCategories();
             $banks = ['Access bank', 'Citibank', 'Ecobank', 'Fidelity Bank', 'First Bank', 'First City Monument Bank', 'Guaranty Trust Bank', 'Heritage Bank', 'Keystone Bank', 'Skye Bank', 'Stanbic IBTC Bank', 'Sterling Bank', 'Union Bank', 'United Bank for Africa', 'Wema bank', 'Zenith bank', 'Jaiz bank'];
             if ($mdas) {
-                // return response()->json(['success'=> $mdas], 200);
                 return view('admin/manageMDA', ['mdas' => $mdas, 'categories' => $categories, 'banks' => $banks]);
             }
             else {
@@ -57,13 +48,13 @@ class MDAController extends Controller
         }
     }
 
-
     public function getMdas() {
         try {
             $mdas = $this->repo->listMdas();
-            
+            $categories = $this->contract_category->allBusinessCategories();
+            $banks = ['Access bank', 'Citibank', 'Ecobank', 'Fidelity Bank', 'First Bank', 'First City Monument Bank', 'Guaranty Trust Bank', 'Heritage Bank', 'Keystone Bank', 'Skye Bank', 'Stanbic IBTC Bank', 'Sterling Bank', 'Union Bank', 'United Bank for Africa', 'Wema bank', 'Zenith bank', 'Jaiz bank'];
             if ($mdas) {
-                return response()->json(['success'=> $mdas], 200);
+                return view('admin/manageMDA', ['mdas' => $mdas, 'categories' => $categories, 'banks' => $banks]);
             }
             else {
                 return response()->json(['responseText' => 'Error retriving MDAs'], 500);
@@ -88,24 +79,10 @@ class MDAController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function storeMdas(Request $request){
         try {
             $data = $request->all();
-            // dd($data);
-          // $mda =  Mda::Create($data);
-          // dd($mda);
+         
             $mdas = $this->repo->create($data);
 
             if ($mdas == 1) {
@@ -127,7 +104,6 @@ class MDAController extends Controller
 
         try {
             $mdas = $this->repo->find($id);
-            // dd($mdas);
             if ($mdas) {
                 return view('admin/manageMDA_preview', ['mdas' => $mdas]);
             }
@@ -135,7 +111,7 @@ class MDAController extends Controller
                 return response()->json(['responseText' => 'Error showing MDAs'], 500);
             }
             
-        } catch (QueryException $e) {
+        } catch (\Exception $e) {
          return response()->json(['response' => $e->getMessage()], 500);
  
         }
@@ -154,55 +130,22 @@ class MDAController extends Controller
         return view('admin.AdvertPreview')->with(['advert' => $advert]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function viewAdvertOpeningById($advertId) {
+        $advert = $this->advert_contract->getAdsById($advertId);
+       // dd($advert);
+        return view('admin.tools.AdvertPreview')->with(['advert' => $advert]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id){
+    public function deleteMda(Request $request){
         try {
-            $category = $this->repo->removeMda($request->all());     
-            if ($category) {
+            $mda = $this->repo->removeMda($request->all());     
+            if ($mda) {
                 return response()->json(['success'=>' Mdas Deleted Successfully'], 200);
              } else {  
-                return response()->json(['responseText' => 'Failed to Delete'], 500);
+                return response()->json(['error' => 'Failed to Delete'], 500);
              }
-        } catch (QueryException $e) {
+        } catch (\Exception $e) {
          return response()->json(['response' => $e->getMessage()], 500);
         }
     }

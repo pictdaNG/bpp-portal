@@ -17,6 +17,8 @@ interface SalesContract
 
     public function listSalesByUserandAdvertId($advertId);
 
+    public function mySales();
+
     public function totalSales();
 
     public function salesCount();

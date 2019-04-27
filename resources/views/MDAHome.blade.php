@@ -16,9 +16,7 @@ section.panel-body.slim-scroll {
                 <h3 class="m-b-xs text-black">Dashboard</h3>
                 <small>Welcome back, {{ Auth::user()->name }}</small>
             </div>
-            <div class="col-sm-6 text-right text-left-xs m-t-md">
-                <a href="#nav, #sidebar" class="btn btn-icon b-2x btn-info btn-rounded" data-toggle="class:nav-xs, show"><i class="fa fa-bars"></i></a>
-            </div>
+            
             </section>
             <div class="row">
             
@@ -201,13 +199,6 @@ section.panel-body.slim-scroll {
         </section>
     </section>
     <!-- side content -->
-    <aside class="aside-md bg-black hide" id="sidebar">
-        <section class="vbox animated fadeInRight">
-            <section class="scrollable">
-                <div class="wrapper"><strong>Live feed</strong></div>
-            </section>
-        </section>              
-    </aside>
     <!-- / side content -->
     </section>
 @endsection

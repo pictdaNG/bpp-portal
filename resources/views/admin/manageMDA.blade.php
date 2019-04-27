@@ -14,7 +14,7 @@
                 <div class="row wrapper">
                     <div class="col-sm-9 m-b-xs">
                         <a href="#addNewMDA" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add New</a>
-                        <button id="mdaBtn" onclick="deleteMdas()" class="btn btn-sm btn-danger">Delete</button>
+                        <button id="mdaBtn" class="btn btn-sm btn-danger">Delete</button>
                     </div>
                     <!-- <div class="col-sm-3">
                         <div class="input-group">
@@ -233,13 +233,13 @@
       
           $.ajax({
               method : 'POST',
-              url : url + '/manageMDA/delete',
+              url : url + '/mda/delete',
               data :$('#deleteMdas').serialize(),
               dataType: dataType,
               success:function(response){    
                   $('#mdaBtn').html('Delete');
                   $('#mdaBtn').removeAttr('disabled');     
-                  loadMdas('/mda_controller/', function(response){
+                  loadMdas('/mda/list', function(response){
                   });
                   toastr.success(response.success, {timeOut: 1000});
 
@@ -270,44 +270,45 @@
                 }
             });
             var url = '{{URL::to('/')}}';
-          //  console.log('url ',  url+/);
+          
             var dataType =  'JSON';
             $.ajax({
                 type : "POST",
-                url : "{{url('/manageMDA')}}",
+                url : "{{url('/mda/create')}}",
                 data: new FormData( this ),
                 contentType: false,
                 processData: false,
                 dataType: dataType,
             
-                success:function(data){  
+                success:function(response){  
                     $('#mdasBtn').html('Submitted');
                     $('#mdasBtn').removeAttr('disabled');
                     $('#mdas_message').show();
                     $('#mdas_div').show();
-                    $('#mdas_message').html(data.success);
+                    $('#mdas_message').html(response.success);
                     $('#mdas_div').removeClass('d-none');
-                    document.getElementById("mdasform").reset();        
+                    //document.getElementById("mdasform").reset();        
                     setTimeout(function(){
                         $('#mdas_message').hide();
                         $('#mdas_div').hide();
                         $('#mdasBtn').html('Save Data');
                         $('.close').trigger('click');
                     },1000);
-                    console.log({'messagessssssssss': data.success})
 
-                    loadMdas('mda_controller', function(data){
+                    loadMdas('/mda/list', function(data){
                     });
-
+                    toastr.success(response.success, {timeOut: 1000});
                 },
                 beforeSend: function(){
                     $('#mdasBtn').html('Sending..');
                     $('#mdasBtn').attr('disabled', 'disabled');
                 },
-                error: function(data) {
-                    console.log('error', data)
+                error: function(response) {
+                    console.log('error', response)
                     $('#mdasBtn').html('Try Again');
                     $('#mdasBtn').removeAttr('disabled');
+                    toastr.error(response.responseJSON.error); //{timeOut: 5000}
+
                         
                     // show error to end user
                 }
@@ -316,26 +317,21 @@
    });
 
 
-    function loadMdas(adverts, cb) {
+    function loadMdas(mdas, cb) {
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
     var url = '{{URL::to('/')}}';
+     
     var dataType =  'JSON';
     $.ajax({
       type : 'GET',
-      url : url + adverts,
+      url : url + mdas,
       success:function(data){  
-          console.log('sddf', data);
-        data = data; 
         $('#mdas').empty();
-        $.each(data, function (i) {
-            console.log("mdas data", data);
-            location.reload();
-
-          });     
+            location.reload();   
         },
       });   
     }

@@ -19,13 +19,10 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
     public function listAllAdvertLotsByStatus($status){
         //return Advert::where("status", $status)->get();
         return AdvertLot::all();
-
     }
 
     public function listAdvertLotsByUserId(){
-
-         return Advert::where("user_id", Auth::user()->id)->get();
-        
+        return Advert::where("user_id", Auth::user()->id)->get();  
     }
 
     public function listAllAdvertLots(){
@@ -36,6 +33,12 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         return AdvertLot::where("user_id", Auth::user()->id)
         ->where('advert_lot_business_category_id', $categoryId )
         ->get();
+    }
+
+
+    public function countAdvertsByCategory($categoryId){
+        return AdvertLot::where('advert_lot_business_category_id', $categoryId )
+        ->count();
     }
 
 

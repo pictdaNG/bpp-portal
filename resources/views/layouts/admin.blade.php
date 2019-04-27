@@ -14,14 +14,9 @@
   <link rel="stylesheet" href="{{ asset('/css/font.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
   <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
-  <!-- eddie added these three jquery files below -->
-  <!-- <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script> -->
-  <!--[if lt IE 9]>
-    <script src="{{ asset('js/ie/html5shiv.js') }}"></script>
-    <script src="{{ asset('js/ie/respond.min.js') }}"></script>
-    <script src="{{ asset('js/ie/excanvas.js') }}"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" />
+
+
   <![endif]-->
   <script>
     var base_url = '{{ url('/') }}';
@@ -42,7 +37,7 @@
           <i class="fa fa-cog"></i>
         </a>
       </div>
-      <ul class="nav navbar-nav hidden-xs">
+      <!-- <ul class="nav navbar-nav hidden-xs">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="i i-grid"></i>
@@ -108,12 +103,12 @@
                     <small class="text-muted">Timeline</small>
                   </a>
                 </div>
-              </div>
+              </div> 
             </div>
           </section>
         </li>
-      </ul>
-      <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+      </ul> -->
+      <!-- <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
@@ -122,7 +117,7 @@
             <input type="text" class="form-control input-sm no-border" placeholder="Search...">            
           </div>
         </div>
-      </form>
+      </form> -->
       <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
         <!--
         <li class="hidden-xs">
@@ -168,14 +163,14 @@
             <b>{{ Auth::user()->name }}</b> <b class="caret"></b>
           </a>
           <ul class="dropdown-menu animated fadeInRight">            
-            <li>
+            <!-- <li>
               <span class="arrow top"></span>
               <a href="#">Settings</a>
             </li>
             <li>
               <a href="docs.html">Help</a>
-            </li>
-            <li class="divider"></li>
+            </li> -->
+            
             <li>
               <a href="{{ route('logout') }}" >Logout</a>
             </li>
@@ -206,14 +201,15 @@
                       </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">                      
-                      <li>
-                        <span class="arrow top hidden-nav-xs"></span>
+                      <!-- <li>
+                        
                         <a href="">Settings</a>
                       </li>
                       <li>
                         <a href="">Help</a>
-                      </li>
-                      <li class="divider"></li>
+                      </li> -->
+                      <!-- <li class="divider"></li> -->
+                      <span class="arrow top hidden-nav-xs"></span>
                       <li>
                         <a href="{{ route('logout') }}" >Logout</a>
                       </li>
@@ -233,7 +229,7 @@
                         <span class="font-bold">Dashboard</span>
                       </a>
                     </li>
-                    <li >
+                    <!-- <li >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -243,7 +239,7 @@
                         </i>
                         <span class="font-bold">Procurement Plan</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
                           <a href="/contractor/registration" class="auto">                                                        
                             <i class="i i-dot"></i>
@@ -251,9 +247,9 @@
                             <span>Company Registration</span>
                           </a>
                         </li>
-                    </ul> -->
-                    </li>
-                    <li >
+                    </ul>
+                    </li> -->
+                    <!-- <li >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -263,7 +259,7 @@
                         </i>
                         <span class="font-bold">Bidding Documents</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                       <ul class="nav dk">
                         <li >
                           <a href="/contractor/registration" class="auto">                                                        
                             <i class="i i-dot"></i>
@@ -271,8 +267,8 @@
                             <span>Company Registration</span>
                           </a>
                         </li>
-                    </ul> -->
-                    </li>
+                    </ul> 
+                    </li> -->
 
                     <li >
                       <a href="{{ action('AdvertController@getAdverts') }}" class="auto">
@@ -296,7 +292,7 @@
                     </li>
 
                     <li >
-                      <a href="#" class="auto">
+                      <a href="{{ action('AdvertController@getAdvertsOpening') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
@@ -316,7 +312,7 @@
                     </ul> -->
                     </li>
 
-                    <li >
+                    <!-- <li >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -326,7 +322,7 @@
                         </i>
                         <span class="font-bold">Transactions</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
                           <a href="/contractor/registration" class="auto">                                                        
                             <i class="i i-dot"></i>
@@ -334,10 +330,10 @@
                             <span>Company Registration</span>
                           </a>
                         </li>
-                    </ul> -->
-                    </li>
+                    </ul> 
+                    </li> -->
 
-                    <li >
+                   <!-- <li >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -347,7 +343,7 @@
                         </i>
                         <span class="font-bold">Projects</span>
                       </a>
-                      <!-- <ul class="nav dk">
+                      <ul class="nav dk">
                         <li >
                           <a href="/contractor/registration" class="auto">                                                        
                             <i class="i i-dot"></i>
@@ -355,8 +351,8 @@
                             <span>Company Registration</span>
                           </a>
                         </li>
-                    </ul> -->
-                    </li>
+                    </ul> 
+                    </li> -->
 
                     <li >
                       <a href="#" class="auto">
@@ -380,7 +376,7 @@
                     </li>
 
                     <li >
-                      <a href="{{ route('manageMDA.index') }}" class="auto">
+                      <a href="{{ route('getMdas') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
                           <i class="i i-circle-sm text-active"></i>
@@ -429,27 +425,6 @@
                         </span>
                         <i class="i i-stack icon">
                         </i>
-                        <span class="font-bold">Support</span>
-                      </a>
-                      <!-- <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> -->
-                    </li>
-
-                    <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-stack icon">
-                        </i>
                         <span class="font-bold">Administrative Tools</span>
                       </a>
                       <ul class="nav dk">
@@ -460,13 +435,13 @@
                             <span>Eligibility</span>
                           </a>
                         </li>
-                      <li >
+                      <!-- <li >
                           <a href="{{ route('getPDFNames') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
                             <span>PDF Name</span>
                           </a>
-                        </li>
+                        </li> -->
                         <li >
                           <a href="{{ route('getOwnership') }}" class="auto">                                                        
                             <i class="i i-dot"></i>

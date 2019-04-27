@@ -11,24 +11,13 @@
             <header class="panel-heading">
                  Ownership Structure
             </header>
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach()
-                </div>
-             @endif
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p><b>{{ $message }}</b></p>
-                </div>
-            @endif
+            
             <form class="bs-example form-horizontal" action="{{route('ownership.delete') }}" method="POST">
 
                 {{csrf_field()}}
                 <div class="row wrapper">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add PDF Name</a> 
+                        <a href="#addBusinessCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Ownership</a> 
                         <button id="btnDelete"  disabled class="delete-modal btn btn-danger">
                             <span class="glyphicon glyphicon-trash"></span> Delete
                         </button>
@@ -87,7 +76,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Ownership Structure</label>
             <div class="col-lg-10">
-            <input type="text" class="form-control" name="name" placeholder="Ownership Structure" value="">
+            <input type="text" class="form-control" required name="name" placeholder="Ownership Structure" value="">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>

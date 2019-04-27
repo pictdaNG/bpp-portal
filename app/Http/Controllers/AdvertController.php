@@ -88,6 +88,12 @@ class AdvertController extends Controller{
         $adverts = $this->repo->listAllAdverts();
         return view('admin.AdvertList')->with(['adverts' => $adverts]); 
     }
+
+
+    public function getAdvertsOpening(){
+        $adverts = $this->repo->listApprovedAdverts();
+        return view('admin.BidOpening')->with(['adverts' => $adverts]); 
+    }
     
     public function toggleAdvert($advertId, $status) {
         $toggle = $this->repo->updateAdvertStatus($advertId, $status);
