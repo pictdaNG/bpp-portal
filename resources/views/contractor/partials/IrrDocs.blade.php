@@ -22,13 +22,12 @@
                         </tr>
                     </thead>
                     <tbody> 
-                    @foreach($names as $name) 
+                    @foreach($data as $data)
                     <tr>
-                        <td>{{$name['certification_type']}}</td>
-                        <td>{{$name['category_type']}}</td>
-                        <td>{{$name['category_type']}}</td>
-                        
-                        <td><a href="{{action('ContractorController@downloadPDF', ['certification' =>$name->certification_type, 'category' =>$name->category_type])}}">Download</a> </td>
+                        <td>{{$data['name']}}</td>
+                        <td>{{$data['description']}}</td>
+                        <td>{{$data['created_at']}}</td>           
+                        <td><a href="{{action('ContractorController@downloadPDF', ['certification' =>$data->name, 'category' =>$data->description])}}">Download</a> </td>
                     </tr>
                     @endforeach
                 </tbody>

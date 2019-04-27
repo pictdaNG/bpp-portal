@@ -144,51 +144,58 @@
 
 
 <script>
-    $("#machineryForm").submit(function(evt){
-         evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var host = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $.ajax({ 
-            url : host + '/machinery/create',
-            type : 'POST',
-            data :$("#machineryForm").serialize(),
-            dataType: dataType,
-            success:function(response){
-                $('#submitMachinery').html('Submitted');
-                $('#submitMachinery').attr('disabled', 'disabled');
-                $('#machinery_message').show();
-                $('#machinery_message').html(response.success);
-                $('#machinery_div').show();
-                $('#machinery_div').removeClass('d-none');
-                document.getElementById("machineryForm").reset(); 
-                setTimeout(function(){
-                    $('#machinery_message').hide();
-                    $('#machinery_div').hide();
-                    $('.close').trigger('click');
-                    $('#submitMachinery').html('Save Data');
-                    $('#submitMachinery').removeAttr('disabled');
-                },1000);   
+    window.addEventListener('load', function () {
 
-                loadMachineries('/machinery/machineries', function(data){
+        $("#machineryForm").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
-            },
-            beforeSend: function(){
-                $('#submitMachinery').html('Loading...');
-                $('#submitMachinery').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-                $('#submitMachinery').html('Try Again');
-                $('#submitMachinery').removeAttr('disabled');
-                console.log(data)
-            
-            }
-        });
+            var host = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({ 
+                url : host + '/machinery/create',
+                type : 'POST',
+                data :$("#machineryForm").serialize(),
+                dataType: dataType,
+                success:function(response){
+                    $('#submitMachinery').html('Submitted');
+                    $('#submitMachinery').attr('disabled', 'disabled');
+                    $('#machinery_message').show();
+                    $('#machinery_message').html(response.success);
+                    $('#machinery_div').show();
+                    $('#machinery_div').removeClass('d-none');
+                    document.getElementById("machineryForm").reset(); 
+                    setTimeout(function(){
+                        $('#machinery_message').hide();
+                        $('#machinery_div').hide();
+                        $('.close').trigger('click');
+                        $('#submitMachinery').html('Save Data');
+                        $('#submitMachinery').removeAttr('disabled');
+                    },1000);   
+                    toastr.success(response.success, {timeOut: 1000});
 
+
+                    loadMachineries('/machinery/machineries', function(data){
+                });
+                },
+                beforeSend: function(){
+                    $('#submitMachinery').html('Loading...');
+                    $('#submitMachinery').attr('disabled', 'disabled');
+                },
+                error: function(response) {
+                    $('#submitMachinery').html('Try Again');
+                    $('#submitMachinery').removeAttr('disabled');
+                    toastr.error(response.responseJSON.error); //{timeOut: 5000}  
+
+                    console.log(response)
+                
+                }
+            });
+
+        })
     })
 
     function loadMachineries(machineries, cb){

@@ -8,7 +8,7 @@ class CategoryRegistrationFee extends Model{
 
     
         protected $fillable = [
-            'name', 'amount',
+            'name', 'description', 'amount', 'renewal_fee',
         ];
     
     

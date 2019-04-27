@@ -6,6 +6,7 @@ use App\ContractorPersonnel;
 use App\User;
 use App\Repositories\ContractorPersonnel\ContractorPersonnelContract;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Session;
 
 
@@ -13,6 +14,24 @@ class EloquentContractorPersonnelRepository implements ContractorPersonnelContra
 
     public function createPersonnel($request) { 
         $personnel = new ContractorPersonnel;
+
+        if(1 === preg_match('~[0-9]~', $request->first_name)){
+            return 'Invalid First Name';
+        }
+        else if(1 === preg_match('~[0-9]~', $request->last_name)){
+            return 'Invalid Last Name';
+        }
+        else if($request->experience_years < 0){
+            return 'Invalid Experience year';
+        }
+        else if($request->joining_date > Carbon::now()->isoFormat('YYYY-MM-D')){
+            return 'Invalid Joining Date';
+        }
+
+        else if($request->graduation_year > Carbon::now()->isoFormat('YYYY')){
+            return 'Invalid Graduation Year';
+        }
+
         $this->setContractorPersonnelProperties($personnel, $request);
         return $personnel->save();
     }

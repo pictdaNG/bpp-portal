@@ -210,9 +210,10 @@ class ContractorController extends Controller {
       }
 
     public function getIRR(){
-        $names = $this->contract_pdf->listAllPDFName();
+        //$names = $this->contract_pdf->listAllPDFName();
+        $names = $this->contract_fees->listAllFee();
 
-        return view('contractor.partials.IrrDocs', ['names' => $names]);
+        return view('contractor.partials.IrrDocs', ['data' => $names]);
     }
 
 

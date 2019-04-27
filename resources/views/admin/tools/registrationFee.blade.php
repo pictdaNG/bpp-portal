@@ -11,18 +11,6 @@
             <header class="panel-heading">
               Certificates
             </header>
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach()
-                </div>
-             @endif
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p><b>{{ $message }}</b></p>
-                </div>
-            @endif
             <form class="bs-example form-horizontal" action="{{route('deleteName')}}" method="POST">
 
 
@@ -44,6 +32,7 @@
                         <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input disabled type="checkbox"><i></i></label></th>
                         <th>Name</th>
                         <th>Amount</th>
+                        <th>Renewal</th>
                         </tr>
                     </thead>
                     <tbody id="names">
@@ -54,6 +43,7 @@
                         <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="{{$data->id}}"><i></i></label></td>
                             <td>{{ $data['name'] }}</td>
                             <td>{{ $data['amount'] }}</td>
+                            <td>{{ $data['renewal_fee'] }}</td>
                         </tr>
                         @endforeach
                     @else 
@@ -88,10 +78,26 @@
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Description</label>
+                        <div class="col-lg-10">
+                        <input type="text" required class="form-control" name="description" placeholder="Description" value="">
+                        <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Registration Fee</label>
                         <div class="col-lg-10">
                         <input type="number"  required class="form-control" name="amount" placeholder="Amount" value="">
+                        <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Renewal Fee</label>
+                        <div class="col-lg-10">
+                        <input type="number"  required class="form-control" name="renewal_fee" placeholder="Amount" value="">
                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
                     </div>

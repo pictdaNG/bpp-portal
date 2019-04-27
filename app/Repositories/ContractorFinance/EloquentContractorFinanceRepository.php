@@ -6,14 +6,45 @@ use App\User;
 use App\Repositories\ContractorFinance\ContractorFinanceContract;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Carbon\Carbon;
 
 
 class EloquentContractorFinanceRepository implements ContractorFinanceContract{
 
     public function createFinance($request) { 
         $contractorFinance = new ContractorFinance;
+
+        if($request->year > Carbon::now()->isoFormat('YYYY')) {
+            return 'Invalid Year';
+        }
+        else 
+        if($request->turn_over < 0) {
+
+            return  'Invalid Turn Over';
+        }
+       
+        else if($request->total_asset < 0) {
+            return 'Invalid Total Asset';
+        }
+
+        else if($request->total_liability < 0) {
+            return 'Invalid Liability Amount';
+        }
+        else if($request->witholding_tax < 0) {
+
+            return  'Invalid Withholding Tax';
+        }
+       
+        else if($request->tax_paid< 0) {
+            return 'Invalid paid Tax';
+        }
+
+        else if($request->report_date > Carbon::now()->isoFormat('YYYY-MM-DD') ) {
+            return 'Invalid Report Date';
+        }
         $this->setContractorFinanceProperties($contractorFinance, $request);
-        return $contractorFinance->save();
+        $contractorFinance->save();
+        return 1;
     }
 
     public function getFinancesById() {

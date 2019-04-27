@@ -16,7 +16,9 @@ class CreateCategoryRegistrationFeesTable extends Migration
         Schema::create('category_registration_fees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('description');
             $table->string('amount');
+            $table->string('renewal_fee');
             $table->timestamps();
         });
     }

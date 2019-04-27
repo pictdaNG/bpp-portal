@@ -148,7 +148,7 @@ Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
 Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->name('uploadContractorFile');
 Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
 Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->name('contractorFiles');
-Route::get('/contractor/viewirr/','ContractorController@getIRR')->name('getIRR');
+Route::get('/contractor/download/reg-category','ContractorController@getIRR')->name('getIRR');
 Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
 Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvertById');
 

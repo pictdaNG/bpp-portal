@@ -10,14 +10,28 @@ use App\User;
 use App\Repositories\ContractorJobs\ContractorJobsContract;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Carbon\Carbon;
 
 
 class EloquentContractorJobsRepository implements ContractorJobsContract{
 
     public function createJob($request) { 
         $contractorjob = new ContractorJobs;
+
+        if(strlen($request->contact_phone) > 11  || strlen($request->contact_phone) < 11 ) {
+
+            return  'Invalid Phone Number';
+        }
+        else  if($request->award_date > Carbon::now()->isoFormat('YYYY-MM-D')) {
+            return 'Invalid Award Date';
+        }
+        else if($request->amount < 1) {
+            return 'Invalid Contract Amount';
+        }
+
         $this->setContractorJobsProperties($contractorjob, $request);
-        return $contractorjob->save();
+        $contractorjob->save();
+        return 1;
     }
 
     public function getJobsById() {

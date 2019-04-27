@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ContractorFinance\ContractorFinanceContract;
+use Illuminate\Database\Exception;
 
 
 class ContractorFinanceController extends Controller {
@@ -26,13 +27,13 @@ class ContractorFinanceController extends Controller {
     public function storeFinance(Request $request) {
        try {
            $finance= $this->repo->createFinance((object)$request->all());    
-           if ($finance) {
-               return response()->json(['success'=>'Added new record.'], 200);        
+           if ($finance == 1) {
+               return response()->json(['success'=>'Record Added Successfully'], 200);        
             } else {    
-                return response()->json(['responseText' => 'Error occured try again'], 500);
+                return response()->json(['error' => $finance], 500);
             }
-       } catch (QueryException $e) {
-        return response()->json(['response' => $e->getMessage()], 500);
+       } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
        }
     }
 
@@ -42,10 +43,10 @@ class ContractorFinanceController extends Controller {
             if ($finance) {
                 return response()->json(['success'=>' Records Deleted Successfully'], 200);
              } else {  
-                return response()->json(['responseText' => 'Failed to Delete'], 500);
+                return response()->json(['error' => 'Failed to Delete'], 500);
              }
-        } catch (QueryException $e) {
-         return response()->json(['response' => $e->getMessage()], 500);
+        } catch (\Exception $e) {
+         return response()->json(['error' => $e->getMessage()], 500);
         }
      }
 

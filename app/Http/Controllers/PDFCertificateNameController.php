@@ -26,7 +26,7 @@ class PDFCertificateNameController extends Controller{
                 return view('admin.tools.pdf_certificate_name', ['names' => $names]);
             }
             
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return view('admin.tools.pdf_certificate_name', ['names' => $names]);
  
         }
@@ -49,7 +49,7 @@ class PDFCertificateNameController extends Controller{
                 return redirect()->route('getPDFNames')->with(['names' => $names]);
             }
             
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('getPDFNames')->with(['names' => $names]);
  
         }
@@ -70,7 +70,7 @@ class PDFCertificateNameController extends Controller{
                 return redirect()->route('getPDFNames')->with(['names' => $names]);
             }
             
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('getPDFNames')->with(['names' => $names]);
 
  

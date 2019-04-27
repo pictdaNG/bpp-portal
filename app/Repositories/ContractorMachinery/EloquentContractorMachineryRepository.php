@@ -7,14 +7,26 @@ use App\User;
 use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Carbon\Carbon;
 
 
 class EloquentContractorMachineryRepository implements ContractorMachineryContract{
 
     public function createMachinery($request) { 
         $machinery = new ContractorMachinery;
+
+        if($request->acquisition_date > Carbon::now()->isoFormat('YYYY-MM-DD')) {
+            return 'Invalid Acquisition Date';
+        }
+        else 
+        if($request->cost < 0) {
+            return  'Invalid Cost Amount';
+        }
+       
+
         $this->setContractorJobsProperties($machinery, $request);
-        return $machinery->save();
+        $machinery->save();
+        return 1;
     }
 
     public function getMachineriesById() {

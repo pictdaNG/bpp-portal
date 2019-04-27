@@ -17,7 +17,6 @@ class ContractorPersonnelController extends Controller
       
     }
     
-
     public function personnels(){
         $personnels = $this->repo->getPersonnelsById();
         return response()->json($personnels, 200);
@@ -27,13 +26,13 @@ class ContractorPersonnelController extends Controller
     public function storePersonnel(Request $request) {
        try {
            $personnel = $this->repo->createPersonnel((object)$request->all());       
-           if ($personnel) {
-               return response()->json(['success'=>'Added new records.'], 200);        
+           if ($personnel == 1) {
+               return response()->json(['success'=>'Record Added Successfully'], 200);        
             } else {     
-                return response()->json(['responseText' => 'Failed to Add Record'], 500);
+                return response()->json(['error' => $personnel], 500);
             }
        } catch (QueryException $e) {
-        return response()->json(['response' => $e->getMessage()], 500);
+        return response()->json(['error' => $e->getMessage()], 500);
        }
     }
 

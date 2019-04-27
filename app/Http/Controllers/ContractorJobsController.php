@@ -22,13 +22,13 @@ class ContractorJobsController extends Controller {
     public function storeJob(Request $request) {
        try {
            $job= $this->repo->createJob((object)$request->all());       
-           if ($job) {
-               return response()->json(['success'=>'Added new record.'], 200);          
+           if ($job == 1) {
+               return response()->json(['success'=>'Record Added Successfully'], 200);          
             } else {       
-                return response()->json(['responseText' => "Error occured"], 500);
+                return response()->json(['error' => $job], 500);
             }
-       } catch (QueryException $e) {
-        return response()->json(['response' => $e->getMessage()], 500);
+       } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
        }
     }
 
@@ -40,7 +40,7 @@ class ContractorJobsController extends Controller {
              } else {  
                 return response()->json(['responseText' => 'Failed to Delete'], 500);
              }
-        } catch (QueryException $e) {
+        } catch (\Exception $e) {
          return response()->json(['response' => $e->getMessage()], 500);
         }
      }

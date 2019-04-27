@@ -160,51 +160,59 @@
 
 
 <script>
-    $("#financeForm").submit(function(evt){
-        evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var host = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $.ajax({ 
-            url : host + '/finance/create',
-            type : 'POST',
-            data :$("#financeForm").serialize(),
-            dataType: dataType,
-            success:function(response){
-                $('#submitFinance').html('Submitted');
-                $('#submitFinance').attr('disabled', 'disabled');
-                $('#finance_message').show();
-                $('#finance_div').show();
-                $('#finance_message').html(response.success);
-                $('#finance_message').removeClass('d-none');
-                
-                document.getElementById("financeForm").reset(); 
 
-                setTimeout(function(){
-                    $('#finance_message').hide();
-                    $('#finance_div').hide();
-                    $('#submitFinance').html('Save Data');
+    window.addEventListener('load', function () {
+
+        $("#financeForm").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var host = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({ 
+                url : host + '/finance/create',
+                type : 'POST',
+                data :$("#financeForm").serialize(),
+                dataType: dataType,
+                success:function(response){
+                    $('#submitFinance').html('Submitted');
+                    $('#submitFinance').attr('disabled', 'disabled');
+                    $('#finance_message').show();
+                    $('#finance_div').show();
+                    $('#finance_message').html(response.success);
+                    $('#finance_message').removeClass('d-none');
+                    toastr.success(response.success, {timeOut: 1000});
+
+                    
+                    document.getElementById("financeForm").reset(); 
+
+                    setTimeout(function(){
+                        $('#finance_message').hide();
+                        $('#finance_div').hide();
+                        $('#submitFinance').html('Save Data');
+                        $('#submitFinance').removeAttr('disabled');
+                        $('.close').trigger('click');
+                    },1000);
+
+                    loadFinances('/finance/finances', function(data){
+                    });               
+                },
+                beforeSend: function(){
+                    $('#submitFinance').html('Loading...');
+                    $('#submitFinance').attr('disabled', 'disabled');
+                },
+                error: function(response) {
+                    $('#submitFinance').html('Try Again');
                     $('#submitFinance').removeAttr('disabled');
-                    $('.close').trigger('click');
-                },1000);
+                    toastr.error(response.responseJSON.error); //{timeOut: 5000}  
 
-                loadFinances('/finance/finances', function(data){
-                });               
-            },
-            beforeSend: function(){
-                $('#submitFinance').html('Loading...');
-                $('#submitFinance').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-                $('#submitFinance').html('Try Again');
-                $('#submitFinance').removeAttr('disabled');
-            
-            }
-        });
+                
+                }
+            });
+        })
     })
 
 

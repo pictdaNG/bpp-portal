@@ -47,8 +47,6 @@
             </section>
         </div>
 
-
-
         <div class="col-sm-6">
             <section class="panel panel-default">
             <header class="panel-heading font-bold">PenCom</header>

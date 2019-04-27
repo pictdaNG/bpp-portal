@@ -142,7 +142,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Years of Experience:</label>
             <div class="col-lg-10">
-            <input name="experience_years"  required class="form-control">
+            <input type="number" name="experience_years"  required class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -238,52 +238,59 @@
 </div>
 
 <script>
-    $("#personnelForm").submit(function(evt){
-        evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var host = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $.ajax({ 
-            url : host + '/personnel/create',
-            type : 'POST',
-            data :$("#personnelForm").serialize(),
-            dataType: dataType,
-            success:function(response){
-                $('#submitPersonnel').html('Submitted');
-                $('#submitPersonnel').attr('disabled', 'disabled');
-                $('#personnel_message').show();
-                $('#personnel_message').html(response.success);
-                $('#personnel_div').show();
-                $('#personnel_div').removeClass('d-none');
-                
-                document.getElementById("personnelForm").reset(); 
-                setTimeout(function(){
-                    $('#personnel_message').hide();
-                    $('#personnel_div').hide();
-                    $('#submitPersonnel').html('Save Data');
+     window.addEventListener('load', function () {
+        $("#personnelForm").submit(function(evt){
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var host = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $.ajax({ 
+                url : host + '/personnel/create',
+                type : 'POST',
+                data :$("#personnelForm").serialize(),
+                dataType: dataType,
+                success:function(response){
+                    $('#submitPersonnel').html('Submitted');
+                    $('#submitPersonnel').attr('disabled', 'disabled');
+                    $('#personnel_message').show();
+                    $('#personnel_message').html(response.success);
+                    $('#personnel_div').show();
+                    $('#personnel_div').removeClass('d-none');
+                    
+                    document.getElementById("personnelForm").reset(); 
+                    setTimeout(function(){
+                        $('#personnel_message').hide();
+                        $('#personnel_div').hide();
+                        $('#submitPersonnel').html('Save Data');
+                        $('#submitPersonnel').removeAttr('disabled');
+                        $('.close').trigger('click');
+                    
+                    },1000);
+
+                    toastr.success(response.success, {timeOut: 1000});
+
+                    
+                    loadPersonnels('/personnel/personnels', function(data){
+                    });
+                },
+                beforeSend: function(){
+                    $('#submitPersonnel').html('Loading...');
+                    $('#submitPersonnel').attr('disabled', 'disabled');
+                },
+                error: function(response) {
+                    $('#submitPersonnel').html('Try Again');
                     $('#submitPersonnel').removeAttr('disabled');
-                    $('.close').trigger('click');
+                    toastr.error(response.responseJSON.error); //{timeOut: 5000}  
+
                 
-                },1000);
-                
-                loadPersonnels('/personnel/personnels', function(data){
-                });
-            },
-            beforeSend: function(){
-                $('#submitPersonnel').html('Loading...');
-                $('#submitPersonnel').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-                $('#submitPersonnel').html('Try Again');
-                $('#submitPersonnel').removeAttr('disabled');
-            
-            }
-        });
-    })
+                }
+            });
+        })
+     })
 
 
     function loadPersonnels(personnels, cb){

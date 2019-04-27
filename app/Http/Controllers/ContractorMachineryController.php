@@ -20,13 +20,13 @@ class ContractorMachineryController extends Controller {
     public function storeMachinery(Request $request) {
        try {
            $machinery = $this->repo->createMachinery((object)$request->all());     
-           if ($machinery) {
-               return response()->json(['success'=>'Added new records.'], 200);       
+           if ($machinery == 1) {
+               return response()->json(['success'=>'Record Added Successfully.'], 200);       
             } else {   
-                return response()->json(['responseText' => $e->getMessage()], 500);
+                return response()->json(['error' => $machinery], 500);
             }
        } catch (QueryException $e) {
-        return response()->json(['response' => $e->getMessage()], 500);
+        return response()->json(['error' => $e->getMessage()], 500);
        }
     }
 

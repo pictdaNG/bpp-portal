@@ -284,9 +284,11 @@
         <table id="inventario" class="table table-bordered table-striped table-hover">
             <thead>
             <tr>
-                <th><input type="checkbox" id="check-all" disabled="disabled"></th>
+                <th width="20"><input type="checkbox" id="check-all" disabled="disabled"></th>
                 <th>Items</th>
-                <th style="visibility: hidden;"></th>
+                <th style="visibility:visible;">Description</th>
+                <th style="visibility:visible;">Fee</th>
+                <th style="visibility:visible;">Renewal</th>
             </tr>
             </thead>
             <tbody id="inventario-data">
@@ -296,9 +298,11 @@
                 @foreach($fees as $fee)
                 <?php $sumTotal+= $fee->amount; ?>
                     <tr>
-                        <td><input type="checkbox" class="data-check"></td>
+                        <td width="20"><input type="checkbox" class="data-check"></td>
                         <td>{{$fee->name}}</td>
-                        <td style="visibility: hidden;" >{{$fee->amount}}</td>
+                        <td style="visibility:visible" >{{$fee->description}}</td>
+                        <td style="visibility:visible" >{{$fee->amount}}</td>
+                        <td style="visibility:visible" >{{$fee->renewal_fee}}</td>
                     </tr>
                 @endforeach
            
@@ -306,14 +310,15 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>Total payable</th>
-                <th><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
-                <th style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
+                <th colspan ="3">Total payable</th>
+                <th colspan="2"><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
+               
             </tr>
+            <th   style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
             @else 
                 <tr>
                     
-                    <td colspan = "2">No Record Found</td>
+                    <td colspan = "5">No Record Found</td>
                  </tr>
             @endif
             </tfoot>
@@ -581,7 +586,7 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
         });   
    });
 
-    $(document).ready(function() {
+    window.addEventListener('load', function () {
         $("#check-al").click(function() {
             var isChecked = $(this).prop('checked');
             $(".data-check").prop('checked', isChecked);
@@ -602,7 +607,13 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
             var $sumchecked = $('#sumchecked');
             var $totalSum = $('#checked-prices-total-sum');
             var totalSumValue = parseFloat($totalSum.html());
-            var price = parseFloat($(this).parent().next().next().html().replace(",", "."));
+            var price = parseFloat($(this).parent().next().next().next().html().replace(",", "."));
+            console.log('typeod price', typeof(price));
+            console.log('typeod sumchecked', typeof(parseInt($sumchecked)));
+            console.log('typeod totalsum', typeof(parseInt($totalSum)));
+            console.log('typeod totalvaluesum', typeof(parseInt(totalSumValue)));
+
+
 
             if ($(this).is(':checked')) {
                 totalSumValue += price;
@@ -610,7 +621,7 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
                 totalSumValue -= price;
             }
 
-            $totalSum.html(totalSumValue.toFixed(0));
+            $totalSum.html( totalSumValue.toFixed(0));
         // totalSumValue > 0 ? $sumchecked.css('visibility', 'visible') : $sumchecked.css('visibility', 'hidden');
             if(totalSumValue > 0) {
                 $sumchecked.css('visibility', 'visible');

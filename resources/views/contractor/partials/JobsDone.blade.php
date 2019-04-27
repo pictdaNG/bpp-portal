@@ -173,54 +173,61 @@
 
 
 <script>
+    window.addEventListener('load', function () {
     $("#jobForm").submit(function(evt){
-        evt.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var host = '{{URL::to('/')}}';
-        var dataType =  'JSON';
-        $('#submitJob').html('Sending..');
-        $.ajax({ 
-            url : host + '/job/create',
-            type : 'POST',
-            data :$("#jobForm").serialize(),
-            dataType: dataType,
-            success:function(response){
-                $('#submitJob').html('Save Data');
-                $('#job_message').show();
-                $('#job_message').html(response.success);
-                $('#job_div').removeClass('d-none');
-                $('#submitJob').attr('disabled', 'disabled');
+            evt.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var host = '{{URL::to('/')}}';
+            var dataType =  'JSON';
+            $('#submitJob').html('Sending..');
+            $.ajax({ 
+                url : host + '/job/create',
+                type : 'POST',
+                data :$("#jobForm").serialize(),
+                dataType: dataType,
+                success:function(response){
+                    $('#submitJob').html('Save Data');
+                    $('#job_message').show();
+                    $('#job_message').html(response.success);
+                    $('#job_div').removeClass('d-none');
+                    $('#submitJob').attr('disabled', 'disabled');
 
 
-                $('#job_div').show();
-                document.getElementById("jobForm").reset(); 
-                setTimeout(function(){
-                    $('#job_message').hide();
-                    $('#job_div').hide();
-                    $('.close').trigger('click');
+                    $('#job_div').show();
+                    document.getElementById("jobForm").reset(); 
+                    setTimeout(function(){
+                        $('#job_message').hide();
+                        $('#job_div').hide();
+                        $('.close').trigger('click');
+                        $('#submitJob').removeAttr('disabled');
+
+                    },1000);
+                    toastr.success(response.success, {timeOut: 1000});
+
+
+                    loadJobs('/job/jobs', function(response){
+                        });
+
+                    
+                },
+                beforeSend: function(){
+                    $('#submitJob').html('Loading...');
+                    $('#submitJob').attr('disabled', 'disabled');
+                },
+                error: function(response) {
+                    $('#submitJob').html('Try Again');
                     $('#submitJob').removeAttr('disabled');
+                    toastr.error(response.responseJSON.error); //{timeOut: 5000}  
 
-                },1000);
-
-                loadJobs('/job/jobs', function(data){
-                    });
+                    console.log(data)
                 
-            },
-            beforeSend: function(){
-                $('#submitJob').html('Loading...');
-                $('#submitJob').attr('disabled', 'disabled');
-            },
-            error: function(data) {
-                $('#submitJob').html('Try Again');
-                $('#submitJob').removeAttr('disabled');
-                console.log(data)
-            
-            }
-        });
+                }
+            });
+        })
     })
 
     function loadJobs(jobs, cb){
