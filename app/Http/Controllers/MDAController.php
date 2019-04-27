@@ -108,15 +108,15 @@ class MDAController extends Controller
           // dd($mda);
             $mdas = $this->repo->create($data);
 
-            if ($mdas) {
-                return response()->json(['success'=>'MDA Added Succesfully.'], 200);
+            if ($mdas == 1) {
+                return response()->json(['success'=>'Record Added Succesfully.'], 200);
             }
             else {
-                return response()->json(['responseText' => 'Error adding MDAs'], 500);
+                return response()->json(['error' => $mdas], 500);
             }
             
-        } catch (QueryException $e) {
-         return response()->json(['responseeeeee' => $e->getMessage()], 500);
+        } catch (\Exception $e) {
+         return response()->json(['error' => $e->getMessage()], 500);
  
         }
     }

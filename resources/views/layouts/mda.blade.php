@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ asset('/css/font.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
   <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" />
+
   
 
  
@@ -380,6 +382,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
   <!-- Bootstrap -->
   <script src="{{ asset('js/bootstrap.js') }}"></script>
   <!-- App -->
@@ -399,6 +403,22 @@
   <script src="{{ asset('js/calendar/demo.js') }}"></script>
 
   <script src="{{ asset('js/sortable/jquery.sortable.js') }}"></script>
+
+
+@if(Session::has('message'))
+    var type= "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+      case 'info':
+        toastr.info("{{ Session::get('message') }}");
+      case 'warning':
+        toastr.warning("{{ Session::get('message') }}");
+      case 'success':
+        toastr.warning("{{ Session::get('message') }}");
+      case 'error':
+        toastr.warning("{{ Session::get('message') }}");
+        break
+    }
+  @endif
 
 
  

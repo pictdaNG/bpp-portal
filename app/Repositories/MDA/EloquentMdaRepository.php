@@ -22,6 +22,28 @@ class EloquentMdaRepository implements MdaContract
         $newUser->phone = $requestData['phone'];
         $newUser->profile_pic = $requestData['profile_pic']->getClientOriginalName();
         $newUser->address = $requestData['address'];
+
+        $existing = User::where('email', $requestData['email'])->first();
+
+        if(1 === preg_match('~[0-9]~', $requestData['name'])){
+            return 'Invalid Name';
+        }
+     
+        else if(strlen($requestData['phone']) != 11) {
+            return 'Invalid Phone Number';
+        }
+
+        else if(strlen($requestData['bank_account'] != 10) ) {
+            return 'Invalid Bank Account';
+        }
+        else if($requestData['split_percentage'] < 0 || $requestData['split_percentage'] > 100 ) {
+            return 'Invalid Split Percent';
+        }
+
+        if($existing) {
+            return 'Email Already Exist';
+        }
+
         $newUser->save();
 
         $file = $requestData['profile_pic'];
@@ -32,7 +54,8 @@ class EloquentMdaRepository implements MdaContract
         $requestData['password'] = bcrypt($requestData['password']);
         $uploadSuccess = $file->move($destinationPath, $filename);
 
-       return Mda::create($requestData);
+       Mda::create($requestData);
+       return 1;
     }
     
     public function find($id)

@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Name of MDA</label>
                                     <div class="col-lg-9">
-                                        <input name="name" class="form-control">
+                                        <input name="name" required class="form-control">
                                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">MDA Logo</label>
                                     <div class="col-lg-9">
-                                        <input type="file" name="profile_pic" class="form-control">
+                                        <input type="file" required name="profile_pic" class="form-control">
                                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">MDA Code</label>
                                     <div class="col-lg-9">
-                                        <input name="mda_code" class="form-control">
+                                        <input name="mda_code" required class="form-control">
                                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">MDA Short Code</label>
                                     <div class="col-lg-9">
-                                        <input name="mda_shortcode" class="form-control">
+                                        <input name="mda_shortcode" required class="form-control">
                                         
                                     </div>
                                 </div>
@@ -137,7 +137,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input name="email" class="form-control">
+                                        <input name="email" required class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Password</label>
                                     <div class="col-lg-9">
-                                        <input type="password" name="password" class="form-control">
+                                        <input type="password" required name="password" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Website</label>
                                     <div class="col-lg-9">
-                                        <input type="text" name="website" class="form-control">
+                                        <input type="website" required name="website" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Telephone</label>
                                     <div class="col-lg-9">
-                                        <input type="text" name="phone" class="form-control">
+                                        <input type="number" required name="phone" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Mandate</label>
                                     <div class="col-lg-9">
-                                        <textarea name="mandate" class="form-control"></textarea>
+                                        <textarea name="mandate" required class="form-control"></textarea>
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Bank Account</label>
                                     <div class="col-lg-9">
-                                        <input name="bank_account" class="form-control">
+                                        <input type="number" required name="bank_account" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Split Percentage</label>
                                     <div class="col-lg-9">
-                                        <input type="number" name="split_percentage" class="form-control">
+                                        <input type="number" required name="split_percentage" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -236,19 +236,24 @@
               url : url + '/manageMDA/delete',
               data :$('#deleteMdas').serialize(),
               dataType: dataType,
-              success:function(data){    
+              success:function(response){    
                   $('#mdaBtn').html('Delete');
                   $('#mdaBtn').removeAttr('disabled');     
-                  loadMdas('/mda_controller/', function(data){
+                  loadMdas('/mda_controller/', function(response){
                   });
+                  toastr.success(response.success, {timeOut: 1000});
+
               },
+              
               beforeSend: function(){
                   $('#mdaBtn').html('Sending..');
                   $('#mdaBtn').attr('disabled', 'disabled');
               },
-              error: function(data) {
+              error: function(response) {
                   $('#mdaBtn').html('Try Again');
                   $('#mdaBtn').removeAttr('disabled'); 
+                  toastr.error(response.responseJSON.error); //{timeOut: 5000}
+
               // show error to end user
               }
           });
