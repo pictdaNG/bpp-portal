@@ -63,7 +63,7 @@
                                 </tr>
                             @endforeach
                         @else
-                        <td>{{ No Record Found}}</td>
+                        <td>{{' No Record Found '}}</td>
                         @endif
                         </tbody>
                     </table>
