@@ -6,7 +6,7 @@
         <header class="wrapper text-center">
             <img height="150" src="{{ asset('images/logo.png') }}" />
         </header>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
           <div class="list-group">
             <div class="list-group-item">
@@ -54,6 +54,14 @@
                @if ($errors->has('password_confirmation'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="list-group-item">
+               <input type="file" name="profile_pic" placeholder="{{ __('Profile Pic') }}" class="form-control{{ $errors->has('profile_pic') ? ' is-invalid' : '' }} no-border">
+               @if ($errors->has('profile_pic'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('profile_pic') }}</strong>
                     </span>
                 @endif
             </div>

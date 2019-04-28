@@ -34,8 +34,7 @@
     </div>
   </footer>
   <!-- / footer -->
-  <script src="{{ asset('js/jquery.min.js') }}"></script>
-  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  <!-- Bootstrap -->
   <script src="{{ asset('js/bootstrap.js') }}"></script>
   <!-- App -->
   <script src="{{ asset('js/app.js') }}"></script>  

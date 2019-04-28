@@ -227,7 +227,7 @@ class ContractorController extends Controller {
     public function getAdverts() {
         $adverts = $this->contract_advert->listAllAdvertsForContractor();
        // dd($advert);
-       session()->set('success', 'Item created successfully.');
+     //  session()->set('success', 'Item created successfully.');
         return view('contractor.AdvertList')->with(['adverts' => $adverts]);
     }
 

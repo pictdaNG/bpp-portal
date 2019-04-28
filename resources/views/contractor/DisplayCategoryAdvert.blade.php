@@ -8,7 +8,7 @@
           <br/>
         <section class="panel panel-info">
             <header class="panel-heading">
-              Advert Lists
+              {{'List of '.$adverts[0]->category_name.' Adverts'}}
             </header>
             @if($errors->any())
                 <div class="alert alert-danger">
@@ -31,9 +31,9 @@
                                
                                 <th width="20">SNO</th>
                                 <th data-toggle="class">MDA</th>
-                                <th>Advert Type</th>
-                                <th>Advert Title</th>
-                                <th>Advert Mode</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Tender Document</th>
                                  <th>Closing Date</th>
                                 <th>Status</th>
                                 <th>Preview</th>
@@ -46,17 +46,18 @@
                                 @foreach($adverts as $advert) 
                                     <tr>
                                         <td>{{$i++}}</td>
-                                        <td>{{$advert->user->name}}</td>
-                                        <td>{{$advert->advert_type}}</td>
-                                        <td>{{$advert->introduction}}</td>   
-                                        <td>{{$advert->advert_mode}}</td>
+                                        <td>{{$advert->mda_name}}</td>
+                                        <td>{{$advert->description}}</td>
+                                        <td>{{$advert->lot_amount}}</td>   
+                                        <td>   
+                                            <a href="{{ asset('uploads/'.$advert->tender_document) }}">
+                                            <span class="fa-stack fa-sm"> <i class="fa fa-circle fa-stack-2x text-info"></i><i class="fa fa-search fa-stack-1x text-white"></i></span>
+                                            </a>      
+                                        </td>
                                         <td>{{$advert->bid_opening_date}}</td>
-                                        <?php $route = $advert->bid_opening_date > \Carbon\Carbon::now()->isoFormat('YYYY-MM-D') ?  'AdvertController@getAdvertById' : 'AdvertController@getSubmittedAdvertById'?>
-                                        <?php $status;
-                                        if($advert->status=='active'){ $status = 'text-success-dk'; }else { $status = 'text-danger-dk';} ?>
-                                        <td><i class="i i-circle-sm {{$status}}"></i></td> 
+                                        <td><i class="i i-circle-sm {{$advert->status}}"></i></td> 
                                         <td>
-                                            <?php $link = ($status == 'text-success-dk') ? action($route, $advert->id) : '#' ?>
+                                            <?php $link = ($advert->status == 'text-success-dk') ? action($advert->route, $advert->advert_id) : '#' ?>
                                             <a href="{{$link}}" class="active" ><span class="fa-stack fa-sm"> <i class="fa fa-circle fa-stack-2x text-info"></i><i class="fa fa-search fa-stack-1x text-white"></i></span></a>
                                         </td>
                                     </tr>

@@ -100,6 +100,8 @@ Route::get('/advert/active/preview/{advertId}', 'AdvertController@getAdvertById'
 Route::post('/advert/update/{advertId}', 'AdvertController@updateAdvert');
 Route::get('/adverts/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
 Route::post('/admin/advert/{advertId}/{status}', 'AdvertController@toggleAdvert');
+Route::get('/adverts/category/{Id}', 'AdvertController@getAdvertByCatId');
+
 
 //AdvertLot
 Route::post('/advert-lot/create', 'AdvertLotController@storeAdvertLot')->name('storeAdvertLot');

@@ -102,4 +102,10 @@ class AdvertController extends Controller{
 
     }
 
+    public function getAdvertByCatId($catId){
+       
+        $adverts = $this->repo->getAdsByCatId($catId);
+        return view('contractor.DisplayCategoryAdvert')->with(['adverts' => $adverts]); 
+    }
+
 }

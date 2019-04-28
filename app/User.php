@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'cac', 'phone'
+        'name', 'email', 'password', 'cac', 'phone', 'profile_pic'
     ];
 
     /**
@@ -51,5 +51,9 @@ class User extends Authenticatable
 
     public function MDA(){
         return $this->hasOne('App\User');
+    }
+
+    public function advertLots(){
+        return $this->hasMany('App\AdvertLot');
     }
 }

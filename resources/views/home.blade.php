@@ -2,8 +2,8 @@
 @section('content')
 <style>
 section.panel-body.slim-scroll {
-  overflow: auto !important;
-  height: 150px !important;
+  ovrflow: auto !important;
+  hieight: 150px !important;
 }
   </style>
 <section class="hbox stretch">

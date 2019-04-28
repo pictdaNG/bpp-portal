@@ -3,15 +3,15 @@
 @section('content')
 
 <style>
-.text-align {
+  .text-align {
     text-align: center;
     position: relative;
     margin-right: 8em;
-}
-.pt40 {
-  padding-top: 20px;
-}
-  </style>
+  }
+  .pt40 {
+    padding-top: 20px;
+  }
+</style>
 
 
   <section class="hbox stretch">
