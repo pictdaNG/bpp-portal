@@ -86,7 +86,7 @@ class EloquentContractorJobsRepository implements ContractorJobsContract{
 
     public function find($id)
     {
-       return ContractorJobs::find($id);
+       return ContractorJobs::where('user_id', $id)->get();
     }
 
 }

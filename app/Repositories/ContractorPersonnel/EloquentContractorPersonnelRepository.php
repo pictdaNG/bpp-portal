@@ -58,7 +58,7 @@ class EloquentContractorPersonnelRepository implements ContractorPersonnelContra
 
     public function find($id)
     {
-       return ContractorPersonnel::find($id);
+       return ContractorPersonnel::where('user_id', $id)->get();
     }
 
     private function setContractorPersonnelProperties($personnel, $request) {
