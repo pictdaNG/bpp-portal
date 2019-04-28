@@ -47,7 +47,8 @@ class EloquentSalesRepository implements SalesContract
     public function listSalesByUserId()
     {
         return sales::where('user_id', Auth::user()->id)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('payment_status', 'desc')
+            ->get();
     }
 
     public function listSalesByUserandAdvertId($advertId){
@@ -57,7 +58,9 @@ class EloquentSalesRepository implements SalesContract
     }
     
     public function getTransactions() {
-        return sales::where('mda_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return sales::where('mda_id', Auth::user()->id)
+        ->orderBy('payment_status', 'desc')
+        ->get();
     }
 
     public function mySales() {
@@ -83,8 +86,9 @@ class EloquentSalesRepository implements SalesContract
     }
 
     public function getSubmittionsByMDA(){
-        return Sales::where('mda_id', Auth::user()->id)->
-        orderBy('created_at', 'desc')->get();
+        return Sales::where('mda_id', Auth::user()->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
     }
     
     public function destroy($id)

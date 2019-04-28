@@ -32,7 +32,7 @@
                 <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="mids[]" value="{{$machinery->id}}"><i></i></label></td>
                 <td>{{$machinery->equipment_type}}</td>
                 <td>{{$machinery->acquisition_date}}</td>
-                <td>{{$machinery->cost}}</td>
+                <td>{{number_format($machinery->cost)}}</td>
                 <td>{{$machinery->location}}</td>
                 <td>{{$machinery->serial_no}}</td>
                 <td>{{$machinery->specifics}}</td>
@@ -218,7 +218,7 @@
                             '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
                             '<td>'+data[i].equipment_type+'</td>' +
                             '<td>'+data[i].acquisition_date+'</td>' +
-                            '<td>'+data[i].cost+'</td>'+
+                            '<td>'+number_format(data[i].cost)+'</td>'+
                             '<td>'+data[i].location+'</td>'+
                             '<td>'+data[i].serial_no+'</td>'+
                             '<td>'+data[i].specifics+'</td>'+

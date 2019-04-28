@@ -35,7 +35,7 @@
                 <td>{{$job->job_description}}</td>
                 <td>{{$job->contact_phone}}</td>
                 <td>{{$job->award_date}}</td>
-                <td>{{$job->amount}}</td>
+                <td>{{number_format($job->amount)}}</td>
                 <td>
                     <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
                 </td>
@@ -255,7 +255,7 @@
                             '<td>'+data[i].job_description+'</td>'+
                             '<td>'+data[i].contact_phone+'</td>'+
                             '<td>'+data[i].award_date +'</td>'+
-                            '<td>'+data[i].amount+'</td>'+
+                            '<td>'+number_format(data[i].amount)+'</td>'+
                             '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
                             '</tr>'
                         );

@@ -34,12 +34,12 @@
             <tr>
             <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="fids[]" value="{{$finance->id}}"><i></i></label></td>
             <td>{{$finance->year}}</td>
-            <td>{{$finance->turn_over}}</td>
-            <td>{{$finance->total_asset}}</td>
-            <td>{{$finance->total_liability}}</td>
-            <td>{{$finance->witholding_tax}}</td>
-            <td>{{$finance->tax_paid}}</td>
-            <td>{{$finance->tcc_no}}</td>
+            <td>{{number_format($finance->turn_over)}}</td>
+            <td>{{number_format($finance->total_asset)}}</td>
+            <td>{{number_format($finance->total_liability)}}</td>
+            <td>{{number_format($finance->witholding_tax)}}</td>
+            <td>{{number_format($finance->tax_paid)}}</td>
+            <td>{{number_format($finance->tcc_no)}}</td>
             <td>{{$finance->audit_firm}}</td>
             <td>{{$finance->report_date}}</td>         
             <td>

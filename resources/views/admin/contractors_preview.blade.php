@@ -191,7 +191,7 @@
             <td>{{$data['job_description']}}</td>
             <td>{{$data['contact_phone']}}</td>
             <td>{{$data['award_date']}}</td>
-            <td>{{$data['amount']}}</td>
+            <td>{{number_format($data['amount'])}}</td>
             </tr>
         @endforeach
         @endif

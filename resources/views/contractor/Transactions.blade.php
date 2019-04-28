@@ -51,9 +51,15 @@
                                         <td>{{$transaction->mda_name}}</td>
                                         <td>{{$transaction->advert_name}}</td>
                                         <td>{{$transaction->lot_description}}</td> 
-                                        <td>{{$transaction->amount}}</td>
-                                        <td>{{$transaction->payment_status}}</td>
-                                        <td>{{$transaction->payment_date}}</td>    
+                                        <td>{{number_format($transaction->amount)}}</td>
+                                        <td>
+                                            @if ($transaction->payment_status === 'Paid')
+                                                <span class="label label-success">{{ $transaction->payment_status }}</span>
+                                            @else
+                                                <span class="label label-danger">{{ $transaction->payment_status }}</span>
+                                            @endif
+                                            <?php $payment_date = $transaction->payment_date ? $transaction->payment_date : 'Not Available' ;?>
+                                        <td>{{$payment_date}}</td>    
                                     </tr>
                                 @endforeach
                             @else

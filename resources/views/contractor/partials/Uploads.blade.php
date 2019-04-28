@@ -301,8 +301,8 @@
                         <td width="20"><input type="checkbox" class="data-check"></td>
                         <td>{{$fee->name}}</td>
                         <td style="visibility:visible" >{{$fee->description}}</td>
-                        <td style="visibility:visible" >{{$fee->amount}}</td>
-                        <td style="visibility:visible" >{{$fee->renewal_fee}}</td>
+                        <td style="visibility:visible" >{{number_format($fee->amount)}}</td>
+                        <td style="visibility:visible" >{{number_format($fee->renewal_fee)}}</td>
                     </tr>
                 @endforeach
            
@@ -314,7 +314,7 @@
                 <th colspan="2"><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
                
             </tr>
-            <th   style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
+            <th   style="visibility: hidden;">Tot. No <span id="totalAmount">{{number_format($sumTotal)}}</span></th>
             @else 
                 <tr>
                     
