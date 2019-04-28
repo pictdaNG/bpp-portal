@@ -7,4 +7,5 @@ interface ContractorCategoryContract {
     public function getCategoriesById();
     public function getCategories();
     public function removeCategory($request);
+    public function find($id);
 }

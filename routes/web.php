@@ -131,7 +131,6 @@ Route::get('/equipment/types', 'EquipmentController@getEquipmentsType')->name('g
 Route::get('/equipments', 'EquipmentController@index')->name('getEquipments');
 Route::post('/equipment/delete/', 'EquipmentController@delete')->name('equipment.delete');
 
-
 // Registration Fee
 Route::post('/Registration/fee/create', 'CategoryRegistrationFeeController@storeFee')->name('storeFee');
 //Route::get('/fee/fees', 'ContractorRegistrationFeeController@getEquipmentsType')->name('getEquipmentsType');
@@ -184,5 +183,7 @@ Route::get('/sales/list', 'SalesController@getSalesByUserId')->name('getSales');
 Route::post('/sales/store', 'SalesController@storeSales')->name('storesales');
 Route::get('/bid/pdf/{advertId}', 'SalesController@getSalesByUserandAdvert')->name('purchases');
 Route::get('/bid/downloadPDF/','SalesController@downloadPDF')->name('getPdf');
+// Transactions
+Route::get('/mda/transactions/','SalesController@getTransactions')->name('transactions');
 
 //Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');

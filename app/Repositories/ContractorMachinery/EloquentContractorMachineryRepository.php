@@ -60,6 +60,11 @@ class EloquentContractorMachineryRepository implements ContractorMachineryContra
 
     }
 
+    public function find($id)
+    {
+       return ContractorMachinery::find($id);
+    }
+
 }
 
 ?>
