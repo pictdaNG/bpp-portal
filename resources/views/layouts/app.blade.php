@@ -229,7 +229,7 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="{{route('transactionsList')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>My Transaction History</span>
                           </a>

@@ -25,6 +25,8 @@ use App\Repositories\CategoryFee\CategoryFeeContract;
 use App\Repositories\PDFCertificateName\PDFCertificateNameContract; 
 use App\Repositories\Compliance\ComplianceContract;
 use App\Repositories\Advert\AdvertContract;
+use App\Repositories\Sales\SalesContract;
+
 
 
 
@@ -56,6 +58,7 @@ class ContractorController extends Controller {
     protected $contract_pdf;
     protected $contract_compliance;
     protected $contract_advert;
+    protected $contract_sales;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
@@ -64,7 +67,7 @@ class ContractorController extends Controller {
                   ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
                   ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
                   QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
-                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract ) {
+                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract, SalesContract $salesContract ) {
                   
                     
 
@@ -88,6 +91,7 @@ class ContractorController extends Controller {
         $this->contract_pdf = $pdfCertificateName;
         $this->contract_compliance = $complianceContract;
         $this->contract_advert = $advertContract;
+        $this->contract_sales = $salesContract;
 
     }
     
@@ -153,7 +157,7 @@ class ContractorController extends Controller {
 
 
     public function reportsContractor() {
-        echo("contracts reports data table");
+       // echo("contracts reports data table");
         return view('contractor.reports');
     }
 
@@ -235,6 +239,12 @@ class ContractorController extends Controller {
        // dd($advert);
      //  session()->set('success', 'Item created successfully.');
         return view('contractor.AdvertList')->with(['adverts' => $adverts]);
+    }
+
+
+    public function getTransactions() {
+        $transactions = $this->contract_sales->listSalesByUserId();
+        return view('contractor.Transactions')->with(['transactions' => $transactions]);
     }
 
 }

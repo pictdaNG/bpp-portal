@@ -35,7 +35,7 @@
                                 <td>{{ $data['itf_registration_no'] }}</td>
                                 <td>{{ $data['tcc_ownership_structure'] }}</td>
                                 <td>
-                                    <a href="{{ route('contractorPreview',$data['id']) }}" class="active"><i class="fa fa-search text-success text-active"></i></a>
+                                    <a href="{{ route('contractorPreview',$data['user_id']) }}" class="active"><i class="fa fa-search text-success text-active"></i></a>
                                 </td>
                             </tr>
                             @endforeach

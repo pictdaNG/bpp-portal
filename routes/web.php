@@ -27,6 +27,8 @@ Route::get('/contractor/registration', 'ContractorController@registration')->nam
 Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/contractor/adverts', 'ContractorController@getAdverts');
 Route::get('/contractor/uploaded/documents',  'ContractorController@getUploadedDocuments')->name('getUploadedDcument');
+Route::get('/contractor/transactions/',  'ContractorController@getTransactions')->name('transactionsList');
+
 
 Route::get('/logout', 'HomeController@logout')->name('logout');
 // Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');

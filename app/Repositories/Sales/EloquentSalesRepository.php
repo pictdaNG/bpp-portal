@@ -3,6 +3,7 @@ namespace App\Repositories\Sales;
 
 use App\sales;
 use App\AdvertLot;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -26,6 +27,7 @@ class EloquentSalesRepository implements SalesContract
             $sales->user_id = $user->id;
             $sales->user_name = $user->name;
             $sales->payment_status = 'pending';
+            $sales->transaction_id = (rand(1, 10000).rand(1, 10000));
             $sales->save();
         }
         return $sales->advert_id;
@@ -59,7 +61,9 @@ class EloquentSalesRepository implements SalesContract
     }
 
     public function mySales() {
-        return sales::where('mda_id', Auth::user()->id)->sum('amount');
+        return sales::where('mda_id', Auth::user()->id)
+       ->where('payment_status', 'paid')
+       ->sum('amount');
     }
 
 
@@ -96,6 +100,7 @@ class EloquentSalesRepository implements SalesContract
 
     public function updatePaymentStatus($id) {
         $payment = Sales::where('id', $id)->firstOrFail();
+        $payment->payment_date = Carbon::now()->isoFormat('YYYY-MM-DD HH:mm:ss');
         if ($payment->payment_status == 'Paid') {
             $payment->payment_status = 'Pending';
         }
