@@ -29,7 +29,7 @@ class EloquentDirectorRepository implements DirectorContract{
 
     public function find($id)
     {
-       return Director::find($id);
+       return Director::where('user_id', $id)->get();
     }
 
 

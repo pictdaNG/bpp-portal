@@ -82,7 +82,7 @@ class EloquentContractorFinanceRepository implements ContractorFinanceContract{
 
     public function find($id)
     {
-       return ContractorFinance::find($id);
+       return ContractorFinance::where('user_id', $id)->get();
     }
 
 }

@@ -62,7 +62,7 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
 
     public function find($id)
     {
-       return ContractorCategory::find($id);
+       return ContractorCategory::where('user_id', $id)->get();
     }
 
 
