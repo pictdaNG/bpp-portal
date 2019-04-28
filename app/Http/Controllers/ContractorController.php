@@ -26,12 +26,6 @@ use App\Repositories\PDFCertificateName\PDFCertificateNameContract;
 use App\Repositories\Compliance\ComplianceContract;
 use App\Repositories\Advert\AdvertContract;
 use App\Repositories\Sales\SalesContract;
-
-
-
-
-
-
 use App\ContractorFile;
 use App\User;
 use PDF;
@@ -135,7 +129,6 @@ class ContractorController extends Controller {
 
        
     }
-
 
     public function storeContractor(Request $request) {
 

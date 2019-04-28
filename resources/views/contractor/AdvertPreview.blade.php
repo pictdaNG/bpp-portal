@@ -13,7 +13,6 @@
   }
 </style>
 
-
   <section class="hbox stretch">
            
     <section id="content">

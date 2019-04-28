@@ -301,8 +301,8 @@
                         <td width="20"><input type="checkbox" class="data-check"></td>
                         <td>{{$fee->name}}</td>
                         <td style="visibility:visible" >{{$fee->description}}</td>
-                        <td style="visibility:visible" >{{number_format($fee->amount)}}</td>
-                        <td style="visibility:visible" >{{number_format($fee->renewal_fee)}}</td>
+                        <td style="visibility:visible" >{{$fee->amount}}</td>
+                        <td style="visibility:visible" >{{$fee->renewal_fee}}</td>
                     </tr>
                 @endforeach
            
@@ -314,7 +314,7 @@
                 <th colspan="2"><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
                
             </tr>
-            <th   style="visibility: hidden;">Tot. No <span id="totalAmount">{{number_format($sumTotal)}}</span></th>
+            <th   style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
             @else 
                 <tr>
                     
@@ -608,12 +608,7 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
             var $totalSum = $('#checked-prices-total-sum');
             var totalSumValue = parseFloat($totalSum.html());
             var price = parseFloat($(this).parent().next().next().next().html().replace(",", "."));
-            console.log('typeod price', typeof(price));
-            console.log('typeod sumchecked', typeof(parseInt($sumchecked)));
-            console.log('typeod totalsum', typeof(parseInt($totalSum)));
-            console.log('typeod totalvaluesum', typeof(parseInt(totalSumValue)));
-
-
+          
 
             if ($(this).is(':checked')) {
                 totalSumValue += price;
