@@ -224,6 +224,12 @@ class ContractorController extends Controller {
     }
 
 
+    public function getUploadedDocuments(){
+        $getUploadfiles = ContractorFile::where('user_id', Auth::user()->id)->get();
+        return view('contractor.BiddingDocuments')->with(['documents' => $getUploadfiles]);
+    }
+
+
     public function getAdverts() {
         $adverts = $this->contract_advert->listAllAdvertsForContractor();
        // dd($advert);

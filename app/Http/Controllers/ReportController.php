@@ -96,10 +96,7 @@ class ReportController extends Controller
                     'getUploadfiles' => $getUploadfiles,
                     'contractors' => $contractors
                     ]);
-            // }
-            // else {
-            //     return response()->json(['responseText' => 'Error retriving contractor compliance'], 500);
-            // }
+            
             
         } catch (QueryException $e) {
          return response()->json(['response' => $e->getMessage()], 500);

@@ -222,7 +222,10 @@ class HomeController extends Controller{
         }
         if(sizeof($uploads) > 0) {
             $count++;
-            $status['machines'] = true;
+            $status['uploads'] = true;
+        }
+        else {
+            $status['uploads'] = false;
         }
         $status['percentage'] = round(($count/9)*100, 2);
          return $status;

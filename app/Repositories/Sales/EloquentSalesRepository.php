@@ -10,7 +10,6 @@ class EloquentSalesRepository implements SalesContract
 {
     public function create($request){
 
-       // dd($requestData);
         $data = $request->fids;
         $user = Auth::user();
         for( $i = 0; $i<sizeof($data); $i++) {
@@ -26,6 +25,7 @@ class EloquentSalesRepository implements SalesContract
             $sales->mda_name = $request->mda_name;
             $sales->user_id = $user->id;
             $sales->user_name = $user->name;
+            $sales->payment_status = 'pending';
             $sales->save();
         }
         return $sales->advert_id;

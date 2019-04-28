@@ -1,23 +1,20 @@
 @extends('layouts.app')
 @section('content')
 <style>
-section.panel-body.slim-scroll {
-  ovrflow: auto !important;
-  hieight: 150px !important;
-}
-  </style>
+  section.panel-body.slim-scroll {
+    ovrflow: auto !important;
+    hieight: 150px !important;
+  }
+</style>
 <section class="hbox stretch">
     <section>
         <section class="vbox">
         <section class="scrollable padder">              
             <section class="row m-b-md">
-            <div class="col-sm-6">
+              <div class="col-sm-6">
                 <h3 class="m-b-xs text-black">Dashboard</h3>
                 <small>Welcome back, {{ Auth::user()->name }}</small>
-            </div>
-            <div class="col-sm-6 text-right text-left-xs m-t-md">
-                <a href="#nav, #sidebar" class="btn btn-icon b-2x btn-info btn-rounded" data-toggle="class:nav-xs, show"><i class="fa fa-bars"></i></a>
-            </div>
+              </div>
             </section>
             <div class="row">
             <div class="col-sm-6">
@@ -293,6 +290,27 @@ section.panel-body.slim-scroll {
                       </div>
                     </div>
                   </li>
+
+                  <li class="list-group-item">
+                    <div class="media">
+                      <span class="pull-left thumb-sm"><img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle"></span>
+                      @if($percent_status['uploads'])
+                        <div class="pull-right text-success m-t-sm">
+                         @else 
+                          <div class="pull-right text-muted m-t-sm"> 
+                         @endif
+                        <i class="fa fa-circle"></i>
+                      </div>
+                      <div class="media-body">
+                        <div><a href="#">Document Uploads</a></div>
+                        @if($percent_status['uploads'])
+                        <small class="text-muted">Completed</small>
+                         @else 
+                          <small class="text-muted">Not Completed</small>
+                         @endif
+                      </div>
+                    </div>
+                  </li>
                   
                 </ul>
               </section>
@@ -374,13 +392,7 @@ section.panel-body.slim-scroll {
         </section>
     </section>
     <!-- side content -->
-    <aside class="aside-md bg-black hide" id="sidebar">
-        <section class="vbox animated fadeInRight">
-            <section class="scrollable">
-                <div class="wrapper"><strong>Live feed</strong></div>
-            </section>
-        </section>              
-    </aside>
+    
     <!-- / side content -->
     </section>
 </section>

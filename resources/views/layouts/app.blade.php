@@ -170,10 +170,10 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="/contractor/purchase-bid-document" class="auto">                                                        
+                          <a href="{{route('getUploadedDcument')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Purchase Bid Documents</span>
+                            <span>Certificates</span>
                           </a>
                         </li>
                       </ul>
@@ -232,12 +232,6 @@
                           <a href="#" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>My Transaction History</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>All Certificates</span>
                           </a>
                         </li>
                       </ul>

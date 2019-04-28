@@ -54,7 +54,6 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'cac' => ['required'],
             'phone' => ['required'],
-            'profile_ic' => ['required'],
         ]);
     }
 
