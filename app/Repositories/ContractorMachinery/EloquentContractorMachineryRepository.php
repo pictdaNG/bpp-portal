@@ -62,7 +62,7 @@ class EloquentContractorMachineryRepository implements ContractorMachineryContra
 
     public function find($id)
     {
-       return ContractorMachinery::find($id);
+       return ContractorMachinery::where('user_id', $id)->get();
     }
 
 }
