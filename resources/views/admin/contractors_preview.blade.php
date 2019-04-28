@@ -96,7 +96,7 @@
             </tr>
         </thead>
         <tbody>
-        @if (empty($personel))
+        @if (sizeof($personel) < 0)
             <tr>
             <td>No Records found</td>
             </tr>
