@@ -43,7 +43,7 @@
                         </thead>
                         <tbody> 
                             <?php $i = 1; ?>
-                            @if(!empty($transactions))
+                            @if(sizeof($transactions) > 0)
                                 @foreach($transactions as $transaction) 
                                     <tr>
                                         <td>{{$i++}}</td>

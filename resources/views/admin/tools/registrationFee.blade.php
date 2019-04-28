@@ -31,6 +31,7 @@
                         <tr>
                         <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input disabled type="checkbox"><i></i></label></th>
                         <th>Name</th>
+                        <th>Description</th>
                         <th>Amount</th>
                         <th>Renewal</th>
                         </tr>
@@ -42,6 +43,7 @@
                         <tr>
                         <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="{{$data->id}}"><i></i></label></td>
                             <td>{{ $data['name'] }}</td>
+                            <td>{{ $data['description'] }}</td>
                             <td>{{ $data['amount'] }}</td>
                             <td>{{ $data['renewal_fee'] }}</td>
                         </tr>

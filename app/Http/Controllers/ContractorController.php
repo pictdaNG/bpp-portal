@@ -202,6 +202,7 @@ class ContractorController extends Controller {
 
     public function downloadPDF($certification, $category ){
         $user = User::where('id', Auth::user()->id)->get()->first();
+        $cert = empty($certification) ? 'Consultancy' : $certification;
         $pdf = PDF::loadView('contractor/pdf', compact('user'), ['certification' => $certification,  'category' => $category, ]);
         return $pdf->download('irr.pdf');
       }

@@ -164,7 +164,9 @@ class AdvertController extends Controller{
             'message' => 'Sorry You have to complete Your Profile Update!', 
             'alert-type' => 'error'
         );
-        if($registrationStatus['percentage'] !== 100) {
+
+        //dd($registrationStatus['percentage']);
+        if($registrationStatus['percentage'] !== 100.0) {
             return redirect()->back()->with($notification);
         }
        

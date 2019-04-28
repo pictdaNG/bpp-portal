@@ -13,8 +13,8 @@
                 </header>
                 <div class="panel-body">
                     <div class="row">
-                    @if (empty($documents))
-                    <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>No Uploads Found</a></div>
+                    @if (sizeof($documents) < 1)
+                    <div class="col-md-6 text-center" style="padding: 8px;">No Uploads Found</div>
                     @else 
                     
                     @foreach ($documents as $document)
