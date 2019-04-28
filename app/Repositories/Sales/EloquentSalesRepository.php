@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Sales;
 
-use App\Sales;
+use App\sales;
 use App\AdvertLot;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,42 +33,42 @@ class EloquentSalesRepository implements SalesContract
     
     public function find($id)
     {
-       return Sales::find($id);
+       return sales::find($id);
     }
     
     
     public function listSales()
     {
-        return Sales::all();
+        return sales::all();
     }
 
     public function listSalesByUserId()
     {
-        return Sales::where('user_id', Auth::user()->id)
+        return sales::where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'desc')->get();
     }
 
     public function listSalesByUserandAdvertId($advertId){
-        return Sales::where('advert_id', $advertId)
+        return sales::where('advert_id', $advertId)
             ->where('user_id', Auth::user()->id)
              ->orderBy('created_at', 'desc')->get();
     }
 
     public function mySales() {
-        return Sales::where('mda_id', Auth::user()->id)->sum('amount');
+        return sales::where('mda_id', Auth::user()->id)->sum('amount');
     }
 
 
     public function totalSales() {
-        return Sales::all()->count();
+        return sales::all()->count();
     }
 
     public function salesCount(){
-        return Sales::where('mda_id', Auth::user()->id)->count();
+        return sales::where('mda_id', Auth::user()->id)->count();
     }
 
     public function submittedApplications(){
-         return Sales::where('mda_id', Auth::user()->id)
+         return sales::where('mda_id', Auth::user()->id)
          ->distinct('advert_lot_id')
          ->count('advert_lot_id');
 

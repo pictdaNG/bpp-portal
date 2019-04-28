@@ -6,4 +6,5 @@ interface ContractorContract {
     public function createContractor($rquest);
     public function getUserById();
     public function getCompanyById();
+    public function find($id);
 }

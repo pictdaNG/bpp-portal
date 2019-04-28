@@ -92,4 +92,8 @@ class SalesController extends Controller{
         return $pdf->download('tender.pdf');
       }
 
+    public function getTransactions() {
+        return view('mda.transactions');
+    }
+
 }

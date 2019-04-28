@@ -56,6 +56,11 @@ class EloquentContractorPersonnelRepository implements ContractorPersonnelContra
        
     }
 
+    public function find($id)
+    {
+       return ContractorPersonnel::find($id);
+    }
+
     private function setContractorPersonnelProperties($personnel, $request) {
         $user = Auth::user();
         $personnel->first_name = $request->first_name;

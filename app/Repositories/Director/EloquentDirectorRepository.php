@@ -27,6 +27,11 @@ class EloquentDirectorRepository implements DirectorContract{
         
     }
 
+    public function find($id)
+    {
+       return Director::find($id);
+    }
+
 
     public function getCompanyDirectors() {
         return Director::where("user_id", Auth::user()->id)->get();
@@ -37,7 +42,6 @@ class EloquentDirectorRepository implements DirectorContract{
         try {
             for($i=0; $i<sizeof($data); $i++){
                 $tmp = Director::where('id', $data[$i] )->delete();
-    
             }
         }
         catch(\Exception $e) {
@@ -58,8 +62,6 @@ class EloquentDirectorRepository implements DirectorContract{
         $director->membership_id_no = $request->membership_id_no;
         $director->professional_membership = $request->professional_membership;
         $director->user_id = Auth::user()->id;
-
-
     }
 
 

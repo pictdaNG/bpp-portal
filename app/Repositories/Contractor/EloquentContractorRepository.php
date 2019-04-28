@@ -32,6 +32,11 @@ class EloquentContractorRepository implements ContractorContract{
 
     }
 
+    public function find($id)
+    {
+       return Contractor::find($id);
+    }
+
 
     public function getUserById() {
         return User::where("id", Auth::user()->id)->first();

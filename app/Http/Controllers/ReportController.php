@@ -54,6 +54,8 @@ class ReportController extends Controller
         try {
             $getCompliance = $this->repo->listAllCompliance();
 
+            // dd($getCompliance);
+
             if ($getCompliance) {
                 // return response()->json(['success'=> $getCompliance], 200);
                 return view('admin/contractors', ['getCompliance' => $getCompliance]);
@@ -69,20 +71,20 @@ class ReportController extends Controller
         
     }
 
-    public function contractorPreview(Request $request){
+    public function contractorPreview(Request $request, $id){
 
         try {
-            $directors = $this->director->getCompanyDirectors();
-            $personel = $this->personel->getPersonnelsById();
-            $categories = $this->category->getCategoriesById();
-            $jobs = $this->jobs->getJobsById();
-            $financies = $this->finance->getFinancesById();
-            $machineries = $this->machinery->getMachineriesById();
-            $contractors = $this->contractor->getCompanyById();
+            $directors = $this->director->find($id);
+            $personel = $this->personel->find($id);
+            $categories = $this->category->find($id);
+            $jobs = $this->jobs->find($id);
+            $financies = $this->finance->find($id);
+            $machineries = $this->machinery->find($id);
+            $contractors = $this->contractor->find($id);
             $user = Auth::user();
-            $getUploadfiles = ContractorFile::where('user_id', $user->id)->get();
- 
-            if ($personel) {
+            $getUploadfiles = ContractorFile::find($id);
+            
+            // if ($personel) {
                 // return response()->json(['success'=> $getCompliance], 200);
                 return view('admin/contractors_preview',[
                     'directors' => $directors, 
@@ -94,10 +96,10 @@ class ReportController extends Controller
                     'getUploadfiles' => $getUploadfiles,
                     'contractors' => $contractors
                     ]);
-            }
-            else {
-                return response()->json(['responseText' => 'Error retriving contractor compliance'], 500);
-            }
+            // }
+            // else {
+            //     return response()->json(['responseText' => 'Error retriving contractor compliance'], 500);
+            // }
             
         } catch (QueryException $e) {
          return response()->json(['response' => $e->getMessage()], 500);

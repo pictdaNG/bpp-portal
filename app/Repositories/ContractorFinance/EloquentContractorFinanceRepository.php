@@ -80,6 +80,11 @@ class EloquentContractorFinanceRepository implements ContractorFinanceContract{
 
     }
 
+    public function find($id)
+    {
+       return ContractorFinance::find($id);
+    }
+
 }
 
 ?>

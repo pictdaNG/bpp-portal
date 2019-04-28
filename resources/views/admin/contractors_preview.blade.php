@@ -10,22 +10,22 @@
                 <div class="panel-body">
                 <div class="row">
                 <?php //dd($contractors); ?>
-                @foreach ($contractors as $data)
+               
                     <div class="col-xs-6">
                         <img src="{{ asset('/images/p0.jpg') }}" height="200"/>
-                        <h4>$data['company_name']</h4>
+                        <h4>{{ $contractors['company_name']}}</h4>
                         <address>
-                            Email: $data['email']<br/>
-                            Website: $data['website']<br/>
-                            Address: $data['address']<br/>
-                            Telephone: 08161730129<br/>
+                            Email: {{$contractors['email']}}<br/>
+                            Website: {{$contractors['website']}}<br/>
+                            Address: {{$contractors['address']}}<br/>
+                            <!-- Telephone: 08161730129<br/> -->
                         </address>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="h4">Contractor IRR # $data['cac_number']</p>
-                        <h5>Date Registered: $data['created_at']</h5>
+                        <p class="h4">Contractor IRR # {{ $contractors['cac_number'] }}</p>
+                        <h5>Date Registered: {{ $contractors['created_at']}}</h5>
                     </div>
-                @endforeach
+             
                 </div>
                 </div>
             </section>
@@ -51,6 +51,12 @@
                     </thead>
                     <tbody>
                     <?php  $i = 0; ?>
+                    <?php //dd($directors); ?>
+                    @if (empty($directors))
+                        <tr>
+                        <td>No Records found</td>
+                        </tr>
+                    @else 
                         @foreach ($directors as $data)
                         <tr>
                         <td>{{ $data['id'] }}</td>
@@ -63,7 +69,7 @@
                         <td>{{ $data['membership_id_no'] }}</td>
                         </tr>
                         @endforeach
-                
+                    @endif
                     </tbody>
                     </table>
                 </div>
@@ -90,6 +96,11 @@
             </tr>
         </thead>
         <tbody>
+        @if (empty($personel))
+            <tr>
+            <td>No Records found</td>
+            </tr>
+        @else 
             @foreach ($personel as $data)
             <tr>
             <td>{{ $data['id'] }}</td>
@@ -102,7 +113,7 @@
             <td>{{ $data['joining_date'] }}</td>
             </tr>
             @endforeach
-           
+        @endif   
         </table>
                 </div>
                 </div>
@@ -125,6 +136,11 @@
             </tr>
         </thead>
         <tbody>
+        @if (empty($categories))
+            <tr>
+            <td>No Records found</td>
+            </tr>
+        @else 
             @foreach ($categories as $data)
             <tr>
             <td>$data['id']</td>
@@ -133,7 +149,7 @@
             <td>$data['subcategory_2']</td>
             </tr>
             @endforeach
-          
+        @endif 
         </tbody>
         </table>
                 </div>
@@ -162,6 +178,11 @@
             </tr>
         </thead>
         <tbody>
+        @if (empty($jobs))
+            <tr>
+            <td>No Records found</td>
+            </tr>
+        @else 
         @foreach ($jobs as $data)
             <tr>
             <td>$data['id']</td>
@@ -174,7 +195,7 @@
             <td>$data['amount']</td>
             </tr>
         @endforeach
-
+        @endif
         </tbody>
         </table>
                 </div>
@@ -204,6 +225,11 @@
             </tr>
         </thead>
         <tbody>
+        @if (empty($financies))
+            <tr>
+            <td>No Records found</td>
+            </tr>
+        @else 
         @foreach ($financies as $data)
             <tr>
             <td>$data['id']</td>
@@ -218,7 +244,7 @@
             <td>$data['report_date']</td>
             </tr>
         @endforeach
-          
+        @endif
         </tbody>
         </table>
                 </div>
@@ -246,6 +272,11 @@
             </tr>
         </thead>
         <tbody>
+        @if (empty($machineries))
+            <tr>
+            <td>No Records found</td>
+            </tr>
+        @else 
         @foreach ($machineries as $data)
             <tr>
             <td>$data['id']</td>
@@ -259,7 +290,7 @@
             
             </tr>
         @endforeach
-        
+        @endif
         </tbody>
         </table>
                 </div>
@@ -273,10 +304,13 @@
                 </header>
                 <div class="panel-body">
                     <div class="row">
+                    @if (empty($getUploadfiles))
+                    <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>No Uploads Found</a></div>
+                    @else 
                     @foreach ($getUploadfiles as $data)
                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ $data['name'] }}</a></div>
                     @endforeach
-                       
+                    @endif  
                     </div>
                 </div>
             </section>
