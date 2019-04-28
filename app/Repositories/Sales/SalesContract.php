@@ -26,4 +26,8 @@ interface SalesContract
     public function getSubmittionsByMDA();
 
     public function submittedApplications();
+
+    public function getTransactions();
+
+    public function updatePaymentStatus($id);
 }

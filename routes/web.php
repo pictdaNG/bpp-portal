@@ -183,5 +183,6 @@ Route::get('/bid/pdf/{advertId}', 'SalesController@getSalesByUserandAdvert')->na
 Route::get('/bid/downloadPDF/','SalesController@downloadPDF')->name('getPdf');
 // Transactions
 Route::get('/mda/transactions/','SalesController@getTransactions')->name('transactions');
+Route::post('mda/close_payment/{id}','SalesController@updatePaymentStatus')->name('updateTransactions');
 
 //Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');

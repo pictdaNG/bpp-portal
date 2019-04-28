@@ -1,16 +1,15 @@
-@extends('layouts.admin')
+@extends('layouts.mda')
 
 
 @section('content')
-
-<!--<script src="//code.jquery.com/jquery-1.12.3.js"></script>-->
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script
-    src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-<link rel="stylesheet"
-    href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet"
-    href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 
         <div class="content">
@@ -27,37 +26,45 @@
                                    <table class="table table-bordered table-striped table-condensed" id="table" >
                                         <thead>
                                             <tr>
-                                                <th class="text-center">#</th>
+                                                <th class="text-center">Transaction ID</th>
                                                 <th class="text-center">Advert Name</th>
                                                 <th class="text-center">Lot Description</th>
-                                                <th class="text-center">User Name</th>
+                                                <th class="text-center">Contractor</th>
                                                 <th class="text-center">Amount</th>
                                                 <th class="text-center">Payment Status</th>
                                                 <th class="text-center"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                       
+                                        @if (empty($transactions))
+                                            <tr>
+                                            <td>No Records found</td>
+                                            </tr>
+                                        @else 
+                                        <?php  $i = 0; ?>
+                                            @foreach ($transactions as $transaction)
                                             <tr class="">
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><a href=""><button id="edit-modal" class="edit-modal btn btn-info">
-                                                        <span class="glyphicon glyphicon-edit"></span> Update Status
-                                                    </button></a>
-                                                    <!-- <a href="">
-                                                    <button class="delete-modal btn btn-danger">
-                                                        <span class="glyphicon glyphicon-trash"></span> Delete
-                                                    </button>
-                                                    </a> -->
-                                                   
+                                                <td>{{ $transaction['transaction_id'] }}</td>
+                                                <td>{{ $transaction['advert_name'] }}</td>
+                                                <td>{{ $transaction['lot_description'] }}</td>
+                                                <td>{{ $transaction['user_name'] }}</td>
+                                                <td>{{ $transaction['amount'] }}</td>
+                                                <td>
+                                                @if ($transaction->payment_status === 'Paid')
+                                                    <span class="label label-success">{{ $transaction->payment_status }}</span>
+                                                @else
+                                                    <span class="label label-danger">{{ $transaction->payment_status }}</span>
+                                                @endif
+                                                </td>
+                                                <td>
+                                                <form action="{{ url('mda/close_payment/' .$transaction['id'] ) }}" method="POST">
+                                                    {!! csrf_field() !!}
+                                                    <button type="submit" class="btn btn-success btn-sm">Update payment</button>
+                                                </form>
                                                 </td>
                                             </tr>
-                                       
-
+                                            @endforeach
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -71,9 +78,12 @@
         </div>
 
 <script>
-  $(document).ready(function() {
+window.addEventListener('load', function () {
+    $(document).ready(function() {
+    $.noConflict(true);
     $('.table').DataTable();
-} );
+    } );
+});
  </script>
 @endsection
 

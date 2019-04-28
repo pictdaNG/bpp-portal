@@ -53,6 +53,10 @@ class EloquentSalesRepository implements SalesContract
             ->where('user_id', Auth::user()->id)
              ->orderBy('created_at', 'desc')->get();
     }
+    
+    public function getTransactions() {
+        return sales::where('mda_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+    }
 
     public function mySales() {
         return sales::where('mda_id', Auth::user()->id)->sum('amount');
@@ -74,12 +78,10 @@ class EloquentSalesRepository implements SalesContract
 
     }
 
-
     public function getSubmittionsByMDA(){
         return Sales::where('mda_id', Auth::user()->id)->
         orderBy('created_at', 'desc')->get();
     }
-    
     
     public function destroy($id)
     {
@@ -89,7 +91,18 @@ class EloquentSalesRepository implements SalesContract
     
     public function update($id, $requestData)
     {
-       return Sales::find($id)->update($requestData);
+        return Sales::find($id)->update($requestData);
+    }
+
+    public function updatePaymentStatus($id) {
+        $payment = Sales::where('id', $id)->firstOrFail();
+        if ($payment->payment_status == 'Paid') {
+            $payment->payment_status = 'Pending';
+        }
+        else {
+            $payment->payment_status = 'Paid';
+        }
+        return $payment->save();
     }
     
 }

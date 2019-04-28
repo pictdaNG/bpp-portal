@@ -21,12 +21,13 @@ class CreateSalesTable extends Migration
             $table->string('advert_introduction');
             $table->string('advert_name');
             $table->integer('amount');
-            $table->string('payment_status')->default('pending');
+            $table->string('payment_status');
             $table->string('payment_date');
             $table->integer('user_id');
             $table->string('user_name');
             $table->string('mda_id');
             $table->string('mda_name');
+            $table->string('transaction_id');
             $table->timestamps();
         });
     }
