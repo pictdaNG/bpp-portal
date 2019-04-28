@@ -12,13 +12,13 @@
                 <?php //dd($contractors); ?>
                
                     <div class="col-xs-6">
-                        <img src="{{ asset('/images/p0.jpg') }}" height="200"/>
+                        <img src="{{ asset('uploads/'.$contractors->user->profile_pic)}}" height="200"/>
                         <h4>{{ $contractors['company_name']}}</h4>
                         <address>
                             Email: {{$contractors['email']}}<br/>
                             Website: {{$contractors['website']}}<br/>
                             Address: {{$contractors['address']}}<br/>
-                            <!-- Telephone: 08161730129<br/> -->
+                            Telephone: {{$contractors->user->phone }}<br/>
                         </address>
                     </div>
                     <div class="col-xs-6 text-right">
@@ -143,10 +143,10 @@
         @else 
             @foreach ($categories as $data)
             <tr>
-            <td>$data['id']</td>
-            <td>$data['category']</td>
-            <td>$data['subcategory_1']</td>
-            <td>$data['subcategory_2']</td>
+            <td>{{$data['id']}}</td>
+            <td>{{$data['category']}}</td>
+            <td>{{$data['subcategory_1']}}</td>
+            <td>{{$data['subcategory_2']}}</td>
             </tr>
             @endforeach
         @endif 
@@ -174,7 +174,6 @@
             <th>Contact Person</th>
             <th>Award Date</th>
             <th>Amount</th>
-            
             </tr>
         </thead>
         <tbody>
@@ -185,14 +184,14 @@
         @else 
         @foreach ($jobs as $data)
             <tr>
-            <td>$data['id']</td>
-            <td>$data['job_category']</td>
-            <td>$data['sub_category']</td>
-            <td>$data['job_title']</td>
-            <td>$data['job_description']</td>
-            <td>$data['contact_phone']</td>
-            <td>$data['award_date']</td>
-            <td>$data['amount']</td>
+            <td>{{$data['id']}}</td>
+            <td>{{$data['job_category']}}</td>
+            <td>{{$data['sub_category']}}</td>
+            <td>{{$data['job_title']}}</td>
+            <td>{{$data['job_description']}}</td>
+            <td>{{$data['contact_phone']}}</td>
+            <td>{{$data['award_date']}}</td>
+            <td>{{$data['amount']}}</td>
             </tr>
         @endforeach
         @endif
@@ -232,16 +231,16 @@
         @else 
         @foreach ($financies as $data)
             <tr>
-            <td>$data['id']</td>
-            <td>$data['year']</td>
-            <td>$data['turn_over']</td>
-            <td>$data['total_asset']</td>
-            <td>$data['total_liability']</td>
-            <td>$data['witholding_tax']</td>
-            <td>$data['tax_paid']</td>
-            <td>$data['tcc_no']</td>
-            <td>$data['audit_firm']</td>
-            <td>$data['report_date']</td>
+            <td>{{$data['id']}}</td>
+            <td>{{$data['year']}}</td>
+            <td>{{$data['turn_over']}}</td>
+            <td>{{$data['total_asset']}}</td>
+            <td>{{$data['total_liability']}}</td>
+            <td>{{$data['witholding_tax']}}</td>
+            <td>{{$data['tax_paid']}}</td>
+            <td>{{$data['tcc_no']}}</td>
+            <td>{{$data['audit_firm']}}</td>
+            <td>{{$data['report_date']}}</td>
             </tr>
         @endforeach
         @endif
@@ -279,14 +278,14 @@
         @else 
         @foreach ($machineries as $data)
             <tr>
-            <td>$data['id']</td>
-            <td>$data['equipment_type']</td>
-            <td>$data['acquisition_date']</td>
-            <td>$data['cost']</td>
-            <td>$data['location']</td>
-            <td>$data['serial_no']</td>
-            <td>$data['serial_no']</td>
-            <td>$data['equipment_status']</td>
+            <td>{{$data['id']}}</td>
+            <td>{{$data['equipment_type']}}</td>
+            <td>{{$data['acquisition_date']}}</td>
+            <td>{{$data['cost']}}</td>
+            <td>{{$data['location']}}</td>
+            <td>{{$data['serial_no']}}</td>
+            <td>{{$data['serial_no']}}</td>
+            <td>{{$data['equipment_status']}}</td>
             
             </tr>
         @endforeach
@@ -314,8 +313,6 @@
                     </div>
                 </div>
             </section>
-
-
         </section>
     </section>
 </section>

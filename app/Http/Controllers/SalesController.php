@@ -93,7 +93,15 @@ class SalesController extends Controller{
       }
 
     public function getTransactions() {
-        return view('mda.transactions');
+        $transactions = $this->repo->getTransactions();
+        // dd($transactions);
+        return view('mda.transactions', ['transactions' => $transactions]);
+    }
+
+
+    public function updatePaymentStatus($id) {
+        $this->repo->updatePaymentStatus($id);
+        return back();
     }
 
 }
