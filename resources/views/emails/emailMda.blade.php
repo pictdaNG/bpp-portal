@@ -75,8 +75,6 @@
 <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;" class="background"><tr><td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;"
   bgcolor="#F0F0F0">
 
-
-
 <!-- WRAPPER / CONTEINER -->
 <!-- Set conteiner background color -->
 <table border="0" cellpadding="0" cellspacing="0" align="center"
@@ -106,7 +104,22 @@
     </td>
   </tr>
 
-
+  <!-- HERO IMAGE -->
+ 
+  <tr>
+    <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
+      padding-top: 20px;" class="hero">
+      <a target="_blank" style="text-decoration: none;"
+      href="https://github.com/konsav/email-templates/">
+      <img border="0" vspace="0" hspace="0"
+      src="https://plateaubpp.plateaustate.gov.ng/assets/img/logo.png"
+      alt="Please enable images to view this content" title="Logo"
+      width="150" style="
+      width: 30%;
+      max-width: 560px;
+      color: #000000; font-size: 13px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;"/>
+    </a></td>
+  </tr>
 
   <tr>
     <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%;
