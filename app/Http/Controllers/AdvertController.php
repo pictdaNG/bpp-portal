@@ -130,7 +130,7 @@ class AdvertController extends Controller{
         try {
              
             if ($this->repo->editAdvert((object)$request->all())) {
-                 return response()->json(['success' => 'Record Added Successfully'], 200);
+                 return response()->json(['success' => 'Record Updated Successfully'], 200);
              } 
              else {     
                  return response()->json(['responseText' => 'Failed to Add Record'], 500);
@@ -192,7 +192,11 @@ class AdvertController extends Controller{
     public function toggleAdvert($advertId, $status) {
         $toggle = $this->repo->updateAdvertStatus($advertId, $status);
         $adverts = $this->repo->listAllAdverts();
-        return redirect()->route('adminAdverts')->with(['adverts' => $adverts]); 
+        $notification = array(
+            'message' => 'Successfully Toggled Advert State!', 
+            'alert-type' => 'success'
+        );
+        return redirect()->route('adminAdverts')->with(['adverts' => $adverts])->with($notification); 
 
     }
 

@@ -291,7 +291,7 @@
                     $('#mdas_div').show();
                     $('#mdas_message').html(response.success);
                     $('#mdas_div').removeClass('d-none');
-                    //document.getElementById("mdasform").reset();        
+                    document.getElementById("mdasform").reset();        
                     setTimeout(function(){
                         $('#mdas_message').hide();
                         $('#mdas_div').hide();
@@ -342,3 +342,8 @@
 
 </script>
 @endsection
+
+
+
+
+
