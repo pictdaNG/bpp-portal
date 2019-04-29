@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="{{ asset('/css/font.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
   <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
 
   <![endif]-->
@@ -518,7 +518,9 @@
       </section>
     </section>
   </section>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -528,7 +530,7 @@
   <!-- App -->
   <script src="{{ asset('js/app.js') }}"></script>  
   <script src="{{ asset('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('js/charts/easypiechart/jquery.easy-pie-chart.js') }}"></script>
+  <script src="{{ asset('js/charts/easypiechart/jquery.easy-pie-chart.js') }}"></script>
   <script src="{{ asset('js/charts/sparkline/jquery.sparkline.min.js') }}"></script>
   <script src="{{ asset('js/charts/flot/jquery.flot.min.js') }}"></script>
   <script src="{{ asset('js/charts/flot/jquery.flot.tooltip.min.js') }}"></script>
@@ -543,6 +545,29 @@
 
   <script src="{{ asset('js/sortable/jquery.sortable.js') }}"></script>
   <script src="{{ asset('js/app.plugin.js') }}"></script>
+  <script>
+    @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type', 'info') }}";
+      switch(type) {
+        case 'info':
+          toastr.options.fadeOut = 9000;
+          toastr.info("{{ Session::get('message') }}");
+          break;
+        case 'warning':
+          toastr.options.fadeOut = 9000;
+          toastr.warning("{{ Session::get('message') }}");
+          break;
+        case 'success':
+          toastr.options.fadeOut = 9000;
+          toastr.success("{{ Session::get('message') }}");
+          break;
+        case 'error':
+          toastr.options.fadeOut = 9000;
+          toastr.error("{{ Session::get('message') }}");
+          break;
+      }
+    @endif
+  </script>
   <script>
   $( document ).ready(function() {
     $.ajaxSetup({

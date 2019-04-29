@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="{{ asset('css/icon.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('css/font.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css" />  
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js"></script>
     <script src="js/ie/respond.min.js"></script>
@@ -34,12 +37,38 @@
     </div>
   </footer>
   <!-- / footer -->
-  <script src="{{ asset('js/jquery.min.js') }}"></script>
+  <!-- <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script> -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <!-- Bootstrap -->
   <script src="{{ asset('js/bootstrap.js') }}"></script>
   <!-- App -->
   <script src="{{ asset('js/app.js') }}"></script>  
   <script src="{{ asset('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('js/app.plugin.js') }}"></script>
+  <script src="{{ asset('js/app.plugin.js') }}"></script>
+  <script>
+    @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type', 'info') }}";
+      switch(type) {
+        case 'info':
+          toastr.options.fadeOut = 9000;
+          toastr.info("{{ Session::get('message') }}");
+          break;
+        case 'warning':
+          toastr.options.fadeOut = 9000;
+          toastr.warning("{{ Session::get('message') }}");
+          break;
+        case 'success':
+          toastr.options.fadeOut = 9000;
+          toastr.success("{{ Session::get('message') }}");
+          break;
+        case 'error':
+          toastr.options.fadeOut = 9000;
+          toastr.error("{{ Session::get('message') }}");
+          break;
+      }
+    @endif
+  </script>
 </body>
 </html>
