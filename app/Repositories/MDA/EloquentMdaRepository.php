@@ -66,7 +66,7 @@ class EloquentMdaRepository implements MdaContract
         );
 
         Mail::send('emails.emailMda', $data, function($message) use ($data) {
-          $message->from('bpp@gmail.com', "PLBPP");
+          $message->from('plateaustatebpp@gmail.com', "Plateau State BPP");
           $message->to($data['email']);
           $message->subject("PLBPP Account details");
         });
