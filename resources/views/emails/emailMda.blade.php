@@ -75,38 +75,7 @@
 <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;" class="background"><tr><td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;"
   bgcolor="#F0F0F0">
 
-<!-- WRAPPER -->
-<!-- Set wrapper width (twice) -->
-<table border="0" cellpadding="0" cellspacing="0" align="center"
-  width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
-  max-width: 560px;" class="wrapper">
 
-  <tr>
-    <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
-      padding-top: 20px;
-      padding-bottom: 20px;">
-
-      <!-- PREHEADER -->
-      <!-- Set text color to background color -->
-      <div style="display: none; visibility: hidden; overflow: hidden; opacity: 0; font-size: 1px; line-height: 1px; height: 0; max-height: 0; max-width: 0;
-      color: #F0F0F0;" class="preheader">
-        Thank you, great to have you on board!</div>
-
-      <!-- LOGO -->
-      
-      <a target="_blank" style="text-decoration: none;"
-        href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
-        src="https://raw.githubusercontent.com/konsav/email-templates/master/images/logo-black.png"
-        width="100" height="30"
-        alt="Logo" title="Logo" style="
-        color: #000000;
-        font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" /></a>
-
-    </td>
-  </tr>
-
-<!-- End of WRAPPER -->
-</table>
 
 <!-- WRAPPER / CONTEINER -->
 <!-- Set conteiner background color -->
@@ -137,21 +106,7 @@
     </td>
   </tr>
 
-  <!-- HERO IMAGE -->
- 
-  <tr>
-    <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-      padding-top: 20px;" class="hero">
-      <a target="_blank" style="text-decoration: none;"
-      href="https://github.com/konsav/email-templates/">
-      <img border="0" vspace="0" hspace="0"
-      src="http://www.plateaustate.gov.ng/assets/img/platStet.png"
-      alt="Please enable images to view this content" title="Hero Image"
-      width="150" style="
-      width: 30%;
-      max-width: 560px;
-      color: #000000; font-size: 13px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;"/></a></td>
-  </tr>
+
 
   <tr>
     <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%;
