@@ -12,16 +12,16 @@ class BusinessCategorySeeder extends Seeder
     public function run()
     {
         DB::table('business_categories')->insert([[
-            'name' => 'Constructions | Works',
-           // 'id' => 1,
+            'name' => 'Construction | Works',
+            'id' => 1,
         ]]);
         DB::table('business_categories')->insert([[
             'name' => 'Consultancy | Services',
-           // 'id' => 2,
+            'id' => 2,
         ]]);
         DB::table('business_categories')->insert([[
             'name' => 'Goods | Supply',
-           // 'id' => 3
+            'id' => 3,
         ]]);
     }
 }
