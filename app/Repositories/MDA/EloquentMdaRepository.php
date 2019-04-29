@@ -3,13 +3,13 @@ namespace App\Repositories\MDA;
 
 use App\Mda;
 use App\User;
+use Mail;
 
 class EloquentMdaRepository implements MdaContract
 {
     public function create($requestData)
     {
 
-       // dd($requestData);
         $newUser = new User;
         $newUser->name = $requestData['name'];
         $newUser->email = $requestData['email'];
@@ -22,6 +22,8 @@ class EloquentMdaRepository implements MdaContract
         $newUser->phone = $requestData['phone'];
         $newUser->profile_pic = $requestData['profile_pic']->getClientOriginalName();
         $newUser->address = $requestData['address'];
+
+        $pass = $requestData['password'];
 
         $existing = User::where('email', $requestData['email'])->first();
 
@@ -55,6 +57,20 @@ class EloquentMdaRepository implements MdaContract
         $uploadSuccess = $file->move($destinationPath, $filename);
 
        Mda::create($requestData);
+
+       $data = array(
+          'username' => $requestData['name'],
+          'email' => $requestData['email'],
+          'password' => $pass,
+          'phone' => $requestData['phone']
+        );
+
+        Mail::send('emails.emailMda', $data, function($message) use ($data) {
+          $message->from('bpp@gmail.com', "PLBPP");
+          $message->to($data['email']);
+          $message->subject("PLBPP Account details");
+        });
+
        return 1;
     }
     
@@ -97,6 +113,21 @@ class EloquentMdaRepository implements MdaContract
             //dd($e->getMessage());
             return false;
         } 
+    }
+
+    private function sendEmail($user, $code) {
+        try {
+            Mail::send('emails.activation', [
+                'user' => $user,
+                'code' => $code
+            ], function($message) use ($user) {
+                $message->to($user->email);
+                $message->subject("Hello $user->name,");
+            });
+        } catch (\Swift_TransportException $e) {
+            return false;
+        }
+        
     }
     
 }

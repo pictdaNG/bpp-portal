@@ -6,7 +6,7 @@
         <header class="wrapper text-center">
             <img height="150" src="{{ asset('images/logo.png') }}" />
         </header>
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('post_login') }}">
         @csrf
           <div class="list-group">
             <div class="list-group-item">
@@ -25,6 +25,18 @@
                     </span>
                 @endif
             </div>
+            @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    
+                    <p>{{ session('error') }}</p>
+                </div>
+            @endif
+            
+            @if(session('success'))
+                <div class="alert alert-danger" role="alert">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
           </div>
           <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
           <div class="text-center m-t m-b"><a href="#"><small>Forgot password?</small></a></div>
