@@ -12,7 +12,7 @@ class BusinessCategorySeeder extends Seeder
     public function run()
     {
         DB::table('business_categories')->insert([[
-            'name' => 'Constructions | Works',
+            'name' => 'Construction | Works',
             'id' => 1,
         ]]);
         DB::table('business_categories')->insert([[
@@ -21,7 +21,7 @@ class BusinessCategorySeeder extends Seeder
         ]]);
         DB::table('business_categories')->insert([[
             'name' => 'Goods | Supply',
-            'id' => 3
+            'id' => 3,
         ]]);
     }
 }
