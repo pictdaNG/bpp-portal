@@ -59,7 +59,7 @@ class CategoryFeeSeederTable extends Seeder
 
         [
             'name' => 'Consultancy',
-            'description' => '',
+            'description' => 'Consultancy',
             'amount' => '60000',
             'renewal_fee' => '25000',
         ],

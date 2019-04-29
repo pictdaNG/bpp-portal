@@ -43,87 +43,7 @@
           <i class="fa fa-cog"></i>
         </a>
       </div>
-      <ul class="nav navbar-nav hidden-xs">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="i i-grid"></i>
-          </a>
-          <section class="dropdown-menu aside-lg bg-white on animated fadeInLeft">
-            <div class="row m-l-none m-r-none m-t m-b text-center">
-              <div class="col-xs-4">
-                <div class="padder-v">
-                  <a href="#">
-                    <span class="m-b-xs block">
-                      <i class="i i-mail i-2x text-primary-lt"></i>
-                    </span>
-                    <small class="text-muted">Mailbox</small>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-4">
-                <div class="padder-v">
-                  <a href="#">
-                    <span class="m-b-xs block">
-                      <i class="i i-calendar i-2x text-danger-lt"></i>
-                    </span>
-                    <small class="text-muted">Calendar</small>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-4">
-                <div class="padder-v">
-                  <a href="#">
-                    <span class="m-b-xs block">
-                      <i class="i i-map i-2x text-success-lt"></i>
-                    </span>
-                    <small class="text-muted">Map</small>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-4">
-                <div class="padder-v">
-                  <a href="#">
-                    <span class="m-b-xs block">
-                      <i class="i i-paperplane i-2x text-info-lt"></i>
-                    </span>
-                    <small class="text-muted">Trainning</small>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-4">
-                <div class="padder-v">
-                  <a href="#">
-                    <span class="m-b-xs block">
-                      <i class="i i-images i-2x text-muted"></i>
-                    </span>
-                    <small class="text-muted">Photos</small>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-4">
-                <div class="padder-v">
-                  <a href="#">
-                    <span class="m-b-xs block">
-                      <i class="i i-clock i-2x text-warning-lter"></i>
-                    </span>
-                    <small class="text-muted">Timeline</small>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button type="submit" class="btn btn-sm bg-white b-white btn-icon"><i class="fa fa-search"></i></button>
-            </span>
-            <input type="text" class="form-control input-sm no-border" placeholder="Search...">            
-          </div>
-        </div>
-      </form>
+    
       <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
         <!--
         <li class="hidden-xs">
@@ -164,19 +84,11 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
-              <img src="{{ asset('/images/p0.jpg') }}" alt="...">
+              <img src="{{ asset('uploads/'.Auth::user()->profile_pic)}}" alt="...">
             </span>
             <b>{{ Auth::user()->name }}</b> <b class="caret"></b>
           </a>
           <ul class="dropdown-menu animated fadeInRight">            
-            <li>
-              <span class="arrow top"></span>
-              <a href="#">Settings</a>
-            </li>
-            <li>
-              <a href="docs.html">Help</a>
-            </li>
-            <li class="divider"></li>
             <li>
               <a href="{{ route('logout') }}" >Logout</a>
             </li>
@@ -195,7 +107,7 @@
                   <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="thumb avatar pull-left m-r">                        
-                        <img src="{{ asset('/images/p0.jpg') }}" class="dker" alt="...">
+                        <img src="{{ asset('uploads/'.Auth::user()->profile_pic)}}" class="dker" alt="...">
                         <i class="on md b-black"></i>
                       </span>
                       <span class="hidden-nav-xs clear">
@@ -208,15 +120,7 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">                      
                       <li>
-                        <span class="arrow top hidden-nav-xs"></span>
-                        <a href="">Settings</a>
-                      </li>
-                      <li>
-                        <a href="">Help</a>
-                      </li>
-                      <li class="divider"></li>
-                      <li>
-                        <a href="{{ route('logout') }}" >Logout</a>
+                        <a href="{{ route('logout') }}">Logout</a>
                       </li>
                     </ul>
                   </div>
@@ -266,10 +170,10 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="/contractor/purchase-bid-document" class="auto">                                                        
+                          <a href="{{route('getUploadedDcument')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Purchase Bid Documents</span>
+                            <span>Certificates</span>
                           </a>
                         </li>
                       </ul>
@@ -293,19 +197,19 @@
                           </a>
                         </li>
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="{{action('AdvertController@getAdvertByCatId', 1)}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Construction/Works Adverts</span>
                           </a>
                         </li>
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="{{action('AdvertController@getAdvertByCatId', 2)}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Consultancy/Service Adverts</span>
                           </a>
                         </li>
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="{{action('AdvertController@getAdvertByCatId', 3)}}"class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Goods/Supply Adverts</span>
                           </a>
@@ -325,21 +229,9 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="#" class="auto">                                                        
+                          <a href="{{route('transactionsList')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>My Transaction History</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>Verify Transaction</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-                            <span>All Certificates</span>
                           </a>
                         </li>
                       </ul>
@@ -421,19 +313,27 @@
   });
   </script>
 
+<script>
   @if(Session::has('message'))
-    var type= "{{ Session::get('alert-type', 'info') }}";
+    var type = "{{ Session::get('alert-type', 'info') }}";
     switch(type){
-      case 'info':
-        toastr.info("{{ Session::get('message') }}");
-      case 'warning':
-        toastr.warning("{{ Session::get('message') }}");
-      case 'success':
-        toastr.warning("{{ Session::get('message') }}");
-      case 'error':
-        toastr.warning("{{ Session::get('message') }}");
-        break
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+        
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
     }
   @endif
+</script>
 </body>
 </html>

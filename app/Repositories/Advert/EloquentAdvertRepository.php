@@ -61,6 +61,43 @@ class EloquentAdvertRepository implements AdvertContract {
 
     }
 
+    public function getAdsByCatId($id){
+     $records =  AdvertLot::where('advert_lot_business_category_id', $id)
+        ->with('advert')
+        ->with('user')
+        ->with('advert.tenderRequirement')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+       // dd($records);
+
+        $ads = array();
+            foreach($records as $data){
+                $status = $data->advert->bid_opening_date > Carbon::now()->isoFormat('YYYY-MM-D') ? 'text-success-dk' :'text-danger-dk';
+                $route = $status=='text-success-dk' ?  'AdvertController@getAdvertById' : 'AdvertController@getSubmittedAdvertById';
+                $obj = new \stdClass;
+                $obj->lot_id  =  $data->id;
+                $obj->advert_id  =  $data->advert->id;
+                $obj->description  =  $data->description;
+                $obj->lot_amount  =  $data->lot_amount;
+                $obj->tender_document  =  $data->tender_document;
+                $obj->document_type  =  mime_content_type('uploads/'.$data->tender_document);
+                $obj->bid_opening_date  =  $data->advert->bid_opening_date;
+                $obj->mda_name  =  $data->user->name;
+                $obj->category_name = $data->category_name;
+                $obj->status = $status;
+                $obj->route = $route;
+
+                if($data->advert->status=='active') {
+                    array_push($ads, $obj);
+                }
+              
+
+            }
+        return $ads;
+
+    }
+
     public function closingBids(){    
         $from =  Carbon::now()->isoFormat('YYYY-MM-DD');
         $to = Carbon::now() ->addDays(7)->isoFormat('YYYY-MM-DD');

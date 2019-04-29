@@ -25,11 +25,7 @@ use App\Repositories\CategoryFee\CategoryFeeContract;
 use App\Repositories\PDFCertificateName\PDFCertificateNameContract; 
 use App\Repositories\Compliance\ComplianceContract;
 use App\Repositories\Advert\AdvertContract;
-
-
-
-
-
+use App\Repositories\Sales\SalesContract;
 use App\ContractorFile;
 use App\User;
 use PDF;
@@ -56,6 +52,7 @@ class ContractorController extends Controller {
     protected $contract_pdf;
     protected $contract_compliance;
     protected $contract_advert;
+    protected $contract_sales;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
@@ -64,7 +61,7 @@ class ContractorController extends Controller {
                   ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
                   ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
                   QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
-                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract ) {
+                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract, SalesContract $salesContract ) {
                   
                     
 
@@ -88,6 +85,7 @@ class ContractorController extends Controller {
         $this->contract_pdf = $pdfCertificateName;
         $this->contract_compliance = $complianceContract;
         $this->contract_advert = $advertContract;
+        $this->contract_sales = $salesContract;
 
     }
     
@@ -132,7 +130,6 @@ class ContractorController extends Controller {
        
     }
 
-
     public function storeContractor(Request $request) {
 
        try {
@@ -153,7 +150,7 @@ class ContractorController extends Controller {
 
 
     public function reportsContractor() {
-        echo("contracts reports data table");
+       // echo("contracts reports data table");
         return view('contractor.reports');
     }
 
@@ -205,6 +202,7 @@ class ContractorController extends Controller {
 
     public function downloadPDF($certification, $category ){
         $user = User::where('id', Auth::user()->id)->get()->first();
+        $cert = empty($certification) ? 'Consultancy' : $certification;
         $pdf = PDF::loadView('contractor/pdf', compact('user'), ['certification' => $certification,  'category' => $category, ]);
         return $pdf->download('irr.pdf');
       }
@@ -224,11 +222,23 @@ class ContractorController extends Controller {
     }
 
 
+    public function getUploadedDocuments(){
+        $getUploadfiles = ContractorFile::where('user_id', Auth::user()->id)->get();
+        return view('contractor.BiddingDocuments')->with(['documents' => $getUploadfiles]);
+    }
+
+
     public function getAdverts() {
         $adverts = $this->contract_advert->listAllAdvertsForContractor();
        // dd($advert);
-       session()->set('success', 'Item created successfully.');
+     //  session()->set('success', 'Item created successfully.');
         return view('contractor.AdvertList')->with(['adverts' => $adverts]);
+    }
+
+
+    public function getTransactions() {
+        $transactions = $this->contract_sales->listSalesByUserId();
+        return view('contractor.Transactions')->with(['transactions' => $transactions]);
     }
 
 }

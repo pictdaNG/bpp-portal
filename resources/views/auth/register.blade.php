@@ -6,7 +6,7 @@
         <header class="wrapper text-center">
             <img height="150" src="{{ asset('images/logo.png') }}" />
         </header>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" >
         @csrf
           <div class="list-group">
             <div class="list-group-item">

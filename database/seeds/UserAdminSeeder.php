@@ -25,12 +25,6 @@ class UserAdminSeeder extends Seeder
             'phone' => '08161730129',
             'password' => bcrypt('password'),
         ],
-        [
-            'name' => 'Facebook Nigeria',
-            'email' => 'facebook@gmail.com',
-            'user_type' => 'contractor',
-            'phone' => '08161730129',
-            'password' => bcrypt('password'),
-        ]]);
+        ]);
     }
 }

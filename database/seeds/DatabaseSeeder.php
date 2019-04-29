@@ -18,14 +18,14 @@ class DatabaseSeeder extends Seeder
     //    $this->call(CountrySeeder::class);
        $this->call(OwnershipTableDataSeeder::class);
     //    $this->call(CountrySeeder::class);
-        $this->call(ContractorSeeder::class);
+      //  $this->call(ContractorSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(BusinessCategorySeeder::class);
         $this->call(BusinessSubCategory1Seeder::class);
         $this->call(BusinessSubCategory2Seeder::class);
         $this->call(EmploymentTypeSeeder::class);
-        $this->call(ComplianceTableSeeder::class);
+      //  $this->call(ComplianceTableSeeder::class);
         $this->call(EquipmentSeeder::class);
         $this->call(CompanyOwnershipSeeder::class);
         $this->call(QualificationSeeder::class);
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PDFNameSeederTable::class);
         $this->call(CategoryFeeSeederTable::class);
         $this->call(TenderEligibilitySeederTable::class);
-        $this->call(TransactionSeeder::class);
+       // $this->call(TransactionSeeder::class);
 
 
 

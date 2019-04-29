@@ -354,7 +354,7 @@
                     </ul> 
                     </li> -->
 
-                    <li >
+                    <!-- <li >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -363,7 +363,7 @@
                         <i class="i i-stack icon">
                         </i>
                         <span class="font-bold">Certificates</span>
-                      </a>
+                      </a> -->
                       <!-- <ul class="nav dk">
                         <li >
                           <a href="/contractor/registration" class="auto">                                                        
@@ -373,7 +373,7 @@
                           </a>
                         </li>
                     </ul> -->
-                    </li>
+                    <!-- </li> -->
 
                     <li >
                       <a href="{{ route('getMdas') }}" class="auto">
@@ -577,5 +577,28 @@
     })
   });
   </script>
+
+<script>
+  @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+        
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+  @endif
+</script>
 </body>
 </html>

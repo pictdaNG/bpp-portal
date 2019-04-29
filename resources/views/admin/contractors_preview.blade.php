@@ -96,7 +96,7 @@
             </tr>
         </thead>
         <tbody>
-        @if (empty($personel))
+        @if (sizeof($personel) < 0)
             <tr>
             <td>No Records found</td>
             </tr>
@@ -191,7 +191,7 @@
             <td>{{$data['job_description']}}</td>
             <td>{{$data['contact_phone']}}</td>
             <td>{{$data['award_date']}}</td>
-            <td>{{$data['amount']}}</td>
+            <td>{{number_format($data['amount'])}}</td>
             </tr>
         @endforeach
         @endif
@@ -307,7 +307,7 @@
                     <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>No Uploads Found</a></div>
                     @else 
                     @foreach ($getUploadfiles as $data)
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ $data['name'] }}</a></div>
+                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="{{ asset('uploads/'.$data->key)}}" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ ' '.strtoupper($data['name']) }}</a></div>
                     @endforeach
                     @endif  
                     </div>

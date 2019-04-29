@@ -13,6 +13,19 @@ class EloquentContractorRepository implements ContractorContract{
 
     public function createContractor($request) {  
         $contractor = new Contractor;
+       //    dd($request);
+        $file = $request->profile_pic;
+        $filename = $file->getClientOriginalName();
+        $destinationPath = 'uploads/';
+
+       // $request->profile_pic = $filename; 
+        $file->move($destinationPath, $filename);
+
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->profile_pic = $filename;
+        $user->save();
+
+
         $search = Contractor::where('user_id', Auth::user()->id)->get()->first();
 
         if($search) {
@@ -32,9 +45,10 @@ class EloquentContractorRepository implements ContractorContract{
 
     }
 
-    public function find($id)
-    {
-       return Contractor::find($id);
+    public function find($id){
+       return Contractor::where('user_id', $id)
+       ->with('user')
+       ->first();
     }
 
 

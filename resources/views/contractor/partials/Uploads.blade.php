@@ -608,12 +608,7 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
             var $totalSum = $('#checked-prices-total-sum');
             var totalSumValue = parseFloat($totalSum.html());
             var price = parseFloat($(this).parent().next().next().next().html().replace(",", "."));
-            console.log('typeod price', typeof(price));
-            console.log('typeod sumchecked', typeof(parseInt($sumchecked)));
-            console.log('typeod totalsum', typeof(parseInt($totalSum)));
-            console.log('typeod totalvaluesum', typeof(parseInt(totalSumValue)));
-
-
+          
 
             if ($(this).is(':checked')) {
                 totalSumValue += price;

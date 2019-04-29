@@ -3,6 +3,7 @@ namespace App\Repositories\Sales;
 
 use App\sales;
 use App\AdvertLot;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -10,7 +11,6 @@ class EloquentSalesRepository implements SalesContract
 {
     public function create($request){
 
-       // dd($requestData);
         $data = $request->fids;
         $user = Auth::user();
         for( $i = 0; $i<sizeof($data); $i++) {
@@ -26,6 +26,8 @@ class EloquentSalesRepository implements SalesContract
             $sales->mda_name = $request->mda_name;
             $sales->user_id = $user->id;
             $sales->user_name = $user->name;
+            $sales->payment_status = 'pending';
+            $sales->transaction_id = (rand(1, 10000).rand(1, 10000));
             $sales->save();
         }
         return $sales->advert_id;
@@ -45,7 +47,8 @@ class EloquentSalesRepository implements SalesContract
     public function listSalesByUserId()
     {
         return sales::where('user_id', Auth::user()->id)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('payment_status', 'desc')
+            ->get();
     }
 
     public function listSalesByUserandAdvertId($advertId){
@@ -55,11 +58,15 @@ class EloquentSalesRepository implements SalesContract
     }
     
     public function getTransactions() {
-        return sales::where('mda_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return sales::where('mda_id', Auth::user()->id)
+        ->orderBy('payment_status', 'desc')
+        ->get();
     }
 
     public function mySales() {
-        return sales::where('mda_id', Auth::user()->id)->sum('amount');
+        return sales::where('mda_id', Auth::user()->id)
+       ->where('payment_status', 'paid')
+       ->sum('amount');
     }
 
 
@@ -79,8 +86,9 @@ class EloquentSalesRepository implements SalesContract
     }
 
     public function getSubmittionsByMDA(){
-        return Sales::where('mda_id', Auth::user()->id)->
-        orderBy('created_at', 'desc')->get();
+        return Sales::where('mda_id', Auth::user()->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
     }
     
     public function destroy($id)
@@ -96,6 +104,7 @@ class EloquentSalesRepository implements SalesContract
 
     public function updatePaymentStatus($id) {
         $payment = Sales::where('id', $id)->firstOrFail();
+        $payment->payment_date = Carbon::now()->isoFormat('YYYY-MM-DD HH:mm:ss');
         if ($payment->payment_status == 'Paid') {
             $payment->payment_status = 'Pending';
         }

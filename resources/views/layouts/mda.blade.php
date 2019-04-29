@@ -171,7 +171,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
-              <img src="{{ asset('/images/p0.jpg') }}" alt="...">
+              <img src="{{ asset('/uploads/'.Auth::user()->profile_pic) }}" alt="...">
             </span>
             <b>{{ Auth::user()->name }}</b> <b class="caret"></b>
           </a>
@@ -202,7 +202,7 @@
                   <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="thumb avatar pull-left m-r">                        
-                        <img src="{{ asset('/images/p0.jpg') }}" class="dker" alt="...">
+                        <img src="{{ asset('/uploads/'.Auth::user()->profile_pic) }}" class="dker" alt="...">
                         <i class="on md b-black"></i>
                       </span>
                       <span class="hidden-nav-xs clear">
@@ -405,20 +405,28 @@
   <script src="{{ asset('js/sortable/jquery.sortable.js') }}"></script>
 
 
-@if(Session::has('message'))
-    var type= "{{ Session::get('alert-type', 'info') }}";
-    switch(type){
-      case 'info':
-        toastr.info("{{ Session::get('message') }}");
-      case 'warning':
-        toastr.warning("{{ Session::get('message') }}");
-      case 'success':
-        toastr.warning("{{ Session::get('message') }}");
-      case 'error':
-        toastr.warning("{{ Session::get('message') }}");
-        break
+  <script>
+    @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type', 'info') }}";
+      switch(type){
+        case 'info':
+          toastr.info("{{ Session::get('message') }}");
+          break;
+        
+        case 'warning':
+          toastr.warning("{{ Session::get('message') }}");
+          break;
+
+        case 'success':
+          toastr.success("{{ Session::get('message') }}");
+          break;
+
+        case 'error':
+          toastr.error("{{ Session::get('message') }}");
+          break;
     }
-  @endif
+    @endif
+</script>
 
 
  

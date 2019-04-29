@@ -41,7 +41,7 @@
                                         <td>Lot</td>
                                         <td>{{$lot->description}}</td>
                                         <td>{{$lot->category_name}}</td>
-                                        <td>{{$lot->lot_amount}}</td>
+                                        <td>{{number_format($lot->lot_amount)}}</td>
                                          
                                     </tr>
                                      

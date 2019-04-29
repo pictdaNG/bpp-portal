@@ -120,7 +120,7 @@ class MDAController extends Controller{
 
     public function getMDAAdvertById($advertId) {
         $advert = $this->advert_contract->getAdsById($advertId);
-       // dd($advert);
+       
         return view('mda.AdvertPreview')->with(['advert' => $advert]);
     }
 

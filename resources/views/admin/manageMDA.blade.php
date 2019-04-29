@@ -43,24 +43,28 @@
                         </thead>
                         <tbody id="mdas">
                         <?php  $i = 0; ?>
-                        @foreach ($mdas as $data)
-                            <tr>
-                                <td>
-                                    <label class="checkbox m-l m-t-none m-b-none i-checks">
-                                        <input type="checkbox" name="mda[]" value="{{ $data['id']}}"><i></i></label>
-                                </td>
-                                <td>{{ $data['name'] }}</td>
-                                <td>{{ $data['mda_code'] }}</td>
-                                <td>{{ $data['subsector'] }}</td>
-                                <td>{{ $data['email'] }}</td>
-                                <!-- <td>
-                                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-edit text-success text"></i></a>
-                                </td> -->
-                                <td>
-                                    <a href="{{ route('mdasPreview',$data['id']) }}" class="active"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @if(sizeof($mdas) > 0)
+                            @foreach ($mdas as $data)
+                                <tr>
+                                    <td>
+                                        <label class="checkbox m-l m-t-none m-b-none i-checks">
+                                            <input type="checkbox" name="mda[]" value="{{ $data['id']}}"><i></i></label>
+                                    </td>
+                                    <td>{{ $data['name'] }}</td>
+                                    <td>{{ $data['mda_code'] }}</td>
+                                    <td>{{ $data['subsector'] }}</td>
+                                    <td>{{ $data['email'] }}</td>
+                                    <!-- <td>
+                                        <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-edit text-success text"></i></a>
+                                    </td> -->
+                                    <td>
+                                        <a href="{{ route('mdasPreview',$data['id']) }}" class="active"><i class="fa fa-search text-success text-active"></i><i class="fa fa-search text-success text"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                        <td colspan="5">{{' No Record Found '}}</td>
+                        @endif
                         </tbody>
                     </table>
                     {{ $mdas->links() }}
@@ -287,7 +291,7 @@
                     $('#mdas_div').show();
                     $('#mdas_message').html(response.success);
                     $('#mdas_div').removeClass('d-none');
-                    //document.getElementById("mdasform").reset();        
+                    document.getElementById("mdasform").reset();        
                     setTimeout(function(){
                         $('#mdas_message').hide();
                         $('#mdas_div').hide();
@@ -338,3 +342,8 @@
 
 </script>
 @endsection
+
+
+
+
+

@@ -48,7 +48,7 @@
                                                 <td>{{ $transaction['advert_name'] }}</td>
                                                 <td>{{ $transaction['lot_description'] }}</td>
                                                 <td>{{ $transaction['user_name'] }}</td>
-                                                <td>{{ $transaction['amount'] }}</td>
+                                                <td>{{ number_format($transaction['amount']) }}</td>
                                                 <td>
                                                 @if ($transaction->payment_status === 'Paid')
                                                     <span class="label label-success">{{ $transaction->payment_status }}</span>

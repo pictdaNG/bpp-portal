@@ -13,6 +13,10 @@ class AdvertLot extends Model{
         return $this->belongsTo('App\Advert');
     }
 
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
     public function tenderRequirement(){
         return $this->hasMany('App\TenderRequirement', 'lot_id');
     }

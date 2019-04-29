@@ -28,6 +28,9 @@ Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/contractor/registration', 'ContractorController@registration')->name('contractor_registration');
 Route::post('/contractor/create', 'ContractorController@storeContractor')->name('contractor_storeCompany');
 Route::get('/contractor/adverts', 'ContractorController@getAdverts');
+Route::get('/contractor/uploaded/documents',  'ContractorController@getUploadedDocuments')->name('getUploadedDcument');
+Route::get('/contractor/transactions/',  'ContractorController@getTransactions')->name('transactionsList');
+
 
 Route::get('/logout', 'HomeController@logout')->name('logout');
 // Route::get('/contractor/reports', 'ContractorController@reportsContractor')->name('contractor_reports');
@@ -99,9 +102,11 @@ Route::post('/advert/create', 'AdvertController@storeAdvert')->name('storeAdvert
 Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts');
 Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
 Route::get('/advert/active/preview/{advertId}', 'AdvertController@getAdvertById')->name('returnAds');
-Route::post('/advert/update/{advertId}', 'AdvertController@updateAdvert');
+Route::post('/advert/update/', 'AdvertController@updateAdvert');
 Route::get('/adverts/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
 Route::post('/admin/advert/{advertId}/{status}', 'AdvertController@toggleAdvert');
+Route::get('/adverts/category/{Id}', 'AdvertController@getAdvertByCatId');
+
 
 //AdvertLot
 Route::post('/advert-lot/create', 'AdvertLotController@storeAdvertLot')->name('storeAdvertLot');

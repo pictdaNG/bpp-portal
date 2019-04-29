@@ -8,7 +8,7 @@
           <br/>
         <section class="panel panel-info">
             <header class="panel-heading">
-              Advert Lists
+              {{'List of  Transactions'}}
             </header>
             @if($errors->any())
                 <div class="alert alert-danger">
@@ -30,35 +30,36 @@
                             <tr>
                                
                                 <th width="20">SNO</th>
-                                <th data-toggle="class">MDA</th>
-                                <th>Advert Type</th>
-                                <th>Advert Title</th>
-                                <th>Advert Mode</th>
-                                 <th>Closing Date</th>
-                                <th>Status</th>
-                                <th>Preview</th>
+                                <th class="text-center">Transaction ID</th>
+                                <th class="text-center">MDA</th>
+                                <th class="text-center">Advert Name</th>
+                                <th class="text-center">Lot Description</th>
+                                <th class="text-center">Amount</th>
+                                <th class="text-center">Payment Status</th>
+                                <th class="text-center">Payment Date</th>
+                             
                             
                             </tr>
                         </thead>
                         <tbody> 
                             <?php $i = 1; ?>
-                            @if(sizeof($adverts) > 0)
-                                @foreach($adverts as $advert) 
+                            @if(sizeof($transactions) > 0)
+                                @foreach($transactions as $transaction) 
                                     <tr>
                                         <td>{{$i++}}</td>
-                                        <td>{{$advert->user->name}}</td>
-                                        <td>{{$advert->advert_type}}</td>
-                                        <td>{{$advert->introduction}}</td>   
-                                        <td>{{$advert->advert_mode}}</td>
-                                        <td>{{$advert->bid_opening_date}}</td>
-                                        <?php $route = $advert->bid_opening_date > \Carbon\Carbon::now()->isoFormat('YYYY-MM-D') ?  'AdvertController@getAdvertById' : 'AdvertController@getSubmittedAdvertById'?>
-                                        <?php $status;
-                                        if($advert->status=='active'){ $status = 'text-success-dk'; }else { $status = 'text-danger-dk';} ?>
-                                        <td><i class="i i-circle-sm {{$status}}"></i></td> 
+                                        <td>{{$transaction->transaction_id}}</td>
+                                        <td>{{$transaction->mda_name}}</td>
+                                        <td>{{$transaction->advert_name}}</td>
+                                        <td>{{$transaction->lot_description}}</td> 
+                                        <td>{{number_format($transaction->amount)}}</td>
                                         <td>
-                                            <?php $link = ($status == 'text-success-dk') ? action($route, $advert->id) : '#' ?>
-                                            <a href="{{$link}}" class="active" ><span class="fa-stack fa-sm"> <i class="fa fa-circle fa-stack-2x text-info"></i><i class="fa fa-search fa-stack-1x text-white"></i></span></a>
-                                        </td>
+                                            @if ($transaction->payment_status === 'Paid')
+                                                <span class="label label-success">{{ $transaction->payment_status }}</span>
+                                            @else
+                                                <span class="label label-danger">{{ $transaction->payment_status }}</span>
+                                            @endif
+                                            <?php $payment_date = $transaction->payment_date ? $transaction->payment_date : 'Not Available' ;?>
+                                        <td>{{$payment_date}}</td>    
                                     </tr>
                                 @endforeach
                             @else

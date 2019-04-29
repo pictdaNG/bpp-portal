@@ -81,11 +81,8 @@ class ReportController extends Controller
             $financies = $this->finance->find($id);
             $machineries = $this->machinery->find($id);
             $contractors = $this->contractor->find($id);
-            $user = Auth::user();
-            $getUploadfiles = ContractorFile::find($id);
+            $getUploadfiles = ContractorFile::where('user_id', $id)->get();
             
-            // if ($personel) {
-                // return response()->json(['success'=> $getCompliance], 200);
                 return view('admin/contractors_preview',[
                     'directors' => $directors, 
                     'personel' => $personel, 
@@ -96,10 +93,7 @@ class ReportController extends Controller
                     'getUploadfiles' => $getUploadfiles,
                     'contractors' => $contractors
                     ]);
-            // }
-            // else {
-            //     return response()->json(['responseText' => 'Error retriving contractor compliance'], 500);
-            // }
+            
             
         } catch (QueryException $e) {
          return response()->json(['response' => $e->getMessage()], 500);

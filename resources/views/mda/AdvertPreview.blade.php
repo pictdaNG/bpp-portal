@@ -108,17 +108,19 @@
       var dataType =  'JSON';
         $.ajax({
         type : 'POST',
-        url : url + '/advert/update/1',
+        url : url + '/advert/update/',
         data :$('#updateAdvertForm').serialize(),
         dataType: dataType,
-        success:function(data){  
-          console.log('success', data)
+        success:function(response){  
+          console.log('success', response)
 
           $('#submitBtn').html('Submitted');
           $('#submitBtn').removeAttr('disabled');
           setTimeout(function(){
               $('#submitBtn').html('Save Data');
           },1000);
+          toastr.success(response.success, {timeOut: 1000});
+
         },
         beforeSend: function(){
           $('#submitBtn').html('Sending..');
@@ -128,6 +130,8 @@
           console.log('error', data)
           $('#submitBtn').html('Try Again');
           $('#submitBtn').removeAttr('disabled');
+          toastr.error(data.responseJSON.error); //{timeOut: 5000}
+
             
         // show error to end user
         }

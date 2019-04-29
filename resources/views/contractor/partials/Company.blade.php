@@ -2,7 +2,7 @@
         <section class="panel panel-default">
         <header class="panel-heading font-bold">Company Identification</header>
         <div class="panel-body">
-            <form class="bs-example form-horizontal" id="registrationForm" action="javascript:void(0)" method="POST">
+            <form class="bs-example form-horizontal" id="registrationForm" action="javascript:void(0)" enctype="multipart/form-data" method="POST">
 
             <div class="alert alert-success d-none" id="msg_div">
               <span id="res_message"></span>
@@ -63,6 +63,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-lg-2 control-label">Profile Pic</label>
+                    <div class="col-lg-10">
+                    <input type="file" name="profile_pic"  class="form-control">
+                    <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <button type="submit"  id ="submitForm" name="submitForm" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save Data</button>
                     </div>
@@ -86,8 +93,11 @@
                 $.ajax({ 
                     url : host + '/contractor/create',
                     type : 'POST',
-                    data :$("#registrationForm").serialize(),
+                   // data :$("#registrationForm").serialize(),
                     dataType: dataType,
+                    data: new FormData( this ),
+                    contentType: false,
+                    processData: false,
 
                     beforeSend: function(){
                         $('#submitForm').html('Loading...');
