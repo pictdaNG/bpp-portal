@@ -122,7 +122,7 @@
       padding-top: 25px;
       color: #000000;
       font-family: sans-serif;" class="header">
-        Message from PSG Website
+        PLBPP Account detials
     </td>
   </tr>
   
@@ -133,7 +133,7 @@
       padding-top: 5px;
       color: #000000;
       font-family: sans-serif;" class="subheader">
-        {{ $subject }}
+        {{ $phone }}
     </td>
   </tr>
 
@@ -147,8 +147,8 @@
       <img border="0" vspace="0" hspace="0"
       src="http://www.plateaustate.gov.ng/assets/img/platStet.png"
       alt="Please enable images to view this content" title="Hero Image"
-      width="300" style="
-      width: 60%;
+      width="150" style="
+      width: 30%;
       max-width: 560px;
       color: #000000; font-size: 13px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;"/></a></td>
   </tr>
@@ -159,11 +159,24 @@
       color: #000000;
       font-family: sans-serif;" class="paragraph">
         <p>
-          <strong>Message From:</strong> {{ $username }} ({{ $email }}) <br />
-          <strong>Subject:</strong> {{ $subject }} <br />
-          <strong>Phone:</strong> {{ $phone }} <br />
-          {{ $bodyMessage }}
+          Hi {{ $username }},
         </p>
+
+        <p>
+          Please find below your MDA account details.
+        </p>
+
+        <p>
+          <strong>username</strong> {{ $email }} <br />
+        </p>
+        <p>
+          <strong>Password:</strong> {{ $password }} <br />
+        </p>
+        <p>
+          Use the above credentials to log into the portal
+        </p>
+
+        <p>Cheers</p>
     </td>
   </tr>
 
@@ -185,7 +198,7 @@
       padding-bottom: 25px;
       color: #000000;
       font-family: sans-serif;" class="paragraph">
-        Have a&nbsp;question? <a href="mailto:info@plateaustate.gov.ng" target="_blank" style="color: #127DB3; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;">info@plateaustate.gov.ng</a>
+        Have a&nbsp;question? <a href="mailto:info@plateaustate.gov.ng" target="_blank" style="color: #127DB3; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;">info@plateaubpp.plateaustate.gov.ng</a>
     </td>
   </tr>
 

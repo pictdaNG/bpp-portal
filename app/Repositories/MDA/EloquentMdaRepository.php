@@ -10,7 +10,6 @@ class EloquentMdaRepository implements MdaContract
     public function create($requestData)
     {
 
-       dd($requestData);
         $newUser = new User;
         $newUser->name = $requestData['name'];
         $newUser->email = $requestData['email'];
@@ -23,6 +22,8 @@ class EloquentMdaRepository implements MdaContract
         $newUser->phone = $requestData['phone'];
         $newUser->profile_pic = $requestData['profile_pic']->getClientOriginalName();
         $newUser->address = $requestData['address'];
+
+        $pass = $requestData['password'];
 
         $existing = User::where('email', $requestData['email'])->first();
 
@@ -60,12 +61,10 @@ class EloquentMdaRepository implements MdaContract
        $data = array(
           'username' => $requestData['name'],
           'email' => $requestData['email'],
-          'password' => $requestData['password'],
+          'password' => $pass,
           'phone' => $requestData['phone'],
-          'bodyMessage' => $requestData['password'],
+          // 'bodyMessage' => $pass,
         );
-
-        dd($data);
 
         Mail::send('emails.emailMda', $data, function($message) use ($data) {
           $message->from('edwardobande36@gmail.com');
