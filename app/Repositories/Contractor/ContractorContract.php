@@ -7,4 +7,5 @@ interface ContractorContract {
     public function getUserById();
     public function getCompanyById();
     public function find($id);
+    public function editPassword($request);
 }

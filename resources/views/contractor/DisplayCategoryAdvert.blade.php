@@ -10,18 +10,7 @@
             <header class="panel-heading">
               {{'List of '.$adverts[0]->category_name.' Adverts'}}
             </header>
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach()
-                </div>
-             @endif
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p><b>{{ $message }}</b></p>
-                </div>
-            @endif
+           
             <form class="bs-example form-horizontal" action="{{route('deletePDFName')}}" method="POST">
                 <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
                 <div class="table-responsive">

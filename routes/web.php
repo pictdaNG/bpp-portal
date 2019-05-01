@@ -163,6 +163,10 @@ Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->na
 Route::get('/contractor/download/reg-category','ContractorController@getIRR')->name('getIRR');
 Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
 Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvertById');
+Route::post('/contractor/updatepassword', 'ContractorController@updatePassword');
+Route::get('/contractor/change/password', 'ContractorController@getPasswordUpdate');
+
+
 
 // PDF Name
 Route::post('/admin/pdf/create', 'PDFCertificateNameController@storeName')->name('storePDFName');

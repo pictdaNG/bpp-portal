@@ -138,6 +138,16 @@
                         <span class="font-bold">Dashboard</span>
                       </a>
                     </li>
+
+                    <li >
+                      <a href="{{ action('ContractorController@getPasswordUpdate') }}" class="auto">
+        
+                        <i class="i i-lab icon">
+                        </i>
+                        <span class="font-bold">Change Password</span>
+                      </a>
+                    </li>
+
                     <li >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">

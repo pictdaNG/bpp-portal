@@ -6,6 +6,7 @@ use App\Contractor;
 use App\User;
 use App\Repositories\Contractor\ContractorContract;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Session;
 
 
@@ -26,7 +27,6 @@ class EloquentContractorRepository implements ContractorContract{
         $user->password = $request->password_update;
         $user->save();
 
-
         $search = Contractor::where('user_id', Auth::user()->id)->get()->first();
 
         if($search) {
@@ -42,7 +42,7 @@ class EloquentContractorRepository implements ContractorContract{
 
 
     public function getCompanyById(){
-        return Contractor::where("user_id", Auth::user()->id)->first();
+        return Contractor::where('user_id', Auth::user()->id)->first();
 
     }
 
@@ -54,7 +54,22 @@ class EloquentContractorRepository implements ContractorContract{
 
 
     public function getUserById() {
-        return User::where("id", Auth::user()->id)->first();
+        return User::where('id', Auth::user()->id)->first();
+    }
+
+    public function editPassword($request) {
+        $user = User::where('id', Auth::user()->id)->first();
+       // dd($user);
+       
+        if(!Hash::check($request->password, $user->password )) {
+            return 'Current Password donot Match!';
+        }
+        else if($request->new_password != $request->confirm_password){
+            return 'New Passwords donot Match';
+        } 
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+        return 1;
     }
 
     private function setContractorProperties($contractor, $request) {

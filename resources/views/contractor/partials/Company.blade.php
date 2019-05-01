@@ -22,13 +22,7 @@
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Password Update</label>
-                    <div class="col-lg-10">
-                    <input type="password" id="password_update" name="password_update"   value="{{$user->password}" required class="form-control">
-                    <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
-                    </div>
-                </div>
+                
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Office Address</label>
                     <div class="col-lg-10">

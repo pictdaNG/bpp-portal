@@ -241,4 +241,29 @@ class ContractorController extends Controller {
         return view('contractor.Transactions')->with(['transactions' => $transactions]);
     }
 
+
+    public function getPasswordUpdate() {
+        return view('contractor.PasswordUpdate');
+    }
+
+    public function updatePassword(Request $request) {
+
+        $update = $this->repo->editPassword((object)$request->all());
+        if ($update == 1) {
+            $notification = array(
+                'message' => 'Password Update Successful!', 
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);  
+         }
+         else { 
+            $notification = array(
+                'message' => $update, 
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification)->withInput();
+         }
+
+    }
+
 }
