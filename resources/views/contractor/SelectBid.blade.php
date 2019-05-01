@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody id="lots">
-                
+                                @if(sizeof($advert->advertLot) > 0)
                                 @foreach($advert->advertLot as $lot)
                                          
                                     <tr>
@@ -46,6 +46,15 @@
                                     </tr>
                                      
                                 @endforeach
+                                @else 
+                                    <tr>
+                                        
+ 
+                                        <td colspan="5">{{'NO Lot Found'}}</td>
+                                         
+                                    </tr>
+                                @endif
+
                         
                             </tbody>
                         </table>
