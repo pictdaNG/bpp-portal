@@ -243,6 +243,15 @@
                     </li>
 
                     <li >
+                      <a href="{{ action('MdaController@getPasswordUpdate') }}" class="auto">
+        
+                        <i class="i i-lab icon">
+                        </i>
+                        <span class="font-bold">Change Password</span>
+                      </a>
+                    </li>
+
+                    <li >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>

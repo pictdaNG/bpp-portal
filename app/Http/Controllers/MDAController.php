@@ -137,6 +137,11 @@ class MDAController extends Controller{
     }
 
 
+    public function getPasswordUpdate() {
+        return view('mda.PasswordUpdate');
+    }
+
+
     public function deleteMda(Request $request){
         try {
             $mda = $this->repo->removeMda($request->all());     

@@ -25,7 +25,7 @@
             </tr>
         </thead>
         <tbody id="jobs">
-         @if(sizeof($jobs) > 0) {
+         @if(sizeof($jobs) > 0) 
             @foreach ($jobs as $job)
                 <tr>
                 <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="jids[]" value="{{$job->id}}"><i></i></label></td>

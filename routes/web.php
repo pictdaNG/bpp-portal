@@ -163,8 +163,10 @@ Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->na
 Route::get('/contractor/download/reg-category','ContractorController@getIRR')->name('getIRR');
 Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
 Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvertById');
-Route::post('/contractor/updatepassword', 'ContractorController@updatePassword');
-Route::get('/contractor/change/password', 'ContractorController@getPasswordUpdate');
+Route::post('password/update', 'ContractorController@updatePassword');
+Route::get('contractor/change/password', 'ContractorController@getPasswordUpdate');
+
+
 
 
 
@@ -195,5 +197,7 @@ Route::get('/bid/downloadPDF/','SalesController@downloadPDF')->name('getPdf');
 // Transactions
 Route::get('/mda/transactions/','SalesController@getTransactions')->name('transactions');
 Route::post('mda/close_payment/{id}','SalesController@updatePaymentStatus')->name('updateTransactions');
+Route::get('mda/change/password', 'MdaController@getPasswordUpdate');
+
 
 //Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');
