@@ -24,7 +24,6 @@ class EloquentContractorRepository implements ContractorContract{
 
         $user = User::where('id', Auth::user()->id)->first();
         $user->profile_pic = $filename;
-        $user->password = $request->password_update;
         $user->save();
 
         $search = Contractor::where('user_id', Auth::user()->id)->get()->first();
