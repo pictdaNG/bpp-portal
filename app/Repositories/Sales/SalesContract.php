@@ -30,4 +30,6 @@ interface SalesContract
     public function getTransactions();
 
     public function updatePaymentStatus($id);
+
+    public function listSalesByUser();
 }

@@ -22,14 +22,22 @@
                         </tr>
                     </thead>
                     <tbody> 
-                    @foreach($data as $data)
-                    <tr>
-                        <td>{{$data['name']}}</td>
-                        <td>{{$data['description']}}</td>
-                        <td>{{$data['created_at']}}</td>           
-                        <td><a href="{{action('ContractorController@downloadPDF', ['certification' =>$data->name, 'category' =>$data->description])}}">Download</a> </td>
-                    </tr>
-                    @endforeach
+                    @if(sizeof($categories) > 0)
+                      @foreach($categories as $data)
+                      <tr>
+                          <td>{{$data['registration_category']}}</td>
+                          <td>{{$data['description']}}</td>
+                          <td>{{$data['created_at']}}</td>           
+                          <td><a href="{{action('ContractorController@downloadPDF', $data->id)}}">Download</a> </td>
+                      </tr>
+                      @endforeach
+                    @else
+                     <tr>
+                        <td>{{'You have not Registered Under Any Categories'}}</td>
+                        
+                      </tr>
+                    @endif
+
                 </tbody>
              </table>
         </div>

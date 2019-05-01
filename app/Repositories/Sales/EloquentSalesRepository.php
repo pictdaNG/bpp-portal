@@ -113,5 +113,11 @@ class EloquentSalesRepository implements SalesContract
         }
         return $payment->save();
     }
+
+
+    public function listSalesByUser(){
+        return sales::where('user_id', Auth::user()->id)
+             ->orderBy('created_at', 'desc')->get();
+    }
     
 }

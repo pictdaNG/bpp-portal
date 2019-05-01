@@ -25,6 +25,7 @@
                         </thead>
                         <tbody>
                         <?php  $i = 0; ?>
+                            @if(sizeof($getCompliance) > 0)
                            @foreach ($getCompliance as $data)
                             <tr>
                                 <td>{{ $data['company_name'] }}</td>
@@ -39,6 +40,12 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @else
+                                <tr>
+                                    <td colspan = '8'>{{ 'No Record Found'}}</td>
+                                    
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>

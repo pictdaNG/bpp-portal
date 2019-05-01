@@ -1,14 +1,15 @@
 @extends('layouts.app')
-
 @section('content')
-
 <section class="hbox stretch">
     <section class="vbox">
         <section class="scrollable padder">
           <br/>
         <section class="panel panel-info">
             <header class="panel-heading">
+                <?php //dd($adverts) ?>
+                @if(sizeof($adverts) > 0)
               {{'List of '.$adverts[0]->category_name.' Adverts'}}
+              @endif
             </header>
            
             <form class="bs-example form-horizontal" action="{{route('deletePDFName')}}" method="POST">

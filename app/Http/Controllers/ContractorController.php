@@ -26,6 +26,8 @@ use App\Repositories\PDFCertificateName\PDFCertificateNameContract;
 use App\Repositories\Compliance\ComplianceContract;
 use App\Repositories\Advert\AdvertContract;
 use App\Repositories\Sales\SalesContract;
+use App\Repositories\CompletedRegistration\CompletedRegistrationContract;
+
 use App\ContractorFile;
 use App\User;
 use PDF;
@@ -53,6 +55,7 @@ class ContractorController extends Controller {
     protected $contract_compliance;
     protected $contract_advert;
     protected $contract_sales;
+    protected $contract_completedRegistration;
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
@@ -61,7 +64,8 @@ class ContractorController extends Controller {
                   ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
                   ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
                   QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
-                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract, SalesContract $salesContract ) {
+                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract, SalesContract $salesContract,
+                  CompletedRegistrationContract $completedContract ) {
                   
                     
 
@@ -86,6 +90,7 @@ class ContractorController extends Controller {
         $this->contract_compliance = $complianceContract;
         $this->contract_advert = $advertContract;
         $this->contract_sales = $salesContract;
+        $this->contract_completedRegistration = $completedContract;
 
     }
     
@@ -200,18 +205,19 @@ class ContractorController extends Controller {
         return view('admin/contractors_preview', ['getUploadfiles' => $getUploadfiles]);
     }
 
-    public function downloadPDF($certification, $category ){
-        $user = User::where('id', Auth::user()->id)->get()->first();
-        $cert = empty($certification) ? 'Consultancy' : $certification;
-        $pdf = PDF::loadView('contractor/pdf', compact('user'), ['certification' => $certification,  'category' => $category, ]);
+    public function downloadPDF($registrationId){
+        $user = User::where('id', Auth::user()->id)->first();
+        $category = $this->contract_completedRegistration->getRegistrationsById($registrationId);
+        //$cert = empty($certification) ? 'Consultancy' : $certification;
+        $pdf = PDF::loadView('contractor/pdf', compact('user'), ['data' => $category]);
         return $pdf->download('irr.pdf');
       }
 
     public function getIRR(){
         //$names = $this->contract_pdf->listAllPDFName();
-        $names = $this->contract_fees->listAllFee();
-
-        return view('contractor.partials.IrrDocs', ['data' => $names]);
+        //$names = $this->contract_fees->listAllFee();
+        $categories = $this->contract_completedRegistration->getRegistrationsByUserId();
+        return view('contractor.partials.IrrDocs', ['categories' => $categories]);
     }
 
 
@@ -263,6 +269,28 @@ class ContractorController extends Controller {
             );
             return redirect()->back()->with($notification)->withInput();
          }
+
+    }
+
+    public function completeRegistration(Request $request) {
+       // dd($request);
+        $completed = $this->contract_completedRegistration->create($request);
+
+        if($completed == 1) {
+            $notification = array(
+                'message' => 'Registration was Successful!', 
+                'alert-type' => 'success'
+            );
+           
+            return redirect()->route('getIRR')->with( $notification);
+        }
+        else {
+            $notification = array(
+                'message' => $completed, 
+                'alert-type' => 'info'
+            );
+            return redirect()->back()->with($notification);
+        }
 
     }
 

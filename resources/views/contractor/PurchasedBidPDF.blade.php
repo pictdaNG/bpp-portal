@@ -9,35 +9,36 @@
 <body>
     <div>
         <center>
-            <h1>Plateau State <br> Public Procurement Agency</h1>
+            <h1>Plateau State <br> Bureau of Public Procurement</h1>
             <div>
                 <p > Plateau State Procurement Database of particulars, consultants and service providers.</p>
-                  <div style="padding-top: 30px;">
-                      <h4>TENDER DOCUMENT</h4>
-                      <p >This is to acknowledge the ongoing PURCHASE of:</p>
-                  </div>
+                <div style="padding-top: 30px;">
+                <h4>TENDER DOCUMENT</h4>
+                <p >This is to acknowledge the expression of interest by :</p>
+                </div>
                
             </div>
         </center>
         <section  style="margin: 30px;">
         <div>
             <h2 style="border-bottom: 1px solid #eee; margin: 40px;">{{$user->name}}</h2>
-            <p style="text-align:justify"> In the Plateau State Public Procurement Database of particulars, categorization and classification of contractors, consultants
-                consultants and service poviders as follows:</p>
+            <p style="text-align:justify"> in the Tender as captured below:</p>
         </div>
         <div style=" margin-top: 30px;">
-            <p><b> Registration Type: BID PURCHASED</b></p>
-            <p><b> Temporary Contractor ID: Nil</b></p>
-            <p><b> Date Of Registration: {{now()}}</b></p>
+            <p><b> Transaction ID: {{'#'.$data->transaction_id}}</b></p>
+            <p><b> Lot : {{$data->lot_description}}</b></p>
+            <p><b> MDA : {{$data->mda_name}}</b></p>
+            <p><b> Fee: {{number_format($data->amount)}}</b></p>
+            <p><b> Payment Status: {{$data->payment_status}}</b></p>
+            <p><b> Payment Date: {{$data->payment_date}}</b></p>
         </div>
-        <div style="font-size: 20px; border-bottom: 1px solid #eee; margin-top: 60px;">
-            <p>This Report serves as evidence of Interim Registration with the Plateau State Public Procurement Database 
-                while the claim/information provided by the company is being verified </p>
-
-                <div style="margin-top: 40px;">
-                    <p>This report is valid till 31ist December, 2019</p>
+        <center>
+            <div style="font-size: 20px; border-bottom: 1px solid #eee; margin-top: 60px;">
+                <div style="margin-top: 30px;">
+                    <p>This Document was submitted on {{$data->created_at}}</p>
                 </div>
-        </div>
+            </div>
+        </center>
         
     </div>
 </section>

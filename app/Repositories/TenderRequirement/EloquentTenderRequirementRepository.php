@@ -16,6 +16,9 @@ class EloquentTenderRequirementRepository implements TenderRequirementContract{
     public function createTenderRequirement($request) {  
         $result;
         $advertLot = AdvertLot::where("advert_id", $request->advertId )->first();
+        if($advertLot == null ) {
+            return 'You Have to Create Lots Before Requirement';
+        }
 
         $search = TenderRequirement::where('lot_id', $advertLot->id)
             ->get();

@@ -25,13 +25,33 @@ class TenderRequirementController extends Controller{
     public function storeTenderRequirement(Request $request) {
        try {
           // dd($request);
-        if ($this->repo->createTenderRequirement($request)) {
-            return redirect()->back();
+         $response =  $this->repo->createTenderRequirement($request);
+        if ($response == 1) {
+            $notification = array(  
+                'message' => 'Requirements Updated Successfully!', 
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
         } else {     
-                return response()->json(['responseText' => 'Failed to Add Record'], 500);
+            $notification = array(  
+                'message' => $response, 
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification)->withInput();
             }
        } catch (\Exception $e) {
-        return response()->json(['responseeeee' => $e->getMessage()], 500);
+           $msg;
+           if($e->message() == 'Trying to get property \'id\' of non-object'){
+                $msg = 'You Have to Create Lots Before Requirement';
+           }
+           else {
+               $msg = 'Error Occured Please Contact Admin';
+           }
+        $notification = array(  
+            'message' => $msg, 
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification)->withInput();
        }
     }
 

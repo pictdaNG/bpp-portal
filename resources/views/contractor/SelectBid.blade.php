@@ -48,10 +48,7 @@
                                 @endforeach
                                 @else 
                                     <tr>
-                                        
- 
-                                        <td colspan="5">{{'NO Lot Found'}}</td>
-                                         
+                                        <td colspan="5">{{'NO Lot Found'}}</td>     
                                     </tr>
                                 @endif
 

@@ -179,13 +179,21 @@
                         <span class="font-bold">Bidding Documents</span>
                       </a>
                       <ul class="nav dk">
+                      <li >
+                          <a href="{{route('getIRR')}}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+
+                            <span>Registration Certificates</span>
+                          </a>
+                        </li>
                         <li >
                           <a href="{{route('getUploadedDcument')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
-                            <span>Certificates</span>
+                            <span>Uploaded Certificates</span>
                           </a>
                         </li>
+                        
                       </ul>
                     </li>
 
@@ -242,6 +250,12 @@
                           <a href="{{route('transactionsList')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>My Transaction History</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="{{route('getPurchasedBids')}}" class="auto">                                                        
+                            <i class="i i-dot"></i>
+                            <span>Purchased Bids</span>
                           </a>
                         </li>
                       </ul>

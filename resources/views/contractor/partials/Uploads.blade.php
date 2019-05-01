@@ -271,72 +271,73 @@
 
 
 
-<div class="modal fade" id="completeRegistration">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header bg-primary">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Business Category Registration</h4>
-    </div>
-    <div class="modal-body">
-        <p>In compliance with the Plateau State Public Procurement Act, All State Contractors are to register under any section of the designated categories. Thank you.</p>
-    <form class="bs-example form-horizontal">
-        <table id="inventario" class="table table-bordered table-striped table-hover">
-            <thead>
-            <tr>
-                <th width="20"><input type="checkbox" id="check-all" disabled="disabled"></th>
-                <th>Items</th>
-                <th style="visibility:visible;">Description</th>
-                <th style="visibility:visible;">Fee</th>
-                <th style="visibility:visible;">Renewal</th>
-            </tr>
-            </thead>
-            <tbody id="inventario-data">
-            <?php $sumTotal = 0;?> 
-             @if(sizeof($fees) > 0)
-              
-                @foreach($fees as $fee)
-                <?php $sumTotal+= $fee->amount; ?>
-                    <tr>
-                        <td width="20"><input type="checkbox" class="data-check"></td>
-                        <td>{{$fee->name}}</td>
-                        <td style="visibility:visible" >{{$fee->description}}</td>
-                        <td style="visibility:visible" >{{$fee->amount}}</td>
-                        <td style="visibility:visible" >{{$fee->renewal_fee}}</td>
-                    </tr>
-                @endforeach
-           
-            
-            </tbody>
-            <tfoot>
-            <tr>
-                <th colspan ="3">Total payable</th>
-                <th colspan="2"><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
-               
-            </tr>
-            <th   style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
-            @else 
+    <div class="modal fade" id="completeRegistration">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header bg-primary">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Business Category Registration</h4>
+        </div>
+        <div class="modal-body">
+            <p>In compliance with the Plateau State Public Procurement Act, All State Contractors are to register under any section of the designated categories. Thank you.</p>
+        <form class="bs-example form-horizontal" method="POST" action="{{action('ContractorController@completeRegistration')}}">
+        <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
+            <table id="inventario" class="table table-bordered table-striped table-hover">
+                <thead>
                 <tr>
-                    
-                    <td colspan = "5">No Record Found</td>
-                 </tr>
-            @endif
-            </tfoot>
-        </table>
-           
-           
-    </form>
-    </div>
-    <div class="modal-footer">
-      <!-- <p style="float: left;">Amount Payable: </p> -->
-      <!-- <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-credit-card"></i> Proceed to Checkout</a> -->
-      <!-- <a class="btn btn-danger" href="{{action('ContractorController@getIRR')}}" disabled="disabled" data-toggle="class:show inline" id="spin" data-target="#spin" data-loading-text="Completing Registration.."><i class="fa fa-credit-card"></i> Proceed to Checkout</a> <i class="fa fa-spin fa-spinner hide" id="spin"></i> -->
-      <a class="btn btn-danger" id="spin" href="{{action('ContractorController@getIRR')}}" disabled="disabled" ><i class="fa fa-credit-card"></i> Proceed to Checkout</a> <i class="fa fa-spin fa-spinner hide" id="spin"></i>
+                    <th width="20"><input type="checkbox" id="check-all" disabled="disabled"></th>
+                    <th>Items</th>
+                    <th style="visibility:visible;">Description</th>
+                    <th style="visibility:visible;">Fee</th>
+                    <th style="visibility:visible;">Renewal</th>
+                </tr>
+                </thead>
+                <tbody id="inventario-data">
+                <?php $sumTotal = 0;?> 
+                @if(sizeof($fees) > 0)
+                
+                    @foreach($fees as $fee)
+                    <?php $sumTotal+= $fee->amount; ?>
+                        <tr>
+                            <td width="20"><input type="checkbox" name="catId[]" value="{{$fee->id}}" class="data-check"></td>
+                            <td>{{$fee->name}}</td>
+                            <td style="visibility:visible" >{{$fee->description}}</td>
+                            <td style="visibility:visible" >{{$fee->amount}}</td>
+                            <td style="visibility:visible" >{{$fee->renewal_fee}}</td>
+                        </tr>
+                    @endforeach
+            
+                
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan ="3">Total payable</th>
+                    <th colspan="2"><div id="sumchecked" > NGN: <span id="checked-prices-total-sum">0</span></div></th>
+                
+                </tr>
+                <th   style="visibility: hidden;">Tot. No <span id="totalAmount">{{$sumTotal}}</span></th>
+                @else 
+                    <tr>
+                        
+                        <td colspan = "5">No Record Found</td>
+                    </tr>
+                @endif
+                </tfoot>
+            </table>
+            
+            <div class="modal-footer">
+        <!-- <p style="float: left;">Amount Payable: </p> -->
+        <!-- <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-credit-card"></i> Proceed to Checkout</a> -->
+        <!-- <a class="btn btn-danger" href="{{action('ContractorController@getIRR')}}" disabled="disabled" data-toggle="class:show inline" id="spin" data-target="#spin" data-loading-text="Completing Registration.."><i class="fa fa-credit-card"></i> Proceed to Checkout</a> <i class="fa fa-spin fa-spinner hide" id="spin"></i> -->
+        <button class="btn btn-danger" id="spin"  disabled="disabled" ><i class="fa fa-credit-card"></i> Proceed to Checkout</button> <i class="fa fa-spin fa-spinner hide" id="spin"></i>
 
+        </div>
+        </form>
+        </div>
+        
+    </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
     </div>
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div>
 
 <script>
 

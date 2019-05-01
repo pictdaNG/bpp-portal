@@ -86,9 +86,16 @@ class SalesController extends Controller{
     }
 
 
-    public function downloadPDF( ){
+    public function getSalesByUser() {
+        $sales =  $this->repo->listSalesByUser();
+      return view('contractor.purchasedBids', ['sales' => $sales]);
+  }
+
+
+    public function downloadPDF($salesId){
         $user = User::where('id', Auth::user()->id)->get()->first();
-        $pdf = PDF::loadView('contractor/PurchasedBidPDF', compact('user'));
+        $data = $this->repo->find($salesId);
+        $pdf = PDF::loadView('contractor/PurchasedBidPDF', compact('user'), ['data' => $data]);
         return $pdf->download('tender.pdf');
       }
 

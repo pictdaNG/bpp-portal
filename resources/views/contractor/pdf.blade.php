@@ -9,34 +9,39 @@
 <body>
     <div>
         <center>
-            <h1>Plateau State <br> Public Procurement Agency</h1>
+            <h1>Plateau State <br> Bureau of Public Procurement Agency</h1>
             <div>
                 <p > Plateau State Bureau of Public Procurement Database of particulars, consultants and service providers.</p>
-                  <div style="padding-top: 30px;">
+                  <div style="padding-top: 20px;">
                       <h4>Interim Registration Report (IRR)</h4>
                       <p >This is to acknowledge the ongoing registration of:</p>
                   </div>
                
             </div>
         </center>
-        <section  style="margin: 30px;">
+        <section  style="margin: 10px;">
         <div>
             <h2 style="border-bottom: 1px solid #eee; margin: 40px;">{{$user->name}}</h2>
             <p style="text-align:justify"> In the Plateau State Bureau of Public Procurement Database of particulars, categorization and classification of contractors, consultants
-                consultants and service poviders as follows:</p>
+                 and service poviders as follows:</p>
         </div>
+        <div style=" margin-top: 10px;">
         <div style=" margin-top: 30px;">
-            <p><b> Registration Type: {{$certification}}, {{$category}}</b></p>
+            <p><b> Registration Type: {{$data->description}}</b></p>
             <p><b> Temporary Contractor ID: Nil</b></p>
-            <p><b> Date Of Registration: {{now()}}</b></p>
+            <p><b> Category Fee: {{number_format($data->amount)}}</b></p>
+            <p><b> Renewal Fee: {{number_format($data->renewal_amount)}}</b></p>
+            <p><b> Date Of Registration: {{$data->created_at}}</b></p>
         </div>
-        <div style="font-size: 20px; border-bottom: 1px solid #eee; margin-top: 60px;">
+        </div>
+        <div style="font-size: 20px; border-bottom: 1px solid #eee; margin-top: 40px;">
             <p>This Report serves as evidence of Interim Registration with the Plateau State Bureau of Public Procurement Database 
                 while the claim/information provided by the company is being verified </p>
-
-                <div style="margin-top: 40px;">
-                    <p>This report is valid till 31ist December, 2019</p>
+            <center>  
+                <div style="margin-top: 30px;">
+                    <p>This Report is Valid til {{$data->expiration_date}}</p>
                 </div>
+            </center>
         </div>
         
     </div>

@@ -16,46 +16,40 @@
                     
                             <thead>
                                 <tr>
-                                <th width="20">S/NO</th>
-                                <th data-toggle="class">MDA</th>
-                                <th>Advert Lot</th>
-                                <th>Date/Time</th>
-                                <th>Download</th>
+                                    <th width="20">S/NO</th>
+                                    <th data-toggle="class">MDA</th>
+                                    <th>Advert Lot</th>
+                                    <th>Date/Time</th>
+                                    <th>Download</th>
                                 
                                 </tr>
                             </thead>
                             <tbody>
                                  <?php $i = 1;?>
-                                 
-                                @foreach($sales as $data)
-                                         
-                                    <tr>
-                                        <td>{{$i++}}</td>
-                                        <td>{{$data->mda_name}}</td>
-                                        <td>{{$data->lot_description}}</td>
-                                        <td>{{$data->created_at}}</td>
-                                        <td><a href="{{action('SalesController@downloadPDF')}}">Download</a> </td>
+                                 @if(sizeof($sales) > 0)
+                                    @foreach($sales as $data)
+                                            
+                                        <tr>
+                                            <td>{{$i++}}</td>
+                                            <td>{{$data->mda_name}}</td>
+                                            <td>{{$data->lot_description}}</td>
+                                            <td>{{$data->created_at}}</td>
+                                            <td><a href="{{action('SalesController@downloadPDF', $data->id)}}">Download</a> </td>      
+                                        </tr>
+                                        
+                                    @endforeach
+                                @else 
 
-                                         
+                                    <tr>
+                                        <td colspan="5">{{'No Record Found'}}</td>       
                                     </tr>
-                                     
-                                @endforeach
+                                @endif
+
                         
                             </tbody>
                         </table>
                     </div>
-                    <br/>
-                    <div class="row" style="padding-left: 10px; padding-right: 10px;">
-                    <div class="col-md-6">
-                            <!-- <a href="{{ route('newMdaAdvert') }}" class="btn btn-default">Back to Lots</a> -->
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <!-- <button type="submit" class="btn btn-primary">Apply For Tender</button>
-                            <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" /> -->
-
-                        </div>
-                    </div>
-                    <br/>
+                   
                 </section>
             </form>
 

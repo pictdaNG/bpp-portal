@@ -162,11 +162,13 @@ Route::get('/states', 'CountryController@getAllStates')->name('getAllStates');
 Route::post('/contractor/upload', 'ContractorController@uploadContractorFile')->name('uploadContractorFile');
 Route::post('/contractor/upload/delete', 'ContractorController@deleteContractorFile')->name('deleteContractorFile');
 Route::get('/contractor/files', 'ContractorController@getDocumentsByUserId')->name('contractorFiles');
-Route::get('/contractor/download/reg-category','ContractorController@getIRR')->name('getIRR');
-Route::get('/contractor/downloadPDF/{certification}/{category}','ContractorController@downloadPDF')->name('downloadPdf');
+Route::get('/contractor/download/reg-category/','ContractorController@getIRR')->name('getIRR');
+Route::get('/contractor/downloadPDF/{registrationId}','ContractorController@downloadPDF')->name('downloadPdf');
 Route::get('/contractor/tender/apply/{advertId}','ContractorController@getAdvertById');
 Route::post('password/update', 'ContractorController@updatePassword');
 Route::get('contractor/change/password', 'ContractorController@getPasswordUpdate');
+Route::post('/contractor/registration/finish', 'ContractorController@completeRegistration');
+
 
 
 
@@ -195,7 +197,8 @@ Route::post('/qualifications/delete/', 'QualificationController@delete')->name('
 Route::get('/sales/list', 'SalesController@getSalesByUserId')->name('getSales');
 Route::post('/sales/store', 'SalesController@storeSales')->name('storesales');
 Route::get('/bid/pdf/{advertId}', 'SalesController@getSalesByUserandAdvert')->name('purchases');
-Route::get('/bid/downloadPDF/','SalesController@downloadPDF')->name('getPdf');
+Route::get('/bids/purchasedDocuments/', 'SalesController@getSalesByUser')->name('getPurchasedBids');
+Route::get('/bid/downloadPDF/{salesId}','SalesController@downloadPDF')->name('getPdf');
 // Transactions
 Route::get('/mda/transactions/','SalesController@getTransactions')->name('transactions');
 Route::post('mda/close_payment/{id}','SalesController@updatePaymentStatus')->name('updateTransactions');
