@@ -127,7 +127,8 @@
             <label class="col-lg-3 control-label">Equipment Status</label>
             <div class="col-lg-9">
             <select name="equipment_status" required class="form-control">
-                <option value="default"></option>
+                <option value="functional">functional</option>
+                <option value="not-functional">not-functional</option>
             </select>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
@@ -218,7 +219,7 @@
                             '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="'+data[i].id+'"><i></i></label></td>' +
                             '<td>'+data[i].equipment_type+'</td>' +
                             '<td>'+data[i].acquisition_date+'</td>' +
-                            '<td>'+number_format(data[i].cost)+'</td>'+
+                            '<td>'+data[i].cost+'</td>'+
                             '<td>'+data[i].location+'</td>'+
                             '<td>'+data[i].serial_no+'</td>'+
                             '<td>'+data[i].specifics+'</td>'+

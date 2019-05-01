@@ -39,7 +39,6 @@ class EloquentContractorRepository implements ContractorContract{
         }
     }
 
-
     public function getCompanyById(){
         return Contractor::where('user_id', Auth::user()->id)->first();
 
@@ -58,7 +57,6 @@ class EloquentContractorRepository implements ContractorContract{
 
     public function editPassword($request) {
         $user = User::where('id', Auth::user()->id)->first();
-       // dd($user);
        
         if(!Hash::check($request->password, $user->password )) {
             return 'Current Password donot Match!';
