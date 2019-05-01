@@ -23,6 +23,7 @@ class EloquentContractorRepository implements ContractorContract{
 
         $user = User::where('id', Auth::user()->id)->first();
         $user->profile_pic = $filename;
+        $user->password = $request->password_update;
         $user->save();
 
 
@@ -58,6 +59,7 @@ class EloquentContractorRepository implements ContractorContract{
 
     private function setContractorProperties($contractor, $request) {
           $user = Auth::user();
+         
         $contractor->company_name = $user->name;
         $contractor->cac_number = $user->cac;
         $contractor->address = $request->address;
@@ -65,25 +67,9 @@ class EloquentContractorRepository implements ContractorContract{
         $contractor->country = $request->country;
         $contractor->email = $user->email;
         $contractor->user_id = $user->id;
-        $contractor->website = $request->website; 
+        $contractor->website = $request->website;    
 
     }
-
-
-//     private function setEditProperties($contractor, $request) {
-//         $user = Auth::user();
-//       $contractor->company_name = $user->name;
-//       $contractor->cac_number = $user->cac;
-//       $contractor->address = $request->address;
-//       $contractor->city =  $request->city;
-//       $contractor->country = $request->country;
-//       $contractor->email = $user->email;
-//       $contractor->user_id = $user->id;
-//       $contractor->website = $request->website; 
-
-//   }
-
-
 }
 
 
