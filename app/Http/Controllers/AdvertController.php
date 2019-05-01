@@ -119,10 +119,10 @@ class AdvertController extends Controller{
                 return response()->json(['success' => 'Record Added Successfully'], 200);
             } 
             else {     
-                return response()->json(['responseText' => 'Failed to Add Record'], 500);
+                return response()->json(['error' => 'Failed to Add Record'], 500);
             }
         } catch (QueryException $e) {
-        return response()->json(['response' => $e->getMessage()], 500);
+        return response()->json(['error' => $e->getMessage()], 500);
        }
     }
 
@@ -130,13 +130,27 @@ class AdvertController extends Controller{
         try {
              
             if ($this->repo->editAdvert((object)$request->all())) {
-                 return response()->json(['success' => 'Record Updated Successfully'], 200);
+                $notification = array(
+                    'message' => 'Successfully Updated Advert!', 
+                    'alert-type' => 'success'
+                );
+                return redirect()->back()->with($notification);
+                // return response()->json(['success' => 'Record Updated Successfully'], 200);
              } 
-             else {     
-                 return response()->json(['responseText' => 'Failed to Add Record'], 500);
+             else {    
+                $notification = array(
+                    'message' => 'Error Occured During update!', 
+                    'alert-type' => 'error'
+                ); 
+                return redirect()->back()->with($notification);
              }
          } catch (QueryException $e) {
-         return response()->json(['response' => $e->getMessage()], 500);
+            $notification = array(
+                'message' => 'Error Occured During update!', 
+                'alert-type' => 'error'
+            ); 
+            return redirect()->back()->with($notification);
+         //return response()->json(['response' => $e->getMessage()], 500);
         }
      }
 

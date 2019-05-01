@@ -20,7 +20,9 @@
       
       <section class="vbox">
         <section class="scrollable padder">
-          <form action="javascript:void(0)" method="POST" id="updateAdvertForm">     
+          <form action="{{action('AdvertController@updateAdvert')}}" method="POST" id="updateAdvertForm">   
+          <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
+  
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
               <img src="{{ asset('uploads/'.Auth::user()->profile_pic) }}"  class="img-responsive" height="200" width="200" alt="">    
@@ -95,49 +97,49 @@
 @endsection
 
 <script>
-  window.addEventListener('load', function () {
-    $("#updateAdvertForm").submit(function(evt){
-      evt.preventDefault();
-      evt.stopImmediatePropagation();
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
-      var url = '{{URL::to('/')}}';
-      var dataType =  'JSON';
-        $.ajax({
-        type : 'POST',
-        url : url + '/advert/update/',
-        data :$('#updateAdvertForm').serialize(),
-        dataType: dataType,
-        success:function(response){  
-          console.log('success', response)
+  // window.addEventListener('load', function () {
+  //   $("#updateAdvertForm").submit(function(evt){
+  //   //  evt.preventDefault();
+  //   //  evt.stopImmediatePropagation();
+  //     $.ajaxSetup({
+  //       headers: {
+  //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  //       }
+  //     });
+  //     var url = '{{URL::to('/')}}';
+  //     var dataType =  'JSON';
+  //       $.ajax({
+  //       type : 'POST',
+  //       url : url + '/advert/update/',
+  //       data :$('#updateAdvertForm').serialize(),
+  //       dataType: dataType,
+  //       success:function(response){  
+  //         console.log('success', response)
 
-          $('#submitBtn').html('Submitted');
-          $('#submitBtn').removeAttr('disabled');
-          setTimeout(function(){
-              $('#submitBtn').html('Save Data');
-          },1000);
-          toastr.success(response.success, {timeOut: 1000});
+  //         $('#submitBtn').html('Submitted');
+  //         $('#submitBtn').removeAttr('disabled');
+  //         setTimeout(function(){
+  //             $('#submitBtn').html('Save Data');
+  //         },1000);
+  //         toastr.success(response.success, {timeOut: 1000});
 
-        },
-        beforeSend: function(){
-          $('#submitBtn').html('Sending..');
-          $('#submitBtn').attr('disabled', 'disabled');
-        },
-        error: function(data) {
-          console.log('error', data)
-          $('#submitBtn').html('Try Again');
-          $('#submitBtn').removeAttr('disabled');
-          toastr.error(data.responseJSON.error); //{timeOut: 5000}
+  //       },
+  //       beforeSend: function(){
+  //         $('#submitBtn').html('Sending..');
+  //         $('#submitBtn').attr('disabled', 'disabled');
+  //       },
+  //       error: function(data) {
+  //         console.log('error', data)
+  //         $('#submitBtn').html('Try Again');
+  //         $('#submitBtn').removeAttr('disabled');
+  //         toastr.error(data.responseJSON.error); //{timeOut: 5000}
 
             
-        // show error to end user
-        }
-      });
-    }) 
-  }) 
+  //       // show error to end user
+  //       }
+  //     });
+  //   }) 
+  // }) 
   
 
    window.addEventListener('load', function () {

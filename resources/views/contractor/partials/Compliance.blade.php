@@ -99,7 +99,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">TIN No.</label>
                     <div class="col-lg-10">
-                    <input type="number" maxlength="10" name="tcc_tin_no" value="{{$compliance['tcc_tin_no']}}" required class="form-control">
+                    <input type="number"  name="tcc_tin_no" value="{{$compliance['tcc_tin_no']}}" required class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>
