@@ -139,7 +139,7 @@ section.panel-body.slim-scroll {
                             </div>                 
                           <div class="media-body">
                           <div class="pull-right media-xs text-center text-muted">
-                              <?php $date = Carbon\Carbon::parse($advert->created_at);  $newDate = $date->isoFormat('MMM Do'); ?>
+                              <?php $date = Carbon\Carbon::parse($advert->created_at);   $newDate = $date->isoFormat('MMM Do'); ?>
                               <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                               <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
                           </div>

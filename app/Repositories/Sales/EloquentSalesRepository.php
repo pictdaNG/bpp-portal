@@ -104,7 +104,7 @@ class EloquentSalesRepository implements SalesContract
 
     public function updatePaymentStatus($id) {
         $payment = Sales::where('id', $id)->firstOrFail();
-        $payment->payment_date = Carbon::now()->isoFormat('YYYY-MM-DD HH:mm:ss');
+        $payment->payment_date = Carbon::now()->isoFormat('DD-MM-YYYY HH:mm:ss');
         if ($payment->payment_status == 'Paid') {
             $payment->payment_status = 'Pending';
         }

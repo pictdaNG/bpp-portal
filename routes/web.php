@@ -103,7 +103,9 @@ Route::get('/advert/adverts', 'AdvertController@adverts')->name('returnAdverts')
 Route::post('/advert/delete', 'AdvertController@deleteAdvert')->name('deleteAdvert');
 Route::get('/advert/active/preview/{advertId}', 'AdvertController@getAdvertById')->name('returnAds');
 Route::post('/advert/update/', 'AdvertController@updateAdvert');
-Route::get('/adverts/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
+// Route::get('/adverts/preview/{advertId}', 'AdvertController@getSubmittedAdvertById');
+Route::get('/adverts/preview/{advertId}', 'AdvertController@getAdvertById');
+
 Route::post('/admin/advert/{advertId}/{status}', 'AdvertController@toggleAdvert');
 Route::get('/adverts/category/{Id}', 'AdvertController@getAdvertByCatId');
 

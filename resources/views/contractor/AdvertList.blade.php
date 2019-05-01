@@ -51,7 +51,7 @@
                                         <td>{{$advert->introduction}}</td>   
                                         <td>{{$advert->advert_mode}}</td>
                                         <td>{{$advert->bid_opening_date}}</td>
-                                        <?php $route = $advert->bid_opening_date > \Carbon\Carbon::now()->isoFormat('YYYY-MM-D') ?  'AdvertController@getAdvertById' : 'AdvertController@getSubmittedAdvertById'?>
+                                        <?php $route = $advert->bid_opening_date > \Carbon\Carbon::now()->isoFormat('YYYY-MM-D') ?  'AdvertController@getAdvertById' : 'AdvertController@getAdvertById'?>
                                         <?php $status;
                                         if($advert->status=='active'){ $status = 'text-success-dk'; }else { $status = 'text-danger-dk';} ?>
                                         <td><i class="i i-circle-sm {{$status}}"></i></td> 

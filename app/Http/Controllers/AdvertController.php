@@ -187,10 +187,10 @@ class AdvertController extends Controller{
         return view('contractor.AdvertPreview')->with(['advert' => $advert, 'registrationStatus' => $registrationStatus]);
     }
 
-    public function getSubmittedAdvertById($advertId) {
-        $advert = $this->repo->getAdsById($advertId);
-        return view('contractor.SubmittedAdvertPreview')->with(['advert' => $advert]);
-    }
+    // public function getSubmittedAdvertById($advertId) {
+    //     $advert = $this->repo->getAdsById($advertId);
+    //     return view('contractor.SubmittedAdvertPreview')->with(['advert' => $advert]);
+    // }
 
     public function getAdverts(){
         $adverts = $this->repo->listAllAdverts();

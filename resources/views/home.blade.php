@@ -334,7 +334,7 @@
                             </div>              
                             <div class="media-body">
                             <div class="pull-right media-xs text-center text-muted">
-                                <?php $date = Carbon\Carbon::parse($advert->date_published);  $newDate = $date->isoFormat('MMM Do'); ?>
+                                <?php  $date = Carbon\Carbon::parse($advert->advert_publish_date);  $newDate = $date->isoFormat('MMM Do'); ?>
                                 <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                                 <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
                             </div>
@@ -373,7 +373,7 @@
                                 <strong class="h4">{{explode(" ", $newDate)[1]}}</strong><br>
                                 <small class="label bg-light">{{explode(" ", $newDate)[0]}}</small>
                               </div>
-                              <a href="{{action('AdvertController@getSubmittedAdvertById', $bid->advert_id)}}" class="h4 disabled">{{$bid->advert_name}}</a>
+                              <a href="{{action('AdvertController@getAdvertById', $bid->advert_id)}}" class="h4 disabled">{{$bid->advert_name}}</a>
                               <small class="block">{{$bid->mda_name}}</small>
                               <small class="block m-t-sm">{{$bid->lot_description}}</small>
                             </div>

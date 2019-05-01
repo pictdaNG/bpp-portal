@@ -28,7 +28,7 @@ class EloquentAdvertRepository implements AdvertContract {
 
     public function listActiveAdverts(){
         return Advert::with('user')
-        ->where("bid_opening_date", ">", Carbon::now()->isoFormat('YYYY-MM-DD'))
+        ->where("bid_opening_date", ">", Carbon::now()->isoFormat('DD-MM-YYYY'))
         ->where('status', 'active')
         ->orderBy('created_at', 'desc')
         ->get();
@@ -73,8 +73,8 @@ class EloquentAdvertRepository implements AdvertContract {
 
         $ads = array();
             foreach($records as $data){
-                $status = $data->advert->bid_opening_date > Carbon::now()->isoFormat('YYYY-MM-D') ? 'text-success-dk' :'text-danger-dk';
-                $route = $status=='text-success-dk' ?  'AdvertController@getAdvertById' : 'AdvertController@getSubmittedAdvertById';
+                $status = $data->advert->bid_opening_date > Carbon::now()->isoFormat('DD-MM-YYYY') ? 'text-success-dk' :'text-danger-dk';
+                $route = $status=='text-success-dk' ?  'AdvertController@getAdvertById' : 'AdvertController@getAdvertById';
                 $obj = new \stdClass;
                 $obj->lot_id  =  $data->id;
                 $obj->advert_id  =  $data->advert->id;
@@ -99,8 +99,8 @@ class EloquentAdvertRepository implements AdvertContract {
     }
 
     public function closingBids(){    
-        $from =  Carbon::now()->isoFormat('YYYY-MM-DD');
-        $to = Carbon::now() ->addDays(7)->isoFormat('YYYY-MM-DD');
+        $from =  Carbon::now()->isoFormat('DD-MM-YYYY');
+        $to = Carbon::now() ->addDays(7)->isoFormat('DD-MM-YYYY');
         return Advert::whereBetween('bid_opening_date', [$from, $to])
             ->where('status', 'active')
             ->orderBy('created_at', 'desc')
@@ -173,14 +173,15 @@ class EloquentAdvertRepository implements AdvertContract {
 
     private function setAdvertProperties($advert, $request) {
         $user = Auth::user();
+        $bid_opening_date = Carbon::parse($request->bid_opening_date);
         //die($request->budget_year);
         $advert->name = $request->name;
         $advert->budget_year = $request->budget_year;
         $advert->advert_type = $request->advert_type; 
         $advert->advert_mode = $request->advert_mode;
         $advert->introduction = $request->introduction;
-        $advert->advert_publish_date = Carbon::now()->isoFormat('D/M/YYYY');
-        $advert->bid_opening_date = $request->bid_opening_date;  
+        $advert->advert_publish_date = Carbon::now()->isoFormat('DD-MM-YYYY');
+        $advert->bid_opening_date = $bid_opening_date->isoFormat('DD-MM-YYYY');  
         $advert->status = 'pending';
         $advert->user_id = $user->id;
 
