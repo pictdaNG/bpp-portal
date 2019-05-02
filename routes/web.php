@@ -202,7 +202,7 @@ Route::get('/bid/downloadPDF/{salesId}','SalesController@downloadPDF')->name('ge
 // Transactions
 Route::get('/mda/transactions/','SalesController@getTransactions')->name('transactions');
 Route::post('mda/close_payment/{id}','SalesController@updatePaymentStatus')->name('updateTransactions');
-Route::get('mda/change/password', 'MdaController@getPasswordUpdate');
+Route::get('mda/change/password', 'MDAController@getPasswordUpdate');
 
 
 //Route::delete('/qualifications/delete/{id}', 'QualificationController@delete')->name('qualifications.delete');
