@@ -35,7 +35,7 @@
                         <i class="i i-users2 i-sm text-white"></i>
                         </span>
                         <span class="clear">
-                        <span class="h3 block m-t-xs text-success">{{ $getCompliance->count() }}</span>
+                        <span class="h3 block m-t-xs text-success">{{ $registeredcontractors }}</span>
                         <small class="text-muted text-u-c">Contractors</small>
                         </span>
                     </a>
@@ -108,11 +108,11 @@
                 <header class="panel-heading"><b>Registration Statistics | Real-Time Update</b></header>
                 <div class="panel-body text-center">    
                     <div class="text-xs">
-                        <i class="fa fa-circle text-info"></i> Incomplete Registration
-                        <i class="fa fa-circle text-muted"></i> Complete Registration
+                        <i class="fa fa-circle text-info"></i> Complete Registration
+                        <i class="fa fa-circle text-muted"></i> Incomplete Registration
                     </div>    
                     <div class="line pull-in"></div>      
-                    <div class="sparkline inline" data-type="pie" data-height="154" data-slice-colors="['#1ccacc','#f2f2f2']">60,40</div>
+                    <div class="sparkline inline" data-type="pie" data-height="154" data-slice-colors="['#1ccacc','#f2f2f2']">{{$piechart}}, {{360-$piechart}}</div>
                     
                 </div>
                 </section>

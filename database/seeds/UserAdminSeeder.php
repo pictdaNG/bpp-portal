@@ -18,13 +18,6 @@ class UserAdminSeeder extends Seeder
             'phone' => '08161730129',
             'password' => bcrypt('faker00tX'),
         ],
-        [
-            'name' => 'PICTDA',
-            'email' => 'pictda@gmail.com',
-            'user_type' => 'mda',
-            'phone' => '08161730129',
-            'password' => bcrypt('password'),
-        ],
         ]);
     }
 }

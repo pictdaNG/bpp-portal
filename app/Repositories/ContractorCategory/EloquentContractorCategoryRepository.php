@@ -14,7 +14,8 @@ class EloquentContractorCategoryRepository implements ContractorCategoryContract
     public function createCategory($request) { 
         //dd($request); 
         $category = new ContractorCategory;
-        $search = ContractorCategory::where('category', $request->category)->get();
+        $search = ContractorCategory::where('category', $request->category)
+        ->where('user_id', Auth::user()->id)->get();
         if(sizeof($search) > 0) {
             return 'Category Already Exist';
         }

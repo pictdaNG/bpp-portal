@@ -22,10 +22,9 @@ use App\Repositories\Compliance\ComplianceContract;
 use App\Repositories\ContractorCategory\ContractorCategoryContract;
 use App\Repositories\Advert\AdvertContract;
 use App\Repositories\Sales\SalesContract;
-
 use App\Repositories\AdvertLot\AdvertLotContract;
-
 use App\Repositories\MDA\MdaContract;
+use App\Repositories\CompletedRegistration\CompletedRegistrationContract;
 
 class HomeController extends Controller{
 
@@ -40,6 +39,7 @@ class HomeController extends Controller{
     protected $contract_adverts;
     protected $contract_advertLot;
     protected $contract_sales;
+    protected $contract_completedRegistration;
 
    // protected $contract_uploads;
     protected $uploads;
@@ -48,7 +48,8 @@ class HomeController extends Controller{
     public function __construct(ContractorContract $contractorContract, ContractorPersonnelContract $contractorPersonnelContract,
             ContractorJobsContract $contractorJobsContract, ContractorFinanceContract $contractorFinanceContract , SalesContract $salesContract,
             ContractorMachineryContract $contractorMachinery, ComplianceContract $complianceContract, DirectorContract $directorContract,
-            ContractorCategoryContract $categoryContract, AdvertContract $advertContract, MdaContract $mdaContract, AdvertLotContract $advertLotContract  ){
+            ContractorCategoryContract $categoryContract, AdvertContract $advertContract, MdaContract $mdaContract, AdvertLotContract $advertLotContract,
+            CompletedRegistrationContract $completedContract  ){
 
         $this->middleware('auth');
         $this->company = $contractorContract;
@@ -62,6 +63,7 @@ class HomeController extends Controller{
         $this->contract_advert = $advertContract;  
         $this->contract_advertLot = $advertLotContract;
         $this->contract_sales = $salesContract;
+        $this->contract_completedRegistration = $completedContract;
        // $this->contract_uploads =   
         $this->contract_mdas = $mdaContract;
 
@@ -84,11 +86,18 @@ class HomeController extends Controller{
             $constructions = $this->contract_advertLot->countAdvertsByCategory('1');
             $consultancy = $this->contract_advertLot->countAdvertsByCategory('2');
             $supplies = $this->contract_advertLot->countAdvertsByCategory('3');
+              
+            $totalCompleteRegistration = $this->contract_completedRegistration->listAllRegistrations();
+
+            $contractors = User::where('user_type', 'contractor')->get()->count();
+            $completedPercent = $this->completedPercentage($totalCompleteRegistration, $contractors) ;
+            
+
 
             $closingBids = $this->contract_advert->closingBids();
             return view('adminHome', ['getCompliance' => $compliances, 'listMdas' => $listMdas, 'activeAdverts' => $activeAdverts, 
             'closingBids' => $closingBids, 'totalBids' => $totalSales, 'constructions' => $constructions, 'consultancy' => $consultancy,
-            'supplies' => $supplies]);
+            'supplies' => $supplies, 'piechart' => $completedPercent, 'registeredcontractors' => $contractors]);
         }else if(strtolower($user->user_type) == strtolower("mda")){
              $myAdverts =  $this->contract_advert->listAdvertsByMDA();
              
@@ -100,6 +109,8 @@ class HomeController extends Controller{
             $salesCount = $this->contract_sales->salesCount();
             $submittedBids = $this->contract_sales->getSubmittionsByMDA();
             $agregateSales = $this->contract_sales->submittedApplications();
+
+            
 
             //dd($agregateSales);
 
@@ -124,6 +135,7 @@ class HomeController extends Controller{
             $supplies = $this->contract_job->getJobsByIdandCategory('3');
             $activeAdverts = $this->contract_advert->listActiveAdverts();
             $closingBids = $this->contract_advert->closingBids();
+            
 
             $submittedBids = $this->contract_sales->listSalesByUserId();
             $uploads = ContractorFile::where('user_id',  Auth::user()->id)->get();
@@ -138,6 +150,15 @@ class HomeController extends Controller{
                                 'closingBids' => $closingBids, 'submittedBids' => $submittedBids]);
         }
         return redirect('/404');
+    }
+
+    public function completedPercentage($completedRegistration, $contractors) {
+  //  dd($totalCompliance->count());
+       // dd(($completedRegistration->count()/$totalCompliance->count()) * 100);
+       if($contractors == 0) {
+           return 0;
+       }
+        return ($completedRegistration->count()/$contractors) * 360;
     }
 
 

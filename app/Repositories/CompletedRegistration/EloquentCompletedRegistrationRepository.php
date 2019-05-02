@@ -59,6 +59,10 @@ class EloquentCompletedRegistrationRepository implements CompletedRegistrationCo
         }
         return 1;
     }
+
+    public function listAllRegistrations(){
+        return CompletedRegistration::select('user_id')->distinct()->get();
+    }
     
     
     public function getRegistrationsByUserId(){
