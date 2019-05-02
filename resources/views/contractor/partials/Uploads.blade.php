@@ -227,35 +227,6 @@
                     </p>
                 </td>
             </tr>
-
-            <tr>
-                <td>
-                    Upload PLACCIMA<br/>
-                    <?php
-                    if($placcima){
-                        echo '<input type="file" name="placcima_file" id="placcima_file" disabled/><span id="placcima_file_uploaded">' . $placcima->key . '</span>';
-                    }else{
-                        echo '<input type="file" name="placcima_file" id="placcima_file" /><span id="placcima_file_uploaded"></span>';
-                    }
-                    ?>
-                </td>
-                <td><div id="placcima_file_size">{{ $placcima ? number_format((float)$placcima->size / 1024, 1, '.', '') . 'kB' : '0kB' }}</div></td>
-                <td>
-                    <div class="progress progress-xs m-t-sm">
-                        <div id="placcima_file_progress" class="progress-bar bg-info" data-toggle="tooltip" style="width: {{ $placcima ? '100%' : '0%' }}"></div>
-                    </div>
-                </td>
-                <td>
-                    <a id="placcima_file_status" class="active" ><i class="fa {{ $placcima ? 'fa-check text-success' : 'fa-times text-danger' }} text-active"></i></a>
-                </td>
-                <td>
-                    <p>
-                        <button onClick="uploadPlaccimaFile()" id="placcima_file_upload_btn" class="btn btn-primary" {{ $placcima ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $placcima ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $placcima ? '' : 'disabled' }} id="placcima_preview_btn" href="{{ $placcima ? asset('/uploads/' . $placcima->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
-                        <button {{ $placcima ? '' : 'disabled' }} id="resetplaccimaBtn" onClick="resetPlaccimaFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
-                    </p>
-                </td>
-            </tr>
         </tbody>
         </table>
 
@@ -441,18 +412,18 @@ function resetSwonAffidavitFile(){
     $('#resetSwonAffidavitBtn').attr('disabled', 'disabled');
 }
 
-function resetPlaccimaFile(){
-    $('#placcima_file').prop("disabled", false);
-    $('#placcima_file_uploaded').html('');
-    $('#placcima_file_size').html('0kB');
-    $('#placcima_file_progress').css("width", "0%");
-    $('#placcima_file_status').html('<i class="fa fa-times text-danger text-active"></i>');
-    $('#placcima_file_upload_btn').prop("disabled", false);
-    $('#placcima_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
-    $('#placcima_preview_btn').attr('disabled', 'disabled');
-    $('#placcima_preview_btn').attr('href', '#');
-    $('#resetplaccimaBtn').attr('disabled', 'disabled');
-}
+// function resetPlaccimaFile(){
+//     $('#placcima_file').prop("disabled", false);
+//     $('#placcima_file_uploaded').html('');
+//     $('#placcima_file_size').html('0kB');
+//     $('#placcima_file_progress').css("width", "0%");
+//     $('#placcima_file_status').html('<i class="fa fa-times text-danger text-active"></i>');
+//     $('#placcima_file_upload_btn').prop("disabled", false);
+//     $('#placcima_file_upload_btn').html('<i class="fa fa-cloud-upload text"></i> Upload');
+//     $('#placcima_preview_btn').attr('disabled', 'disabled');
+//     $('#placcima_preview_btn').attr('href', '#');
+//     $('#resetplaccimaBtn').attr('disabled', 'disabled');
+// }
 
 function uploadCACFile(){
     uploadFile('cac', 'cac_file', 'cac_file_progress', 'cac_file_upload_btn', 'cac_file_status', 'cac_file_size', 'cac_preview_btn', 'resetCACBtn', 'cac_file_uploaded');
@@ -476,9 +447,6 @@ function uploadSwonAffidavitFile(){
     uploadFile('swon_affidavit', 'swon_affidavit_file', 'swon_affidavit_file_progress', 'swon_affidavit_file_upload_btn', 'swon_affidavit_file_status', 'swon_affidavit_file_size', 'swon_affidavit_preview_btn', 'resetSwonAffidavitBtn', 'swon_affidavit_file_uploaded');
 }
 
-function uploadPlaccimaFile(){
-    uploadFile('placcima', 'placcima_file', 'placcima_file_progress', 'placcima_file_upload_btn', 'placcima_file_status', 'placcima_file_size', 'placcima_preview_btn', 'resetplaccimaBtn', 'placcima_file_uploaded');
-}
 
 
 
@@ -577,7 +545,7 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
             url : url + '/contractor/files',
              success:function(data){  
                  console.log({data: data.length})
-                if(data.length > 7){
+                if(data.length > 6){
                     $('#btnComplete').attr('href', '#completeRegistration');
                     $('#btnComplete').removeAttr('disabled');
 

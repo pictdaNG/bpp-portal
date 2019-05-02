@@ -242,7 +242,7 @@
                       </a>
                     </li>
 
-                    <li >
+                    <li >                   
                       <a href="{{ action('MDAController@getPasswordUpdate') }}" class="auto">
         
                         <i class="i i-lab icon">

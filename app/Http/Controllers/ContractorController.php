@@ -129,7 +129,7 @@ class ContractorController extends Controller {
         'itf' => ContractorFile::where('name', 'itf')->where('user_id', $user->id)->first(),
         'audited_account' => ContractorFile::where('name', 'audited_account')->where('user_id', $user->id)->first(),
         'swon_affidavit' => ContractorFile::where('name', 'swon_affidavit')->where('user_id', $user->id)->first(),
-        'placcima' => ContractorFile::where('name', 'placcima')->where('user_id', $user->id)->first(),
+        //'placcima' => ContractorFile::where('name', 'placcima')->where('user_id', $user->id)->first(),
         ]);
 
        
