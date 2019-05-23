@@ -70,8 +70,7 @@
                 <div class="clearfix wrapper dk nav-user hidden-xs">
                   <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <span class="thumb avatar pull-left m-r">    
-                      <?php dd(Auth::user()->profile_pic) ?>                    
+                      <span class="thumb avatar pull-left m-r">                       
                         <img src="{{ asset('/uploads/'.Auth::user()->profile_pic) }}" class="dker" alt="...">
                         <i class="on md b-black"></i>
                       </span>
