@@ -70,7 +70,8 @@
                 <div class="clearfix wrapper dk nav-user hidden-xs">
                   <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <span class="thumb avatar pull-left m-r">                        
+                      <span class="thumb avatar pull-left m-r">    
+                      <?php dd(Auth::user()->profile_pic) ?>                    
                         <img src="{{ asset('/uploads/'.Auth::user()->profile_pic) }}" class="dker" alt="...">
                         <i class="on md b-black"></i>
                       </span>
@@ -83,13 +84,6 @@
                       </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">                      
-                      <li>
-                        <span class="arrow top hidden-nav-xs"></span>
-                        <a href="">Settings</a>
-                      </li>
-                      <li>
-                        <a href="">Help</a>
-                      </li>
                       <li class="divider"></li>
                       <li>
                         <a href="{{ route('logout') }}" >Logout</a>
@@ -97,8 +91,6 @@
                     </ul>
                   </div>
                 </div>                
-
-
                 <!-- nav -->                 
                 <nav class="nav-primary hidden-xs">
                   <div class="text-muted text-sm hidden-nav-xs padder m-t-sm m-b-sm">Pre Bidding Excercise</div>
