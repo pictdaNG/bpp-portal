@@ -7,8 +7,7 @@ use App\Repositories\Compliance\ComplianceContract;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Session;
-
-
+  
 class EloquentComplianceRepository implements ComplianceContract{
 
     public function createCompliance($request) {  
@@ -17,7 +16,7 @@ class EloquentComplianceRepository implements ComplianceContract{
 
         $search = Compliance::where('user_id', Auth::user()->id)->get()->first();
           //2019-04-03 //2019-04-22
-        if(Carbon::parse($compliance->cac_date_of_reg, 'MM/D/YYYY')->isoFormat('YYYY-MM-D') > Carbon::now()->isoFormat('YYYY-MM-D')) {
+        if(Carbon::parse($compliance->cac_date_of_reg)->isoFormat('YYYY-MM-D') > Carbon::now()->isoFormat('YYYY-MM-D')) {
             return 'Invalid CAC Registration Date';
         }
         else 
