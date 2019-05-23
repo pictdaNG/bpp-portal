@@ -17,7 +17,6 @@ class EloquentComplianceRepository implements ComplianceContract{
 
         $search = Compliance::where('user_id', Auth::user()->id)->get()->first();
           //2019-04-03 //2019-04-22
-          dd(Carbon::parse($compliance->cac_date_of_reg)->isoFormat('YYYY-MM-D'));
         if(Carbon::parse($compliance->cac_date_of_reg)->isoFormat('YYYY-MM-D') > Carbon::now()->isoFormat('YYYY-MM-D')) {
             return 'Invalid CAC Registration Date';
         }
