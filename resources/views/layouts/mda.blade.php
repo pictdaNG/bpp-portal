@@ -123,49 +123,12 @@
                       </a>
                       <ul class="nav dk">
                         <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>All Adverts</span>
-                          </a>
-                        </li>
-                        <li >
                           <a href="{{ route('newMdaAdvert') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
-                            <span>Create new Advert</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>All Addendum</span>
-                          </a>
-                        </li>
-
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Create Addendum</span>
-                          </a>
-                        </li>
-
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>All Corrigendum</span>
-                          </a>
-                        </li>
-
-                        <li >
-                          <a href="#" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
                             <span>All Adverts</span>
                           </a>
                         </li>
+                       
                     </ul>
                     </li>
                     <li >
