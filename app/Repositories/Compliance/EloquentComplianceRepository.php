@@ -16,7 +16,8 @@ class EloquentComplianceRepository implements ComplianceContract{
 
         $search = Compliance::where('user_id', Auth::user()->id)->get()->first();
           //2019-04-03 //2019-04-22
-        if(Carbon::parse($compliance->cac_date_of_reg)->isoFormat('YYYY-MM-D') > Carbon::now()->isoFormat('YYYY-MM-D')) {
+        //return Carbon::parse($compliance->cac_date_of_reg)->isoFormat('YYYY/MM/DD');
+        if(Carbon::parse($compliance->cac_date_of_reg)->isoFormat('YYYY/MM/DD') > Carbon::now()->isoFormat('YYYY/MM/DD')) {
             return 'Invalid CAC Registration Date';
         }
         else 
@@ -24,14 +25,14 @@ class EloquentComplianceRepository implements ComplianceContract{
             return  'Invalid Tin Number';
         }
        
-        else if(Carbon::parse($compliance->pension_expiring_date)->isoFormat('YYYY-MM-D') < Carbon::now()->isoFormat('YYYY-MM-D')) {
-            return 'Invalid Pencom Expiry Date';
+        else if(Carbon::parse($compliance->pension_expiring_date)->isoFormat('YYYY/MM/DD') < Carbon::now()->isoFormat('YYYY/MM/DD')) {
+            return 'Expired Pencom Cert. Not Allowed ';
         }
 
         else if($compliance->pension_no_of_employee < 1) {
             return 'Invalid No of  Employees';
         }
-        else if(Carbon::parse($compliance->itf_payment_date)->isoFormat('YYYY-MM-D') > Carbon::now()->isoFormat('YYYY-MM-D')) {
+        else if(Carbon::parse($compliance->itf_payment_date)->isoFormat('YYYY/MM/DD') > Carbon::now()->isoFormat('YYYY/MM/DD')) {
             return 'Invalid ITF Registration Date';
         }
 
