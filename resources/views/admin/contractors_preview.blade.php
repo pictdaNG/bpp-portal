@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('reports')
+active
+@endsection
 @section('content')
 <section class="hbox stretch">
     <section class="vbox">

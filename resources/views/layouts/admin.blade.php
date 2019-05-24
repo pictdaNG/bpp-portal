@@ -202,14 +202,7 @@
                       </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">                      
-                      <!-- <li>
-                        
-                        <a href="">Settings</a>
-                      </li>
-                      <li>
-                        <a href="">Help</a>
-                      </li> -->
-                      <!-- <li class="divider"></li> -->
+                     
                       <span class="arrow top hidden-nav-xs"></span>
                       <li>
                         <a href="{{ route('logout') }}" >Logout</a>
@@ -223,55 +216,15 @@
                 <nav class="nav-primary hidden-xs">
                   <div class="text-muted text-sm hidden-nav-xs padder m-t-sm m-b-sm">Pre Bidding Excercise</div>
                   <ul class="nav nav-main" data-ride="collapse">
-                    <li  class="active">
+                    <li  class="@yield('dashboard')">
                       <a href="{{ route('home') }}" class="auto">
                         <i class="i i-statistics icon">
                         </i>
                         <span class="font-bold">Dashboard</span>
                       </a>
                     </li>
-                    <!-- <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-stack icon">
-                        </i>
-                        <span class="font-bold">Procurement Plan</span>
-                      </a>
-                      <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul>
-                    </li> -->
-                    <!-- <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-stack icon">
-                        </i>
-                        <span class="font-bold">Bidding Documents</span>
-                      </a>
-                       <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> 
-                    </li> -->
-
-                    <li >
+                   
+                    <li class="@yield('bidadverts')">
                       <a href="{{ action('AdvertController@getAdverts') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -281,18 +234,10 @@
                         </i>
                         <span class="font-bold">Bid Adverts</span>
                       </a>
-                      <!-- <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> -->
+                     
                     </li>
 
-                    <li >
+                    <li class="@yield('bidopening')">
                       <a href="{{ action('AdvertController@getAdvertsOpening') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -302,81 +247,9 @@
                         </i>
                         <span class="font-bold">Bid Opening</span>
                       </a>
-                      <!-- <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> -->
+                     
                     </li>
-
-                    <!-- <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-stack icon">
-                        </i>
-                        <span class="font-bold">Transactions</span>
-                      </a>
-                      <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> 
-                    </li> -->
-
-                   <!-- <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-stack icon">
-                        </i>
-                        <span class="font-bold">Projects</span>
-                      </a>
-                      <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> 
-                    </li> -->
-
-                    <!-- <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
-                        </span>
-                        <i class="i i-stack icon">
-                        </i>
-                        <span class="font-bold">Certificates</span>
-                      </a> -->
-                      <!-- <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> -->
-                    <!-- </li> -->
-
-                    <li >
+                    <li  class="@yield('getmdas')">
                       <a href="{{ route('getMdas') }}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -386,21 +259,13 @@
                         </i>
                         <span class="font-bold">MDA Accounts</span>
                       </a>
-                      <!-- <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> -->
+                    
                     </li>
 
-                    <li >
+                    <li  class="@yield('reports')">
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
+                          <i class="i i-circle-sm-o text" ></i>
                           <i class="i i-circle-sm text-active"></i>
                         </span>
                         <i class="i i-stack icon">
@@ -418,7 +283,7 @@
                     </ul>
                     </li>
 
-                    <li >
+                    <li class="@yield('tools')" >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -431,28 +296,21 @@
                       <ul class="nav dk">
                       <li >
                           <a href="{{ route('getEligibility') }}" class="auto">                                                        
-                            <i class="i i-dot"></i>
+                            <i class="i i-dot @yield('tools')"></i>
 
                             <span>Eligibility</span>
                           </a>
                         </li>
-                      <!-- <li >
-                          <a href="{{ route('getPDFNames') }}" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>PDF Name</span>
-                          </a>
-                        </li> -->
                         <li >
                           <a href="{{ route('getOwnership') }}" class="auto">                                                        
-                            <i class="i i-dot"></i>
+                            <i class="i i-dot @yield('tools')"></i>
 
                             <span>Ownership Structure</span>
                           </a>
                         </li>
                         <li >
                           <a href="{{ route('getEquipments') }}" class="auto">                                                        
-                            <i class="i i-dot"></i>
+                            <i class="i i-dot @yield('tools')"></i>
 
                             <span>Equipments Type</span>
                           </a>
@@ -471,13 +329,6 @@
                             <span>Qualifications</span>
                           </a>
                         </li>
-                        <!-- <li >
-                          <a href="{{ route('companyOwnership') }}" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Ownership</span>
-                          </a>
-                        </li> -->
                     </ul>
                     </li>
 
@@ -546,29 +397,6 @@
 
   <script src="{{ asset('js/sortable/jquery.sortable.js') }}"></script>
   <script src="{{ asset('js/app.plugin.js') }}"></script>
-  <script>
-    @if(Session::has('message'))
-      var type = "{{ Session::get('alert-type', 'info') }}";
-      switch(type) {
-        case 'info':
-          toastr.options.fadeOut = 9000;
-          toastr.info("{{ Session::get('message') }}");
-          break;
-        case 'warning':
-          toastr.options.fadeOut = 9000;
-          toastr.warning("{{ Session::get('message') }}");
-          break;
-        case 'success':
-          toastr.options.fadeOut = 9000;
-          toastr.success("{{ Session::get('message') }}");
-          break;
-        case 'error':
-          toastr.options.fadeOut = 9000;
-          toastr.error("{{ Session::get('message') }}");
-          break;
-      }
-    @endif
-  </script>
   <script>
   $( document ).ready(function() {
     $.ajaxSetup({

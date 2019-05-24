@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('getmdas')
+active
+@endsection
 
 @section('content')
 <section class="hbox stretch">

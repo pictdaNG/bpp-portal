@@ -1,6 +1,8 @@
 
 @extends('layouts.app')
-
+@section('passwordupdate')
+active
+@endsection
 @section('content')
 <br/>
     <div class="col-sm-8">

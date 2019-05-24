@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('dashboard')
+active
+@endsection
 @section('content')
 <style>
   section.panel-body.slim-scroll {

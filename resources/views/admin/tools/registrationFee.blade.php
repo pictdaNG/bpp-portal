@@ -1,6 +1,8 @@
 
 @extends('layouts.admin')
-
+@section('tools')
+active
+@endsection
 @section('content')
 
 <section class="hbox stretch">

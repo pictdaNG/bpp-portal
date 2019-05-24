@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('advertlists')
+active
+@endsection
 @section('content')
 <section class="hbox stretch">
     <section class="vbox">

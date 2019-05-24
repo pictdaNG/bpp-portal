@@ -16,10 +16,6 @@ use App\Repositories\ContractorMachinery\ContractorMachineryContract;
 use App\ContractorFile;
 use Illuminate\Support\Facades\Auth;
 
-
-
-
-
 class AdvertController extends Controller{
 
     protected $repo;

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('registration')
+active
+@endsection
 @section('content')
 <section class="hbox stretch">
     <section class="vbox">

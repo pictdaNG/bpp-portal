@@ -46,42 +46,6 @@
       </div>
     
       <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
-        <!--
-        <li class="hidden-xs">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="i i-chat3"></i>
-            <span class="badge badge-sm up bg-danger count">2</span>
-          </a>
-          <section class="dropdown-menu aside-xl animated flipInY">
-            <section class="panel bg-white">
-              <div class="panel-heading b-light bg-light">
-                <strong>You have <span class="count">2</span> notifications</strong>
-              </div>
-              <div class="list-group list-group-alt">
-                <a href="#" class="media list-group-item">
-                  <span class="pull-left thumb-sm">
-                    <img src="{{ asset('/images/p0.jpg') }}" alt="..." class="img-circle">
-                  </span>
-                  <span class="media-body block m-b-none">
-                    Use awesome animate.css<br>
-                    <small class="text-muted">10 minutes ago</small>
-                  </span>
-                </a>
-                <a href="#" class="media list-group-item">
-                  <span class="media-body block m-b-none">
-                    1.0 initial released<br>
-                    <small class="text-muted">1 hour ago</small>
-                  </span>
-                </a>
-              </div>
-              <div class="panel-footer text-sm">
-                <a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
-                <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
-              </div>
-            </section>
-          </section>
-        </li>
-        -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
@@ -132,7 +96,7 @@
                 <nav class="nav-primary hidden-xs">
                   <div class="text-muted text-sm hidden-nav-xs padder m-t-sm m-b-sm">Pre Bidding Excercise</div>
                   <ul class="nav nav-main" data-ride="collapse">
-                    <li  class="active">
+                    <li  class="@yield('dashboard')">
                       <a href="{{ route('home') }}" class="auto">
                         <i class="i i-statistics icon">
                         </i>
@@ -140,7 +104,7 @@
                       </a>
                     </li>
 
-                    <li >
+                    <li class="@yield('passwordupdate')">
                       <a href="{{ action('ContractorController@getPasswordUpdate') }}" class="auto">
         
                         <i class="i i-lab icon">
@@ -149,7 +113,7 @@
                       </a>
                     </li>
 
-                    <li >
+                    <li class="@yield('registration')" >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -160,7 +124,7 @@
                         <span class="font-bold">Registration</span>
                       </a>
                       <ul class="nav dk">
-                        <li >
+                        <li class="@yield('registration')" >
                           <a href="/contractor/registration" class="auto">                                                        
                             <i class="i i-dot"></i>
 
@@ -169,7 +133,7 @@
                         </li>
                     </ul>
                     </li>
-                    <li >
+                    <li class="@yield('biddingdocuments')" >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -180,14 +144,14 @@
                         <span class="font-bold">Bidding Documents</span>
                       </a>
                       <ul class="nav dk">
-                      <li >
+                      <li class="@yield('biddingdocuments')">
                           <a href="{{route('getIRR')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
                             <span>Registration Certificates</span>
                           </a>
                         </li>
-                        <li >
+                        <li class="@yield('biddingdocuments')" >
                           <a href="{{route('getUploadedDcument')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
 
@@ -198,36 +162,36 @@
                       </ul>
                     </li>
 
-                    <li >
+                    <li class="@yield('advertlists')">
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
-                          <i class="i i-circle-sm-o text"></i>
-                          <i class="i i-circle-sm text-active"></i>
+                          <i class="i i-circle-sm-o text @yield('advertlists')"></i>
+                          <i class="i i-circle-sm text-active @yield('advertlists')"></i>
                         </span>
                         <i class="i i-lab icon">
                         </i>
                         <span class="font-bold">Bid Adverts</span>
                       </a>
                       <ul class="nav dk">
-                        <li >
+                        <li  class="@yield('advertlists')">
                           <a href="{{action('ContractorController@getAdverts')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>All Adverts</span>
                           </a>
                         </li>
-                        <li >
+                        <li class="@yield('advertlists')" >
                           <a href="{{action('AdvertController@getAdvertByCatId', 1)}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Construction/Works Adverts</span>
                           </a>
                         </li>
-                        <li >
+                        <li  class="@yield('advertlists')">
                           <a href="{{action('AdvertController@getAdvertByCatId', 2)}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Consultancy/Service Adverts</span>
                           </a>
                         </li>
-                        <li >
+                        <li class="@yield('advertlists')" >
                           <a href="{{action('AdvertController@getAdvertByCatId', 3)}}"class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Goods/Supply Adverts</span>
@@ -236,7 +200,7 @@
                       </ul>
                     </li>
 
-                    <li >
+                    <li class="@yield('transactions')" >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -247,13 +211,13 @@
                         <span class="font-bold">Transactions</span>
                       </a>
                       <ul class="nav dk">
-                        <li >
+                        <li  class="@yield('transactions')">
                           <a href="{{route('transactionsList')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>My Transaction History</span>
                           </a>
                         </li>
-                        <li >
+                        <li class="@yield('transactions')" >
                           <a href="{{route('getPurchasedBids')}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Purchased Bids</span>

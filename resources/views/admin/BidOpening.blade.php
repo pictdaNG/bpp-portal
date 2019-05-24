@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('bidopening')
+active
+@endsection
 
 @section('content')
 
