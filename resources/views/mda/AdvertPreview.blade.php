@@ -1,4 +1,7 @@
 @extends('layouts.mda')
+@section('alladvert')
+active
+@endsection
 
 @section('content')
 
