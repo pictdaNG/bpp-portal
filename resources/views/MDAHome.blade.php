@@ -1,5 +1,7 @@
 @extends('layouts.mda')
-
+@section('dashboard')
+active
+@endsection
 @section('content')
 <style>
 section.panel-body.slim-scroll {

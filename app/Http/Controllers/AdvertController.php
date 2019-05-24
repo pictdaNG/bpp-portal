@@ -110,12 +110,18 @@ class AdvertController extends Controller{
 
     public function storeAdvert(Request $request) {
        try {
-            
-           if ($this->repo->createAdvert((object)$request->all())) {
+            $result = $this->repo->createAdvert((object)$request->all());
+           if ($result == 1) {
+                $notification = array(
+                    'message' => 'Advert Created Successfully!', 
+                    'alert-type' => 'success'
+                ); 
                 return response()->json(['success' => 'Record Added Successfully'], 200);
             } 
             else {     
-                return response()->json(['error' => 'Failed to Add Record'], 500);
+                
+                return response()->json(['error' => $result], 500);
+
             }
         } catch (QueryException $e) {
         return response()->json(['error' => $e->getMessage()], 500);
@@ -131,7 +137,6 @@ class AdvertController extends Controller{
                     'alert-type' => 'success'
                 );
                 return redirect()->back()->with($notification);
-                // return response()->json(['success' => 'Record Updated Successfully'], 200);
              } 
              else {    
                 $notification = array(

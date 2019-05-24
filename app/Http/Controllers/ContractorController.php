@@ -59,16 +59,14 @@ class ContractorController extends Controller {
 
 
     public function __construct(ContractorContract $contractorContract, DirectorContract $directorContract,
-                 ContractorCategoryContract $contractorCategoryContract, OwnershipStructureContract $ownershipStructure, 
-                 CountriesContract $country,  BusinessCategoryContract $businessCategory, BusinessSubCategory2Contract $businessCategory2,
-                  ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
-                  ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
-                  QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
-                  PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract, SalesContract $salesContract,
-                  CompletedRegistrationContract $completedContract ) {
+        ContractorCategoryContract $contractorCategoryContract, OwnershipStructureContract $ownershipStructure, 
+        CountriesContract $country,  BusinessCategoryContract $businessCategory, BusinessSubCategory2Contract $businessCategory2,
+        ContractorJobsContract $contractorJob, BusinessSubCategoryContract $businessCategory1, ContractorPersonnelContract $contractorPersonnel,
+        ContractorFinanceContract $contractorFinanceContract, EquipmentContract $equipmentsContract , CompanyOwnershipContract $companyOwnership ,
+        QualificationContract $qualificationContract, ContractorMachineryContract $contractorMachinery, CategoryFeeContract $categoryFeeContract,
+        PDFCertificateNameContract $pdfCertificateName, ComplianceContract $complianceContract, AdvertContract $advertContract, SalesContract $salesContract,
+        CompletedRegistrationContract $completedContract ) {
                   
-                    
-
         $this->middleware('auth');
         $this->repo = $contractorContract;
         $this->directorRepo = $directorContract;
@@ -93,7 +91,6 @@ class ContractorController extends Controller {
         $this->contract_completedRegistration = $completedContract;
 
     }
-    
     
     public function registration(Request $request){
          $user = $this->repo->getUserById();
@@ -130,9 +127,7 @@ class ContractorController extends Controller {
         'audited_account' => ContractorFile::where('name', 'audited_account')->where('user_id', $user->id)->first(),
         'swon_affidavit' => ContractorFile::where('name', 'swon_affidavit')->where('user_id', $user->id)->first(),
         //'placcima' => ContractorFile::where('name', 'placcima')->where('user_id', $user->id)->first(),
-        ]);
-
-       
+        ]);  
     }
 
     public function storeContractor(Request $request) {
@@ -220,13 +215,11 @@ class ContractorController extends Controller {
         return view('contractor.partials.IrrDocs', ['categories' => $categories]);
     }
 
-
     public function getAdvertById($advertId) {
         $advert = $this->contract_advert->getAdsById($advertId);
        // dd($advert);
         return view('contractor.SelectBid')->with(['advert' => $advert]);
     }
-
 
     public function getUploadedDocuments(){
         $getUploadfiles = ContractorFile::where('user_id', Auth::user()->id)->get();
@@ -236,8 +229,6 @@ class ContractorController extends Controller {
 
     public function getAdverts() {
         $adverts = $this->contract_advert->listAllAdvertsForContractor();
-       // dd($advert);
-     //  session()->set('success', 'Item created successfully.');
         return view('contractor.AdvertList')->with(['adverts' => $adverts]);
     }
 

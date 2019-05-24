@@ -13,7 +13,15 @@ class EloquentAdvertRepository implements AdvertContract {
     public function createAdvert($request) {
         $advert = new Advert;
         $this->setAdvertProperties($advert, $request);
-        return $advert->save();
+         if($request->budget_year > date("Y")) {
+            return 'Invalid Budget Year';
+        }
+        else if(Carbon::parse($request->bid_opening_date)->isoFormat('DD-MM-YYYY') <= Carbon::now()->isoFormat('DD-MM-YYYY')){
+            return 'Invalid Closing Date';
+        }
+       
+         $advert->save();
+         return 1;
     }
 
     public function editAdvert($request) {
@@ -46,7 +54,7 @@ class EloquentAdvertRepository implements AdvertContract {
         return Advert::where('user_id', Auth::user()->id)
             ->with('advertLot.tenderRequirement')
             ->with('advertLot')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'DESC')
             ->get();
 
     }
@@ -68,8 +76,6 @@ class EloquentAdvertRepository implements AdvertContract {
         ->with('advert.tenderRequirement')
         ->orderBy('created_at', 'desc')
         ->get();
-
-       // dd($records);
 
         $ads = array();
             foreach($records as $data){
@@ -115,7 +121,7 @@ class EloquentAdvertRepository implements AdvertContract {
     }
 
     public function listAdvertsByUserId(){
-        $data=  Advert::where("user_id", Auth::user()->id)->get();
+        $data=  Advert::where("user_id", Auth::user()->id)->orderBy('created_at', 'DESC')->get();
 
         $ads = array();
             for($i=0; $i<sizeof($data); $i++){
@@ -174,7 +180,6 @@ class EloquentAdvertRepository implements AdvertContract {
     private function setAdvertProperties($advert, $request) {
         $user = Auth::user();
         $bid_opening_date = Carbon::parse($request->bid_opening_date);
-        //die($request->budget_year);
         $advert->name = $request->name;
         $advert->budget_year = $request->budget_year;
         $advert->advert_type = $request->advert_type; 

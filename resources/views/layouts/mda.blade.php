@@ -94,7 +94,7 @@
                 <nav class="nav-primary hidden-xs">
                   <div class="text-muted text-sm hidden-nav-xs padder m-t-sm m-b-sm">Pre Bidding Excercise</div>
                   <ul class="nav nav-main" data-ride="collapse">
-                    <li  class="active">
+                    <li  class="@yield('dashboard')">
                         <a href="{{ route('home') }}" class="auto">
                         <i class="i i-statistics icon">
                         </i>
@@ -102,7 +102,7 @@
                       </a>
                     </li>
 
-                    <li >                   
+                    <li  class="@yield('changepassword')">                   
                       <a href="{{ action('MDAController@getPasswordUpdate') }}" class="auto">
         
                         <i class="i i-lab icon">
@@ -111,7 +111,7 @@
                       </a>
                     </li>
 
-                    <li >
+                    <li class="@yield('alladvert')">
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -122,7 +122,7 @@
                         <span class="font-bold">Bid Adverts</span>
                       </a>
                       <ul class="nav dk">
-                        <li >
+                        <li class="@yield('alladvert')" >
                           <a href="{{ route('newMdaAdvert') }}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>All Adverts</span>
@@ -131,7 +131,7 @@
                        
                     </ul>
                     </li>
-                    <li >
+                    <!-- <li class="@yield('bidopening')" >
                       <a href="#" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -141,18 +141,9 @@
                         </i>
                         <span class="font-bold">Bid Opening</span>
                       </a>
-                      <!-- <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
+                    </li> -->
 
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> -->
-                    </li>
-
-                    <li >
+                    <li class="@yield('transactions')">
                       <a href="{{ route('transactions')}}" class="auto">
                         <span class="pull-right text-muted">
                           <i class="i i-circle-sm-o text"></i>
@@ -162,15 +153,6 @@
                         </i>
                         <span class="font-bold">Transactions</span>
                       </a>
-                      <!-- <ul class="nav dk">
-                        <li >
-                          <a href="/contractor/registration" class="auto">                                                        
-                            <i class="i i-dot"></i>
-
-                            <span>Company Registration</span>
-                          </a>
-                        </li>
-                    </ul> -->
                     </li>
 
                     <li >

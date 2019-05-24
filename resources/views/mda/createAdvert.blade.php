@@ -1,5 +1,7 @@
 @extends('layouts.mda')
-
+@section('alladvert')
+active
+@endsection
 @section('content')
   <section class="hbox stretch">
     <section class="vbox">
@@ -54,7 +56,7 @@
                       <td>{{$advert->bid_opening_date}}</td>
                       <td>
                         <a href="#" data-id="{{ $advert->id }}" data-name="{{ $advert->name}}" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a> 
-                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                        <!-- <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a> -->
                         <a href="{{action('MDAController@getMDAAdvertById', $advert->id)}}"  class="btn btnLink btn-sm btn-success"><i class="fa fa-eye"></i></a>
                         <a href="{{ route('bidRequirements', $advert->id) }}" id="req" class="btn btnLink btn-sm btn-danger disabled"><i class="fa fa-gear"></i></a>
                       </td>
@@ -94,7 +96,7 @@
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Budget Year</label>
                   <div class="col-lg-9">
-                    <input type="text" required name="budget_year" class="form-control">
+                    <input type="number" required name="budget_year" class="form-control">
                   </div>
                 </div>
 
@@ -258,6 +260,7 @@
             $('#advert_message').html(data.success);
             $('#advert_div').removeClass('d-none');
             document.getElementById("advertForm").reset(); 
+            toastr.success(data.success, {timeOut: 1000});
             
             setTimeout(function(){
                 $('#advert_message').hide();
@@ -278,7 +281,7 @@
             console.log('error', data)
             $('#submitAdvert').html('Try Again');
             $('#submitAdvert').removeAttr('disabled');
-              
+            toastr.error('Error!', data.responseJSON.error);
           // show error to end user
           }
         });
@@ -312,7 +315,7 @@
                   '<td>'+
                   '<a href="#" data-id="'+data[i].id+'" data-name="'+data[i].name+'" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a>'+
                   '<a href="#" class="btn btnLink btn-sm btn-warning"><i class="fa fa-edit"></i></a>'+
-                  '<a href="#" class="btn btnLink btn-sm btn-success"><i class="fa fa-eye"></i></a>'+
+                  // '<a href="#" class="btn btnLink btn-sm btn-success"><i class="fa fa-eye"></i></a>'+
                   '<a href="/mda/advert/bidrequirement/'+data[i].id+'/" class="btn btnLink btn-sm btn-danger disabled"><i class="fa fa-gear"></i></a>'+
                   '</td>'+
                 '</tr>'
@@ -341,22 +344,20 @@
                 data :$('#deleteAdverts').serialize(),
                 dataType: dataType,
                 success:function(data){    
-                    $('#advertsBtn').html('Delete');
-                    $('#advertsBtn').removeAttr('disabled');     
-                    loadAdverts('/advert/adverts', function(data){
-                    });
+                  $('#advertsBtn').html('Delete');
+                  $('#advertsBtn').removeAttr('disabled');     
+                  loadAdverts('/advert/adverts', function(data){
+                  });
 
                 },
                 beforeSend: function(){
-                    $('#advertsBtn').html('Sending..');
-                    $('#advertsBtn').attr('disabled', 'disabled');
+                  $('#advertsBtn').html('Sending..');
+                  $('#advertsBtn').attr('disabled', 'disabled');
                 },
                 error: function(data) {
                     $('#advertsBtn').html('Try Again');
                     $('#advertsBtn').removeAttr('disabled');
-                    
-                // show error to end user
-                }
+                 }
             });
         })
 

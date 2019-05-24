@@ -1,6 +1,8 @@
 @extends('layouts.mda')
 
-
+@section('transactions')
+active
+@endsection
 @section('content')
 <script
   src="https://code.jquery.com/jquery-3.4.0.min.js"
