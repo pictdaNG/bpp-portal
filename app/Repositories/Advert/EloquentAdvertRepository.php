@@ -16,7 +16,7 @@ class EloquentAdvertRepository implements AdvertContract {
          if($request->budget_year > date("Y")) {
             return 'Invalid Budget Year';
         }
-        else if(Carbon::parse($request->bid_opening_date)->isoFormat('DD-MM-YYYY') <= Carbon::now()->isoFormat('DD-MM-YYYY')){
+        else if(Carbon::parse($request->bid_opening_date)->isoFormat('YYYY/MM/DD') <= Carbon::now()->isoFormat('YYYY/MM/DD')){
             return 'Invalid Closing Date';
         }
        
@@ -44,9 +44,14 @@ class EloquentAdvertRepository implements AdvertContract {
 
     public function listAllAdvertsForContractor(){
         return Advert::with('user')
-      //  ->where('status',  'active')
+        ->where("bid_opening_date", ">", Carbon::now()->isoFormat('DD-MM-YYYY'))
+        ->where('status', 'active')
         ->orderBy('created_at', 'desc')
-        ->get();;
+        ->get();
+    //     return Advert::with('user')
+    //    ->where('status',  'active')
+    //     ->orderBy('created_at', 'desc')
+    //     ->get();
     }
 
 

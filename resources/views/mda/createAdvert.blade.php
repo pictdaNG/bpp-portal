@@ -58,7 +58,7 @@ active
                         <a href="#" data-id="{{ $advert->id }}" data-name="{{ $advert->name}}" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a> 
                         <!-- <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a> -->
                         <a href="{{action('MDAController@getMDAAdvertById', $advert->id)}}"  class="btn btnLink btn-sm btn-success"><i class="fa fa-eye"></i></a>
-                        <a href="{{ route('bidRequirements', $advert->id) }}" id="req" class="btn btnLink btn-sm btn-danger disabled"><i class="fa fa-gear"></i></a>
+                        <a href="{{ route('bidRequirements', $advert->id) }}" id="req" class="btn btnLink btn-sm btn-danger"><i class="fa fa-gear"></i></a>
                       </td>
                     </tr>
                   @endforeach
@@ -158,11 +158,11 @@ active
 
                 <div class="form-group">
                   <div class="col-sm-10">
-                    <label class="checkbox-inline i-checks">
+                    <!-- <label class="checkbox-inline i-checks">
                       <input name="project_status" onclick="show2()" type="radio" id="inlineCheckbox1" value="approved_project"><i></i> Approved Project
-                    </label>
+                    </label> -->
                     <label class="checkbox-inline i-checks">
-                      <input name="project_status"  onclick="show1()" type="radio" id="inlineCheckbox2" value="new_project"><i></i> New Project
+                      <input name="project_status" checked="true"  onclick="show1()" type="radio" id="inlineCheckbox2" value="new_project"><i></i> New Project
                     </label>
                   </div>
                 </div>
@@ -316,7 +316,7 @@ active
                   '<a href="#" data-id="'+data[i].id+'" data-name="'+data[i].name+'" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a>'+
                   '<a href="#" class="btn btnLink btn-sm btn-warning"><i class="fa fa-edit"></i></a>'+
                   // '<a href="#" class="btn btnLink btn-sm btn-success"><i class="fa fa-eye"></i></a>'+
-                  '<a href="/mda/advert/bidrequirement/'+data[i].id+'/" class="btn btnLink btn-sm btn-danger disabled"><i class="fa fa-gear"></i></a>'+
+                  '<a href="/mda/advert/bidrequirement/'+data[i].id+'/" class="btn btnLink btn-sm btn-danger"><i class="fa fa-gear"></i></a>'+
                   '</td>'+
                 '</tr>'
               );
@@ -453,13 +453,13 @@ active
       });
     });
 
-    window.addEventListener('load', function () {
-     let data = document.getElementById('lots').innerHTML
-     if(Number(data) > 0 ) {
-      return $('.btnLink').removeClass('disabled');
-     }
+    // window.addEventListener('load', function () {
+    //  let data = document.getElementById('lots').innerHTML
+    //  if(Number(data) > 0 ) {
+    //   return $('.btnLink').removeClass('disabled');
+    //  }
     
-   });
+   //});
   </script>
 @endsection
 
