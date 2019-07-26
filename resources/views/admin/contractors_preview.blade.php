@@ -12,9 +12,10 @@ active
                 <div class="panel-body">
                 <div class="row">
                 <?php //dd($contractors); ?>
-               
+                <?php $image = $contractors->user->profile_pic ? 'uploads/'.$contractors->user->profile_pic: 'images/download.png' ?>
+
                     <div class="col-xs-6">
-                        <img src="{{ asset('uploads/'.$contractors->user->profile_pic)}}" height="200"/>
+                        <img src="{{ asset($image)}}" height="200"/>
                         <h4>{{ $contractors['company_name']}}</h4>
                         <address>
                             Email: {{$contractors['email']}}<br/>

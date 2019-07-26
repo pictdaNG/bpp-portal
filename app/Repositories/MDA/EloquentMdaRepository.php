@@ -49,13 +49,14 @@ class EloquentMdaRepository implements MdaContract
         $newUser->save();
 
         $file = $requestData['profile_pic'];
-        $filename = $file->getClientOriginalName();
-        $destinationPath = 'uploads/';
+        if($file->size() > 0) {
+            $filename = $file->getClientOriginalName();
+            $destinationPath = 'uploads/';
 
-        $requestData['profile_pic'] = $filename; 
-        $requestData['password'] = bcrypt($requestData['password']);
-        $uploadSuccess = $file->move($destinationPath, $filename);
-
+            $requestData['profile_pic'] = $filename; 
+            $requestData['password'] = bcrypt($requestData['password']);
+            $uploadSuccess = $file->move($destinationPath, $filename);
+        }
        Mda::create($requestData);
 
        $data = array(
