@@ -13,7 +13,7 @@ class BusinessSubCategory2Controller extends Controller
     protected $repo;
 
     public function __construct(BusinessSubCategory2Contract $businessSubCategory2Contract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $businessSubCategory2Contract;
     }
 

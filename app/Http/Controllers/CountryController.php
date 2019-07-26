@@ -14,7 +14,7 @@ class CountryController extends Controller
     protected $repo;
 
     public function __construct(CountriesContract $countryContract, StateContract $stateContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $countryContract;
         $this->state = $stateContract;
     }

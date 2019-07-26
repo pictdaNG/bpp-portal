@@ -12,7 +12,7 @@ class AdvertLotController extends Controller{
     protected $repo;
 
     public function __construct(AdvertLotContract $advertLotContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $advertLotContract;
     }
 

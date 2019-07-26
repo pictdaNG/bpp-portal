@@ -11,7 +11,7 @@ class TenderRequirementController extends Controller{
 
 
     public function __construct(TenderRequirementContract $tenderRequirementContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $tenderRequirementContract;
     }
 

@@ -14,7 +14,7 @@ class EloquentContractorFinanceRepository implements ContractorFinanceContract{
     public function createFinance($request) { 
         $contractorFinance = new ContractorFinance;
 
-        if($request->year > Carbon::now()->isoFormat('YYYY')) {
+        if($request->year > Carbon::now()->format('Y')) {
             return 'Invalid Year';
         }
         else 
@@ -39,7 +39,7 @@ class EloquentContractorFinanceRepository implements ContractorFinanceContract{
             return 'Invalid paid Tax';
         }
 
-        else if($request->report_date > Carbon::now()->isoFormat('YYYY-MM-DD') ) {
+        else if($request->report_date > Carbon::now()->format('Y-m-d') ) {
             return 'Invalid Report Date';
         }
         $this->setContractorFinanceProperties($contractorFinance, $request);

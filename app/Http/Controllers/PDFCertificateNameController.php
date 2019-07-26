@@ -11,7 +11,7 @@ class PDFCertificateNameController extends Controller{
     protected $repo;
 
     public function __construct(PDFCertificateNameContract $pdfnameContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $pdfnameContract;
     }
 

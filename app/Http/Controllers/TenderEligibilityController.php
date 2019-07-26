@@ -12,7 +12,7 @@ class TenderEligibilityController extends Controller{
     protected $repo;
 
     public function __construct(TenderEligibilityContract $eligibilityContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $eligibilityContract;
     }
 

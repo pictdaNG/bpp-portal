@@ -33,7 +33,7 @@ class AdvertController extends Controller{
                              DirectorContract $directorContract, ContractorCategoryContract $contractorCategoryContract,
                             ContractorJobsContract $contractorJob, ContractorPersonnelContract $contractorPersonnel,
                             ContractorFinanceContract $contractorFinanceContract, ContractorMachineryContract $contractorMachinery){
-            // $this->middleware('auth');
+             $this->middleware('auth');
             $this->repo = $advertContract;
             $this->contract_category = $categoryContract;
 

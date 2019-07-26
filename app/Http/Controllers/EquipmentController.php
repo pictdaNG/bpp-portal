@@ -13,7 +13,7 @@ class EquipmentController extends Controller
     protected $repo;
 
     public function __construct(EquipmentContract $equipmentContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $equipmentContract;
     }
 

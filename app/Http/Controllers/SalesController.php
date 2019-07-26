@@ -17,7 +17,7 @@ class SalesController extends Controller{
     protected $repo;
 
     public function __construct(SalesContract $salesContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $salesContract;
     }
 

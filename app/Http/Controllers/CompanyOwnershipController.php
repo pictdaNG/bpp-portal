@@ -13,7 +13,7 @@ class CompanyOwnershipController extends Controller
     protected $repo;
 
     public function __construct(CompanyOwnershipContract $companyOwnershipContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $companyOwnershipContract;
     }
 

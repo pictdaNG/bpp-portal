@@ -15,7 +15,7 @@ class EloquentContractorMachineryRepository implements ContractorMachineryContra
     public function createMachinery($request) { 
         $machinery = new ContractorMachinery;
 
-        if($request->acquisition_date > Carbon::now()->isoFormat('YYYY-MM-DD')) {
+        if($request->acquisition_date > Carbon::now()->isoFormat('Y-m-d')) {
             return 'Invalid Acquisition Date';
         }
         else 

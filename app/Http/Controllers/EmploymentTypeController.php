@@ -13,7 +13,7 @@ class EmploymentTypeController extends Controller
     protected $repo;
 
     public function __construct(EmploymentTypeContract $employmentTypeContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $employmentTypeContract;
     }
 

@@ -12,7 +12,7 @@ class CategoryRegistrationFeeController extends Controller{
     protected $repo;
 
     public function __construct(CategoryFeeContract $categoryFeeContract){
-        // $this->middleware('auth');
+         $this->middleware('auth');
         $this->repo = $categoryFeeContract;
     }
 
