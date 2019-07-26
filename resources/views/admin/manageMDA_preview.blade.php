@@ -14,7 +14,9 @@ active
                 
                     <div class="col-xs-6">
                         <!-- <img src="{{ asset('/images/p0.jpg') }}" height="200"/> -->
-                        <img src="{{asset('uploads/'.$mdas->profile_pic)}}" height="200"/>
+                        <?php $image = $mdas->profile_pic ? 'uploads/'.$mdas->profile_pic: 'images/download.png' ?>
+
+                        <img src="{{asset($image)}}" height="200"/>
                         <h4></h4>
                         <address>
                             Email: {{ $mdas->email }}<br/>

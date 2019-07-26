@@ -23,7 +23,8 @@
               </div>
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
-            <?php $image = $advert->user->profile_pic  ? 'uploads/'.$advert->user->profile_pic : 'images/download.png' ?>
+
+            <?php  $image = $advert->user->profile_pic  ? 'uploads/'.$advert->user->profile_pic : 'images/download.png' ?>
 
               <img src="{{ asset($image) }}" class="img-responsive" height="200" width="200" alt="">    
             </div>
