@@ -15,7 +15,7 @@ active
                 <?php $image = $contractors->user->profile_pic ? 'uploads/'.$contractors->user->profile_pic: 'images/download.png' ?>
 
                     <div class="col-xs-6">
-                        <img src="{{ asset($image)}}" height="200"/>
+                        <img src="{{ url($image)}}" height="200"/>
                         <h4>{{ $contractors['company_name']}}</h4>
                         <address>
                             Email: {{$contractors['email']}}<br/>

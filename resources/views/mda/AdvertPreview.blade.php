@@ -30,7 +30,7 @@ active
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
             <?php $image = Auth::user()->profile_pic ? 'uploads/'.Auth::user()->profile_pic: 'images/download.png' ?>
 
-              <img src="{{ asset($image) }}"  class="img-responsive" height="200" width="200" alt="">    
+              <img src="{{ url($image) }}"  class="img-responsive" height="200" width="200" alt="">    
             </div>
           </div>
 

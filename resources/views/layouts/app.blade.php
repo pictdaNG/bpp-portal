@@ -50,7 +50,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
             <?php $image = Auth::user()->profile_pic ? 'uploads/'.Auth::user()->profile_pic : 'images/noimage.png' ?>
-              <img src="{{ asset($image)}}" alt="No Image">
+              <img src="{{ url($image)}}" alt="No Image">
             </span>
             <b>{{ Auth::user()->name }}</b> <b class="caret"></b>
           </a>
@@ -73,7 +73,7 @@
                   <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="thumb avatar pull-left m-r">                        
-                        <img src="{{ asset($image)}}" class="dker" alt="...">
+                        <img src="{{ url($image)}}" class="dker" alt="...">
                         <i class="on md b-black"></i>
                       </span>
                       <span class="hidden-nav-xs clear">
