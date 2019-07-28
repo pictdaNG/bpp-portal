@@ -49,7 +49,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
-            <?php $image = Auth::user()->profile_pic ? 'uploads/'.Auth::user()->profile_pic : 'images/noimage.png' ?>
+            <?php $image = Auth::user()->profile_pic ? Auth::user()->profile_pic : 'images/noimage.png' ?>
               <img src="{{ url($image)}}" alt="No Image">
             </span>
             <b>{{ Auth::user()->name }}</b> <b class="caret"></b>

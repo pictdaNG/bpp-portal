@@ -21,7 +21,7 @@ active
                     
                     @foreach ($documents as $document)
                            
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="{{ asset('uploads/'.$document->key)}}" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{' '.strtoupper($document['name']) }}</a></div>
+                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="{{ asset($document->key)}}" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{' '.strtoupper($document['name']) }}</a></div>
                     @endforeach
                     @endif  
                     </div>

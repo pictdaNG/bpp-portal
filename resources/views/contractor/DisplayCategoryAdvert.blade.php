@@ -43,7 +43,7 @@ active
                                         <td>{{$advert->description}}</td>
                                         <td>{{$advert->lot_amount}}</td>   
                                         <td>   
-                                            <a href="{{ asset('uploads/'.$advert->tender_document) }}">
+                                            <a href="{{ asset($advert->tender_document) }}">
                                             <span class="fa-stack fa-sm"> <i class="fa fa-circle fa-stack-2x text-info"></i><i class="fa fa-search fa-stack-1x text-white"></i></span>
                                             </a>      
                                         </td>

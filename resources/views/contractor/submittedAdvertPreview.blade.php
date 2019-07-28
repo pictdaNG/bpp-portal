@@ -25,7 +25,7 @@
               </div>
           <div class="m-b-md">
             <div class="col-md-8 col-md-offset-4 m-b-md m-t-md">
-              <img src="{{ asset('uploads/'.$advert->user->profile_pic) }}" class="img-responsive" height="200" width="200" alt="">    
+              <img src="{{ asset($advert->user->profile_pic) }}" class="img-responsive" height="200" width="200" alt="">    
             </div>
           </div>
 

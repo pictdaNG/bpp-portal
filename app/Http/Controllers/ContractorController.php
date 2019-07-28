@@ -27,6 +27,7 @@ use App\Repositories\Compliance\ComplianceContract;
 use App\Repositories\Advert\AdvertContract;
 use App\Repositories\Sales\SalesContract;
 use App\Repositories\CompletedRegistration\CompletedRegistrationContract;
+use Illuminate\Support\Facades\Storage;
 
 use App\ContractorFile;
 use App\User;
@@ -135,12 +136,9 @@ class ContractorController extends Controller {
        try {
            $contractor = $this->repo->createContractor((object)$request->all());
              
-           if ($contractor) {
-                
-               return response()->json(['success'=>'Record Update Succesful.'], 200);
-               
+           if ($contractor) {     
+               return response()->json(['success'=>'Record Update Succesful.'], 200);   
             } else {
-            
                 return response()->json(['error'=> 'Error Occured Contact Admin'], 500);
             }
        } catch (QueryException $e) {
@@ -161,6 +159,8 @@ class ContractorController extends Controller {
 
     public function uploadContractorFile(Request $request){
         //Upload file return file name. associate file on storage with user_id
+        $url = null;
+        $oldKey = null;
         $user = Auth::user();
         $name = $request->input('name');
         $cf = ContractorFile::where('user_id', $user->id)->where('name', $name)->first();
@@ -168,20 +168,32 @@ class ContractorController extends Controller {
             $cf = new ContractorFile;
             $cf->user_id = $user->id;
         }
+
+
+       
         
         $file = $request->file('file');
+        $filenamewithoutext = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $file->getClientOriginalExtension();
+        $filename = $filenamewithoutext.'_'.time().'.'.$extension;
         $mimeType = $file->getMimeType();
         $fileSize = $file->getSize();
-        $destinationPath = 'uploads';
-        $newFilePath = "C-" .$user->id . "-" .$file->getClientOriginalName();
-        $displayName = $newFilePath;
+        $directory = 'uploads/C-' .$user->id . "-" .$filename;
+        $displayName = 'C-'.$user->id . "-" .$filename;
 
         $cf->mime_type = $mimeType;
         $cf->size = $fileSize;
         $cf->name = $name;
         $cf->key = $displayName;
-        if($file->move($destinationPath, $newFilePath)){
-            $cf->save();
+        $oldKey = $cf->key;
+        $uploaded = Storage::disk('s3')->put($directory, file_get_contents($file), 'public');
+
+        if($uploaded){             
+             $saved = $cf->save();
+            // if($saved && $oldKey) {
+            //    $d = Storage::disk('s3')->delete($oldKey);
+            //    dd($oldKey.$d);
+            // }
             return response()->json($cf, 200);
         }
         return response()->json(['status' => 'failure'], 400);

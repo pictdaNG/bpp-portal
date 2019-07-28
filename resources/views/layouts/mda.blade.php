@@ -48,7 +48,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="thumb-sm avatar pull-left">
-            <?php $image = Auth::user()->profile_pic ? 'uploads/'.Auth::user()->profile_pic : 'images/download.png' ?>
+            <?php $image = Auth::user()->profile_pic ? Auth::user()->profile_pic : 'images/download.png' ?>
 
               <img src="{{ url($image) }}" alt="">
             </span>

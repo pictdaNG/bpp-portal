@@ -14,7 +14,7 @@ active
                 
                     <div class="col-xs-6">
                         <!-- <img src="{{ asset('/images/p0.jpg') }}" height="200"/> -->
-                        <?php $image = $mdas->profile_pic ? 'uploads/'.$mdas->profile_pic: 'images/download.png' ?>
+                        <?php $image = $mdas->profile_pic ? $mdas->profile_pic: 'images/download.png' ?>
 
                         <img src="{{url($image)}}" height="200"/>
                         <h4></h4>

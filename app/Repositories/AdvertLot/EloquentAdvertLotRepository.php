@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\AdvertLot;
 use App\BusinessCategory;
 use Session;
+use Illuminate\Support\Facades\Storage;
+
 
 class EloquentAdvertLotRepository implements AdvertLotContract {
    
@@ -61,7 +63,7 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         $category =  BusinessCategory::where("id", $request->lot_category)->get();
         $projectName = $request->project_name !=null ? $request->project_name : '';
         $imageName = $request->advert_id.'.'.time().'.'.$request->tender_document->getClientOriginalExtension();
-        $request->tender_document->move(public_path('uploads/'), $imageName);
+        $url = Storage::disk('s3')->put($imageName, fopen($request->tender_document, 'r+'), 'public');
 
         $advertLot->project_name = $projectName;
         $advertLot->project_status = $request->project_status;
@@ -72,7 +74,7 @@ class EloquentAdvertLotRepository implements AdvertLotContract {
         $advertLot->advert_lot_business_category_id = $request->lot_category;  
         $advertLot->category_name = $category[0]->name;
         $advertLot->lot_amount = $request->lot_amount;
-        $advertLot->tender_document = $imageName;  
+        $advertLot->tender_document = $url;  
         $advertLot->user_id = $user->id;
 
         
