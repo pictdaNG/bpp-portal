@@ -310,7 +310,7 @@ active
                     <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>No Uploads Found</a></div>
                     @else 
                     @foreach ($getUploadfiles as $data)
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="{{ asset('https://bpp-pictda.s3.amazonaws.com/uploads/'.$data->key)}}" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ ' '.strtoupper($data['name']) }}</a></div>
+                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="{{ asset('https://bpp-portal.s3.amazonaws.com/uploads/'.$data->key)}}" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ ' '.strtoupper($data['name']) }}</a></div>
                     @endforeach
                     @endif  
                     </div>
