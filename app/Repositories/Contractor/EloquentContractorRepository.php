@@ -29,7 +29,6 @@ class EloquentContractorRepository implements ContractorContract{
             $uploaded = Storage::disk('s3')->put( $directory,  file_get_contents($file) , 'public');
             if($uploaded) {
                 $url = Storage::disk('s3')->url($filename);
-                //dd($url);
             }
         }
 
