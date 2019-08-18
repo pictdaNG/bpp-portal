@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        if(!empty($_SERVER['HTTPS']) && $_SERVER['SERVER_PORT'] == 443) {
+        if($_SERVER['SERVER_PORT'] == 443) {
             \URL::forceScheme('https');
          }
 
