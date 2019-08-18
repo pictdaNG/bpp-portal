@@ -5,17 +5,17 @@
   <title>{{ 'e-Procurement' }}</title>
   <meta name="description" content="e-Procurement Services" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-  <link rel="shortcut icon" href=" {{ asset('/favicon.ico') }}" />
+  <link rel="shortcut icon" href=" {{ url('/favicon.ico') }}" />
   <!-- CSRF Token -->
   
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('/css/animate.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('/css/icon.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('/css/font.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('/css/app.css') }}" type="text/css" />  
-  <link rel="stylesheet" href="{{ asset('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('/css/bootstrap.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('/css/animate.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('/css/font-awesome.min.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('/css/icon.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('/css/font.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('/css/app.css') }}" type="text/css" />  
+  <link rel="stylesheet" href="{{ url('/js/calendar/bootstrap_calendar.css') }}" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css" />
 
   
@@ -36,7 +36,7 @@
           <i class="fa fa-bars"></i>
         </a>
         <a href="/" class="navbar-brand">
-          <img src="{{ asset('/images/logo.png') }}" class="m-r-sm" alt="scale">
+          <img src="{{ url('/images/logo.png') }}" class="m-r-sm" alt="scale">
           <span class="hidden-nav-xs">PLBPP</span>
         </a>
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
@@ -201,24 +201,24 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
   <!-- Bootstrap -->
-  <script src="{{ asset('js/bootstrap.js') }}"></script>
+  <script src="{{ url('js/bootstrap.js') }}"></script>
   <!-- App -->
-  <script src="{{ asset('js/app.js') }}"></script>  
-  <script src="{{ asset('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('js/charts/easypiechart/jquery.easy-pie-chart.js') }}"></script>
-  <script src="{{ asset('js/charts/sparkline/jquery.sparkline.min.js') }}"></script>
-  <script src="{{ asset('js/charts/flot/jquery.flot.min.js') }}"></script>
-  <script src="{{ asset('js/charts/flot/jquery.flot.tooltip.min.js') }}"></script>
-  <script src="{{ asset('js/charts/flot/jquery.flot.spline.js') }}"></script>
-  <script src="{{ asset('js/charts/flot/jquery.flot.pie.min.js') }}"></script>
-  <script src="{{ asset('js/charts/flot/jquery.flot.resize.js') }}"></script>
-  <script src="{{ asset('js/charts/flot/jquery.flot.grow.js') }}"></script>
-  <script src="{{ asset('js/charts/flot/demo.js') }}"></script>
+  <script src="{{ url('js/app.js') }}"></script>  
+  <script src="{{ url('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ url('js/charts/easypiechart/jquery.easy-pie-chart.js') }}"></script>
+  <script src="{{ url('js/charts/sparkline/jquery.sparkline.min.js') }}"></script>
+  <script src="{{ url('js/charts/flot/jquery.flot.min.js') }}"></script>
+  <script src="{{ url('js/charts/flot/jquery.flot.tooltip.min.js') }}"></script>
+  <script src="{{ url('js/charts/flot/jquery.flot.spline.js') }}"></script>
+  <script src="{{ url('js/charts/flot/jquery.flot.pie.min.js') }}"></script>
+  <script src="{{ url('js/charts/flot/jquery.flot.resize.js') }}"></script>
+  <script src="{{ url('js/charts/flot/jquery.flot.grow.js') }}"></script>
+  <script src="{{ url('js/charts/flot/demo.js') }}"></script>
 
-  <script src="{{ asset('js/calendar/bootstrap_calendar.js') }}"></script>
-  <script src="{{ asset('js/calendar/demo.js') }}"></script>
+  <script src="{{ url('js/calendar/bootstrap_calendar.js') }}"></script>
+  <script src="{{ url('js/calendar/demo.js') }}"></script>
 
-  <script src="{{ asset('js/sortable/jquery.sortable.js') }}"></script>
+  <script src="{{ url('js/sortable/jquery.sortable.js') }}"></script>
 
 
   <script>

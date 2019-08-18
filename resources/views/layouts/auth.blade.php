@@ -5,15 +5,15 @@
   <title>{{ 'e-Procurement' }}</title>
   <meta name="description" content="e-Procurement Services" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-  <link rel="shortcut icon" href=" {{ asset('/favicon.ico') }}" />
+  <link rel="shortcut icon" href=" {{ url('/favicon.ico') }}" />
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('css/animate.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('css/icon.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('css/font.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css" />  
+  <link rel="stylesheet" href="{{ url('css/bootstrap.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('css/animate.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('css/font-awesome.min.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('css/icon.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('css/font.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url('css/app.css') }}" type="text/css" />  
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
@@ -38,16 +38,16 @@
     </div>
   </footer>
   <!-- / footer -->
-  <!-- <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script> -->
+  <!-- <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <!-- Bootstrap -->
-  <script src="{{ asset('js/bootstrap.js') }}"></script>
+  <script src="{{ url('js/bootstrap.js') }}"></script>
   <!-- App -->
-  <script src="{{ asset('js/app.js') }}"></script>  
-  <script src="{{ asset('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
-  <script src="{{ asset('js/app.plugin.js') }}"></script>
+  <script src="{{ url('js/app.js') }}"></script>  
+  <script src="{{ url('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
+  <script src="{{ url('js/app.plugin.js') }}"></script>
   <script>
     @if(Session::has('message'))
       var type = "{{ Session::get('alert-type', 'info') }}";
