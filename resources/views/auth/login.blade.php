@@ -4,7 +4,7 @@
     <a class="navbar-brand block" href="#">e-Procurement Portal</a>
       <section class="m-b-lg">
         <header class="wrapper text-center">
-            <img height="150" src="{{ asset('images/logo.png') }}" />
+            <img height="150" src="{{ url('images/logo.png') }}" />
         </header>
         <form method="POST" action="{{ route('post_login') }}">
         @csrf
