@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class=" ">
-<head>  
+<head>
   <meta charset="utf-8" />
   <title>{{ 'e-Procurement' }}</title>
   <meta name="description" content="e-Procurement Services" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="shortcut icon" href=" {{ asset('/favicon.ico') }}" />
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('css/icon.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ asset('css/font.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css" />  
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css" />
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
@@ -24,28 +24,19 @@
   <![endif]-->
 </head>
 <body class="" >
-  <section id="content" class="m-t-lg wrapper-md animated fadeInUp">    
-    <div class="container aside-xl">
+  <section id="content" class="vh100 authPadding wrapper-md animated fadeInUp">
+    <div>
         @yield('content')
     </div>
   </section>
-  <!-- footer -->
-  <footer id="footer">
-    <div class="text-center padder">
-      <p>
-        <small>Powered by PICTDA<br>&copy; 2019</small>
-      </p>
-    </div>
-  </footer>
-  <!-- / footer -->
   <!-- <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <!-- Bootstrap -->
   <script src="{{ asset('js/bootstrap.js') }}"></script>
   <!-- App -->
-  <script src="{{ asset('js/app.js') }}"></script>  
+  <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
   <script src="{{ asset('js/app.plugin.js') }}"></script>
   <script>
