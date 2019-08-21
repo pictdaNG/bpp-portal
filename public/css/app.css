@@ -3620,6 +3620,32 @@ fieldset[disabled] .i-checks input + i:before {
     padding: 0!Important;
 }
 
+.flex-center{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 500
+}
+
+.content h2{
+    color: white;
+    font-size: 50px;
+}
+
+.content p{
+    color: white;
+    font-size: 20px;
+}
+
 .padding-0{
     padding: 0!important;
 }

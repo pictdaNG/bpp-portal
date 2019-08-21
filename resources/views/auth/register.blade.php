@@ -4,8 +4,14 @@
 
 
     <div class="col-md-12  padding-0 margin-0 row">
-        <div class="col-md-7 overflow-hidden vh100 padding-0 bg-right vh100">
-            <img src="<?php echo e(asset('images/bgLogin.jpg')); ?>"/>
+        <div class="col-md-7 position-relative padding-0 bg-right vh100">
+            <img src="<?php echo e(asset('images/bgLogin.jpg')); ?>" />
+            <div class="content flex-center w-100">
+                <div class="col-md-7">
+                    <h2>Lorem ipsum dolor.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, libero.∑</p>
+                </div>
+            </div>
         </div>
         <div class="col-md-5 vh100 overflow-auto padding vh100">
             <a class="navbar-brand block" href="#">e-Procurement Portal</a>
