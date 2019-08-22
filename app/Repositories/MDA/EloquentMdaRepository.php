@@ -20,7 +20,6 @@ class EloquentMdaRepository implements MdaContract
         $newUser->password = bcrypt($requestData['password']);
         $newUser->website = $requestData['website'];
         $newUser->phone = $requestData['phone'];
-       // $newUser->profile_pic = $requestData['profile_pic']->getClientOriginalName();
         $newUser->address = $requestData['address'];
         $pass = $requestData['password'];
 
@@ -47,20 +46,22 @@ class EloquentMdaRepository implements MdaContract
 
         if($requestData['profile_pic']) {
             $file = $requestData['profile_pic'];
-            $filename = $file->getClientOriginalName();
+            $filenamewithoutext = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filenametostore = $filename.'_'.time().'.'.$extension;
-            $url = Storage::disk('s3')->put($filenametostore, fopen($file, 'r+'), 'public');
+            $filename = $filenamewithoutext.'_'.time().'.'.$extension;
+            $directory = 'uploads/'.$filename;
+            $uploaded = Storage::disk('s3')->put( $directory,  file_get_contents($file) , 'public');
+            if($uploaded) {
+                $url = Storage::disk('s3')->url($filename);
+            }
         }
-        //for deleting
-        //Storage::disk('s3')->delete('YOUR_FILENAME_HERE')
 
         $newUser->profile_pic = $url;
         $newUser->save();
 
         $requestData['profile_pic'] = $url; 
         $requestData['password'] = bcrypt($requestData['password']);
-        Mda::create($requestData);
+        $mda =  Mda::create($requestData);
 
         $data = array(
           'username' => $requestData['name'],
@@ -100,18 +101,15 @@ class EloquentMdaRepository implements MdaContract
 
     public function removeMda($request){ 
         try {
-        //    dd($request);
             $data = $request['mda'];
             for($i=0; $i<sizeof($data); $i++){
                 $tmp = Mda::find($data[$i]);
-                $tmp->delete();
-                
+                $tmp->delete();       
             }
             return true;
 
         }
         catch(\Exception $e){
-            //dd($e->getMessage());
             return false;
         } 
     }
