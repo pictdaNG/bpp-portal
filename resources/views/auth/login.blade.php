@@ -1,8 +1,11 @@
 @extends('layouts.auth')
 
 @section('content')
-    <a class="navbar-brand block" href="#">e-Procurement Portal</a>
-      <section class="m-b-lg">
+    <div class="col-md-12  padding-0 margin-0 row">
+        <div class="col-md-5 flex-center padding vh100">
+            <div class="col-md-8">
+    <a class="navbar-brand padding-0 block" href="#">e-Procurement Portal</a>
+      <section class="m-b-lg padding-0">
         <header class="wrapper text-center">
             <img height="150" src="{{ url('images/logo.png') }}" />
         </header>
@@ -27,11 +30,11 @@
             </div>
             @if(session('error'))
                 <div class="alert alert-danger" role="alert">
-                    
+
                     <p>{{ session('error') }}</p>
                 </div>
             @endif
-            
+
             @if(session('success'))
                 <div class="alert alert-danger" role="alert">
                     <p>{{ session('success') }}</p>
@@ -44,5 +47,27 @@
           <p class="text-muted text-center"><small>Do not have an account?</small></p>
           <a href="/register" class="btn btn-lg btn-default btn-block">Create an account</a>
         </form>
+
+          <!-- footer -->
+          <footer class="m-t-lg" id="footer">
+              <div class="text-center padder">
+                  <p>
+                      <small>Powered by PICTDA<br>&copy; 2019</small>
+                  </p>
+              </div>
+          </footer>
+          <!-- / footer -->
     </section>
+            </div>
+        </div>
+        <div class="col-md-7 position-relative padding-0 bg-right vh100">
+            <img src="<?php echo e(asset('images/bgLogin.jpg')); ?>" />
+            <div class="content flex-center w-100">
+                <div class="col-md-7">
+                    <h2>Lorem ipsum dolor.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, libero.∑</p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

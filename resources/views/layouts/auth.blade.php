@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class=" ">
-<head>  
+<head>
   <meta charset="utf-8" />
   <title>{{ 'e-Procurement' }}</title>
   <meta name="description" content="e-Procurement Services" />
@@ -24,8 +24,8 @@
   <![endif]-->
 </head>
 <body class="" >
-  <section id="content" class="m-t-lg wrapper-md animated fadeInUp">    
-    <div class="container aside-xl">
+  <section id="content" class="vh100 authPadding wrapper-md animated fadeInUp">
+    <div>
         @yield('content')
     </div>
   </section>
@@ -40,7 +40,7 @@
   <!-- / footer -->
   <!-- <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <!-- Bootstrap -->
   <script src="{{ url('js/bootstrap.js') }}"></script>
@@ -48,6 +48,7 @@
   <script src="{{ url('js/app.js') }}"></script>  
   <script src="{{ url('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
   <script src="{{ url('js/app.plugin.js') }}"></script>
+ 
   <script>
     @if(Session::has('message'))
       var type = "{{ Session::get('alert-type', 'info') }}";
