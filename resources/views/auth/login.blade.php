@@ -64,8 +64,8 @@
             <img src="<?php echo e(asset('images/bgLogin.jpg')); ?>" />
             <div class="content flex-center w-100">
                 <div class="col-md-7">
-                    <h2>Lorem ipsum dolor.</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, libero.∑</p>
+                    <h2>Plateau State BPP</h2>
+                    <p>The wind of change in public procurement that guarantees transparency, accountability, competition and cost effectiveness was imbibed by the Plateau State Government.</p>
                 </div>
             </div>
         </div>

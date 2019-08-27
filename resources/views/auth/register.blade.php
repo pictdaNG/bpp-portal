@@ -8,8 +8,8 @@
             <img src="<?php echo e(asset('images/bgLogin.jpg')); ?>" />
             <div class="content flex-center w-100">
                 <div class="col-md-7">
-                    <h2>Lorem ipsum dolor.</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, libero.∑</p>
+                    <h2>E-Procurement Portal</h2>
+                    <p>A Law that seeks to bring a reverse in Public procurement process was considered by the Plateau State House of assembly.</p>
                 </div>
             </div>
         </div>
