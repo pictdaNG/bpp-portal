@@ -28,8 +28,8 @@
             <p><b> Transaction ID: {{'#'.$data->transaction_id}}</b></p>
             <p><b> Lot : {{$data->lot_description}}</b></p>
             <p><b> MDA : {{$data->mda_name}}</b></p>
-            <p><b> Fee: {{number_format($data->amount)}}</b></p>
-            <p><b> Payment Status: {{$data->payment_status}}</b></p>
+            <p><b> Fee: {{number_format($data->amount)}} NGN</b></p>
+            <p><b> Payment Status: {{$data->payment_status}} NGN</b></p>
             <p><b> Payment Date: {{$data->payment_date}}</b></p>
         </div>
         <center>

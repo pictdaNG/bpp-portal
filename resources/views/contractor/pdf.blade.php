@@ -9,12 +9,12 @@
 <body>
     <div>
         <center>
-            <h1>Plateau State <br> Bureau of Public Procurement Agency</h1>
+            <h1>Plateau State <br> Bureau of Public Procurement</h1>
             <div>
                 <p > Plateau State Bureau of Public Procurement Database of particulars, consultants and service providers.</p>
                   <div style="padding-top: 20px;">
                       <h4>Interim Registration Report (IRR)</h4>
-                      <p >This is to acknowledge the ongoing registration of:</p>
+                       <p >This is to acknowledge the ongoing registration of:</p>
                   </div>
                
             </div>
@@ -28,9 +28,9 @@
         <div style=" margin-top: 10px;">
         <div style=" margin-top: 30px;">
             <p><b> Registration Type: {{$data->description}}</b></p>
-            <p><b> Temporary Contractor ID: Nil</b></p>
-            <p><b> Category Fee: {{number_format($data->amount)}}</b></p>
-            <p><b> Renewal Fee: {{number_format($data->renewal_amount)}}</b></p>
+            <p><b> Temporary Contractor ID: #{{$data->registration_id}}</b></p>
+            <p><b> Category Fee: {{number_format($data->amount)}} NGN</b></p>
+            <p><b> Renewal Fee: {{number_format($data->renewal_amount)}} NGN</b></p>
             <p><b> Date Of Registration: {{$data->created_at}}</b></p>
         </div>
         </div>

@@ -16,7 +16,7 @@ class CreateMdasTable extends Migration
         Schema::create('mdas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('profile_pic');
+            $table->string('profile_pic')->nullable();
             $table->string('mda_code');
             $table->string('mda_shortcode');
             $table->string('subsector');

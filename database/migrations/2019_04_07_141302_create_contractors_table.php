@@ -21,7 +21,7 @@ class CreateContractorsTable extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('email');
-            $table->string('website');
+            $table->string('website')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

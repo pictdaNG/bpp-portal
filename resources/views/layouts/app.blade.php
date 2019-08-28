@@ -180,7 +180,7 @@
                             <span>All Adverts</span>
                           </a>
                         </li>
-                        <li class="@yield('advertlists')" >
+                        <!-- <li class="@yield('advertlists')" >
                           <a href="{{action('AdvertController@getAdvertByCatId', 1)}}" class="auto">                                                        
                             <i class="i i-dot"></i>
                             <span>Construction/Works Adverts</span>
@@ -197,7 +197,7 @@
                             <i class="i i-dot"></i>
                             <span>Goods/Supply Adverts</span>
                           </a>
-                        </li>
+                        </li> -->
                       </ul>
                     </li>
 

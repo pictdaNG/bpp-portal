@@ -197,7 +197,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Regulatory Body</label>
             <div class="col-lg-10">
-            <input name="regulatory_body" required class="form-control">
+            <input name="regulatory_body"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -205,7 +205,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Membership ID</label>
             <div class="col-lg-10">
-            <input name="membership_id_no" required class="form-control">
+            <input name="membership_id_no"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -213,15 +213,14 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Project Involved</label>
             <div class="col-lg-10">
-            <input name="project_involved" required class="form-control">
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+             <textarea name="project_involved"  class="form-control"></textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-lg-2 control-label">Description</label>
+            <label class="col-lg-2 control-label">Brief Description</label>
             <div class="col-lg-10">
-            <textarea name="description" required class="form-control"></textarea>
+                <textarea name="description"  class="form-control"></textarea>
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>

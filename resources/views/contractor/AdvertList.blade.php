@@ -52,7 +52,7 @@ active
                                         <td>{{$advert->advert_type}}</td>
                                         <td>{{$advert->introduction}}</td>   
                                         <td>{{$advert->advert_mode}}</td>
-                                        <td>{{$advert->bid_opening_date}}</td>
+                                        <td>{{$advert->closing_date}}</td>
                                         <?php $route = $advert->bid_opening_date > \Carbon\Carbon::now()->isoFormat('Y-m-d') ?  'AdvertController@getAdvertById' : 'AdvertController@getAdvertById'?>
                                         <?php $status;
                                         if($advert->status=='active'){ $status = 'text-success-dk'; }else { $status = 'text-danger-dk';} ?>

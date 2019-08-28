@@ -145,7 +145,7 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Membership ID</label>
             <div class="col-lg-10">
-            <input name="membership_id_no" required class="form-control">
+            <input name="membership_id_no"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>

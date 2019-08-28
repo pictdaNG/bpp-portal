@@ -25,7 +25,7 @@ active
                         </address>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="h4">Contractor IRR # {{ $contractors['cac_number'] }}</p>
+                        <p class="h4">Contractor IRR # {{ $contractors->user->registration_id }}</p>
                         <h5>Date Registered: {{ $contractors['created_at']}}</h5>
                     </div>
              
@@ -236,11 +236,11 @@ active
             <tr>
             <td>{{$data['id']}}</td>
             <td>{{$data['year']}}</td>
-            <td>{{$data['turn_over']}}</td>
-            <td>{{$data['total_asset']}}</td>
-            <td>{{$data['total_liability']}}</td>
-            <td>{{$data['witholding_tax']}}</td>
-            <td>{{$data['tax_paid']}}</td>
+            <td>{{number_format($data['turn_over'])}}</td>
+            <td>{{number_format($data['total_asset'])}}</td>
+            <td>{{number_format($data['total_liability'])}}</td>
+            <td>{{number_format($data['witholding_tax'])}}</td>
+            <td>{{number_format($data['tax_paid'])}}</td>
             <td>{{$data['tcc_no']}}</td>
             <td>{{$data['audit_firm']}}</td>
             <td>{{$data['report_date']}}</td>
@@ -284,7 +284,7 @@ active
             <td>{{$data['id']}}</td>
             <td>{{$data['equipment_type']}}</td>
             <td>{{$data['acquisition_date']}}</td>
-            <td>{{$data['cost']}}</td>
+            <td>{{number_format($data['cost'])}}</td>
             <td>{{$data['location']}}</td>
             <td>{{$data['serial_no']}}</td>
             <td>{{$data['serial_no']}}</td>

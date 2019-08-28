@@ -53,7 +53,7 @@ active
                       <td>{{$advert->advert_type}}</td>
                       <td id="lots">{{$advert->lots}}</td>
                       <td>{{$advert->advert_publish_date}}</td>
-                      <td>{{$advert->bid_opening_date}}</td>
+                      <td>{{$advert->closing_date}}</td>
                       <td>
                         <a href="#" data-id="{{ $advert->id }}" data-name="{{ $advert->name}}" class="btn btn-sm btn-primary addNewLot"><i class="fa fa-file"></i></a> 
                         <!-- <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a> -->
@@ -129,6 +129,12 @@ active
                   <label class="col-lg-3 control-label">Bid Opening Date</label>
                   <div class="col-lg-9">
                     <input type="date" required name="bid_opening_date" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Bid Closing Date</label>
+                  <div class="col-lg-9">
+                    <input type="date" required name="closing_date" class="form-control">
                     <input type="hidden" name="_token" id="_token" value="{{{ csrf_token() }}}" />
                   </div>
                 </div>

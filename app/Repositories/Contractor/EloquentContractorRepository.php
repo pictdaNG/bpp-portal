@@ -17,10 +17,7 @@ class EloquentContractorRepository implements ContractorContract{
     public function createContractor($request) {  
         $url = null;
         $contractor = new Contractor;
-         $file = $request->profile_pic;
-         $encoded_data = $request->profile_pic;
-    
-        if($file->getClientOriginalName() !=null) {
+         if(array_key_exists('profile_pic', $request)){
             $file = $request->profile_pic;
             $filenamewithoutext = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
@@ -29,12 +26,13 @@ class EloquentContractorRepository implements ContractorContract{
             $uploaded = Storage::disk('s3')->put( $directory,  file_get_contents($file) , 'public');
             if($uploaded) {
                 $url = Storage::disk('s3')->url($filename);
+                $user = User::where('id', Auth::user()->id)->first();
+                $user->profile_pic = $url;
+                $user->save();
             }
         }
 
-        $user = User::where('id', Auth::user()->id)->first();
-        $user->profile_pic = $url;
-        $user->save();
+        
 
         $search = Contractor::where('user_id', Auth::user()->id)->get()->first();
 

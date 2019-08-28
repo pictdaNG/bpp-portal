@@ -12,15 +12,12 @@ active
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
-
-        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Contractor Transactions</h4>
+                                <h4 class="title">Bidding process transactions</h4>
                             </div>
                             <!--tables-->
                             <div class="row">
@@ -77,7 +74,6 @@ active
 
                 </div>
             </div>
-        </div>
 
 <script>
 window.addEventListener('load', function () {

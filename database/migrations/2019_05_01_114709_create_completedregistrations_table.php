@@ -22,6 +22,7 @@ class CreateCompletedregistrationsTable extends Migration
             $table->string('description');
             $table->string('expiration_date');
             $table->string('renewal_amount');
+            $table->string('registration_id');
             $table->string('amount');
             $table->integer('user_id');
             $table->timestamps();

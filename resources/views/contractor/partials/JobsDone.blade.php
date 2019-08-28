@@ -35,7 +35,7 @@
                 <td>{{$job->job_description}}</td>
                 <td>{{$job->contact_phone}}</td>
                 <td>{{$job->award_date}}</td>
-                <td>{{number_format($job->amount)}}</td>
+                <td>{{number_format($job->amount)}} NGN</td>
                 <td>
                     <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
                 </td>
@@ -128,20 +128,16 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Client</label>
             <div class="col-lg-9">
-            <input type="text" name="client" required class="form-control">
+             <input type="text" name="client" required class="form-control">
 
-            <!-- <select name="client" required class="form-control">
-                <option value="default"></option>
-            </select> -->
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+           
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-lg-3 control-label">Contact Phone:</label>
             <div class="col-lg-9">
-            <input type="number" name="contact_phone" required class="form-control">
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+             <input type="number" name="contact_phone" required class="form-control">
             </div>
         </div>
 
@@ -149,7 +145,6 @@
             <label class="col-lg-3 control-label">Award Date:</label>
             <div class="col-lg-9">
             <input type="date" name="award_date" required class="form-control">
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
 
@@ -157,7 +152,6 @@
             <label class="col-lg-3 control-label">Amount N:</label>
             <div class="col-lg-9">
             <input type="number" name="amount" required class="form-control">
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
         <div class="modal-footer">

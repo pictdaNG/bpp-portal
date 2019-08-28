@@ -44,7 +44,7 @@ class EloquentMdaRepository implements MdaContract
             return 'Email Already Exist';
         }
 
-        if($requestData['profile_pic']) {
+        if(array_key_exists('profile_pic', $requestData)) {
             $file = $requestData['profile_pic'];
             $filenamewithoutext = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
@@ -53,13 +53,13 @@ class EloquentMdaRepository implements MdaContract
             $uploaded = Storage::disk('s3')->put( $directory,  file_get_contents($file) , 'public');
             if($uploaded) {
                 $url = Storage::disk('s3')->url($filename);
+                $newUser->profile_pic = $url;
+                $requestData['profile_pic'] = $url; 
             }
         }
 
-        $newUser->profile_pic = $url;
         $newUser->save();
-
-        $requestData['profile_pic'] = $url; 
+    
         $requestData['password'] = bcrypt($requestData['password']);
         $mda =  Mda::create($requestData);
 

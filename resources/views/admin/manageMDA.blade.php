@@ -99,7 +99,7 @@ active
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">MDA Logo</label>
                                     <div class="col-lg-9">
-                                        <input type="file" required name="profile_pic" class="form-control">
+                                        <input type="file"  name="profile_pic" class="form-control">
                                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@ active
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Website</label>
                                     <div class="col-lg-9">
-                                        <input type="website" required name="website" class="form-control">
+                                        <input type="website"  name="website" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@ active
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Split Percentage</label>
                                     <div class="col-lg-9">
-                                        <input type="number" required name="split_percentage" class="form-control">
+                                        <input type="text" required name="split_percentage" class="form-control">
                                         <!-- <span class="help-block m-b-none">URL</span> -->
                                     </div>
                                 </div>

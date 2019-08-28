@@ -16,9 +16,14 @@ class EloquentAdvertRepository implements AdvertContract {
          if($request->budget_year > date("Y")) {
             return 'Invalid Budget Year';
         }
-        else if(Carbon::parse($request->bid_opening_date)->isoFormat('Y-m-d') <= Carbon::now()->isoFormat('Y-m-d')){
+         else if(Carbon::parse($request->bid_opening_date)->format('Y-m-d') <= Carbon::now()->format('Y-m-d')){
+             dd(Carbon::parse($request->bid_opening_date)->format('Y-m-d'));
+            return 'Invalid Bid Opening Date';
+        }
+        else if(Carbon::parse($request->closing_date)->format('Y-m-d') <= Carbon::now()->format('Y-m-d')){
             return 'Invalid Closing Date';
         }
+
        
          $advert->save();
          return 1;
@@ -36,7 +41,7 @@ class EloquentAdvertRepository implements AdvertContract {
 
     public function listActiveAdverts(){
         return Advert::with('user')
-        ->where("bid_opening_date", ">", Carbon::now()->isoFormat('Y-m-d'))
+        ->where("bid_opening_date", ">", Carbon::now()->format('Y-m-d'))
         ->where('status', 'active')
         ->orderBy('created_at', 'desc')
         ->get();
@@ -44,7 +49,7 @@ class EloquentAdvertRepository implements AdvertContract {
 
     public function listAllAdvertsForContractor(){
         return Advert::with('user')
-        ->where("bid_opening_date", ">", Carbon::now()->isoFormat('Y-m-d'))
+        ->where("bid_opening_date", ">", Carbon::now()->format('Y-m-d'))
         ->where('status', 'active')
         ->orderBy('created_at', 'desc')
         ->get();
@@ -83,19 +88,22 @@ class EloquentAdvertRepository implements AdvertContract {
         ->get();
 
         $ads = array();
+       
+        if(sizeof($records) > 0) {
             foreach($records as $data){
-                $status = $data->advert->bid_opening_date > Carbon::now()->isoFormat('Y-m-d') ? 'text-success-dk' :'text-danger-dk';
+                $status = $data->advert->bid_opening_date > Carbon::now()->format('Y-m-d') ? 'text-success-dk' :'text-danger-dk';
                 $route = $status=='text-success-dk' ?  'AdvertController@getAdvertById' : 'AdvertController@getAdvertById';
                 $obj = new \stdClass;
                 $obj->lot_id  =  $data->id;
                 $obj->advert_id  =  $data->advert->id;
                 $obj->description  =  $data->description;
                 $obj->lot_amount  =  $data->lot_amount;
-                $obj->tender_document  =  $data->tender_document;
-                $obj->document_type  =  mime_content_type($data->tender_document);
+                $obj->tender_document  =  $data->tender_document; 
+                $obj->document_type  =  mime_content_type($data->tender_document); 
                 $obj->bid_opening_date  =  $data->advert->bid_opening_date;
                 $obj->mda_name  =  $data->user->name;
                 $obj->category_name = $data->category_name;
+                $obj->closing_date = $data->advert->closing_date;
                 $obj->status = $status;
                 $obj->route = $route;
 
@@ -105,13 +113,15 @@ class EloquentAdvertRepository implements AdvertContract {
               
 
             }
+        }
+            
         return $ads;
 
     }
 
     public function closingBids(){    
-        $from =  Carbon::now()->isoFormat('Y-m-d');
-        $to = Carbon::now() ->addDays(7)->isoFormat('Y-m-d');
+        $from =  Carbon::now()->format('Y-m-d');
+        $to = Carbon::now() ->addDays(7)->format('Y-m-d');
         return Advert::whereBetween('bid_opening_date', [$from, $to])
             ->where('status', 'active')
             ->orderBy('created_at', 'desc')
@@ -140,6 +150,7 @@ class EloquentAdvertRepository implements AdvertContract {
                 $obj->introduction  =  $data[$i]->introduction;
                 $obj->advert_publish_date  =  $data[$i]->advert_publish_date;
                 $obj->bid_opening_date  =  $data[$i]->bid_opening_date;
+                $obj->closing_date  =  $data[$i]->closing_date;
                 $obj->lots = sizeof($lot);
                 $obj->user_id  =  $data[$i]->user_id;
                 array_push($ads, $obj);
@@ -190,8 +201,9 @@ class EloquentAdvertRepository implements AdvertContract {
         $advert->advert_type = $request->advert_type; 
         $advert->advert_mode = $request->advert_mode;
         $advert->introduction = $request->introduction;
-        $advert->advert_publish_date = Carbon::now()->isoFormat('Y-m-d');
-        $advert->bid_opening_date = $bid_opening_date->isoFormat('Y-m-d');  
+        $advert->advert_publish_date = Carbon::now()->format('Y-m-d');
+        $advert->bid_opening_date = $bid_opening_date->format('Y-m-d');  
+        $advert->closing_date = Carbon::parse($request->closing_date)->format('Y-m-d');
         $advert->status = 'pending';
         $advert->user_id = $user->id;
 

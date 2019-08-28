@@ -32,7 +32,7 @@
                 <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="mids[]" value="{{$machinery->id}}"><i></i></label></td>
                 <td>{{$machinery->equipment_type}}</td>
                 <td>{{$machinery->acquisition_date}}</td>
-                <td>{{number_format($machinery->cost)}}</td>
+                <td>{{number_format($machinery->cost)}} NGN</td>
                 <td>{{$machinery->location}}</td>
                 <td>{{$machinery->serial_no}}</td>
                 <td>{{$machinery->specifics}}</td>

@@ -21,6 +21,9 @@ class EloquentContractorPersonnelRepository implements ContractorPersonnelContra
         else if(1 === preg_match('~[0-9]~', $request->last_name)){
             return 'Invalid Last Name';
         }
+        // else if($request->gender){
+        //     return 'Select Gender';
+        // }
         else if($request->experience_years < 0){
             return 'Invalid Experience year';
         }

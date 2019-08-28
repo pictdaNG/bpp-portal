@@ -72,6 +72,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'cac' => $data['cac'],
             'phone' => $data['phone'],
+            'registration_id' => rand(10,100).rand(100, 1000).rand(10, 1000),
         ]);
     }
 }

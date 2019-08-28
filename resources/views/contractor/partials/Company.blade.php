@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Profile Pic</label>
                     <div class="col-lg-10">
-                    <input type="file" name="profile_pic" required  class="form-control">
+                    <input type="file" name="profile_pic"  class="form-control">
                     <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                     </div>
                 </div>

@@ -54,6 +54,7 @@ class EloquentCompletedRegistrationRepository implements CompletedRegistrationCo
             $register->renewal_amount = $data->renewal_fee;
             $register->amount = $data->amount;
             $register->user_id = $userId;
+            $register->registration_id = Auth::user()->registration_id;
             $register->save();
 
         }

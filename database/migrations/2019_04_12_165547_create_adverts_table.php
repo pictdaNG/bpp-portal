@@ -22,6 +22,7 @@ class CreateAdvertsTable extends Migration
             $table->string('introduction');
             $table->string('advert_publish_date');
             $table->string('bid_opening_date');
+            $table->string('closing_date');
             $table->text('tender_collection')->nullable();
             $table->text('tender_submission')->nullable();
             $table->text('tender_opening')->nullable();

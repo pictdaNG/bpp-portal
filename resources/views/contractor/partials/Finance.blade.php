@@ -34,12 +34,12 @@
             <tr>
             <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="fids[]" value="{{$finance->id}}"><i></i></label></td>
             <td>{{$finance->year}}</td>
-            <td>{{number_format($finance->turn_over)}}</td>
-            <td>{{number_format($finance->total_asset)}}</td>
-            <td>{{number_format($finance->total_liability)}}</td>
-            <td>{{number_format($finance->witholding_tax)}}</td>
-            <td>{{number_format($finance->tax_paid)}}</td>
-            <td>{{number_format($finance->tcc_no)}}</td>
+            <td>{{number_format($finance->turn_over)}} NGN</td>
+            <td>{{number_format($finance->total_asset)}} NGN</td>
+            <td>{{number_format($finance->total_liability)}} NGN</td>
+            <td>{{number_format($finance->witholding_tax)}} NGN</td>
+            <td>{{number_format($finance->tax_paid)}} NGN</td>
+            <td>{{number_format($finance->tcc_no)}} NGN</td>
             <td>{{$finance->audit_firm}}</td>
             <td>{{$finance->report_date}}</td>         
             <td>
@@ -81,14 +81,14 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Select Year</label>
             <div class="col-lg-9">
-            <input type="number" name="year" required class="form-control">
+            <input type="number" name="year"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-3 control-label">Turn Over (N)</label>
             <div class="col-lg-9">
-            <input type="number" name="turn_over" required class="form-control">
+            <input type="number" name="turn_over"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -96,7 +96,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Total Assets (N)</label>
             <div class="col-lg-9">
-            <input type="number" name="total_asset" required class="form-control">
+            <input type="number" name="total_asset"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -104,7 +104,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Total Liability:</label>
             <div class="col-lg-9">
-            <input type="number" name="total_liability" required class="form-control">
+            <input type="number" name="total_liability"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -112,7 +112,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Witholding Tax (N):</label>
             <div class="col-lg-9">
-            <input type="number" name="witholding_tax" required class="form-control">
+            <input type="number" name="witholding_tax"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -120,7 +120,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Tax Paid (N):</label>
             <div class="col-lg-9">
-            <input type="number" name="tax_paid" required class="form-control">
+            <input type="number" name="tax_paid"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -128,7 +128,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">TCC No.:</label>
             <div class="col-lg-9">
-            <input type="number" name="tcc_no" required class="form-control">
+            <input type="number" name="tcc_no"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -136,7 +136,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Audit Firm:</label>
             <div class="col-lg-9">
-            <input name="audit_firm" required class="form-control">
+            <input name="audit_firm"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
@@ -144,7 +144,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Report Date:</label>
             <div class="col-lg-9">
-            <input type="date" name="report_date" required class="form-control">
+            <input type="date" name="report_date"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
