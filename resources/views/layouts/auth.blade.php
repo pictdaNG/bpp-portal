@@ -48,7 +48,6 @@
   <script src="{{ url('js/app.js') }}"></script>  
   <script src="{{ url('js/slimscroll/jquery.slimscroll.min.js') }}"></script>
   <script src="{{ url('js/app.plugin.js') }}"></script>
- 
   <script>
     @if(Session::has('message'))
       var type = "{{ Session::get('alert-type', 'info') }}";
