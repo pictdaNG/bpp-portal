@@ -32,6 +32,8 @@ use Illuminate\Support\Facades\Storage;
 use App\ContractorFile;
 use App\User;
 use PDF;
+use App\BusinessCategory;
+use App\BusinessSubCategory1;
 
 //use Illuminate\Events\Dispatcher;
 
@@ -99,8 +101,7 @@ class ContractorController extends Controller {
          $categories = $this->contractorCategory->getCategoriesById();
          $owner_ship = $this->ownership->listOwnershipStructure();
          $countries = $this->county->allCountries();
-         $b_categories = $this->business_cate->allBusinessCategories();
-         $b_categories1 = $this->business_cate1->allBusinessSubCategory();
+         $b_categories = $this->business_cate->listAllBusinessCategories();
          $personnels = $this->contract_personnel->getPersonnelsById();
          $jobs =$this->contract_job->getJobsById();
          $b_categories2= $this->business_cate2->allBusinessSubCategory();
@@ -113,10 +114,35 @@ class ContractorController extends Controller {
          $company = $this->repo->getCompanyById();
          $compliance = $this->contract_compliance->getCompliancesById();
 
+        $rawVehicleMakes = BusinessCategory::get(['id', 'name']);
+        $vehicleMakes = ['default' => "Select a Category"];
+
+        for ($i=0; $i < count($rawVehicleMakes); $i++) {
+            $vehicleMakes[$rawVehicleMakes[$i]->id] = $rawVehicleMakes[$i]->name;
+        }
+
+        $rawVehicleModels = BusinessSubCategory1::orderBy('name', 'ASC')->get(['id', 'name', 'business_category_id']);
+        $vehicleModels = ['default' => "Select Sub-Category"];
+
+        $jsArray = '{';
+
+        for ($i=0; $i < count($rawVehicleMakes); $i++) {
+            $buffer = '';
+            for ($j=0; $j < count($rawVehicleModels); $j++) { 
+                if ($rawVehicleMakes[$i]->id == $rawVehicleModels[$j]->business_category_id) {
+                    $buffer .= json_encode($rawVehicleModels[$j]) . ',';
+                }
+            }
+            $jsArray .= $rawVehicleMakes[$i]->id . ':[' . $buffer . '],';
+        }
+
+        $jsArray .= '}';
+
+        
         return view('contractor/registration', ['user' => $user, 'directors' => $directors, 
         'contractorcategories' =>  $categories, 'ownerships' => $owner_ship,
         'countries' => $countries, 'allcategories' => $categories, 'contractorcategories' =>  $categories,
-        'business_cates' => $b_categories, 'business_cates1' => $b_categories1,  'personnels' => $personnels,
+        'business_cates' => $b_categories, 'personnels' => $personnels,
         'jobs' => $jobs, 'business_cates2' => $b_categories2, 'finances' => $finances, 'equipments' => $equipments,
         'fees' => $fees, 'company' => $company, 'compliance' => $compliance,
         'tcc_ownerships' => $tcc_ownerships, 'qualifications' => $qualifications, 'machineries' => $machineries,
@@ -128,6 +154,9 @@ class ContractorController extends Controller {
         'audited_account' => ContractorFile::where('name', 'audited_account')->where('user_id', $user->id)->first(),
         'swon_affidavit' => ContractorFile::where('name', 'swon_affidavit')->where('user_id', $user->id)->first(),
         //'placcima' => ContractorFile::where('name', 'placcima')->where('user_id', $user->id)->first(),
+        'jsArray' => $jsArray,
+        'vehicleMakes' => $vehicleMakes,
+        'vehicleModels' => $vehicleModels
         ]);  
     }
 

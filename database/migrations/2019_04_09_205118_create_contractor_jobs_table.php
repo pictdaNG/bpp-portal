@@ -19,8 +19,6 @@ class CreateContractorJobsTable extends Migration
             $table->integer('categoryId');
             $table->string('sub_category');
             $table->integer('sub_categoryId');
-            $table->string('sub_sub_category');
-            $table->integer('sub_sub_categoryId');
             $table->string('job_title');
             $table->string('job_description');
             $table->string('client');

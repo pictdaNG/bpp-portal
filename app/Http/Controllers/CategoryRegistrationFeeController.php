@@ -71,7 +71,8 @@ class CategoryRegistrationFeeController extends Controller{
                 return redirect()->route('getFees')->with(['fees' => $fees]);
             }
             
-        } catch (Exception $e) {
+        } 
+        catch (Exception $e) {
             return redirect()->route('getFees')->with(['fees' => $fees]);
 
  

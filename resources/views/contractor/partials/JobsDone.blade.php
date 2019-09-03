@@ -21,7 +21,6 @@
             <th>Contact Person</th>
             <th>Award Date</th>
             <th>Amount</th>
-            <th>Edit</th>
             </tr>
         </thead>
         <tbody id="jobs">
@@ -36,9 +35,7 @@
                 <td>{{$job->contact_phone}}</td>
                 <td>{{$job->award_date}}</td>
                 <td>{{number_format($job->amount)}} NGN</td>
-                <td>
-                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-                </td>
+               
                 </tr>
             @endforeach
         @else
@@ -74,54 +71,30 @@
         <div class="form-group">
             <label class="col-lg-3 control-label">Select Job Category</label>
             <div class="col-lg-9">
-            <select name="job_category" required class="form-control">
-            @foreach ($business_cates as $category)
-
-                <option value="{{$category->name}}">{{$category->name}}</option>
-            @endforeach
-            </select>
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+            
+             {!! Form::select('business_category_id', $vehicleMakes, 'default', array('id' => 'category_id', 'required' => true, 'class' => 'form-control')) !!}
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-lg-3 control-label">Sub-Category</label>
             <div class="col-lg-9">
-            <select name="sub_category" required class="form-control">
-            @foreach ($business_cates1 as $category)
-
-                <option value="{{$category->name}}">{{$category->name}}</option>
-            @endforeach
-            </select>
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+                {!! Form::select('sub_category', $vehicleModels, 'default', array('id' => 'category', 'required' => true, 'class' => 'form-control')) !!}
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-lg-3 control-label">Sub-Category</label>
-            <div class="col-lg-9">
-            <select name="sub_sub_category" required class="form-control">
-                @foreach ($business_cates2 as $category)
-
-                    <option value="{{$category->name}}">{{$category->name}}</option>
-                @endforeach
-            </select>
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
-            </div>
-        </div>
+       
 
         <div class="form-group">
             <label class="col-lg-3 control-label">Job Title</label>
             <div class="col-lg-9">
             <input name="job_title"  required class="form-control">
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-3 control-label">Job Description</label>
             <div class="col-lg-9">
             <textarea name="job_description" required class="form-control"></textarea>
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
             </div>
         </div>
 
@@ -167,9 +140,31 @@
 
 
 <script>
+
+    var make_model_mapping = {!! $jsArray !!};
+
     window.addEventListener('load', function () {
+
+        $('#category_id').on('change', function (e) {
+                var options = $("#category").empty().html(' ');
+                $.each(make_model_mapping[this.value], function() {
+                    options.append($("<option />").val(this.id).text(this.name));
+                });
+            });
+
+
     $("#jobForm").submit(function(evt){
             evt.preventDefault();
+            $cat = $('#category_id').val();
+            if($cat == 'default'){
+                alert('Category is compulsory');
+                return;
+            }
+            $subcat = $('#category').val();
+            if($subcat == 'default'){
+                alert('Sub Category is compulsory');
+                return;
+            }
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -250,7 +245,6 @@
                             '<td>'+data[i].contact_phone+'</td>'+
                             '<td>'+data[i].award_date +'</td>'+
                             '<td>'+data[i].amount+'</td>'+
-                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
                             '</tr>'
                         );
                     });

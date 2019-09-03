@@ -6,6 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Advert;
 use App\AdvertLot;
+use App\AdvertType;
+use App\AdvertMode;
+
 use Session;
 
 class EloquentAdvertRepository implements AdvertContract {
@@ -53,10 +56,7 @@ class EloquentAdvertRepository implements AdvertContract {
         ->where('status', 'active')
         ->orderBy('created_at', 'desc')
         ->get();
-    //     return Advert::with('user')
-    //    ->where('status',  'active')
-    //     ->orderBy('created_at', 'desc')
-    //     ->get();
+
     }
 
 
@@ -122,7 +122,7 @@ class EloquentAdvertRepository implements AdvertContract {
     public function closingBids(){    
         $from =  Carbon::now()->format('Y-m-d');
         $to = Carbon::now() ->addDays(7)->format('Y-m-d');
-        return Advert::whereBetween('bid_opening_date', [$from, $to])
+        return Advert::whereBetween('closing_date', [$from, $to])
             ->where('status', 'active')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -195,11 +195,15 @@ class EloquentAdvertRepository implements AdvertContract {
 
     private function setAdvertProperties($advert, $request) {
         $user = Auth::user();
+        $advertMode = AdvertMode::where('id',  $request->advert_mode)->get()->first();
+        $advertType = AdvertType::where('id',  $request->advert_type)->get()->first();
         $bid_opening_date = Carbon::parse($request->bid_opening_date);
         $advert->name = $request->name;
         $advert->budget_year = $request->budget_year;
-        $advert->advert_type = $request->advert_type; 
-        $advert->advert_mode = $request->advert_mode;
+        $advert->advert_type = $advertType->name; 
+        $advert->advert_mode = $advertMode->name;
+        $advert->advert_type_id = $advertType->id; 
+        $advert->advert_mode_id = $advertMode->id;
         $advert->introduction = $request->introduction;
         $advert->advert_publish_date = Carbon::now()->format('Y-m-d');
         $advert->bid_opening_date = $bid_opening_date->format('Y-m-d');  

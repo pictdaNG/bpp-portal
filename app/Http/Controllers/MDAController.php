@@ -12,6 +12,8 @@ use App\Repositories\Advert\AdvertContract;
 use App\Repositories\BusinessCategory\BusinessCategoryContract;
 use App\Repositories\TenderEligibility\TenderEligibilityContract;
 use Auth;
+use App\AdvertMode;
+use App\AdvertType;
 
 class MDAController extends Controller{
   
@@ -67,9 +69,34 @@ class MDAController extends Controller{
     }
 
     public function createAdvert(Request $request){
+        $rawVehicleMakes = AdvertType::get(['id', 'name']);
+        $vehicleMakes = ['default' => "Select Advert Type"];
+
+        for ($i=0; $i < count($rawVehicleMakes); $i++) {
+            $vehicleMakes[$rawVehicleMakes[$i]->id] = $rawVehicleMakes[$i]->name;
+        }
+
+        $rawVehicleModels = AdvertMode::orderBy('name', 'ASC')->get(['id', 'name', 'advert_type_id']);
+        $vehicleModels = ['default' => "Select Advert Mode"];
+
+        $jsArray = '{';
+
+        for ($i=0; $i < count($rawVehicleMakes); $i++) {
+            $buffer = '';
+            for ($j=0; $j < count($rawVehicleModels); $j++) { 
+                if ($rawVehicleMakes[$i]->id == $rawVehicleModels[$j]->advert_type_id) {
+                    $buffer .= json_encode($rawVehicleModels[$j]) . ',';
+                }
+            }
+            $jsArray .= $rawVehicleMakes[$i]->id . ':[' . $buffer . '],';
+        }
+
+        $jsArray .= '}';
         $adverts = $this->advert_contract->listAdvertsByUserId(); 
         $categories = $this->contract_category->allBusinessCategories();
-        return view('mda/createAdvert', ['adverts' => $adverts, 'categories' => $categories]);
+        return view('mda/createAdvert', ['adverts' => $adverts, 'categories' => $categories, 'jsArray' => $jsArray,
+        'vehicleMakes' => $vehicleMakes,
+        'vehicleModels' => $vehicleModels]);
     }
 
     public function bidRequirements(Request $request, $advertId){

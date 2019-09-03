@@ -96,14 +96,14 @@ active
             </div>
 
             <div class="row">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <section class="panel panel-default">
                 <header class="panel-heading font-bold"><b>Graphical Analysis 2017 PBPP</b></header>
                 <div class="panel-body">
                     <div id="admin-flot-bar"  style="height:200px"></div>
                 </div>                  
                 </section>
-            </div>
+            </div> -->
 
             <div class="col-md-6">
                 <section class="panel panel-default">

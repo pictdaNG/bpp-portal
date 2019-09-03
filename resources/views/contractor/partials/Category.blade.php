@@ -10,14 +10,12 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped b-t b-light">
+        <table class="table table-striped">
         <thead>
             <tr>
             <th width="20"><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox"><i></i></label></th>
             <th data-toggle="class">Business Category</th>
             <th>Business Sub-Category</th>
-            <th>Business Sub-Category 2</th>
-            <th>Edit</th>
             </tr>
         </thead>
         <tbody id="categories">
@@ -26,11 +24,8 @@
             <tr>
                 <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="cates[]" value="{{$category['id']}}"><i></i></label></td>
                 <td>{{$category->category}}</td>
-                <td>{{$category->subcategory_1}}</td>
-                <td>{{$category->subcategory_2}}</td>
-                <td>
-                    <a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-                </td>
+                <td>{{$category->sub_category_name}}</td>
+              
             </tr>
             @endforeach
             @else
@@ -42,11 +37,6 @@
         </tbody>
         </table>
     </div>
-    <footer class="panel-footer">
-        <div class="row">
-        
-        </div>
-    </footer>
 </form>
 </section>
 
@@ -65,43 +55,28 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Select a Category</label>
             <div class="col-lg-10">
-            <select name="category" class="form-control">
+            <!-- <select name="category" class="form-control">
             @foreach ($business_cates as $category)
 
                 <option value="{{$category->name}}">{{$category->name}}</option>
+
             @endforeach
-            </select>
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+            </select> -->
+            {!! Form::select('category', $vehicleMakes, 'default', array('id' => 'business_category_id', 'required' => 'required', 'class' => 'form-control')) !!}
+
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-lg-2 control-label">Select Sub-Category</label>
             <div class="col-lg-10">
-            <select name="subcategory_1" class="form-control">
-            @foreach ($business_cates1 as $category)
-
-             <option value="{{$category->name}}">{{$category->name}}</option>
-            @endforeach
-
-            </select>
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-lg-2 control-label">Select a Category</label>
-            <div class="col-lg-10">
-            <select name="subcategory_2" class="form-control">
-            @foreach ($business_cates2 as $category)
-
-             <option value="{{$category->name}}">{{$category->name}}</option>
-            @endforeach
             
-            </select>
-            <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+            {!! Form::select('subcategory_1', $vehicleModels, 'default', array('id' => 'sub_category', 'required' => 'required', 'class' => 'form-control')) !!}
+
             </div>
         </div>
+
+        
 
         <div class="modal-footer">
             <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
@@ -117,10 +92,29 @@
 
 
 <script type="application/javascript">
+    var make_model_mapping = {!! $jsArray !!};
 
     window.addEventListener('load', function () {
+
+        $('#business_category_id').on('change', function (e) {
+			    var options = $("#sub_category").empty().html(' ');
+				$.each(make_model_mapping[this.value], function() {
+				    options.append($("<option />").val(this.id).text(this.name));
+				});
+			});
+
         $("#categoryform").submit(function(evt){
             evt.preventDefault();
+            $cat = $('#business_category_id').val();
+            if($cat == 'default'){
+                alert('Category is compulsory');
+                return;
+            }
+            $subcat = $('#sub_category').val();
+            if($subcat == 'default'){
+                alert('Sub Category is compulsory');
+                return;
+            }
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -189,9 +183,7 @@
                             '<tr>'+
                             '<td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="cates[]" value="'+data[i].id+'"><i></i></label></td>' +
                             '<td>'+data[i].category+'</td>' +
-                            '<td>'+data[i].subcategory_1+'</td>' +
-                            '<td>'+data[i].subcategory_2+'</td>'+
-                            '<td><a href="#" class="active" data-toggle="class"><i class="fa fa-edit text-success text-active"></i><i class="fa fa-times text-danger text"></i></a></td>'+
+                            '<td>'+data[i].sub_category_name+'</td>' +
                             '</tr>'
                         );
                     });
@@ -239,7 +231,6 @@
                 $('#cateBtn').attr('disabled', 'disabled');
             },
             error: function(data) {
-                console.log('error', data)
                 $('#cateBtn').html('Try Again');
                 $('#cateBtn').removeAttr('disabled');
                 

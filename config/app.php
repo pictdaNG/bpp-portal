@@ -175,7 +175,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
- 		App\Providers\AuthenticationServiceProvider::class,
+        App\Providers\AuthenticationServiceProvider::class,
+        'Collective\Html\HtmlServiceProvider',
+
 
 
         // custom service providers
@@ -205,7 +207,8 @@ return [
         App\Providers\PDFCertifcateNameServiceProvider::class, 
         App\Providers\SalesServiceProvider::class,
         App\Providers\CompletedRegistrationServiceProvider::class,
-
+        App\Providers\AdvertTypeServiceProvider::class,
+        App\Providers\AdvertModeServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
 
@@ -272,6 +275,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
        // 'AWS' => Aws\Laravel\AwsFacade::class,
+       'Form'      => 'Collective\Html\FormFacade',
 
     ],
 

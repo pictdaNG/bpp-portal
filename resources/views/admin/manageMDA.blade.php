@@ -66,7 +66,7 @@ active
                                 </tr>
                             @endforeach
                         @else
-                        <td colspan="5">{{' No Record Found '}}</td>
+                        <td colspan="6">{{' No Record Found '}}</td>
                         @endif
                         </tbody>
                     </table>
@@ -121,7 +121,7 @@ active
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Select Sub-Sector</label>
+                                    <label class="col-lg-3 control-label">Select Sector</label>
                                     <div class="col-lg-9">
                                     <select name="subsector" class="form-control">
                                     @foreach ($categories as $category)

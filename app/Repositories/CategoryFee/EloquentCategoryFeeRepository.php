@@ -16,16 +16,13 @@ class EloquentCategoryFeeRepository implements CategoryFeeContract
     }
     
     
-    public function listAllFee()
-    {
+    public function listAllFee(){
         return CategoryRegistrationFee::all();
     }
     
     
-    public function destroy($request)
-    {
-       // dd($request);
-        return CategoryRegistrationFee::destroy($request->ids);
+    public function destroy($request){
+      return CategoryRegistrationFee::destroy($request->ids);
     }
     
     public function update($id, $requestData)

@@ -82,44 +82,36 @@ class HomeController extends Controller{
             $listMdas = $this->contract_mdas->listMdas();
             $activeAdverts = $this->contract_advert->listActiveAdverts();
             $totalSales = $this->contract_sales->totalSales();
-
             $constructions = $this->contract_advertLot->countAdvertsByCategory('1');
             $consultancy = $this->contract_advertLot->countAdvertsByCategory('2');
-            $supplies = $this->contract_advertLot->countAdvertsByCategory('3');
-              
+            $supplies = $this->contract_advertLot->countAdvertsByCategory('3');  
             $totalCompleteRegistration = $this->contract_completedRegistration->listAllRegistrations();
-
             $contractors = User::where('user_type', 'contractor')->get()->count();
             $completedPercent = $this->completedPercentage($totalCompleteRegistration, $contractors) ;
             
-
 
             $closingBids = $this->contract_advert->closingBids();
             return view('adminHome', ['getCompliance' => $compliances, 'listMdas' => $listMdas, 'activeAdverts' => $activeAdverts, 
             'closingBids' => $closingBids, 'totalBids' => $totalSales, 'constructions' => $constructions, 'consultancy' => $consultancy,
             'supplies' => $supplies, 'piechart' => $completedPercent, 'registeredcontractors' => $contractors]);
-        }else if(strtolower($user->user_type) == strtolower("mda")){
-             $myAdverts =  $this->contract_advert->listAdvertsByMDA();
-             
-             $constructions = $this->contract_advertLot->listAdsByUserIdandCategory('1');
+        }
+        else if(strtolower($user->user_type) == strtolower("mda")){
+            $myAdverts =  $this->contract_advert->listAdvertsByMDA();  
+            $constructions = $this->contract_advertLot->listAdsByUserIdandCategory('1');
             $consultancy = $this->contract_advertLot->listAdsByUserIdandCategory('2');
             $supplies = $this->contract_advertLot->listAdsByUserIdandCategory('3');
-
             $totalSales = $this->contract_sales->mySales();
             $salesCount = $this->contract_sales->salesCount();
             $submittedBids = $this->contract_sales->getSubmittionsByMDA();
             $agregateSales = $this->contract_sales->submittedApplications();
-
-            
-
-            //dd($agregateSales);
 
             $data= $this->dashboardData($constructions, $supplies, $consultancy, $totalSales, $salesCount);
 
             return view('MDAHome', ['myAdverts'=> $myAdverts, 'data' => $data, 'submittedBids' => $submittedBids,
                              'agregateSales' => $agregateSales]);
    
-        }else if(strtolower($user->user_type) == strtolower("Contractor")){
+        }
+        else if(strtolower($user->user_type) == strtolower("Contractor")){
 
             $companies = $this->company->getCompanyById();
             $personnels = $this->contract_personnel->getPersonnelsById();

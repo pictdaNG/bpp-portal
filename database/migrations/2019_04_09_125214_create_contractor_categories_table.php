@@ -18,8 +18,7 @@ class CreateContractorCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('category');
-            $table->string('subcategory_1');
-            $table->string('subcategory_2');
+            $table->string('sub_category_name');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });

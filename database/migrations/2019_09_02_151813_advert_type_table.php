@@ -4,16 +4,15 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusinessCategoriesTable extends Migration
+class AdvertTypeTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('business_categories', function (Blueprint $table) {
+    public function up(){
+        Schema::create('advert_types', function (Blueprint $table) {
             $table->increments('id')->unsigned()->index();
             $table->string('name');
             $table->timestamps();
@@ -25,8 +24,7 @@ class CreateBusinessCategoriesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('business_categories');
+    public function down(){
+        dropIfExists('advert_types');
     }
 }

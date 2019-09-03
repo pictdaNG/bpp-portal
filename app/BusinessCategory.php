@@ -11,4 +11,8 @@ class BusinessCategory extends Model
     public function advertLot(){
         return $this->hasMany('App\BusinessCategory');
     }
+
+    public function businessSubCategory(){
+        return $this->belongsTo('App\BusinessCategory');
+    }
 }

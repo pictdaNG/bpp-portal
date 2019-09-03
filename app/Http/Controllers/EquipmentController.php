@@ -84,7 +84,7 @@ class EquipmentController extends Controller
                  return back()->with(['success'=>'Equipment deleted Succesfully.']);
             }
             else {
-                return response()->json(['responseText' => 'Error adding Company Ownership'], 500);
+                return response()->json(['responseText' => 'Error Deleting Equipment'], 500);
             }
             
         } catch (QueryException $e) {

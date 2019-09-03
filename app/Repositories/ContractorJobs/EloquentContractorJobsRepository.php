@@ -64,16 +64,13 @@ class EloquentContractorJobsRepository implements ContractorJobsContract{
     private function setContractorJobsProperties($contractorjob, $request) {
         $user = Auth::user();
 
-        $category = BusinessCategory::where('name', $request->job_category )->first();
-        $category1 = BusinessSubCategory1::where('name', $request->sub_category )->first();
-        $category2 = BusinessSubCategory2::where('name', $request->sub_sub_category )->first();
+        $category = BusinessCategory::where('id', $request->business_category_id )->first();
+        $category1 = BusinessSubCategory1::where('id', $request->sub_category )->first();
 
-        $contractorjob->job_category = $request->job_category;
+        $contractorjob->job_category = $category->name;
         $contractorjob->categoryId = $category->id;
-        $contractorjob->sub_category = $request->sub_category;
+        $contractorjob->sub_category = $category1->name;
         $contractorjob->sub_categoryId = $category1->id;
-        $contractorjob->sub_sub_category = $request->sub_sub_category; 
-        $contractorjob->sub_sub_categoryId = $category2->id; 
         $contractorjob->job_title= $request->job_title;
         $contractorjob->job_description = $request->job_description;
         $contractorjob->client = $request->client;

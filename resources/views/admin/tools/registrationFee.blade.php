@@ -11,7 +11,7 @@ active
           <br/>
         <section class="panel panel-info">
             <header class="panel-heading">
-              Certificates
+              Charges
             </header>
             <form class="bs-example form-horizontal" action="{{route('deleteFees')}}" method="POST">
 
@@ -19,7 +19,7 @@ active
                 {{csrf_field()}}
                 <div class="row wrapper">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="#RegistrationCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Category Name</a> 
+                        <a href="#RegistrationCategory" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Fee</a> 
                         <button id="btnDelete"  disabled class="delete-modal btn btn-danger">
                             <span class="glyphicon glyphicon-trash"></span> Delete
                         </button>
@@ -46,13 +46,13 @@ active
                         <td><label class="checkbox m-l m-t-none m-b-none i-checks"><input type="checkbox" name="ids[]" value="{{$data->id}}"><i></i></label></td>
                             <td>{{ $data['name'] }}</td>
                             <td>{{ $data['description'] }}</td>
-                            <td>{{ $data['amount'] }}</td>
-                            <td>{{ $data['renewal_fee'] }}</td>
+                            <td>{{ number_format($data['amount']) }}</td>
+                            <td>{{ number_format($data['renewal_fee']) }}</td>
                         </tr>
                         @endforeach
                     @else 
                         <tr>
-                            <td  colspan="4">No Record to Display</td>
+                            <td colspan="5">No Record to Display</td>
                                 
                         </tr>
                     @endif

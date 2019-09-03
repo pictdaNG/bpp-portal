@@ -75,10 +75,10 @@ Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery'
 
 //Route::resource('manageMDA', 'MDAController');
 
-Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
-Route::post('/mda/delete', 'MDAController@deleteMda')->name('deleteMdas');
-Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
-Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
+// Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');
+// Route::post('/mda/delete', 'MDAController@deleteMda')->name('deleteMdas');
+// Route::get('/mda/list', 'MDAController@getMdas')->name('getMdas');
+// Route::get('/mad/{id}', 'MDAController@mdasPreview')->name('mdasPreview');
 
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
@@ -139,16 +139,39 @@ Route::get('/equipments', 'EquipmentController@index')->name('getEquipments');
 Route::post('/equipment/delete/', 'EquipmentController@delete')->name('equipment.delete');
 
 // Registration Fee
-Route::post('/Registration/fee/create', 'CategoryRegistrationFeeController@storeFee')->name('storeFee');
+Route::post('/registration/fee/create', 'CategoryRegistrationFeeController@storeFee')->name('storeFee');
 //Route::get('/fee/fees', 'ContractorRegistrationFeeController@getEquipmentsType')->name('getEquipmentsType');
 Route::get('/fee/fees', 'CategoryRegistrationFeeController@index')->name('getFees');
 Route::post('/fee/delete/', 'CategoryRegistrationFeeController@delete')->name('deleteFees');
 
 // Business Categories
+Route::post('/business-category/create', 'BusinessCategoryController@storeBusinessCategory')->name('storeBusinessCategory');
 Route::get('/business/categories', 'BusinessCategoryController@getAllBusinessCategories')->name('getAllBusinessCategories');
+Route::get('/business/business-categories', 'BusinessCategoryController@index')->name('fetchBusinessCategories');
+Route::post('/business-category/delete/', 'BusinessCategoryController@delete')->name('deleteBusinessCategory');
+
+
+//Advert Types
+Route::post('/advert-type/create', 'AdvertTypeController@storeAdvertType')->name('storeAdvertType');
+Route::get('/advert-type/types', 'AdvertTypeController@getAllAdvertTypes')->name('getAllAdvertTypes');
+Route::get('/advert/advert-types', 'AdvertTypeController@index')->name('fetchAdvertTypes');
+Route::post('/advert/delete/', 'AdvertTypeController@delete')->name('deleteAdvertType');
+
+
+//Advert Mode
+Route::post('/advert-mode/start', 'AdvertModeController@storeAdvertMode')->name('storeAdvertMode');
+Route::get('/advert-mode/types', 'AdvertModeController@getAllAdvertModes')->name('getAllAdvertModes');
+Route::get('/advert-mode/modes', 'AdvertModeController@index')->name('fetchAdvertModes');
+Route::post('/advert-mode/delete/', 'AdvertModeController@delete')->name('deleteAdvertMode');
+
+
+
 
 // Business sub Categories 1
 Route::get('/business/subcategory1', 'BusinessSubCategory1Controller@getAllBusinessSubCategories')->name('getAllBusinessSubCategories');
+Route::post('business/sub-category/create', 'BusinessSubCategory1Controller@storeBusinessCategory')->name('storeBusinessSubCategory');
+Route::get('/business/sub-categories', 'BusinessSubCategory1Controller@index')->name('fetchBusinessSubCategories');
+Route::post('business/sub-category/delete/', 'BusinessSubCategory1Controller@delete')->name('deleteBusinessSubCategory');
 
 // Business sub Categories 2
 Route::get('/business/subcategory2', 'BusinessSubCategory2Controller@getAllBusinessSubCategories')->name('getAllBusinessSubCategories2');

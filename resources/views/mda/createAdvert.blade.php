@@ -103,18 +103,22 @@ active
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Advert Type</label>
                   <div class="col-lg-9">
-                    <select name="advert_type" required class="form-control">
+                  {!! Form::select('advert_type', $vehicleMakes, 'default', array('id' => 'advert_type_id', 'required' => true, 'class' => 'form-control')) !!}
+
+                    <!-- <select name="advert_type" required class="form-control">
                       <option value="national competitive bidding">National Competitive Bidding</option>
-                    </select>
+                    </select> -->
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Advert Mode</label>
                   <div class="col-lg-9">
-                    <select name="advert_mode" required class="form-control">
+                  {!! Form::select('advert_mode', $vehicleModels, 'default', array('id' => 'advertMode', 'required' => true, 'class' => 'form-control')) !!}
+
+                    <!-- <select name="advert_mode" required class="form-control">
                       <option value="invitation to tender">Invitation to Tender</option>
-                    </select>
+                    </select> -->
                   </div>
                 </div>
 
@@ -163,7 +167,7 @@ active
                 </div>
 
                 <div class="form-group">
-                  <div class="col-sm-10">
+                  <div class="col-sm-10 hidden">
                     <!-- <label class="checkbox-inline i-checks">
                       <input name="project_status" onclick="show2()" type="radio" id="inlineCheckbox1" value="approved_project"><i></i> Approved Project
                     </label> -->
@@ -173,7 +177,7 @@ active
                   </div>
                 </div>
 
-                <div id="div1"  class="form-group">
+                <div id="div1"   class="form-group hidden">
                   <label class="col-lg-3 control-label">Select Project</label>
                   <div class="col-lg-9">
                     <select name="project_name" class="form-control">
@@ -241,11 +245,34 @@ active
     </section>
   </section>
 
-  <script>
+  <script type="application/javascript">
+    var make_model_mapping = {!! $jsArray !!};
+
+    window.addEventListener('load', function () {
+
+        $('#advert_type_id').on('change', function (e) {
+			    var options = $("#advertMode").empty().html(' ');
+				$.each(make_model_mapping[this.value], function() {
+				    options.append($("<option />").val(this.id).text(this.name));
+				});
+			});
+    });
+
+
     function formAdvert() {
       $("#advertForm").submit(function(evt){
         evt.preventDefault();
         evt.stopImmediatePropagation();
+        $cat = $('#advert_type_id').val();
+        if($cat == 'default'){
+            alert('Select Advert Type');
+            return;
+        }
+        $subcat = $('#advertMode').val();
+        if($subcat == 'default'){
+            alert('Advert Mode is compulsory');
+            return;
+        }
         $.ajaxSetup({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
