@@ -22,27 +22,27 @@ active
                                 <th>PenCom ID</th>
                                 <th>TCC No.</th>
                                 <th>ITF ID</th>
-                                <th>Structure</th>
+                                <th>IS Active</th>
                                 <th>Preview</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php  $i = 0; ?>
                             @if(sizeof($getCompliance) > 0)
-                           @foreach ($getCompliance as $data)
-                            <tr>
-                                <td>{{ $data['company_name'] }}</td>
-                                <td>{{ $data['cac_number'] }}</td>
-                                <td>{{ $data['tcc_tin_no'] }}</td>
-                                <td>{{ $data['pension_employer_code'] }}</td>
-                                <td>{{ $data['tcc_no'] }}</td>
-                                <td>{{ $data['itf_registration_no'] }}</td>
-                                <td>{{ $data['tcc_ownership_structure'] }}</td>
-                                <td>
-                                    <a href="{{ route('contractorPreview',$data['user_id']) }}" class="active"><i class="fa fa-search text-success text-active"></i></a>
-                                </td>
-                            </tr>
-                            @endforeach
+                                @foreach ($getCompliance as $data)
+                                    <tr>
+                                        <td>{{ $data['company_name'] }}</td>
+                                        <td>{{ $data['cac_number'] }}</td>
+                                        <td>{{ $data['tcc_tin_no'] }}</td>
+                                        <td>{{ $data['pension_employer_code'] }}</td>
+                                        <td>{{ $data['tcc_no'] }}</td>
+                                        <td>{{ $data['itf_registration_no'] }}</td>
+                                        <td>{{ $data['tcc_ownership_structure'] }}</td>
+                                        <td>
+                                            <a href="{{ route('contractorPreview',$data['user_id']) }}" class="active"><i class="fa fa-search text-success text-active"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                             @else
                                 <tr>
                                     <td colspan = '8'>{{ 'No Record Found'}}</td>

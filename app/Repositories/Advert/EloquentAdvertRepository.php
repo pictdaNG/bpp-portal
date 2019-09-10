@@ -20,20 +20,16 @@ class EloquentAdvertRepository implements AdvertContract {
             return 'Invalid Budget Year';
         }
          else if(Carbon::parse($request->bid_opening_date)->format('Y-m-d') <= Carbon::now()->format('Y-m-d')){
-             dd(Carbon::parse($request->bid_opening_date)->format('Y-m-d'));
             return 'Invalid Bid Opening Date';
         }
         else if(Carbon::parse($request->closing_date)->format('Y-m-d') <= Carbon::now()->format('Y-m-d')){
             return 'Invalid Closing Date';
         }
-
-       
-         $advert->save();
-         return 1;
+        $advert->save();
+        return 1;
     }
 
     public function editAdvert($request) {
-       // dd($request);
         $advert = Advert::find($request->id);
         $advert->tender_collection = $request->tender_collection;
         $advert->tender_submission = $request->tender_submission;
@@ -86,9 +82,8 @@ class EloquentAdvertRepository implements AdvertContract {
         ->with('advert.tenderRequirement')
         ->orderBy('created_at', 'desc')
         ->get();
-
-        $ads = array();
-       
+        $ads = array(); 
+        
         if(sizeof($records) > 0) {
             foreach($records as $data){
                 $status = $data->advert->bid_opening_date > Carbon::now()->format('Y-m-d') ? 'text-success-dk' :'text-danger-dk';

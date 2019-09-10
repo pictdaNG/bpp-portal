@@ -8,4 +8,6 @@ interface ContractorContract {
     public function getCompanyById();
     public function find($id);
     public function editPassword($request);
+    public function updateAccountStatus($id, $value);
+    public function getContractorProfile();
 }

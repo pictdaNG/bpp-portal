@@ -83,6 +83,14 @@ Route::post('/machinery/delete', 'ContractorMachineryController@deleteMachinery'
 //MDA
 Route::get('/mda/createAdvert', 'MDAController@createAdvert')->name('newMdaAdvert');
 Route::get('/contractors/report', 'ReportController@contractors')->name('contractorReport');
+/////
+//Route::get('/contractors/report/{id}/{value}', 'ReportController@contractors')->name('contractorReport');
+Route::post('/contractors/activate/{id}/{value}', 'ContractorController@editContractorStatus')->name('contractorAccount');
+
+
+
+
+
 Route::get('/contractors/{id}', 'ReportController@contractorPreview')->name('contractorPreview');
 Route::get('/mda/advert/bidrequirement/{advertId}/', 'MDAController@bidRequirements')->name('bidRequirements');
 Route::post('/mda/create', 'MDAController@storeMdas')->name('storeMdas');

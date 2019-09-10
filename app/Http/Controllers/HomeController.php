@@ -145,11 +145,9 @@ class HomeController extends Controller{
     }
 
     public function completedPercentage($completedRegistration, $contractors) {
-  //  dd($totalCompliance->count());
-       // dd(($completedRegistration->count()/$totalCompliance->count()) * 100);
-       if($contractors == 0) {
+        if($contractors == 0) {
            return 0;
-       }
+        }
         return ($completedRegistration->count()/$contractors) * 360;
     }
 

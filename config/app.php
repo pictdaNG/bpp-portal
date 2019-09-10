@@ -178,8 +178,6 @@ return [
         App\Providers\AuthenticationServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
 
-
-
         // custom service providers
         App\Providers\ContractorServiceProvider::class,
         App\Providers\ComplianceServiceProvider::class,

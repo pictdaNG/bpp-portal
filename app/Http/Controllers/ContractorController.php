@@ -198,9 +198,6 @@ class ContractorController extends Controller {
             $cf->user_id = $user->id;
         }
 
-
-       
-        
         $file = $request->file('file');
         $filenamewithoutext = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $file->getClientOriginalExtension();
@@ -219,10 +216,6 @@ class ContractorController extends Controller {
 
         if($uploaded){             
              $saved = $cf->save();
-            // if($saved && $oldKey) {
-            //    $d = Storage::disk('s3')->delete($oldKey);
-            //    dd($oldKey.$d);
-            // }
             return response()->json($cf, 200);
         }
         return response()->json(['status' => 'failure'], 400);
@@ -241,24 +234,37 @@ class ContractorController extends Controller {
         return view('admin/contractors_preview', ['getUploadfiles' => $getUploadfiles]);
     }
 
+    public function editContractorStatus($id,  $value) {
+        $response = $this->repo->updateAccountStatus($id, $value);
+        if($response == 1){
+            $notification = array(
+                'message' => 'Success, Account Updated!', 
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);   
+        }
+
+        $notification = array(
+            'message' => 'Failed to Activate Account!', 
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);  
+    }
+
     public function downloadPDF($registrationId){
         $user = User::where('id', Auth::user()->id)->first();
         $category = $this->contract_completedRegistration->getRegistrationsById($registrationId);
-        //$cert = empty($certification) ? 'Consultancy' : $certification;
         $pdf = PDF::loadView('contractor/pdf', compact('user'), ['data' => $category]);
         return $pdf->download('irr.pdf');
       }
 
     public function getIRR(){
-        //$names = $this->contract_pdf->listAllPDFName();
-        //$names = $this->contract_fees->listAllFee();
         $categories = $this->contract_completedRegistration->getRegistrationsByUserId();
         return view('contractor.partials.IrrDocs', ['categories' => $categories]);
     }
 
     public function getAdvertById($advertId) {
         $advert = $this->contract_advert->getAdsById($advertId);
-       // dd($advert);
         return view('contractor.SelectBid')->with(['advert' => $advert]);
     }
 
@@ -279,13 +285,11 @@ class ContractorController extends Controller {
         return view('contractor.Transactions')->with(['transactions' => $transactions]);
     }
 
-
     public function getPasswordUpdate() {
         return view('contractor.PasswordUpdate');
     }
 
     public function updatePassword(Request $request) {
-
         $update = $this->repo->editPassword((object)$request->all());
         if ($update == 1) {
             $notification = array(
@@ -300,7 +304,7 @@ class ContractorController extends Controller {
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification)->withInput();
-         }
+        }
 
     }
 

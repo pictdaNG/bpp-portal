@@ -27,6 +27,8 @@ active
                     <div class="col-xs-6 text-right">
                         <p class="h4">Contractor IRR # {{ $contractors->user->registration_id }}</p>
                         <h5>Date Registered: {{ $contractors['created_at']}}</h5>
+                        <h5>Account Status: {{ $contractors['isActive'] == 0 ? 'Disabled' : 'Active'}}</h5>
+
                     </div>
              
                 </div>
@@ -276,7 +278,7 @@ active
         <tbody>
         @if (empty($machineries))
             <tr>
-            <td>No Records found</td>
+                 <td>No Records found</td>
             </tr>
         @else 
         @foreach ($machineries as $data)
@@ -306,13 +308,25 @@ active
                 </header>
                 <div class="panel-body">
                     <div class="row">
-                    @if (empty($getUploadfiles))
-                    <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>No Uploads Found</a></div>
-                    @else 
-                    @foreach ($getUploadfiles as $data)
-                        <div class="col-md-6 text-center" style="padding: 8px;"><a href="{{ asset('https://bpp-portal.s3.amazonaws.com/uploads/'.$data->key)}}" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ ' '.strtoupper($data['name']) }}</a></div>
-                    @endforeach
-                    @endif  
+                        @if (sizeof($getUploadfiles) < 1)
+                         <div class="col-md-6 text-center" style="padding: 8px;"><a href="#" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>No Uploads Found</a></div>
+                        @else 
+                        @foreach ($getUploadfiles as $data)
+                            <div class="col-md-6 text-center" style="padding: 8px;"><a href="{{ asset('https://bpp-portal.s3.amazonaws.com/uploads/'.$data->key)}}" class="btn btn-s-md btn-primary btn-rounded"><i class="fa fa-file"></i>{{ ' '.strtoupper($data['name']) }}</a></div>
+                        @endforeach
+                        @endif  
+                        @if ($contractors['isActive'] == 0)
+                            <form action="{{ action('ContractorController@editContractorStatus',  [$contractors['user_id'], '1' ]) }}" method="POST">
+                                                    {!! csrf_field() !!}
+                                 <div class="col-md-6 text-center" style="padding: 8px;"><Button type="submit" class="btn btn-s-md btn-success btn-rounded"><i class="fa fa-file"></i>Activate Contractor</Button></div>
+                            </form>
+                        @else
+                            <form action="{{ action('ContractorController@editContractorStatus', [$contractors['user_id'], '0' ]) }}" method="POST">
+                                    {!! csrf_field() !!}
+                                <div class="col-md-6 text-center" style="padding: 8px;"><Button type="submit" class="btn btn-s-md btn-danger btn-rounded"><i class="fa fa-file"></i>Disable Contractor</Button></div>
+                            </form>
+                        @endif
+                     
                     </div>
                 </div>
             </section>

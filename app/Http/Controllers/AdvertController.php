@@ -13,6 +13,7 @@ use App\Repositories\ContractorPersonnel\ContractorPersonnelContract;
 use App\Repositories\ContractorJobs\ContractorJobsContract;
 use App\Repositories\ContractorFinance\ContractorFinanceContract;
 use App\Repositories\ContractorMachinery\ContractorMachineryContract;
+use App\Repositories\Contractor\ContractorContract;
 use App\ContractorFile;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,18 +28,19 @@ class AdvertController extends Controller{
     protected $contract_job;
     protected $contractFinance;
     protected $machinery;
+    protected $contractorModel;
 
 
     public function __construct(AdvertContract $advertContract, BusinessCategoryContract $categoryContract,
-                             DirectorContract $directorContract, ContractorCategoryContract $contractorCategoryContract,
+                            DirectorContract $directorContract, ContractorCategoryContract $contractorCategoryContract,
                             ContractorJobsContract $contractorJob, ContractorPersonnelContract $contractorPersonnel,
-                            ContractorFinanceContract $contractorFinanceContract, ContractorMachineryContract $contractorMachinery){
-             $this->middleware('auth');
+                            ContractorFinanceContract $contractorFinanceContract, ContractorMachineryContract $contractorMachinery,
+                            ContractorContract $contractorModel){
+            $this->middleware('auth');
             $this->repo = $advertContract;
             $this->contract_category = $categoryContract;
-
-
             $this->directorRepo = $directorContract;
+            $this->contractorModel = $contractorModel;
             $this->contract_personnel = $contractorPersonnel;
             $this->contract_job = $contractorJob;
             $this->contractFinance = $contractorFinanceContract;
@@ -53,14 +55,11 @@ class AdvertController extends Controller{
         return response()->json(['adverts' => $adverts, 'categories' => $categories], 200);
     }
 
-
-
     private function registrationStatus(){
 
         $count = 0;
         $status = array();
 
-    
         $personnels = $this->contract_personnel->getPersonnelsById();
         $jobs = $this->contract_job->getJobsById();
         $finances = $this->contractFinance->getFinancesById();
@@ -174,25 +173,27 @@ class AdvertController extends Controller{
      public function getAdvertById($advertId) {
         $advert = $this->repo->getAdsById($advertId);
         $registrationStatus = $this->registrationStatus();
+        $contractor = $this->contractorModel->getContractorProfile();
+        $message = null;
 
         $notification = array(
-            'message' => 'Sorry You have to complete Your Profile Update!', 
+            'message' => $message, 
             'alert-type' => 'error'
         );
-
-        //dd($registrationStatus['percentage']);
+        
         if($registrationStatus['percentage'] !== 100.0) {
+            $message = 'Complete Your Profile Regostration to Apply';
+            return redirect()->back()->with($notification);
+        }
+        else if($contractor->isActive == 0) {
+            $message = 'Contact Admin for Documents Verification and Activation';
             return redirect()->back()->with($notification);
         }
        
         return view('contractor.AdvertPreview')->with(['advert' => $advert, 'registrationStatus' => $registrationStatus]);
     }
 
-    // public function getSubmittedAdvertById($advertId) {
-    //     $advert = $this->repo->getAdsById($advertId);
-    //     return view('contractor.SubmittedAdvertPreview')->with(['advert' => $advert]);
-    // }
-
+  
     public function getAdverts(){
         $adverts = $this->repo->listAllAdverts();
         return view('admin.AdvertList')->with(['adverts' => $adverts]); 
