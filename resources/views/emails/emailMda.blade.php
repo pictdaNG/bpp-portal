@@ -89,7 +89,7 @@
       padding-top: 25px;
       color: #000000;
       font-family: sans-serif;" class="header">
-        PLBPP Account detials
+        PLBPP Account Details
     </td>
   </tr>
   

@@ -102,6 +102,8 @@ class RegisterController extends Controller{
         }
         catch(Exception $e) {
             \Log::info('errrorr... '.$e);
+            return $user;
+
         }
     }
 }
