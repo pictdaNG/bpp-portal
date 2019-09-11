@@ -47,7 +47,7 @@
                 <td>
                     <p>
                         <button onClick="uploadCACFile()" id="cac_file_upload_btn" class="btn btn-primary" {{ $cac ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $cac ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $cac ? '' : 'disabled' }} id="cac_preview_btn" href="{{ $cac ? asset('https://bpp-portal.s3.amazonaws.com/uploads/' . $cac->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
+                        <a {{ $cac ? '' : 'disabled' }} id="cac_preview_btn" href="{{ $cac ? asset('https://bpp-portal-live.s3.amazonaws.com/uploads/' . $cac->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
                         <button {{ $cac ? '' : 'disabled' }} id="resetCACBtn" onClick="resetCACFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
                     </p>
                 </td>
@@ -76,7 +76,7 @@
                 <td>
                     <p>
                         <button onClick="uploadTCCFile()" id="tcc_file_upload_btn" class="btn btn-primary" {{ $tcc ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $tcc ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $tcc ? '' : 'disabled' }} id="tcc_preview_btn" href="{{ $tcc ? asset('https://bpp-portal.s3.amazonaws.com/uploads/' . $tcc->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
+                        <a {{ $tcc ? '' : 'disabled' }} id="tcc_preview_btn" href="{{ $tcc ? asset('https://bpp-portal-live.s3.amazonaws.com/uploads/' . $tcc->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
                         <button {{ $tcc ? '' : 'disabled' }} id="resetTCCBtn" onClick="resetTCCFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
                     </p>
                 </td>
@@ -105,7 +105,7 @@
                 <td>
                     <p>
                         <button onClick="uploadTINFile()" id="tin_file_upload_btn" class="btn btn-primary" {{ $tin ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $tin ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $tin ? '' : 'disabled' }} id="tin_preview_btn" href="{{ $tin ? asset('https://bpp-portal.s3.amazonaws.com/uploads/' . $tin->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
+                        <a {{ $tin ? '' : 'disabled' }} id="tin_preview_btn" href="{{ $tin ? asset('https://bpp-portal-live.s3.amazonaws.com/uploads/' . $tin->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
                         <button {{ $tin ? '' : 'disabled' }} id="resetTINBtn" onClick="resetTINFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
                     </p>
                 </td>
@@ -134,7 +134,7 @@
                 <td>
                     <p>
                         <button onClick="uploadPenComFile()" id="pencom_file_upload_btn" class="btn btn-primary" {{ $pencom ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $pencom ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $pencom ? '' : 'disabled' }} id="pencom_preview_btn" href="{{ $pencom ? asset('https://bpp-portal.s3.amazonaws.com/uploads/' . $pencom->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
+                        <a {{ $pencom ? '' : 'disabled' }} id="pencom_preview_btn" href="{{ $pencom ? asset('https://bpp-portal-live.s3.amazonaws.com/uploads/' . $pencom->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
                         <button {{ $pencom ? '' : 'disabled' }} id="resetPenComBtn" onClick="resetPenComFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
                     </p>
                 </td>
@@ -163,7 +163,7 @@
                 <td>
                     <p>
                         <button onClick="uploadITFFile()" id="itf_file_upload_btn" class="btn btn-primary" {{ $itf ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $itf ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $itf ? '' : 'disabled' }} id="itf_preview_btn" href="{{ $itf ? asset('https://bpp-portal.s3.amazonaws.com/uploads/' . $itf->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
+                        <a {{ $itf ? '' : 'disabled' }} id="itf_preview_btn" href="{{ $itf ? asset('https://bpp-portal-live.s3.amazonaws.com/uploads/' . $itf->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
 
                         <button {{ $itf ? '' : 'disabled' }} id="resetITFBtn"  onClick="resetITFFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
                     </p>
@@ -193,7 +193,7 @@
                 <td>
                     <p>
                         <button onClick="uploadAuditedAccountFile()" id="audited_account_file_upload_btn" class="btn btn-primary" {{ $audited_account ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $audited_account ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $audited_account ? '' : 'disabled' }} id="audited_account_preview_btn" href="{{ $audited_account ? asset('https://bpp-portal.s3.amazonaws.com/uploads/' . $audited_account->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
+                        <a {{ $audited_account ? '' : 'disabled' }} id="audited_account_preview_btn" href="{{ $audited_account ? asset('https://bpp-portal-live.s3.amazonaws.com/uploads/' . $audited_account->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
                         <button {{ $audited_account ? '' : 'disabled' }} id="resetAuditedAccountBtn" onClick="resetAuditedAccountFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
                     </p>
                 </td>
@@ -222,7 +222,7 @@
                 <td>
                     <p>
                         <button onClick="uploadSwonAffidavitFile()" id="swon_affidavit_file_upload_btn" class="btn btn-primary" {{ $swon_affidavit ? 'disabled' : '' }}><i class="fa fa-cloud-upload text"></i> {{ $swon_affidavit ? 'Uploaded' : 'Upload' }}</button>
-                        <a {{ $swon_affidavit ? '' : 'disabled' }} id="swon_affidavit_preview_btn" href="{{ $swon_affidavit ? asset('https://bpp-portal.s3.amazonaws.com/uploads/' . $swon_affidavit->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
+                        <a {{ $swon_affidavit ? '' : 'disabled' }} id="swon_affidavit_preview_btn" href="{{ $swon_affidavit ? asset('https://bpp-portal-live.s3.amazonaws.com/uploads/' . $swon_affidavit->key) : '#' }}" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
                         <button {{ $swon_affidavit ? '' : 'disabled' }} id="resetSwonAffidavitBtn" onClick="resetSwonAffidavitFile()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove</button>
                     </p>
                 </td>
@@ -484,7 +484,7 @@ function uploadFile(name, divId, divProgressId, cacFileUploadBtnId, cacFileStatu
             $('#' + cacFileStatus).html('<i class="fa fa-check text-success text-active"></i>');
             var sizeInKb = parseFloat(data.size / 1024);
             $('#' + cacFileSize).html( sizeInKb.toFixed(1) + 'kB' );
-            $('#' + previewBtn).attr('href',  '{{ asset('https://bpp-portal.s3.amazonaws.com/uploads/') }}' + data.key);
+            $('#' + previewBtn).attr('href',  '{{ asset('https://bpp-portal-live.s3.amazonaws.com/uploads/') }}' + data.key);
             $('#' + previewBtn).removeAttr('disabled');
             $('#' + removeBtn).removeAttr('disabled');
             $('#' + divId).attr('disabled', 'disabled');

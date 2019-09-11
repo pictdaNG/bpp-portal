@@ -175,7 +175,6 @@ class ContractorController extends Controller {
        }
     }
 
-
     public function reportsContractor() {
        // echo("contracts reports data table");
         return view('contractor.reports');
@@ -183,7 +182,6 @@ class ContractorController extends Controller {
 
     public function getDocumentsByUserId(){
         return ContractorFile::where('user_id',  Auth::user()->id)->get();
-
     }
 
     public function uploadContractorFile(Request $request){
@@ -273,12 +271,10 @@ class ContractorController extends Controller {
         return view('contractor.BiddingDocuments')->with(['documents' => $getUploadfiles]);
     }
 
-
     public function getAdverts() {
         $adverts = $this->contract_advert->listAllAdvertsForContractor();
         return view('contractor.AdvertList')->with(['adverts' => $adverts]);
     }
-
 
     public function getTransactions() {
         $transactions = $this->contract_sales->listSalesByUserId();
