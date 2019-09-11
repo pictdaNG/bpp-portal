@@ -52,7 +52,7 @@ class ReportController extends Controller
 
     public function contractors(){
         try {
-            $getContractors = $this->contractorContract->allContractors();
+            $getContractors = $this->contractor->allContractors();
 
             if ($getCompliance) {
                 // return response()->json(['success'=> $getCompliance], 200);
