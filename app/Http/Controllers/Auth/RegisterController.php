@@ -79,8 +79,9 @@ class RegisterController extends Controller{
 
         if(!$user) return;
 
+        try {
 
-        $note = 'Please be informed that your account was successfully registered, 
+            $note = 'Please be informed that your account was successfully registered, 
             You will need to verify all credentials submitted with the admin to enable your account';
             $data = array(
               'username' => $data['name'],
@@ -95,6 +96,12 @@ class RegisterController extends Controller{
               $message->from('plateaustatebpp@gmail.com', "Plateau State BPP");
               $message->to($data['email']);
               $message->subject("PLBPP Account details");
-            });
+           });
+           return $user;
+
+        }
+        catch(Exception $e) {
+            \Log::info('errrorr... '.$e);
+        }
     }
 }
