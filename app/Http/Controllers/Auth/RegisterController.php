@@ -7,9 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
 
-class RegisterController extends Controller
-{
+
+class RegisterController extends Controller{
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -52,9 +53,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cac' => ['required'],
+            'cac' => ['required', 'unique:users'],
             'phone' => ['required'],
         ]);
+
+        
     }
 
     /**
@@ -63,10 +66,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data){
         
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -74,5 +76,25 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'registration_id' => rand(10,100).rand(100, 1000).rand(10, 1000),
         ]);
+
+        if(!$user) return;
+
+
+        $note = 'Please be informed that your account was successfully registered, 
+            You will need to verify all credentials submitted with the admin to enable your account';
+            $data = array(
+              'username' => $data['name'],
+              'email' => $data['email'],
+              'password' => $data['password'],
+              'note' => $note,
+              'phone' => $data['phone'],
+             
+            );
+    
+            Mail::send('emails.emailContractor', $data, function($message) use ($data) {
+              $message->from('plateaustatebpp@gmail.com', "Plateau State BPP");
+              $message->to($data['email']);
+              $message->subject("PLBPP Account details");
+            });
     }
 }

@@ -11,6 +11,7 @@ use Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
+
 class EloquentContractorRepository implements ContractorContract{
 
     public function createContractor($request) {  
@@ -39,7 +40,7 @@ class EloquentContractorRepository implements ContractorContract{
         }
         else {
             $this->setContractorProperties($contractor, $request);
-            return $contractor->save();
+            $contractor->save();    
         }
     }
 
