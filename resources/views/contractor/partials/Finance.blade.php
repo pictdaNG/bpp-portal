@@ -79,7 +79,7 @@
         </div>
         
         <div class="form-group">
-            <label class="col-lg-3 control-label">Select Year</label>
+            <label class="col-lg-3 control-label">Enter Year</label>
             <div class="col-lg-9">
             <input type="number" name="year"  class="form-control">
             <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->

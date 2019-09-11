@@ -33,7 +33,7 @@
                       @endforeach
                     @else
                      <tr>
-                        <td>{{'You have not Registered Under Any Categories'}}</td>
+                        <td colspan="4">{{'You have not Registered Under Any Categories'}}</td>
                         
                       </tr>
                     @endif

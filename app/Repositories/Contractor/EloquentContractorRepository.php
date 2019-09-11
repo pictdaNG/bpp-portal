@@ -73,6 +73,10 @@ class EloquentContractorRepository implements ContractorContract{
        
     }
 
+    public function allContractors() {
+        return Contractor::all()->sortBy('company_name');
+    }
+
 
 
     public function getUserById() {

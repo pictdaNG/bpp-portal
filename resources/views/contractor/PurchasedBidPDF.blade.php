@@ -30,7 +30,7 @@
             <p><b> MDA : {{$data->mda_name}}</b></p>
             <p><b> Fee: {{number_format($data->amount)}} NGN</b></p>
             <p><b> Payment Status: {{$data->payment_status}} NGN</b></p>
-            <p><b> Payment Date: {{$data->payment_date}}</b></p>
+            <p><b> Payment Date: {{$data->payment_date || 'Pending'}}</b></p>
         </div>
         <center>
             <div style="font-size: 20px; border-bottom: 1px solid #eee; margin-top: 60px;">

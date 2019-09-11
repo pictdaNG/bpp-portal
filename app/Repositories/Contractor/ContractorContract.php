@@ -10,4 +10,5 @@ interface ContractorContract {
     public function editPassword($request);
     public function updateAccountStatus($id, $value);
     public function getContractorProfile();
+    public function allContractors();
 }

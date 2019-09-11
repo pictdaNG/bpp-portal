@@ -52,13 +52,11 @@ class ReportController extends Controller
 
     public function contractors(){
         try {
-            $getCompliance = $this->repo->listAllCompliance();
-
-            // dd($getCompliance);
+            $getContractors = $this->contractorContract->allContractors();
 
             if ($getCompliance) {
                 // return response()->json(['success'=> $getCompliance], 200);
-                return view('admin/contractors', ['getCompliance' => $getCompliance]);
+                return view('admin/contractors', ['contractors' => $getContractors]);
             }
             else {
                 return response()->json(['responseText' => 'Error retriving contractor compliance'], 500);
